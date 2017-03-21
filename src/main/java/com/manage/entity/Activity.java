@@ -9,10 +9,9 @@ import java.sql.Date;
  *Activity 活动
  */
 public class Activity {
-    // 把数据库中列的名称中是time都换成date
     private int activityid; // 活动id
     private Student stu; // 活动发起人 数据库添加
-    private String activityTitle; // 活动标题 数据库列名换一下
+    private String activityTitle; // 活动标题 
     private String activityLoc; // 活动地点
     private String activityContent; // 活动内容
     private Date activityDate; // 活动发表(发起)时间

@@ -9,7 +9,7 @@ import java.sql.Date;
  * Classes 班级
  *
  */
-public class Classes { // 修改数据库
+public class Classes { 
 
     private int classesid; // 班级id
     private String grade; // 年级

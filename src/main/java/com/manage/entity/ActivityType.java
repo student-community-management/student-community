@@ -1,4 +1,5 @@
 package com.manage.entity;
+
 /**
  * 
  * @author ChenYuhao
