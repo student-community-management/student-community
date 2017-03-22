@@ -58,5 +58,4 @@ public class ReplyActivity {
     public void setReplyDate(Date replyDate) {
         this.replyDate = replyDate;
     }
-
 }

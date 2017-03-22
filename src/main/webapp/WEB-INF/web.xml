@@ -28,7 +28,7 @@
     <!-- Map all requests to the DispatcherServlet for handling -->
     <servlet-mapping>
         <servlet-name>springDispatcherServlet</servlet-name>
-        <url-pattern>/*.a</url-pattern>
+        <url-pattern>*.a</url-pattern>
     </servlet-mapping>
 
     <filter>
