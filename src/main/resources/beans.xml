@@ -26,5 +26,6 @@
     </bean>
 <!-- 马亚超 -->
     <tx:annotation-driven/>
+  	<mvc></mvc>
 
 </beans>
