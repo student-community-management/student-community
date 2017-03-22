@@ -7,10 +7,28 @@ public class ReplyActivity {
     private int replyActivityid;
     private Student stu;
     private Activity activity;
+    private String content;
+    private ReplyActivity replyActivity;
     private Date replyDate;
 
     public int getReplyActivityid() {
         return replyActivityid;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public ReplyActivity getReplyActivity() {
+        return replyActivity;
+    }
+
+    public void setReplyActivity(ReplyActivity replyActivity) {
+        this.replyActivity = replyActivity;
     }
 
     public void setReplyActivityid(int replyActivityid) {
