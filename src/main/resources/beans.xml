@@ -24,7 +24,7 @@
     <bean id="transactionManagement" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
+<!-- 马亚超 -->
     <tx:annotation-driven/>
 
 </beans>
