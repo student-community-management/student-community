@@ -1,16 +1,16 @@
 package com.manage.entity;
 
-public class PraiseDiscuss {
-    private int praiseDiscussid;
+public class PraiseReplyDiscuss {
+    private int praiseReplyDiscussid;
     private Student stu;
     private Discuss discuss;
 
-    public int getPraiseDiscussid() {
-        return praiseDiscussid;
+    public int getPraiseReplyDiscussid() {
+        return praiseReplyDiscussid;
     }
 
-    public void setPraiseDiscussid(int praiseDiscussid) {
-        this.praiseDiscussid = praiseDiscussid;
+    public void setPraiseReplyDiscussid(int praiseReplyDiscussid) {
+        this.praiseReplyDiscussid = praiseReplyDiscussid;
     }
 
     public Student getStu() {
