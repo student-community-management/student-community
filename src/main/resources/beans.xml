@@ -15,7 +15,6 @@
 		<property name="username" value="root" />
 		<property name="password" value="admin" />
 	</bean>
-    <!-- 搜索mapper.xml文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- "classpath*:sqlmap/*-mapper.xml" -->
