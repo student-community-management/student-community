@@ -13,7 +13,7 @@ public class Problem {
     private String problemTitle; // 问题标题
     private int problemType; // 1感情问题 2学习问题
     private String problemContent;// 内容
-    private Date problemDate; //问题发布时间 数据库添加
+    private Date problemDate; //问题发布时间
     private int status; // 是否被删除
 
     public Date getProblemDate() {

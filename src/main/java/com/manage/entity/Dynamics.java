@@ -11,7 +11,7 @@ public class Dynamics {
 
     private int dynamicsid; // 动态id
     private Student stu; // 发布动态的学生
-    private String dynamicsContent; // 动态的内容 修改数据库
+    private String dynamicsContent; // 动态的内容
     private Date dynamicsDate;  //发布日期
     private int status; //是否删除
 
