@@ -15,13 +15,13 @@
 		<property name="username" value="root" />
 		<property name="password" value="admin" />
 	</bean>
-
+    <!-- 搜索mapper.xml文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!-- "classpath*:sqlmap/*-mapper.xml" -->
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
     </bean>
-
+    <!-- 事务管理 -->
     <bean id="transactionManagement" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
