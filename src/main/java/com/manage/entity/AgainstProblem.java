@@ -1,5 +1,10 @@
 package com.manage.entity;
 
+
+/**
+ * @author ChenYuhao
+ *
+ */
 public class AgainstProblem {
     private int againstProblemid;
     private Student stu;

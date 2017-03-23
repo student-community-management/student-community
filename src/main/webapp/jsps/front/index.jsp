@@ -45,7 +45,7 @@
 					<button type="submit" class="btn btn-default">搜索</button>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><img src="/student-community/face/g.jpg" width="20px">&nbsp;紫萱</a></li>
+					<li><a href="#"><img src="/student-community/face/1.jpg" width="20px">&nbsp;紫萱</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
