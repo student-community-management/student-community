@@ -5,12 +5,11 @@ import java.util.List;
 import com.manage.util.PageParam;
 
 public interface BaseInterface<T> {
-	/**
-	 * 分页查询
-	 * 
-	 * @return 返回查询后的所有实体类对象
-	 */
-	List<T> qeuryAll(PageParam pageParam);
+    /**
+     * 分页查询
+     * @return 返回查询后的所有实体类对象
+     */
+    List<T> queryAll(PageParam pageParam);
 
 	/**
 	 * 通过id查询单条信息
