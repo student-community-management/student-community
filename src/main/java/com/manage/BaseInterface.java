@@ -9,7 +9,7 @@ public interface BaseInterface<T> {
      * 分页查询
      * @return 返回查询后的所有实体类对象
      */
-    List<T> qeuryAll(PageParam pageParam);
+    List<T> queryAll(PageParam pageParam);
 
     /**
      * 通过id查询单条信息
