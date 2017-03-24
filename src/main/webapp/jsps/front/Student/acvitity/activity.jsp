@@ -1,27 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- The above 2 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-
-<!-- Note there is no responsive meta tag here -->
-
+<title>活动</title>
 <link rel="icon" href="/student-community/ico/ico.png">
-
-<title>学生社区</title>
+	<!-- 以下bootstrap -->
+	
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
 <script src="/student-community/js/jquery-1.11.0.min.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
+	<!-- 以上bootstrap -->
 </head>
-
 <body>
-
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -32,11 +29,11 @@
 			<!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
 			<div id="navbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/student-community/jsps/front/Student/acvitity/activity.jsp">首页</a></li>
-					<li><a href="/student-community/jsps/front/Student/acvitity/activity.jsp">活动</a></li>
-					<li><a href="/student-community/jsps/front/Student/acvitity/activity.jsp">讨论</a></li>
-					<li><a href="/student-community/jsps/front/Student/acvitity/activity.jsp">问吧</a></li>
-					<li><a href="/student-community/jsps/front/Student/acvitity/activity.jsp">动态</a></li>
+					<li><a href="">首页</a></li>
+					<li class="active"><a href="/student-community/jsps/front/Student/acvitity/activity.jsp">活动</a></li>
+					<li><a href="">讨论</a></li>
+					<li><a href="">问吧</a></li>
+					<li><a href="">动态</a></li>
 				</ul>
 				<form class="navbar-form navbar-left">
 					<div class="form-group">

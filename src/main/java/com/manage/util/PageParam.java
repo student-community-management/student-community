@@ -1,13 +1,11 @@
 package com.manage.util;
 
 public class PageParam {
-    private Integer currPage;
-    private Integer rows;
-    @SuppressWarnings("unused")
-    private int startIndex;
-
+    private Integer currPage;//当前页数
+    private Integer rows;//每页显示行数
+    @SuppressWarnings("unused")//警告错误
+    private int startIndex;//查询条件
     public PageParam() {
-        // TODO Auto-generated constructor stub
     }
 
     public PageParam(Integer currPage, Integer rows) {
