@@ -1,37 +1,36 @@
 package com.manage.entity;
 
-
 /**
  * @author ChenYuhao
  *
  */
 public class AgainstProblem {
-    private int againstProblemid;
-    private Student stu;
-    private ReplyProblem replyProblem;
+	private int againstProblemid;
+	private Student stu;
+	private ReplyProblem replyProblem;
 
-    public int getAgainstProblemid() {
-        return againstProblemid;
-    }
+	public int getAgainstProblemid() {
+		return againstProblemid;
+	}
 
-    public void setAgainstProblemid(int againstProblemid) {
-        this.againstProblemid = againstProblemid;
-    }
+	public void setAgainstProblemid(int againstProblemid) {
+		this.againstProblemid = againstProblemid;
+	}
 
-    public Student getStu() {
-        return stu;
-    }
+	public Student getStu() {
+		return stu;
+	}
 
-    public void setStu(Student stu) {
-        this.stu = stu;
-    }
+	public void setStu(Student stu) {
+		this.stu = stu;
+	}
 
-    public ReplyProblem getReplyProblem() {
-        return replyProblem;
-    }
+	public ReplyProblem getReplyProblem() {
+		return replyProblem;
+	}
 
-    public void setReplyProblem(ReplyProblem replyProblem) {
-        this.replyProblem = replyProblem;
-    }
+	public void setReplyProblem(ReplyProblem replyProblem) {
+		this.replyProblem = replyProblem;
+	}
 
 }

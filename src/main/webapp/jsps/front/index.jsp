@@ -33,7 +33,7 @@
 			<div id="navbar">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">首页</a></li>
-					<li><a href="#about">活动</a></li>
+					<li><a href="discuss.jsp">活动</a></li>
 					<li><a href="#contact">讨论</a></li>
 					<li><a href="#contact">问吧</a></li>
 					<li><a href="#contact">动态</a></li>
