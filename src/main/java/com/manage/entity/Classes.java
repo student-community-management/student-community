@@ -14,8 +14,7 @@ public class Classes {
     private int classesid; // 班级id
     private String grade; // 年级
     private String classes; // 班级
-    private Date year; // 第几届的学生
-
+    private Integer year; // 第几届的学生
     public int getClassesid() {
         return classesid;
     }
@@ -40,12 +39,13 @@ public class Classes {
         this.classes = classes;
     }
 
-    public Date getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
+
 
 }

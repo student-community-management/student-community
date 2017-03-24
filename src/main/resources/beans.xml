@@ -12,6 +12,11 @@
     
     <!-- 扫描 Component Service  -->
     <context:component-scan base-package="com.manage"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+     <!-- 事务管理 -->
+    <bean id="transactionManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
     <!-- 连接数据库 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -25,12 +30,8 @@
         <!-- "classpath*:sqlmap/*-mapper.xml" -->
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
     </bean>
-    <!-- 事务管理 -->
-    <bean id="transactionManagement" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.manage.mapper"></property>
     </bean>
-    <tx:annotation-driven/>
+    
 </beans>

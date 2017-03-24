@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.ActivityMapper">
-    <select id="getAllActivity" parameterType="com.manage.entity.Activity">
-        select * from activity;
+    <select id="getAllActivity" resultType="com.manage.entity.Activity">
+        select * from activity
     </select>
     <select id="getAllcount" resultType="Integer">
-        select count(*) from activity;
+        select count(*) from activity
     </select>
 </mapper>

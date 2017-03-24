@@ -1,7 +1,6 @@
 package com.manage.entity;
 
 import java.sql.Date;
-
 /**
  * 
  * @author ChenYuhao

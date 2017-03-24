@@ -1,5 +1,6 @@
 package com.manage.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,11 @@ public class ActivityController {
     private ActivityService service;//活动
     //查询所有活动(分页)
     @RequestMapping("getActivity")
-    public ModelAndView getActivity(Integer currentPage,Integer startIndex){
+    /*public ModelAndView getActivity(Integer currentPage,Integer startIndex){
         if(currentPage == null){
             currentPage = 1;
         }
-        if(startIndex == null){
+        if(startIndex == null){//每页显示第多少行
             startIndex = 0;
         }
         ModelAndView mv = new ModelAndView();
@@ -33,5 +34,10 @@ public class ActivityController {
         mv.addObject("startIndex",startIndex);
         mv.setViewName("Student/activity/activity");
         return mv;
+    }*/
+    public List<Activity>  getActivity(){
+        List<Activity> list = new ArrayList<Activity>();
+        list = service.getActivity();
+        return list;
     }
 }

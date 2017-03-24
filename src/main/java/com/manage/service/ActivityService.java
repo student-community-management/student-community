@@ -4,7 +4,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.manage.entity.Activity;
 import com.manage.mapper.ActivityMapper;
 import com.manage.util.PageParam;
@@ -14,7 +13,7 @@ public class ActivityService {
     @Autowired
     private ActivityMapper activitymapper;
     //查询所有活动
-    public List<Activity> getActivity(Integer lineSize,Integer currentPage,Integer startIndex){
+  /*  public List<Activity> getActivity(Integer lineSize,Integer currentPage,Integer startIndex){
         if(lineSize == null){
             lineSize = 10;
         }
@@ -24,9 +23,13 @@ public class ActivityService {
         p.setStartIndex(startIndex);
         List<Activity> list = activitymapper.getAllActivity(p);
         return list;
+    }*/
+    public List<Activity> getActivity(){
+        List<Activity> list = activitymapper.getAllActivity();
+        return list;
     }
     //活动总数(无条件筛选)
     public Integer getAllCount(){
-        return activitymapper.getAllCount();
+        return activitymapper.getAllcount();
     }
 }
