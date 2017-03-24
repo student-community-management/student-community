@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.DiscussMapper">
+	<select id=""></select>
+	
+	<insert id="insert" parameterType="com.managee.entity.Discuss">
+		insert into Discuss(discussTitle,discussContent,discussDate,discussLabel) values
+		(#{discussTitle},#{discussContent},#{discussDate},#{discussLabel})
+	</insert>
+</mapper>
