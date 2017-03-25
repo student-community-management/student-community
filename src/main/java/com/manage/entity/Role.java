@@ -15,7 +15,6 @@ public class Role implements Serializable {
     private static final long serialVersionUID = -1798901243945178909L;
     private int roleid;
     private String roleName;
-    private Set<Admin> setAdmin;
     private Set<Student> setStu;
     private Set<Authority> setAuthority;
 
@@ -25,14 +24,6 @@ public class Role implements Serializable {
 
     public void setSetAuthority(Set<Authority> setAuthority) {
         this.setAuthority = setAuthority;
-    }
-
-    public Set<Admin> getSetAdmin() {
-        return setAdmin;
-    }
-
-    public void setSetAdmin(Set<Admin> setAdmin) {
-        this.setAdmin = setAdmin;
     }
 
     public Set<Student> getSetStu() {

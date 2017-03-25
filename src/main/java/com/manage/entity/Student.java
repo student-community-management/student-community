@@ -8,7 +8,7 @@ import java.util.Set;
  * 
  * @author ChenYuhao
  *
- *Student 学生
+ * Student 学生
  *
  */
 public class Student implements Serializable {
@@ -24,14 +24,14 @@ public class Student implements Serializable {
     private Date stuBirthday; // 生日
     private String stuNativePlace; // 祖籍
     private Classes classes; // 班级
-    private Set<Role> setRole;
+    private Set<Community> setCommunity; // 参加的社团
 
-    public Set<Role> getSetRole() {
-        return setRole;
+    public Set<Community> getSetCommunity() {
+        return setCommunity;
     }
 
-    public void setSetRole(Set<Role> setRole) {
-        this.setRole = setRole;
+    public void setSetCommunity(Set<Community> setCommunity) {
+        this.setCommunity = setCommunity;
     }
 
     public int getStuid() {

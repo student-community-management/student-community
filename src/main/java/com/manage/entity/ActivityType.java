@@ -6,6 +6,7 @@ import java.io.Serializable;
  * 
  * @author ChenYuhao
  * ActivityType 活动类型
+ * 
  */
 public class ActivityType implements Serializable {
     /**
