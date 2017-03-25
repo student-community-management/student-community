@@ -1,8 +1,18 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReplyDiscuss {
+/**
+ * 
+ * @author ChenYuhao
+ *  回复讨论
+ */
+public class ReplyDiscuss implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 4531970232876454653L;
     private int replyDiscussid;
     private Student stu;
     private Discuss discuss;

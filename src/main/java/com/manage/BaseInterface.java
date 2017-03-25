@@ -38,7 +38,16 @@ public interface BaseInterface<T> {
     void update(T t);
 
     /**
-     * @return 所有信息的条数
+     * @return 所有信息的数量
      */
     int getCount();
+    
+    /**
+     * 关键字查询
+     * @param keyWord 查询关键字
+     * @return 返回符合条件的查询结果数量
+     * 
+     */
+    int getCount(String keyWord);
+
 }

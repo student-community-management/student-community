@@ -1,6 +1,17 @@
 package com.manage.entity;
 
-public class PraiseReplyDiscuss {
+import java.io.Serializable;
+
+/**
+ * 
+ * @author ChenYuhao
+ * 赞讨论的回复
+ */
+public class PraiseReplyDiscuss implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -4362368629861596362L;
     private int praiseReplyDiscussid;
     private Student stu;
     private Discuss discuss;

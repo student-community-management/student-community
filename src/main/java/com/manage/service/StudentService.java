@@ -12,8 +12,8 @@ import com.manage.util.PageParam;
 
 @Service("studentService")
 public class StudentService implements BaseService<Student> {
-    
-    
+
+    @SuppressWarnings("unused")
     @Autowired
     private StudentMapper studentMapper;
 
@@ -32,19 +32,19 @@ public class StudentService implements BaseService<Student> {
     @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void save(Student t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void update(Student t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -57,6 +57,12 @@ public class StudentService implements BaseService<Student> {
     public PageData getPageData() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public int getCount(String keyWord) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }

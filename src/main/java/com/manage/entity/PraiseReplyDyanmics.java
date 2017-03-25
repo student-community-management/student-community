@@ -1,6 +1,17 @@
 package com.manage.entity;
 
-public class PraiseReplyDyanmics {
+import java.io.Serializable;
+
+/**
+ * 
+ * @author ChenYuhao
+ * 赞动态的回复
+ */
+public class PraiseReplyDyanmics implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -7115201138829373013L;
     private int praiseReplyDynamicsid;
     private Student stu;
     private Dynamics dynamics;

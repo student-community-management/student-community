@@ -1,8 +1,18 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReportActivity {
+/**
+ * 
+ * @author ChenYuhao
+ * 举报活动
+ */
+public class ReportActivity implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -1037115830900123888L;
     private int reportActivityid;
     private Student stu;
     private Activity activity;

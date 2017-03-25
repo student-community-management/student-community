@@ -1,6 +1,8 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 /**
  * 
@@ -9,15 +11,28 @@ import java.sql.Date;
  *Student 学生
  *
  */
-public class Student {
+public class Student implements Serializable {
 
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 4607420913323259994L;
     private int stuid; // 学生id
     private String stuPwd; // 学生密码
     private String stuName; // 学生姓名
     private byte stuSex; // 性别
-    private Date stuBirthday;  // 生日
-    private String stuNativePlace;  // 祖籍
-    private Classes classes;  // 班级
+    private Date stuBirthday; // 生日
+    private String stuNativePlace; // 祖籍
+    private Classes classes; // 班级
+    private Set<Role> setRole;
+
+    public Set<Role> getSetRole() {
+        return setRole;
+    }
+
+    public void setSetRole(Set<Role> setRole) {
+        this.setRole = setRole;
+    }
 
     public int getStuid() {
         return stuid;

@@ -1,8 +1,20 @@
 package com.manage.entity;
 
-public class Authority {
+import java.io.Serializable;
+
+/**
+ * 
+ * @author ChenYuhao
+ * 权限
+ *
+ */
+public class Authority implements Serializable {
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = -8601196675735812209L;
     private int authid;
-    private String authType;
+    private String authLevel;// 权限的等级
 
     public int getAuthid() {
         return authid;
@@ -12,12 +24,12 @@ public class Authority {
         this.authid = authid;
     }
 
-    public String getAuthType() {
-        return authType;
+    public String getAuthLevel() {
+        return authLevel;
     }
 
-    public void setAuthType(String authType) {
-        this.authType = authType;
+    public void setAuthLevel(String authLevel) {
+        this.authLevel = authLevel;
     }
 
 }

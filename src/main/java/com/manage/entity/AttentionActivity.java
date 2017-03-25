@@ -1,6 +1,18 @@
 package com.manage.entity;
 
-public class AttentionActivity {
+import java.io.Serializable;
+
+/**
+ * 
+ * @author ChenYuhao
+ * 关注活动
+ * 
+ */
+public class AttentionActivity implements Serializable {
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = 8367810711871027705L;
     private int attentionActivityid;
     private Student stu;
     private Activity activity;

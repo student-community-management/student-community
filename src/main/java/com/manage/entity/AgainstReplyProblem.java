@@ -1,11 +1,17 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 
 /**
  * @author ChenYuhao
+ * 踩问题的回复
  *
  */
-public class AgainstProblem {
+public class AgainstReplyProblem implements Serializable {
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = -6308319618388263052L;
     private int againstProblemid;
     private Student stu;
     private ReplyProblem replyProblem;

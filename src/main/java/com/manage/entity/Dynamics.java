@@ -1,5 +1,6 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -7,8 +8,12 @@ import java.sql.Date;
  * @author ChenYuhao
  * Dynamics 动态
  */
-public class Dynamics {
+public class Dynamics implements Serializable{
 
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -7012014024232950309L;
     private int dynamicsid; // 动态id
     private Student stu; // 发布动态的学生
     private String dynamicsContent; // 动态的内容
