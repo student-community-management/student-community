@@ -13,7 +13,7 @@ public class ActivityService {
     @Autowired
     private ActivityMapper activitymapper;
     //查询所有活动
-  /*  public List<Activity> getActivity(Integer lineSize,Integer currentPage,Integer startIndex){
+    public List<Activity> getActivity(Integer lineSize,Integer currentPage,Integer startIndex){
         if(lineSize == null){
             lineSize = 10;
         }
@@ -21,10 +21,6 @@ public class ActivityService {
         Integer startRow = (currentPage - 1)*lineSize;//从数据库查询数据
         PageParam p = new PageParam(startRow,lineSize);
         p.setStartIndex(startIndex);
-        List<Activity> list = activitymapper.getAllActivity(p);
-        return list;
-    }*/
-    public List<Activity> getActivity(){
         List<Activity> list = activitymapper.getAllActivity();
         return list;
     }

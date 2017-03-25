@@ -1,7 +1,6 @@
 package com.manage.mapper;
 import java.util.List;
 import com.manage.entity.Activity;
-import com.manage.util.PageParam;
 public interface ActivityMapper {
     public List<Activity> getAllActivity();//查询所有活动
     public Integer getAllcount();//活动总数

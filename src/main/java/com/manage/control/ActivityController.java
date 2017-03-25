@@ -1,11 +1,12 @@
-package com.manage.controller;
+package com.manage.control;
 
-import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.manage.entity.Activity;
 import com.manage.service.ActivityService;
 
@@ -14,9 +15,9 @@ public class ActivityController {
     @Autowired
     private ActivityService service;//活动
     //查询所有活动(分页)
-    @RequestMapping("getActivity")
-    /*public ModelAndView getActivity(Integer currentPage,Integer startIndex){
-        if(currentPage == null){
+    @RequestMapping("activity")
+    public ModelAndView getActivity(Integer currentPage,Integer startIndex){
+         if(currentPage == null){
             currentPage = 1;
         }
         if(startIndex == null){//每页显示第多少行
@@ -32,12 +33,7 @@ public class ActivityController {
         mv.addObject("list",list);
         mv.addObject("PageSize",PageSize);
         mv.addObject("startIndex",startIndex);
-        mv.setViewName("Student/activity/activity");
+        mv.setViewName("front/activity");
         return mv;
-    }*/
-    public List<Activity>  getActivity(){
-        List<Activity> list = new ArrayList<Activity>();
-        list = service.getActivity();
-        return list;
     }
 }

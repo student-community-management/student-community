@@ -52,7 +52,6 @@
 	<!-- 中间部分 -->
 	<div class="container">
 		<div class="page-header">
-		<form action="">
 			<table width="100%" cellpadding="0" cellspacing="0">
 			<tr>
 				<th>活动id</th>
@@ -64,20 +63,19 @@
 				<th>开始时间</th>	
 				<th>结束时间</th>	
 			</tr>
-			<c:if test="{list!='[]'}">
-				<c:forEach items="list" var="list">
+			<tr><td>${list}</td></tr>
+			<%-- <c:if test="${list!='[]'}">
+				<c:forEach items="${list}" var="list">
 					<tr>
 						<td align="center">${list.activityid}</td>
 						<td align="center"></td>
-						<td align="center">${list.activityTitle}</td>
+						<td align="center">${list.activityLoc}</td>
 						<td align="center"></td>
 						<td align="center"></td>
 					</tr>
 			</c:forEach>
-			</c:if>
+			</c:if> --%>
 			</table>
-		</form>
-			
 		</div>
 	</div>
 	<!-- 中间部分结尾-->
