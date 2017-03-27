@@ -1,8 +1,18 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReplyDynamics {
+/**
+ * 
+ * @author ChenYuhao
+ *  回复动态
+ */
+public class ReplyDynamics implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -1666208194787216434L;
     private int replyDynamicsid;
     private Student stu;
     private Dynamics dynamics;

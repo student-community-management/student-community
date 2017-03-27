@@ -6,7 +6,7 @@
         <result property="activityLoc" column="activity_loc"/>
     </resultMap>
     <select id="getAllActivity"  resultMap="Activity">
-        select activity_id,activity_loc from activity
+        select activity_id,community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,`status` from activity
     </select>
     <select id="getAllcount" resultType="Integer">
         select count(activity_id) from activity

@@ -5,24 +5,17 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- The above 2 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
-
-<!-- Note there is no responsive meta tag here -->
-
 <link rel="icon" href="/student-community/ico/ico.png">
 
 <title>学生社区</title>
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
 <link href="/student-community/css/mycss.css" rel="stylesheet">
+<link href="/student-community/css/docs.css" rel="stylesheet">
 <script src="/student-community/js/jquery-1.11.0.min.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -35,7 +28,7 @@
 				<ul class="nav navbar-nav">
 
 					<li class="active"><a href="/student-community/jsps/acvitity/activity.jsp">首页</a></li>
-					<li><a href="/student-community/jsps/front/activity.jsp">活动</a></li>
+					<li><a href="${pageContext.request.contextPath}/getActivity.a">活动</a></li>
 					<li><a href="/student-community/jsps/front/activity.jsp">讨论</a></li>
 					<li><a href="/student-community/jsps/front/activity.jsp">问吧</a></li>
 					<li><a href="/student-community/jsps/front/activity.jsp">动态</a></li>
@@ -57,7 +50,7 @@
 	<div class="container">
 
 		<div class="page-header">
-			<h4><img class="mlist" src="/student-community/ico/list.png" width="20"> 最新动态</h4>
+			<h4><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 最新动态</h4>
 		</div>
 
 		<h3>What changes</h3>

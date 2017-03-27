@@ -1,13 +1,18 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 /**
  * 
  * @author ChenYuhao
  *
- *Activity 活动
+ * Activity 活动
  */
-public class Activity {
+public class Activity implements Serializable{
+    /**
+     * 执行序列化id
+     */
+    private static final long serialVersionUID = 2761423697905688288L;
     private int activityid; // 活动id
     private Student stu; // 活动发起人 数据库添加
     private String activityTitle; // 活动标题 
@@ -26,15 +31,12 @@ public class Activity {
     public void setStu(Student stu) {
         this.stu = stu;
     }
-
     public int getActivityid() {
         return activityid;
     }
-
     public void setActivityid(int activityid) {
         this.activityid = activityid;
     }
-
     public String getActivityTitle() {
         return activityTitle;
     }

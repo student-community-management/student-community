@@ -1,6 +1,17 @@
 package com.manage.entity;
 
-public class AgainstActivity {
+import java.io.Serializable;
+/**
+ * 
+ * @author ChenYuhao
+ * 踩活动的回复
+ */
+
+public class AgainstReplyActivity implements Serializable {
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = -2233797753995947868L;
     private int againstActivityid;
     private Student stu;
     private ReplyActivity replyActivity;

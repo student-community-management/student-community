@@ -1,9 +1,19 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReplyProblem {
+/**
+ * 
+ * @author ChenYuhao
+ * 回复问题
+ */
+public class ReplyProblem implements Serializable {
 
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 4032185445898797512L;
     private int replyProblemid;
     private Student stu;
     private Problem problem;

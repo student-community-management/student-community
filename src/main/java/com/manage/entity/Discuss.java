@@ -1,12 +1,18 @@
 package com.manage.entity;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author ChenYuhao
  * Discuss 讨论
  */
-public class Discuss {
+public class Discuss implements Serializable{
 
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 770760671163884985L;
     private int discussid; // 讨论id
     private Student stu; // 讨论发起人 数据库添加
     private String discussTitle; // 讨论标题 修改数据库
