@@ -10,7 +10,6 @@ import com.manage.service.StudentService;
 public class StudentControl implements BaseControl {
 
     @Autowired
-    @Qualifier("studentService")
     private StudentService studentService;
 
 }

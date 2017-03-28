@@ -10,7 +10,7 @@ import com.manage.mapper.StudentMapper;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
-@Service("studentService")
+@Service
 public class StudentService implements BaseService<Student> {
 
     @SuppressWarnings("unused")
@@ -19,6 +19,12 @@ public class StudentService implements BaseService<Student> {
 
     @Override
     public List<Student> queryAll(PageParam pageParam) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Student> queryAll(Student t, PageParam pageParam) {
         // TODO Auto-generated method stub
         return null;
     }

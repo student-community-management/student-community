@@ -16,7 +16,7 @@ public class Classes implements Serializable {
      */
     private static final long serialVersionUID = -1376146395418687156L;
     private int classesid; // 班级id
-    private String grade; // 年级
+    private int grade; // 年级 查询时使用 case语句判断年级
     private String classes; // 班级
     private Date year; // 第几届的学生
 
@@ -28,16 +28,16 @@ public class Classes implements Serializable {
         this.classesid = classesid;
     }
 
-    public String getGrade() {
+    public String getClasses() {
+        return classes;
+    }
+
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
-    }
-
-    public String getClasses() {
-        return classes;
     }
 
     public void setClasses(String classes) {
