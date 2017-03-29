@@ -15,6 +15,7 @@ public class Activity implements Serializable{
     private static final long serialVersionUID = 2761423697905688288L;
     private int activityid; // 活动id
     private Student stu; // 活动发起人 数据库添加
+    private Integer communityid;//社团
     private String activityTitle; // 活动标题 
     private String activityLoc; // 活动地点
     private String activityContent; // 活动内容
@@ -22,7 +23,14 @@ public class Activity implements Serializable{
     private Date closeingDate; // 活动报名截止时间
     private Date startDate; // 活动开始时间
     private Date endDate; // 活动结束时间
-    private int status; // 是否被删除,这里只做一个标记
+    private int status; // 是否被删除,这里只做一个标记,1删除,0活动存在
+    public Integer getCommunityid() {
+        return communityid;
+    }
+
+    public void setCommunityid(Integer communityid) {
+        this.communityid = communityid;
+    }
 
     public Student getStu() {
         return stu;

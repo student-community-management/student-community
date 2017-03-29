@@ -4,8 +4,8 @@ import java.util.List;
 
 public class PageData {
 
-    private int total;
-    private List rows;
+    private int total;//总条数
+    private List rows;//所有数据
 
     public int getTotal() {
         return total;
@@ -23,4 +23,14 @@ public class PageData {
         this.rows = rows;
     }
 
+    public PageData() {
+        super();
+    }
+
+    public PageData(int total, List rows) {
+        super();
+        this.total = total;
+        this.rows = rows;
+    }
+    
 }

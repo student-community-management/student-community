@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.CommunityMapper">
+    <resultMap type="com.manage.entity.Community" id="Community">
+        <id column="community_id" jdbcType="INTEGER" property="communityid" />
+    <result column="community_name" jdbcType="VARCHAR" property="communityName" />
+    </resultMap>
+    <!-- 输出参数 -->
+    <select id="getAllCommunity" resultMap="Community">
+        select community_id,community_name from community
+    </select>
+    <!-- 输入参数 -->
+    <insert id="addCommunity" parameterType="com.manage.entity.Community">
+        insert into community(community_id,community_name) values(#{communityName,jdbcType=VARCHAR})
+    </insert>
+    <update id="UpdateCommunity" parameterType="com.manage.entity.Community" >
+    update community set community_name =#{communityName}
+    where community_id = #{communityid}
+    </update>
+    <delete id="deleteCommunity" parameterType="Integer">
+        delete from community where community_id = #{communityid}
+    </delete>
+</mapper>

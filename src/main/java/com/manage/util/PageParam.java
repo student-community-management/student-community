@@ -4,10 +4,9 @@ public class PageParam {
     private Integer currPage;//当前页数
     private Integer rows;//每页显示行数
     @SuppressWarnings("unused")//警告错误
-    private int startIndex;//查询条件
+    private Integer startIndex;//查询条件,每页开始的下标
     public PageParam() {
     }
-
     public PageParam(Integer currPage, Integer rows) {
         super();
         this.currPage = currPage;
@@ -30,11 +29,11 @@ public class PageParam {
         this.rows = rows;
     }
 
-    public int getStartIndex() {
+    public Integer getStartIndex() {
         return (this.getCurrPage()-1)*this.getRows();
     }
 
-    public void setStartIndex(int startIndex) {
+    public void setStartIndex(Integer startIndex) {
         this.startIndex = startIndex;
     }
 
