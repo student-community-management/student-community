@@ -6,6 +6,5 @@ import com.manage.entity.Student;
 import com.manage.util.PageParam;
 
 public interface StudentMapper extends BaseMapper<Student> {
-
     List<Student> queryAll();
 }

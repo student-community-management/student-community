@@ -6,10 +6,18 @@ import com.manage.util.PageParam;
 
 public interface BaseInterface<T> {
     /**
-     * 分页查询
+     * 分页查询,查询全部信息
      * @return 返回查询后的所有实体类对象
      */
     List<T> queryAll(PageParam pageParam);
+    
+    /**
+     * 按条件分页查询
+     * @param t 查询条件
+     * @param pageParam 分页条件
+     * @return 返回查询后的所有实体类对象
+     */
+    List<T> queryAll(T t, PageParam pageParam);
 
     /**
      * 通过id查询单条信息
@@ -41,7 +49,7 @@ public interface BaseInterface<T> {
      * @return 所有信息的数量
      */
     int getCount();
-    
+
     /**
      * 关键字查询
      * @param keyWord 查询关键字

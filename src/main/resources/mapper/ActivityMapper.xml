@@ -41,10 +41,8 @@
         limit #{startIndex},#{rows}
     </select>
     <!-- 总条数 -->
-    <select id="getAllCount" resultType="Integer">
-        select 
-        <include refid="sqlColumn"></include>
-        from activity  
+    <select id="getAllCount" parameterType="map" resultType="int">
+        select count(activity_id) from activity  
         <where>
         <if test="communityid !=null ">
          and  community_id = #{communityid} 
@@ -59,6 +57,12 @@
         </where>
          order by activity_id desc
         limit #{startIndex},#{rows}
+    </select>
+    <!-- 查询活动不带分页 -->
+    <select id="getActivity" parameterType="map"  resultMap="Activity">
+        select 
+        <include refid="sqlColumn"></include>
+        from activity  
     </select>
     <!-- 输入参数 -->
     <insert id="addActivity" parameterType="com.manage.mapper.ActivityMapper">

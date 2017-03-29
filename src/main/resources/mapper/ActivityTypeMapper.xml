@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+   
+<mapper namespace="com.manage.mapper">
+  <resultMap id="ActivityType" type="com.manage.entity.ActivityType" >
+    <id column="activity_type_id" property="activityTypeId" jdbcType="INTEGER" />
+    <result column="activity_type_name" property="activityTypeName" jdbcType="VARCHAR" />
+  </resultMap>
+        <select id="getAllActivityType" resultMap="ActivityType">
+           select activity_type_id,activity_type_name from activity_type
+        </select>
+</mapper>

@@ -8,9 +8,7 @@ import com.manage.service.StudentService;
 
 @Controller
 public class StudentControl implements BaseControl {
-
     @Autowired
-    @Qualifier("studentService")
     private StudentService studentService;
 
 }

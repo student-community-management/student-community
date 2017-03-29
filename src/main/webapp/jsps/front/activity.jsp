@@ -36,8 +36,6 @@
 					<th>活动开始时间</th>
 					<th>活动截止时间</th>
 					<th>活动状态</th>
-					<th>删除此活动</th>
-					<th>修改活动信息</th>
 				</tr>
 				<tr>
 					<td>${list.activityid}</td>
