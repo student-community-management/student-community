@@ -17,28 +17,36 @@ public class Student implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = 4607420913323259994L;
-    private int stuid; // 学生id
+    private Integer stuid; // 学生id
     private String stuPwd; // 学生密码
     private String stuName; // 学生姓名
-    private byte stuSex; // 性别
+    private Byte stuSex; // 性别
     private Date stuBirthday; // 生日
     private String stuNativePlace; // 祖籍
     private Classes classes; // 班级
-    private Set<Community> setCommunity; // 参加的社团
+    private Set<Community> communitys; // 参加的社团
 
-    public Set<Community> getSetCommunity() {
-        return setCommunity;
+    public Set<Community> getCommunitys() {
+        return communitys;
     }
 
-    public void setSetCommunity(Set<Community> setCommunity) {
-        this.setCommunity = setCommunity;
+    public String getStuNativePlace() {
+        return stuNativePlace;
     }
 
-    public int getStuid() {
+    public void setStuNativePlace(String stuNativePlace) {
+        this.stuNativePlace = stuNativePlace;
+    }
+
+    public void setCommunitys(Set<Community> communitys) {
+        this.communitys = communitys;
+    }
+
+    public Integer getStuid() {
         return stuid;
     }
 
-    public void setStuid(int stuid) {
+    public void setStuid(Integer stuid) {
         this.stuid = stuid;
     }
 
@@ -58,11 +66,11 @@ public class Student implements Serializable {
         this.stuName = stuName;
     }
 
-    public byte getStuSex() {
+    public Byte getStuSex() {
         return stuSex;
     }
 
-    public void setStuSex(byte stuSex) {
+    public void setStuSex(Byte stuSex) {
         this.stuSex = stuSex;
     }
 
@@ -72,14 +80,6 @@ public class Student implements Serializable {
 
     public void setStuBirthday(Date stuBirthday) {
         this.stuBirthday = stuBirthday;
-    }
-
-    public String getStuNativePlace() {
-        return stuNativePlace;
-    }
-
-    public void setStuNativePlace(String stuNativePlace) {
-        this.stuNativePlace = stuNativePlace;
     }
 
     public Classes getClasses() {

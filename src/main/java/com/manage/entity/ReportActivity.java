@@ -13,17 +13,17 @@ public class ReportActivity implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = -1037115830900123888L;
-    private int reportActivityid;
+    private Integer reportActivityid;
     private Student stu;
     private Activity activity;
     private String message;
     private Date reportDate;
 
-    public int getReportActivityid() {
+    public Integer getReportActivityid() {
         return reportActivityid;
     }
 
-    public void setReportActivityid(int reportActivityid) {
+    public void setReportActivityid(Integer reportActivityid) {
         this.reportActivityid = reportActivityid;
     }
 

@@ -13,15 +13,15 @@ public class ReportReplyProblem implements Serializable {
      * 可序列化id
      */
     private static final long serialVersionUID = -8470160099955424991L;
-    private int reportReplyProblemid;
+    private Integer reportReplyProblemid;
     private ReplyProblem replyProblem;
     private Student stu;
 
-    public int getReportReplyProblemid() {
+    public Integer getReportReplyProblemid() {
         return reportReplyProblemid;
     }
 
-    public void setReportReplyProblemid(int reportReplyProblemid) {
+    public void setReportReplyProblemid(Integer reportReplyProblemid) {
         this.reportReplyProblemid = reportReplyProblemid;
     }
 

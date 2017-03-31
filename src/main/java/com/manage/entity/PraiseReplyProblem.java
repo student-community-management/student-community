@@ -13,15 +13,15 @@ public class PraiseReplyProblem implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = -6706705415278067677L;
-    private int praiseReplyDynamicsid;
+    private Integer praiseReplyDynamicsid;
     private Student stu;
     private Dynamics dynamics;
 
-    public int getPraiseReplyDynamicsid() {
+    public Integer getPraiseReplyDynamicsid() {
         return praiseReplyDynamicsid;
     }
 
-    public void setPraiseReplyDynamicsid(int praiseReplyDynamicsid) {
+    public void setPraiseReplyDynamicsid(Integer praiseReplyDynamicsid) {
         this.praiseReplyDynamicsid = praiseReplyDynamicsid;
     }
 

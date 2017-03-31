@@ -2,16 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.StudentMapper">
     
-    <sql id="sqlColumn">
-        stu_id as stuid,
-        stu_pwd as stuPwd,
-        stu_name as stuName,
-        stu_sex as stuSex,
-        stu_birthday as stuBirthday,
-        stu_native_place as stuNative
-    </sql>
+    <resultMap type="com.manage.entity.Student" id="stuSimpleResultMap">
+        <id column="stu_id" property="stuid" />
+        <result column="stu_name" property="stuName" />
+        <result column="stu_sex" property="stuSex" />
+        <result column="stu_birthday" property="stuBirthday" />
+        <result column="stu_native_place" property="stuNativePlace" />
+        <association property="classes" javaType="com.manage.entity.Classes">
+            <id column="classes_id" property="classesid" />
+            <result column="grade" property="grade" />
+            <result column="classes" property="classes" />
+            <result column="year" property="year" />
+        </association>
+    </resultMap>
     
-    <select id="queryAll" resultType="com.manage.entity.Student">
-       select <include refid="sqlColumn"/> from student LIMIT 2, 10
+    <sql id="stuColumn">
+        s.stu_id,s.stu_pwd,s.stu_name,s.stu_sex,s.stu_birthday,s.stu_native_place
+    </sql>
+    <select id="getStudentByCommid" parameterType="int" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
+        select
+        <include refid="stuColumn" />
+        ,cls.grade,cls.classes
+        from student s
+        INNER JOIN stu_community sc on s.stu_id = sc.stu_id
+        INNER JOIN classes cls on
+        s.classes_id = cls.classes_id
+        where
+        sc.community_id = #{id}
     </select>
+    
+    <select id="queryAll" parameterType="map" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
+        select * from (
+        select *, case 
+        when grade = 0 then '一年级'
+        when grade = 1 then '二年级' 
+        when grade = 2 then '三年级' 
+        when grade = 3 then '四年级'
+        else '已毕业'
+        end as 'grade_name'
+        from (
+        select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+         from  classes cls inner join student s on cls.classes_id = s.classes_id
+         ) t
+        ) c where c.stu_name like '%${keyWord}%'
+        or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+        or c.sex_name like '%${keyWord}%'
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+    </select>
+
+    <select id="getCount" parameterType="java.lang.String" resultType="int">
+        select COUNT(*) from student
+    </select>
+
 </mapper>

@@ -13,15 +13,15 @@ public class ReportReplyDynamics implements Serializable {
      * 可序列化id
      */
     private static final long serialVersionUID = 4933875659751746869L;
-    private int reportReplyDynamicsid;
+    private Integer reportReplyDynamicsid;
     private ReplyDynamics replyDynamics;
     private Student stu;
 
-    public int getReportReplyDynamicsid() {
+    public Integer getReportReplyDynamicsid() {
         return reportReplyDynamicsid;
     }
 
-    public void setReportReplyDynamicsid(int reportReplyDynamicsid) {
+    public void setReportReplyDynamicsid(Integer reportReplyDynamicsid) {
         this.reportReplyDynamicsid = reportReplyDynamicsid;
     }
 

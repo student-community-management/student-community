@@ -13,15 +13,15 @@ public class AttentionActivity implements Serializable {
      * 指定序列化id
      */
     private static final long serialVersionUID = 8367810711871027705L;
-    private int attentionActivityid;
+    private Integer attentionActivityid;
     private Student stu;
     private Activity activity;
 
-    public int getAttentionActivityid() {
+    public Integer getAttentionActivityid() {
         return attentionActivityid;
     }
 
-    public void setAttentionActivityid(int attentionActivityid) {
+    public void setAttentionActivityid(Integer attentionActivityid) {
         this.attentionActivityid = attentionActivityid;
     }
 

@@ -13,15 +13,15 @@ public class PraiseReplyActivity implements Serializable{
      * 序列化id
      */
     private static final long serialVersionUID = -4984296101314682960L;
-    private int praiseReplyActivityid;
+    private Integer praiseReplyActivityid;
     private Student stu;
     private Activity activity;
 
-    public int getPraiseReplyActivityid() {
+    public Integer getPraiseReplyActivityid() {
         return praiseReplyActivityid;
     }
 
-    public void setPraiseReplyActivityid(int praiseReplyActivityid) {
+    public void setPraiseReplyActivityid(Integer praiseReplyActivityid) {
         this.praiseReplyActivityid = praiseReplyActivityid;
     }
 

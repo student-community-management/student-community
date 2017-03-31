@@ -2,6 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * 
@@ -14,14 +15,52 @@ public class ReplyActivity implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = 6675904212394929252L;
-    private int replyActivityid;
+    private Integer replyActivityid;
     private Student stu;
     private Activity activity;
     private String content;
-    private ReplyActivity replyActivity;
+    private List<ReplyActivity> replyActivities;
     private Date replyDate;
+    private List<AgainstReplyActivity> againstReplyActivities;
+    private List<PraiseReplyActivity> praiseReplyActivities;
+    private List<ReportReplyActivity> ReportReplyActivities;
 
-    public int getReplyActivityid() {
+    public List<AgainstReplyActivity> getAgainstReplyActivities() {
+        return againstReplyActivities;
+    }
+
+    public void setAgainstReplyActivities(
+            List<AgainstReplyActivity> againstReplyActivities) {
+        this.againstReplyActivities = againstReplyActivities;
+    }
+
+    public List<PraiseReplyActivity> getPraiseReplyActivities() {
+        return praiseReplyActivities;
+    }
+
+    public void setPraiseReplyActivities(
+            List<PraiseReplyActivity> praiseReplyActivities) {
+        this.praiseReplyActivities = praiseReplyActivities;
+    }
+
+    public List<ReportReplyActivity> getReportReplyActivities() {
+        return ReportReplyActivities;
+    }
+
+    public void setReportReplyActivities(
+            List<ReportReplyActivity> reportReplyActivities) {
+        ReportReplyActivities = reportReplyActivities;
+    }
+
+    public List<ReplyActivity> getReplyActivities() {
+        return replyActivities;
+    }
+
+    public void setReplyActivities(List<ReplyActivity> replyActivities) {
+        this.replyActivities = replyActivities;
+    }
+
+    public Integer getReplyActivityid() {
         return replyActivityid;
     }
 
@@ -33,15 +72,7 @@ public class ReplyActivity implements Serializable {
         this.content = content;
     }
 
-    public ReplyActivity getReplyActivity() {
-        return replyActivity;
-    }
-
-    public void setReplyActivity(ReplyActivity replyActivity) {
-        this.replyActivity = replyActivity;
-    }
-
-    public void setReplyActivityid(int replyActivityid) {
+    public void setReplyActivityid(Integer replyActivityid) {
         this.replyActivityid = replyActivityid;
     }
 

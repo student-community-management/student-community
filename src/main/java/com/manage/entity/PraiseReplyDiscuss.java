@@ -12,15 +12,15 @@ public class PraiseReplyDiscuss implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = -4362368629861596362L;
-    private int praiseReplyDiscussid;
+    private Integer praiseReplyDiscussid;
     private Student stu;
     private Discuss discuss;
 
-    public int getPraiseReplyDiscussid() {
+    public Integer getPraiseReplyDiscussid() {
         return praiseReplyDiscussid;
     }
 
-    public void setPraiseReplyDiscussid(int praiseReplyDiscussid) {
+    public void setPraiseReplyDiscussid(Integer praiseReplyDiscussid) {
         this.praiseReplyDiscussid = praiseReplyDiscussid;
     }
 

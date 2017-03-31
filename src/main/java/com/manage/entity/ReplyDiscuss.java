@@ -2,6 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * 
@@ -13,14 +14,44 @@ public class ReplyDiscuss implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = 4531970232876454653L;
-    private int replyDiscussid;
+    private Integer replyDiscussid;
     private Student stu;
     private Discuss discuss;
     private String content;
-    private ReplyDiscuss replyDiscuss;
+    private List<ReplyDiscuss> replyDiscusses;
     private Date replyDate;
+    private List<AgainstReplyDiscuss> againstReplyDiscusses;
+    private List<PraiseReplyDiscuss> praiseReplyDiscusses;
+    private List<ReportReplyDiscuss> ReportReplyDiscusses;
 
-    public int getReplyDiscussid() {
+    public List<AgainstReplyDiscuss> getAgainstReplyDiscusses() {
+        return againstReplyDiscusses;
+    }
+
+    public void setAgainstReplyDiscusses(
+            List<AgainstReplyDiscuss> againstReplyDiscusses) {
+        this.againstReplyDiscusses = againstReplyDiscusses;
+    }
+
+    public List<PraiseReplyDiscuss> getPraiseReplyDiscusses() {
+        return praiseReplyDiscusses;
+    }
+
+    public void setPraiseReplyDiscusses(
+            List<PraiseReplyDiscuss> praiseReplyDiscusses) {
+        this.praiseReplyDiscusses = praiseReplyDiscusses;
+    }
+
+    public List<ReportReplyDiscuss> getReportReplyDiscusses() {
+        return ReportReplyDiscusses;
+    }
+
+    public void setReportReplyDiscusses(
+            List<ReportReplyDiscuss> reportReplyDiscusses) {
+        ReportReplyDiscusses = reportReplyDiscusses;
+    }
+
+    public Integer getReplyDiscussid() {
         return replyDiscussid;
     }
 
@@ -32,15 +63,15 @@ public class ReplyDiscuss implements Serializable {
         this.content = content;
     }
 
-    public ReplyDiscuss getReplyDiscuss() {
-        return replyDiscuss;
+    public List<ReplyDiscuss> getReplyDiscusses() {
+        return replyDiscusses;
     }
 
-    public void setReplyDiscuss(ReplyDiscuss replyDiscuss) {
-        this.replyDiscuss = replyDiscuss;
+    public void setReplyDiscusses(List<ReplyDiscuss> replyDiscusses) {
+        this.replyDiscusses = replyDiscusses;
     }
 
-    public void setReplyDiscussid(int replyDiscussid) {
+    public void setReplyDiscussid(Integer replyDiscussid) {
         this.replyDiscussid = replyDiscussid;
     }
 

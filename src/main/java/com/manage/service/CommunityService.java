@@ -6,25 +6,26 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manage.entity.Student;
-import com.manage.mapper.StudentMapper;
+import com.manage.entity.Community;
+import com.manage.mapper.CommunityMapper;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class StudentService implements BaseService<Student>, StudentMapper {
+public class CommunityService implements BaseService<Community>, CommunityMapper {
 
+    @SuppressWarnings("unused")
     @Autowired
-    private StudentMapper studentMapper;
+    private CommunityMapper communityMapper;
 
     @Override
-    public List<Student> queryAll(PageParam pageParam, String keyWord) {
-        System.out.println("进入到studentService中");
-        return studentMapper.queryAll(pageParam, keyWord);
+    public List<Community> queryAll(PageParam pageParam, String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public Student queryOne(Integer id) {
+    public Community queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -36,13 +37,13 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void save(Student t) {
+    public void save(Community t) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void update(Student t) {
+    public void update(Community t) {
         // TODO Auto-generated method stub
 
     }
@@ -54,22 +55,16 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public List<Student> getStudentByCommid(Integer id) {
-
-        if (id != null) {
-            return studentMapper.getStudentByCommid(id);
-        } else {
-            throw new RuntimeException("查询参数有误");
-        }
-    }
-
-    @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
+        if (keyWord == null) {
+            return new PageData(this.getCount(keyWord), this.queryAll(pageParam));
+        }
+
+        return null;
     }
 
     @Override
-    public List<Student> queryAll(PageParam pageParam) {
+    public List<Community> queryAll(PageParam pageParam) {
         // TODO Auto-generated method stub
         return null;
     }

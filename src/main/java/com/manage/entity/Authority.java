@@ -13,14 +13,14 @@ public class Authority implements Serializable {
      * 指定序列化id
      */
     private static final long serialVersionUID = -8601196675735812209L;
-    private int authid;
+    private Integer authid;
     private String authLevel;// 权限的等级
 
-    public int getAuthid() {
+    public Integer getAuthid() {
         return authid;
     }
 
-    public void setAuthid(int authid) {
+    public void setAuthid(Integer authid) {
         this.authid = authid;
     }
 

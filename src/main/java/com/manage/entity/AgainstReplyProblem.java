@@ -12,15 +12,15 @@ public class AgainstReplyProblem implements Serializable {
      * 指定序列化id
      */
     private static final long serialVersionUID = -6308319618388263052L;
-    private int againstProblemid;
+    private Integer againstProblemid;
     private Student stu;
     private ReplyProblem replyProblem;
 
-    public int getAgainstProblemid() {
+    public Integer getAgainstProblemid() {
         return againstProblemid;
     }
 
-    public void setAgainstProblemid(int againstProblemid) {
+    public void setAgainstProblemid(Integer againstProblemid) {
         this.againstProblemid = againstProblemid;
     }
 

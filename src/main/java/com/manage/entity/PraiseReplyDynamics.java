@@ -7,20 +7,20 @@ import java.io.Serializable;
  * @author ChenYuhao
  * 赞动态的回复
  */
-public class PraiseReplyDyanmics implements Serializable {
+public class PraiseReplyDynamics implements Serializable {
     /**
      * 序列化id
      */
     private static final long serialVersionUID = -7115201138829373013L;
-    private int praiseReplyDynamicsid;
+    private Integer praiseReplyDynamicsid;
     private Student stu;
     private Dynamics dynamics;
 
-    public int getPraiseReplyDynamicsid() {
+    public Integer getPraiseReplyDynamicsid() {
         return praiseReplyDynamicsid;
     }
 
-    public void setPraiseReplyDynamicsid(int praiseReplyDynamicsid) {
+    public void setPraiseReplyDynamicsid(Integer praiseReplyDynamicsid) {
         this.praiseReplyDynamicsid = praiseReplyDynamicsid;
     }
 

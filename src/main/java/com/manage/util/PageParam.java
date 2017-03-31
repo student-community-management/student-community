@@ -1,7 +1,7 @@
 package com.manage.util;
 
 public class PageParam {
-    private Integer currPage;
+    private Integer page;
     private Integer rows;
     @SuppressWarnings("unused")
     private int startIndex;
@@ -10,22 +10,22 @@ public class PageParam {
         // TODO Auto-generated constructor stub
     }
 
-    public PageParam(Integer currPage, Integer rows) {
+    public PageParam(Integer page, Integer rows) {
         super();
-        this.currPage = currPage;
+        this.page = page;
         this.rows = rows;
     }
 
-    public Integer getCurrPage() {
-        return currPage == null || currPage < 1 ? 1 : currPage;
+    public Integer getPage() {
+        return page == null || page < 1 ? 1 : page;
     }
 
-    public void setCurrPage(Integer currPage) {
-        this.currPage = currPage;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
     public Integer getRows() {
-        return rows == null || rows < 0 ?10:rows;
+        return rows == null || rows < 0 ? 10 : rows;
     }
 
     public void setRows(Integer rows) {
@@ -33,7 +33,7 @@ public class PageParam {
     }
 
     public int getStartIndex() {
-        return (this.getCurrPage()-1)*this.getRows();
+        return (this.getPage() - 1) * this.getRows();
     }
 
     public void setStartIndex(int startIndex) {

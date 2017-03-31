@@ -7,21 +7,21 @@ import java.io.Serializable;
  * @author ChenYuhao
  * 举报活动的回复
  */
-public class ReportPeplyActivity implements Serializable {
+public class ReportReplyActivity implements Serializable {
 
     /**
      * 可序列化id 
      */
     private static final long serialVersionUID = 1588065195696478330L;
-    private int reportReplyActivityid;
+    private Integer reportReplyActivityid;
     private ReplyActivity replyActivity;
     private Student stu;
 
-    public int getReportReplyActivityid() {
+    public Integer getReportReplyActivityid() {
         return reportReplyActivityid;
     }
 
-    public void setReportReplyActivityid(int reportReplyActivityid) {
+    public void setReportReplyActivityid(Integer reportReplyActivityid) {
         this.reportReplyActivityid = reportReplyActivityid;
     }
 

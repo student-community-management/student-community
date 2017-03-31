@@ -13,7 +13,7 @@ public class Role implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = -1798901243945178909L;
-    private int roleid;
+    private Integer roleid;
     private String roleName;
     private Set<Student> setStu;
     private Set<Authority> setAuthority;
@@ -34,11 +34,11 @@ public class Role implements Serializable {
         this.setStu = setStu;
     }
 
-    public int getRoleid() {
+    public Integer getRoleid() {
         return roleid;
     }
 
-    public void setRoleid(int roleid) {
+    public void setRoleid(Integer roleid) {
         this.roleid = roleid;
     }
 

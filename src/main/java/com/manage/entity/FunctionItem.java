@@ -14,7 +14,7 @@ public class FunctionItem implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = -8072585252375229411L;
-    private int functionItemid;
+    private Integer functionItemid;
     private String functionItemName;
     private Set<Authority> setAuthority;
 
@@ -26,11 +26,11 @@ public class FunctionItem implements Serializable {
         this.setAuthority = setAuthority;
     }
 
-    public int getFunctionItemid() {
+    public Integer getFunctionItemid() {
         return functionItemid;
     }
 
-    public void setFunctionItemid(int functionItemid) {
+    public void setFunctionItemid(Integer functionItemid) {
         this.functionItemid = functionItemid;
     }
 
