@@ -17,7 +17,6 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     @Autowired
     private StudentMapper studentMapper;
 
-    @Override
     public List<Student> queryAll(PageParam pageParam, String keyWord) {
         System.out.println("进入到studentService中");
         return studentMapper.queryAll(pageParam, keyWord);
