@@ -1,61 +1,92 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
-public class ReplyDynamics {
-	private int replyDynamicsid;
-	private Student stu;
-	private Dynamics dynamics;
-	private String content;
-	private ReplyDynamics replyDynamics;
-	private Date replyDate;
+/**
+ * 
+ * @author ChenYuhao
+ *  回复动态
+ */
+public class ReplyDynamics implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -1666208194787216434L;
+    private Integer replyDynamicsid;
+    private Student stu;
+    private Dynamics dynamics;
+    private String content;
+    private List<ReplyDynamics> replyDynamicses;
+    private Date replyDate;
+    private List<PraiseReplyDynamics> praiseReplyDynamicses;
+    private List<ReportReplyDynamics> ReportReplyDynamicses;
 
-	public int getReplyDynamicsid() {
-		return replyDynamicsid;
-	}
+    public List<PraiseReplyDynamics> getPraiseReplyDynamicses() {
+        return praiseReplyDynamicses;
+    }
 
-	public Dynamics getDynamics() {
-		return dynamics;
-	}
+    public void setPraiseReplyDynamicses(
+            List<PraiseReplyDynamics> praiseReplyDynamicses) {
+        this.praiseReplyDynamicses = praiseReplyDynamicses;
+    }
 
-	public void setDynamics(Dynamics dynamics) {
-		this.dynamics = dynamics;
-	}
+    public List<ReportReplyDynamics> getReportReplyDynamicses() {
+        return ReportReplyDynamicses;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setReportReplyDynamicses(
+            List<ReportReplyDynamics> reportReplyDynamicses) {
+        ReportReplyDynamicses = reportReplyDynamicses;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public Integer getReplyDynamicsid() {
+        return replyDynamicsid;
+    }
 
-	public ReplyDynamics getReplyDynamics() {
-		return replyDynamics;
-	}
+    public Dynamics getDynamics() {
+        return dynamics;
+    }
 
-	public void setReplyDynamics(ReplyDynamics replyDynamics) {
-		this.replyDynamics = replyDynamics;
-	}
+    public void setDynamics(Dynamics dynamics) {
+        this.dynamics = dynamics;
+    }
 
-	public void setReplyDynamicsid(int replyDynamicsid) {
-		this.replyDynamicsid = replyDynamicsid;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public List<ReplyDynamics> getReplyDynamicses() {
+        return replyDynamicses;
+    }
 
-	public Date getReplyDate() {
-		return replyDate;
-	}
+    public void setReplyDynamicses(List<ReplyDynamics> replyDynamicses) {
+        this.replyDynamicses = replyDynamicses;
+    }
 
-	public void setReplyDate(Date replyDate) {
-		this.replyDate = replyDate;
-	}
+    public void setReplyDynamicsid(Integer replyDynamicsid) {
+        this.replyDynamicsid = replyDynamicsid;
+    }
+
+    public Student getStu() {
+        return stu;
+    }
+
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
+
+    public Date getReplyDate() {
+        return replyDate;
+    }
+
+    public void setReplyDate(Date replyDate) {
+        this.replyDate = replyDate;
+    }
 
 }

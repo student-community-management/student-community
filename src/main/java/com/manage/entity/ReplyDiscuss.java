@@ -1,61 +1,102 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
-public class ReplyDiscuss {
-	private int replyDiscussid;
-	private Student stu;
-	private Discuss discuss;
-	private String content;
-	private ReplyDiscuss replyDiscuss;
-	private Date replyDate;
+/**
+ * 
+ * @author ChenYuhao
+ *  回复讨论
+ */
+public class ReplyDiscuss implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 4531970232876454653L;
+    private Integer replyDiscussid;
+    private Student stu;
+    private Discuss discuss;
+    private String content;
+    private List<ReplyDiscuss> replyDiscusses;
+    private Date replyDate;
+    private List<AgainstReplyDiscuss> againstReplyDiscusses;
+    private List<PraiseReplyDiscuss> praiseReplyDiscusses;
+    private List<ReportReplyDiscuss> ReportReplyDiscusses;
 
-	public int getReplyDiscussid() {
-		return replyDiscussid;
-	}
+    public List<AgainstReplyDiscuss> getAgainstReplyDiscusses() {
+        return againstReplyDiscusses;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setAgainstReplyDiscusses(
+            List<AgainstReplyDiscuss> againstReplyDiscusses) {
+        this.againstReplyDiscusses = againstReplyDiscusses;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public List<PraiseReplyDiscuss> getPraiseReplyDiscusses() {
+        return praiseReplyDiscusses;
+    }
 
-	public ReplyDiscuss getReplyDiscuss() {
-		return replyDiscuss;
-	}
+    public void setPraiseReplyDiscusses(
+            List<PraiseReplyDiscuss> praiseReplyDiscusses) {
+        this.praiseReplyDiscusses = praiseReplyDiscusses;
+    }
 
-	public void setReplyDiscuss(ReplyDiscuss replyDiscuss) {
-		this.replyDiscuss = replyDiscuss;
-	}
+    public List<ReportReplyDiscuss> getReportReplyDiscusses() {
+        return ReportReplyDiscusses;
+    }
 
-	public void setReplyDiscussid(int replyDiscussid) {
-		this.replyDiscussid = replyDiscussid;
-	}
+    public void setReportReplyDiscusses(
+            List<ReportReplyDiscuss> reportReplyDiscusses) {
+        ReportReplyDiscusses = reportReplyDiscusses;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public Integer getReplyDiscussid() {
+        return replyDiscussid;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Discuss getDiscuss() {
-		return discuss;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setDiscuss(Discuss discuss) {
-		this.discuss = discuss;
-	}
+    public List<ReplyDiscuss> getReplyDiscusses() {
+        return replyDiscusses;
+    }
 
-	public Date getReplyDate() {
-		return replyDate;
-	}
+    public void setReplyDiscusses(List<ReplyDiscuss> replyDiscusses) {
+        this.replyDiscusses = replyDiscusses;
+    }
 
-	public void setReplyDate(Date replyDate) {
-		this.replyDate = replyDate;
-	}
+    public void setReplyDiscussid(Integer replyDiscussid) {
+        this.replyDiscussid = replyDiscussid;
+    }
+
+    public Student getStu() {
+        return stu;
+    }
+
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
+
+    public Discuss getDiscuss() {
+        return discuss;
+    }
+
+    public void setDiscuss(Discuss discuss) {
+        this.discuss = discuss;
+    }
+
+    public Date getReplyDate() {
+        return replyDate;
+    }
+
+    public void setReplyDate(Date replyDate) {
+        this.replyDate = replyDate;
+    }
 
 }

@@ -1,62 +1,103 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
-public class ReplyProblem {
+/**
+ * 
+ * @author ChenYuhao
+ * 回复问题
+ */
+public class ReplyProblem implements Serializable {
 
-	private int replyProblemid;
-	private Student stu;
-	private Problem problem;
-	private String content;
-	private ReplyProblem replyProblem;
-	private Date replyDate;
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 4032185445898797512L;
+    private Integer replyProblemid;
+    private Student stu;
+    private Problem problem;
+    private String content;
+    private List<ReplyProblem> replyProblems;
+    private Date replyDate;
+    private List<AgainstReplyDiscuss> againstReplyProblems;
+    private List<PraiseReplyDiscuss> praiseReplyProblems;
+    private List<ReportReplyDiscuss> ReportReplyProblems;
 
-	public int getReplyProblemid() {
-		return replyProblemid;
-	}
+    public List<AgainstReplyDiscuss> getAgainstReplyProblems() {
+        return againstReplyProblems;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setAgainstReplyProblems(
+            List<AgainstReplyDiscuss> againstReplyProblems) {
+        this.againstReplyProblems = againstReplyProblems;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public List<PraiseReplyDiscuss> getPraiseReplyProblems() {
+        return praiseReplyProblems;
+    }
 
-	public ReplyProblem getReplyProblem() {
-		return replyProblem;
-	}
+    public void setPraiseReplyProblems(
+            List<PraiseReplyDiscuss> praiseReplyProblems) {
+        this.praiseReplyProblems = praiseReplyProblems;
+    }
 
-	public void setReplyProblem(ReplyProblem replyProblem) {
-		this.replyProblem = replyProblem;
-	}
+    public List<ReportReplyDiscuss> getReportReplyProblems() {
+        return ReportReplyProblems;
+    }
 
-	public void setReplyProblemid(int replyProblemid) {
-		this.replyProblemid = replyProblemid;
-	}
+    public void setReportReplyProblems(
+            List<ReportReplyDiscuss> reportReplyProblems) {
+        ReportReplyProblems = reportReplyProblems;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public Integer getReplyProblemid() {
+        return replyProblemid;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Problem getProblem() {
-		return problem;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setProblem(Problem problem) {
-		this.problem = problem;
-	}
+    public List<ReplyProblem> getReplyProblems() {
+        return replyProblems;
+    }
 
-	public Date getReplyDate() {
-		return replyDate;
-	}
+    public void setReplyProblems(List<ReplyProblem> replyProblems) {
+        this.replyProblems = replyProblems;
+    }
 
-	public void setReplyDate(Date replyDate) {
-		this.replyDate = replyDate;
-	}
+    public void setReplyProblemid(Integer replyProblemid) {
+        this.replyProblemid = replyProblemid;
+    }
+
+    public Student getStu() {
+        return stu;
+    }
+
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
+
+    public Problem getProblem() {
+        return problem;
+    }
+
+    public void setProblem(Problem problem) {
+        this.problem = problem;
+    }
+
+    public Date getReplyDate() {
+        return replyDate;
+    }
+
+    public void setReplyDate(Date replyDate) {
+        this.replyDate = replyDate;
+    }
 
 }

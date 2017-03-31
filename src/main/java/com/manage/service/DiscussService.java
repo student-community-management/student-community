@@ -14,19 +14,9 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service("DiscussService")
-public class DiscussService implements BaseService{
+public class DiscussService implements BaseService {
 	@Autowired
-	private DiscussMapper discussMapper ;
-
-	@Override
-	public List<Discuss> queryAll(PageParam pageParam) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		Discuss disc =  new Discuss();
-		if(disc.getStatus() != 0){
-			
-		}
-		return null;
-	}
+	private DiscussMapper discussMapper;
 
 	@Override
 	public Object queryOne(Integer id) {
@@ -37,30 +27,37 @@ public class DiscussService implements BaseService{
 	@Override
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void save(Object t) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(Object t) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public int getCount() {
+	public List queryAll(PageParam pageParam, String keyWord) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getCount(String keyWord) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public PageData getPageData() {
+	public PageData getPageData(PageParam pageParam, String keyWord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

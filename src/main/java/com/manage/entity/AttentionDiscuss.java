@@ -1,33 +1,45 @@
 package com.manage.entity;
 
-public class AttentionDiscuss {
+import java.io.Serializable;
 
-	private int attentionDiscussid;
-	private Student stu;
-	private Discuss discuss;
+/**
+ * 
+ * @author ChenYuhao
+ * 关注讨论
+ * 
+ */
+public class AttentionDiscuss implements Serializable {
 
-	public int getAttentionDiscussid() {
-		return attentionDiscussid;
-	}
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = 2486029631801727918L;
+    private Integer attentionDiscussid;
+    private Student stu;
+    private Discuss discuss;
 
-	public void setAttentionDiscussid(int attentionDiscussid) {
-		this.attentionDiscussid = attentionDiscussid;
-	}
+    public Integer getAttentionDiscussid() {
+        return attentionDiscussid;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public void setAttentionDiscussid(Integer attentionDiscussid) {
+        this.attentionDiscussid = attentionDiscussid;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public Student getStu() {
+        return stu;
+    }
 
-	public Discuss getDiscuss() {
-		return discuss;
-	}
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
 
-	public void setDiscuss(Discuss discuss) {
-		this.discuss = discuss;
-	}
+    public Discuss getDiscuss() {
+        return discuss;
+    }
+
+    public void setDiscuss(Discuss discuss) {
+        this.discuss = discuss;
+    }
 
 }

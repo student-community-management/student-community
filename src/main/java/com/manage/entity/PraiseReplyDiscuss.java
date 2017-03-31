@@ -1,32 +1,43 @@
 package com.manage.entity;
 
-public class PraiseReplyDiscuss {
-	private int praiseReplyDiscussid;
-	private Student stu;
-	private Discuss discuss;
+import java.io.Serializable;
 
-	public int getPraiseReplyDiscussid() {
-		return praiseReplyDiscussid;
-	}
+/**
+ * 
+ * @author ChenYuhao
+ * 赞讨论的回复
+ */
+public class PraiseReplyDiscuss implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -4362368629861596362L;
+    private Integer praiseReplyDiscussid;
+    private Student stu;
+    private Discuss discuss;
 
-	public void setPraiseReplyDiscussid(int praiseReplyDiscussid) {
-		this.praiseReplyDiscussid = praiseReplyDiscussid;
-	}
+    public Integer getPraiseReplyDiscussid() {
+        return praiseReplyDiscussid;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public void setPraiseReplyDiscussid(Integer praiseReplyDiscussid) {
+        this.praiseReplyDiscussid = praiseReplyDiscussid;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public Student getStu() {
+        return stu;
+    }
 
-	public Discuss getDiscuss() {
-		return discuss;
-	}
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
 
-	public void setDiscuss(Discuss discuss) {
-		this.discuss = discuss;
-	}
+    public Discuss getDiscuss() {
+        return discuss;
+    }
+
+    public void setDiscuss(Discuss discuss) {
+        this.discuss = discuss;
+    }
 
 }

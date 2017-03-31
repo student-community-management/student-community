@@ -1,61 +1,102 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
-public class ReplyActivity {
+/**
+ * 
+ * @author ChenYuhao
+ * 评论活动
+ */
+public class ReplyActivity implements Serializable {
 
-	private int replyActivityid;
-	private Student stu;
-	private Activity activity;
-	private String content;
-	private ReplyActivity replyActivity;
-	private Date replyDate;
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 6675904212394929252L;
+    private Integer replyActivityid;
+    private Student stu;
+    private Activity activity;
+    private String content;
+    private List<ReplyActivity> replyActivities;
+    private Date replyDate;
+    private List<AgainstReplyActivity> againstReplyActivities;
+    private List<PraiseReplyActivity> praiseReplyActivities;
+    private List<ReportReplyActivity> ReportReplyActivities;
 
-	public int getReplyActivityid() {
-		return replyActivityid;
-	}
+    public List<AgainstReplyActivity> getAgainstReplyActivities() {
+        return againstReplyActivities;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public void setAgainstReplyActivities(
+            List<AgainstReplyActivity> againstReplyActivities) {
+        this.againstReplyActivities = againstReplyActivities;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public List<PraiseReplyActivity> getPraiseReplyActivities() {
+        return praiseReplyActivities;
+    }
 
-	public ReplyActivity getReplyActivity() {
-		return replyActivity;
-	}
+    public void setPraiseReplyActivities(
+            List<PraiseReplyActivity> praiseReplyActivities) {
+        this.praiseReplyActivities = praiseReplyActivities;
+    }
 
-	public void setReplyActivity(ReplyActivity replyActivity) {
-		this.replyActivity = replyActivity;
-	}
+    public List<ReportReplyActivity> getReportReplyActivities() {
+        return ReportReplyActivities;
+    }
 
-	public void setReplyActivityid(int replyActivityid) {
-		this.replyActivityid = replyActivityid;
-	}
+    public void setReportReplyActivities(
+            List<ReportReplyActivity> reportReplyActivities) {
+        ReportReplyActivities = reportReplyActivities;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public List<ReplyActivity> getReplyActivities() {
+        return replyActivities;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public void setReplyActivities(List<ReplyActivity> replyActivities) {
+        this.replyActivities = replyActivities;
+    }
 
-	public Activity getActivity() {
-		return activity;
-	}
+    public Integer getReplyActivityid() {
+        return replyActivityid;
+    }
 
-	public void setActivity(Activity activity) {
-		this.activity = activity;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public Date getReplyDate() {
-		return replyDate;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public void setReplyDate(Date replyDate) {
-		this.replyDate = replyDate;
-	}
+    public void setReplyActivityid(Integer replyActivityid) {
+        this.replyActivityid = replyActivityid;
+    }
+
+    public Student getStu() {
+        return stu;
+    }
+
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public Date getReplyDate() {
+        return replyDate;
+    }
+
+    public void setReplyDate(Date replyDate) {
+        this.replyDate = replyDate;
+    }
 }

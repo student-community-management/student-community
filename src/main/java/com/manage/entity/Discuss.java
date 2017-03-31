@@ -1,64 +1,99 @@
 package com.manage.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * 
- * @author ChenYuhao Discuss 讨论
+ * @author ChenYuhao
+ * Discuss 讨论
  */
-public class Discuss {
+public class Discuss implements Serializable {
 
-	private Integer discussid; // 讨论id
-	private Student stu; // 讨论发起人 数据库添加
-	private String discussTitle; // 讨论标题 修改数据库
-	private String discussContent; // 讨论详细说明
-	private String discussDate;// 发布时间 修改数据库
-	private Integer status; // 是否被删除或者问题是否已经关闭回答
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 770760671163884985L;
+    private Integer discussid; // 讨论id
+    private Student stu; // 讨论发起人 数据库添加
+    private String discussTitle; // 讨论标题 修改数据库
+    private String discussContent; // 讨论详细说明
+    private String discussDate;// 发布时间 修改数据库
+    private String discussLabel; // 讨论标签 修改数据库
+    private Integer status; // 是否被删除或者问题是否已经关闭回答
+    private List<ReplyDiscuss> replyDiscusses;
+    private List<ReportDisscuss> reportDiscusses;
 
-	public Student getStu() {
-		return stu;
-	}
+    public List<ReportDisscuss> getReportDiscusses() {
+        return reportDiscusses;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public void setReportDiscusses(List<ReportDisscuss> reportDiscusses) {
+        this.reportDiscusses = reportDiscusses;
+    }
 
-	public Integer getStatus() {
-		return status;
-	}
+    public List<ReplyDiscuss> getReplyDiscusses() {
+        return replyDiscusses;
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public void setReplyDiscusses(List<ReplyDiscuss> replyDiscusses) {
+        this.replyDiscusses = replyDiscusses;
+    }
 
-	public Integer getDiscussid() {
-		return discussid;
-	}
+    public Student getStu() {
+        return stu;
+    }
 
-	public void setDiscussid(Integer discussid) {
-		this.discussid = discussid;
-	}
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
 
-	public String getDiscussContent() {
-		return discussContent;
-	}
+    public Integer getStatus() {
+        return status;
+    }
 
-	public void setDiscussContent(String discussContent) {
-		this.discussContent = discussContent;
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
-	public String getDiscussDate() {
-		return discussDate;
-	}
+    public Integer getDiscussid() {
+        return discussid;
+    }
 
-	public void setDiscussDate(String discussDate) {
-		this.discussDate = discussDate;
-	}
+    public void setDiscussid(Integer discussid) {
+        this.discussid = discussid;
+    }
 
-	public String getDiscussTitle() {
-		return discussTitle;
-	}
+    public String getDiscussLabel() {
+        return discussLabel;
+    }
 
-	public void setDiscussTitle(String discussTitle) {
-		this.discussTitle = discussTitle;
-	}
+    public void setDiscussLabel(String discussLabel) {
+        this.discussLabel = discussLabel;
+    }
+
+    public String getDiscussContent() {
+        return discussContent;
+    }
+
+    public void setDiscussContent(String discussContent) {
+        this.discussContent = discussContent;
+    }
+
+    public String getDiscussDate() {
+        return discussDate;
+    }
+
+    public void setDiscussDate(String discussDate) {
+        this.discussDate = discussDate;
+    }
+
+    public String getDiscussTitle() {
+        return discussTitle;
+    }
+
+    public void setDiscussTitle(String discussTitle) {
+        this.discussTitle = discussTitle;
+    }
 
 }

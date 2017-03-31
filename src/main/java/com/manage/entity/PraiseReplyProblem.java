@@ -1,33 +1,44 @@
 package com.manage.entity;
 
-public class PraiseReplyProblem {
+import java.io.Serializable;
 
-	private int praiseReplyDynamicsid;
-	private Student stu;
-	private Dynamics dynamics;
+/**
+ * 
+ * @author ChenYuhao
+ * 赞问题的回复
+ */
+public class PraiseReplyProblem implements Serializable {
 
-	public int getPraiseReplyDynamicsid() {
-		return praiseReplyDynamicsid;
-	}
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -6706705415278067677L;
+    private Integer praiseReplyDynamicsid;
+    private Student stu;
+    private Dynamics dynamics;
 
-	public void setPraiseReplyDynamicsid(int praiseReplyDynamicsid) {
-		this.praiseReplyDynamicsid = praiseReplyDynamicsid;
-	}
+    public Integer getPraiseReplyDynamicsid() {
+        return praiseReplyDynamicsid;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public void setPraiseReplyDynamicsid(Integer praiseReplyDynamicsid) {
+        this.praiseReplyDynamicsid = praiseReplyDynamicsid;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public Student getStu() {
+        return stu;
+    }
 
-	public Dynamics getDynamics() {
-		return dynamics;
-	}
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
 
-	public void setDynamics(Dynamics dynamics) {
-		this.dynamics = dynamics;
-	}
+    public Dynamics getDynamics() {
+        return dynamics;
+    }
+
+    public void setDynamics(Dynamics dynamics) {
+        this.dynamics = dynamics;
+    }
 
 }

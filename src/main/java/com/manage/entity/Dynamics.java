@@ -1,57 +1,73 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * 
- * @author ChenYuhao Dynamics 动态
+ * @author ChenYuhao
+ * Dynamics 动态
  */
-public class Dynamics {
+public class Dynamics implements Serializable {
 
-	private int dynamicsid; // 动态id
-	private Student stu; // 发布动态的学生
-	private String dynamicsContent; // 动态的内容
-	private Date dynamicsDate; // 发布日期
-	private int status; // 是否删除
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -7012014024232950309L;
+    private Integer dynamicsid; // 动态id
+    private Student stu; // 发布动态的学生
+    private String dynamicsContent; // 动态的内容
+    private Date dynamicsDate; // 发布日期
+    private Integer status; // 是否删除
+    private List<Dynamics> replyDynamics;
 
-	public int getDynamicsid() {
-		return dynamicsid;
-	}
+    public List<Dynamics> getReplyDynamics() {
+        return replyDynamics;
+    }
 
-	public void setDynamicsid(int dynamicsid) {
-		this.dynamicsid = dynamicsid;
-	}
+    public void setReplyDynamics(List<Dynamics> replyDynamics) {
+        this.replyDynamics = replyDynamics;
+    }
 
-	public Student getStu() {
-		return stu;
-	}
+    public Integer getDynamicsid() {
+        return dynamicsid;
+    }
 
-	public void setStu(Student stu) {
-		this.stu = stu;
-	}
+    public void setDynamicsid(Integer dynamicsid) {
+        this.dynamicsid = dynamicsid;
+    }
 
-	public Date getDynamicsDate() {
-		return dynamicsDate;
-	}
+    public Student getStu() {
+        return stu;
+    }
 
-	public void setDynamicsDate(Date dynamicsDate) {
-		this.dynamicsDate = dynamicsDate;
-	}
+    public void setStu(Student stu) {
+        this.stu = stu;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public Date getDynamicsDate() {
+        return dynamicsDate;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setDynamicsDate(Date dynamicsDate) {
+        this.dynamicsDate = dynamicsDate;
+    }
 
-	public String getDynamicsContent() {
-		return dynamicsContent;
-	}
+    public Integer getStatus() {
+        return status;
+    }
 
-	public void setDynamicsContent(String dynamicsContent) {
-		this.dynamicsContent = dynamicsContent;
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getDynamicsContent() {
+        return dynamicsContent;
+    }
+
+    public void setDynamicsContent(String dynamicsContent) {
+        this.dynamicsContent = dynamicsContent;
+    }
 
 }

@@ -1,27 +1,45 @@
 package com.manage.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * 
- * @author ChenYuhao ActivityType 活动类型
+ * @author ChenYuhao
+ * ActivityType 活动类型
+ * 
  */
-public class ActivityType {
-	private int activityTypeid;
-	private String activityTypeName;
+public class ActivityType implements Serializable {
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = -5345625803428393006L;
+    private Integer activityTypeid;
+    private String activityTypeName;
+    private List<Activity> activities;
 
-	public int getActivityTypeid() {
-		return activityTypeid;
-	}
+    public List<Activity> getActivities() {
+        return activities;
+    }
 
-	public void setActivityTypeid(int activityTypeid) {
-		this.activityTypeid = activityTypeid;
-	}
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
 
-	public String getActivityTypeName() {
-		return activityTypeName;
-	}
+    public Integer getActivityTypeid() {
+        return activityTypeid;
+    }
 
-	public void setActivityTypeName(String activityTypeName) {
-		this.activityTypeName = activityTypeName;
-	}
+    public void setActivityTypeid(Integer activityTypeid) {
+        this.activityTypeid = activityTypeid;
+    }
+
+    public String getActivityTypeName() {
+        return activityTypeName;
+    }
+
+    public void setActivityTypeName(String activityTypeName) {
+        this.activityTypeName = activityTypeName;
+    }
 
 }
