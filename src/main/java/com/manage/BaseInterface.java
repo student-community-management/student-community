@@ -2,6 +2,8 @@ package com.manage;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.manage.util.PageParam;
 
 public interface BaseInterface<T> {
@@ -9,7 +11,7 @@ public interface BaseInterface<T> {
      * 分页查询
      * @return 返回查询后的所有实体类对象
      */
-    List<T> queryAll(PageParam pageParam);
+    List<T> queryAll(@Param("param")PageParam pageParam);
 
 	/**
 	 * 通过id查询单条信息

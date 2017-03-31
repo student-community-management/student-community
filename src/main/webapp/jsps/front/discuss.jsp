@@ -10,15 +10,12 @@
 <meta name="author" content="">
 
 <style type="text/css">
-	#ddd{   margin-right: auto;
-			margin-left: auto;
-			width:670px;
-			vertical-align:middle;}
-			
+	#ddd{   
+			margin-left: 100px;		
+		}
 			#aaa{   text-align: center;
 			}
-			#ccc{ 	margin-top: 300px;
-			}
+			
 </style>
 <!-- Note there is no responsive meta tag here -->
 
@@ -27,6 +24,7 @@
 <title>学生社区</title>
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
+<link href="/student-community/css/mycss.css" rel="stylesheet">
 <script src="/student-community/js/jquery-1.11.0.min.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
 
@@ -34,52 +32,25 @@
 
 <body>
 
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
-				<a class="navbar-brand" href="#">社&nbsp;区</a>
-			</div>
-			<!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
-			<div id="navbar">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">首页</a></li>
-					<li><a href="#about">活动</a></li>
-					<li><a href="#contact">讨论</a></li>
-					<li><a href="#contact">问吧</a></li>
-					<li><a href="#contact">动态</a></li>
-				</ul>
-				<form class="navbar-form navbar-left">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="搜索你感兴趣的内容">
-					</div>
-					<button type="submit" class="btn btn-default">搜索</button>
-				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><img src="/student-community/face/1.jpg" width="20px">&nbsp;紫萱</a></li>
-				</ul>
-			</div>
-			<!--/.nav-collapse -->
-		</div>
-	</nav>
-	
+<!-- Fixed navbar -->
+	<%@ include file="nav.jsp" %>
+	<div class="container">	
   <ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="#">发表话题</a></li>
-  <li role="presentation"><a href="#">社区</a></li>
-  <li role="presentation"><a href="#">回答</a></li>
+  <li role="presentation" class="active"><a href="/student-community/jsps/front/discuss.jsp">发表话题</a></li>
+  <li role="presentation" ><a href="/student-community/jsps/front/community.jsp">全新论坛</a></li>
+ 
 </ul>
 <form class="form-horizontal">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">标题</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="今天干什么">
+    <div class="col-sm-9 ">
+      <input type="text" class="form-control" id="inputEmail3" placeholder="请输入标题">
     </div>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">内容</label>
-    <div class="col-sm-10">
-    <textarea class="form-control" rows="3" placeholder="怎么勒"></textarea>
+    <div class="col-sm-9">
+    <textarea class="form-control" rows="3" placeholder="请输入内容"></textarea>
     </div>
   </div>
   <div id="ddd" class="dropdown" >
@@ -88,7 +59,7 @@
    
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
     <li><a href="#">大话乱天</a></li>
     <li><a href="#">谈天说地</a></li>
     <li><a href="#">上下五百年</a></li>
@@ -103,12 +74,6 @@
     
   </div>
 </form>
-		<div id="ccc" class="row">
-			<div class="col-xs-4">One third</div>
-			<div class="col-xs-4">One third</div>
-			<div class="col-xs-4">One third</div>
-		</div>
-
 	</div>
 </body>
 </html>
