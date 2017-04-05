@@ -1,6 +1,7 @@
 package com.manage.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  * 
@@ -13,16 +14,16 @@ public class PraiseReplyProblem implements Serializable {
      * 序列化id
      */
     private static final long serialVersionUID = -6706705415278067677L;
-    private Integer praiseReplyDynamicsid;
     private Student stu;
     private Dynamics dynamics;
+    private Date praiseDate;
 
-    public Integer getPraiseReplyDynamicsid() {
-        return praiseReplyDynamicsid;
+    public Date getPraiseDate() {
+        return praiseDate;
     }
 
-    public void setPraiseReplyDynamicsid(Integer praiseReplyDynamicsid) {
-        this.praiseReplyDynamicsid = praiseReplyDynamicsid;
+    public void setPraiseDate(Date praiseDate) {
+        this.praiseDate = praiseDate;
     }
 
     public Student getStu() {

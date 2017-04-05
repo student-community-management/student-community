@@ -49,8 +49,7 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
-        return 0;
+        return studentMapper.getCount(keyWord);
     }
 
     @Override
@@ -67,17 +66,4 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     public PageData getPageData(PageParam pageParam, String keyWord) {
         return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
     }
-
-    @Override
-    public List<Student> queryAll(PageParam pageParam) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
 }

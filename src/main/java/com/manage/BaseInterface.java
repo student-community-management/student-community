@@ -19,14 +19,6 @@ public interface BaseInterface<T> {
     List<T> queryAll(@Param("pageParam") PageParam pageParam, @Param("keyWord") String keyWord);
     
     /**
-     * 分页查询所有信息
-     * @param pageParam 分页参数
-     * @return 返回查询结果集
-     */
-    List<T> queryAll(PageParam pageParam);
-    
-    
-    /**
      * 通过id查询单条信息
      * 
      * @param id 实体类的对象id
@@ -58,12 +50,5 @@ public interface BaseInterface<T> {
      * @param keyWord 查询条件
      * @return 返回查询结果数量
      */
-    int getCount(String keyWord);
-    
-    /**
-     * 查询所有信息数量
-     * @return 返回查询信息数量
-     */
-    int getCount();
-    
+    int getCount(@Param("keyWord") String keyWord);
 }

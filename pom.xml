@@ -3,7 +3,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.manage</groupId>
     <artifactId>student-community</artifactId>
-    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>student-community Maven Webapp</name>
     <url>http://maven.apache.org</url>
@@ -52,6 +51,11 @@
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
 
         <!-- mybatis -->
         <dependency>
@@ -81,6 +85,7 @@
             <version>2.8.7</version>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>TstudentManage</finalName>
     </build>

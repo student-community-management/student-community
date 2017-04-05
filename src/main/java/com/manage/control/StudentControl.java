@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.Student;
 import com.manage.service.StudentService;
+import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Controller
@@ -19,21 +20,15 @@ public class StudentControl implements BaseControl {
 
     @RequestMapping("all")
     @ResponseBody
-    public List<Student> qeuryAll(PageParam pageParam,String kw) {
-        System.out.println("ss1");
-        System.out.println("pageParam.getPage()============"+pageParam.getPage());
-        System.out.println("pageParam.getRows()============"+pageParam.getRows());
-        List<Student> list = studentService.queryAll(pageParam, kw);
-        for (Student stu : list) {
-            System.out.println(stu.getStuName());
-        }
-        return list;
+    public PageData qeuryAll(PageParam pageParam,String kw) {
+        
+        return  studentService.getPageData(pageParam, kw);
     }
 
     @RequestMapping("getStusByCommid")
     @ResponseBody
     public List<Student> test(Integer id) {
-        System.out.println("id=========================" + id);
+        System.out.println("id==========" + id);
         List<Student> list = studentService.getStudentByCommid(id);
         return list;
     }
