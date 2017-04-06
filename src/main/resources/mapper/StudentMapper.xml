@@ -70,4 +70,16 @@
         or c.sex_name like '%${keyWord}%'
         </if>
     </select>
+    
+    <insert id="save" parameterType="com.manage.entity.Student" 
+            keyProperty="stuid" useGeneratedKeys="true">
+        INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
+        VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
+    </insert>
+     
+     <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student">
+        select s.*,cls.classes,cls.grade,s.stu_sex
+        from  classes cls inner join student s on cls.classes_id = s.classes_id 
+        where s.stu_id = #{id}
+     </select>
 </mapper>

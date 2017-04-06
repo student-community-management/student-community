@@ -20,7 +20,7 @@ public class Student implements Serializable {
     private Integer stuid; // 学生id
     private String stuPwd; // 学生密码
     private String stuName; // 学生姓名
-    private Byte stuSex; // 性别
+    private Integer stuSex; // 性别
     private Date stuBirthday; // 生日
     private String stuNativePlace; // 祖籍
     private Classes classes; // 班级
@@ -66,11 +66,11 @@ public class Student implements Serializable {
         this.stuName = stuName;
     }
 
-    public Byte getStuSex() {
+    public Integer getStuSex() {
         return stuSex;
     }
 
-    public void setStuSex(Byte stuSex) {
+    public void setStuSex(Integer stuSex) {
         this.stuSex = stuSex;
     }
 

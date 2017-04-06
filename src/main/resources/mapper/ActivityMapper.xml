@@ -24,8 +24,4 @@
             <result column="community_name" property="communityName" />
         </association>
     </resultMap>
-
-
-
-
 </mapper>

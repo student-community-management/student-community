@@ -19,7 +19,6 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public List<Student> queryAll(PageParam pageParam, String keyWord) {
-        System.out.println("进入到studentService中");
         return studentMapper.queryAll(pageParam, keyWord);
     }
 
@@ -36,8 +35,12 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void save(Student t) {
-        // TODO Auto-generated method stub
+    public void save(Student t) throws Exception {
+        if(t == null){
+            throw new Exception("传入对象为空");
+        } else {
+            studentMapper.save(t);
+        }
 
     }
 

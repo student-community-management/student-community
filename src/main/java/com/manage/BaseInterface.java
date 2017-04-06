@@ -35,8 +35,9 @@ public interface BaseInterface<T> {
     /**
      * 添加信息
      * @param t 全新的实体类对象
+     * @throws Exception 
      */
-    void save(T t);
+    void save(T t) throws Exception;
 
     /**
      * 更新信息
