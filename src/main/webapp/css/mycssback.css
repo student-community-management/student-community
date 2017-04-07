@@ -35,3 +35,10 @@
 .mnav-item a:hover {
 	background-color: #9595ff;
 }
+.hidden{
+	display: none;
+}
+.data-div{
+	width:100%;
+	height:600px;
+}

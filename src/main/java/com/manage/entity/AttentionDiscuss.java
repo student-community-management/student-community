@@ -14,17 +14,8 @@ public class AttentionDiscuss implements Serializable {
      * 指定序列化id
      */
     private static final long serialVersionUID = 2486029631801727918L;
-    private Integer attentionDiscussid;
     private Student stu;
     private Discuss discuss;
-
-    public Integer getAttentionDiscussid() {
-        return attentionDiscussid;
-    }
-
-    public void setAttentionDiscussid(Integer attentionDiscussid) {
-        this.attentionDiscussid = attentionDiscussid;
-    }
 
     public Student getStu() {
         return stu;

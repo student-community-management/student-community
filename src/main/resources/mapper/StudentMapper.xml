@@ -44,14 +44,42 @@
         select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
          from  classes cls inner join student s on cls.classes_id = s.classes_id
          ) t
-        ) c where c.stu_name like '%${keyWord}%'
+        ) c 
+        <if test="keyWord != null">
+        where c.stu_name like '%${keyWord}%'
         or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
         or c.sex_name like '%${keyWord}%'
+        </if>
         LIMIT ${pageParam.startIndex},${pageParam.rows}
     </select>
 
-    <select id="getCount" parameterType="java.lang.String" resultType="int">
-        select COUNT(*) from student
+    <select id="getCount" parameterType="map" resultType="int">
+        select COUNT(*) from (
+        select * from (select *, case  
+        when grade = 0 then '一年级' 
+        when grade = 1 then '二年级' 
+        when grade = 2 then '三年级' 
+        when grade = 3 then '四年级' 
+        else '已毕业' end as 'grade_name'
+         from (select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+        from  classes cls inner join student s on cls.classes_id = s.classes_id) t) b 
+        ) c
+       <if test="keyWord != null">
+        where c.stu_name like '%${keyWord}%'
+        or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+        or c.sex_name like '%${keyWord}%'
+        </if>
     </select>
-
+    
+    <insert id="save" parameterType="com.manage.entity.Student" 
+            keyProperty="stuid" useGeneratedKeys="true">
+        INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
+        VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
+    </insert>
+     
+     <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student">
+        select s.*,cls.classes,cls.grade,s.stu_sex
+        from  classes cls inner join student s on cls.classes_id = s.classes_id 
+        where s.stu_id = #{id}
+     </select>
 </mapper>

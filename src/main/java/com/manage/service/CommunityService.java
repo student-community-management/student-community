@@ -56,12 +56,7 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        if (keyWord == null) {
-            return new PageData(this.getCount(keyWord), this.queryAll(pageParam,keyWord));
-        }
-
-        return null;
+        return new PageData(this.getCount(keyWord), this.queryAll(pageParam, null));
     }
-
 
 }

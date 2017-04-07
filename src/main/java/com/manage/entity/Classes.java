@@ -18,7 +18,7 @@ public class Classes implements Serializable {
     private Integer classesid; // 班级id
     private Integer grade; // 年级 查询时使用 case语句判断年级
     private String classes; // 班级
-    private Date year; // 第几届的学生
+    private Date years; // 第几届的学生
 
     public Integer getClassesid() {
         return classesid;
@@ -44,12 +44,12 @@ public class Classes implements Serializable {
         this.classes = classes;
     }
 
-    public Date getYear() {
-        return year;
+    public Date getYears() {
+        return years;
     }
 
-    public void setYear(Date year) {
-        this.year = year;
+    public void setYears(Date years) {
+        this.years = years;
     }
 
 }

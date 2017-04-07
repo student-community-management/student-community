@@ -14,17 +14,8 @@ public class AttentionProblem implements Serializable {
      * 指定序列化id
      */
     private static final long serialVersionUID = -3074956370267397673L;
-    private Integer attentionProblemid;
     private Student stu;
     private Problem peoblem;
-
-    public Integer getAttentionProblemid() {
-        return attentionProblemid;
-    }
-
-    public void setAttentionProblemid(Integer attentionProblemid) {
-        this.attentionProblemid = attentionProblemid;
-    }
 
     public Student getStu() {
         return stu;
