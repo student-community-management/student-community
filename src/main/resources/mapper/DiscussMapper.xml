@@ -3,32 +3,36 @@
 <mapper namespace="com.manage.mapper.DiscussMapper">
 <resultMap id="Discuss"  type="com.manage.entity.Discuss">
 	<id column="disucss_id" property="discussid" />
-	<result column="stu_id" property="stu"/>
 	<result column="discuss_title" property="discussTitle"/>
 	<result column="discuss_content" property="discussContent"/>
 	<result column="discuss_date" property="discussDate"/>
 	<result column="status" property="status"/>
+	<association property="stu" javaType="com.manage.entity.Student">
+		<result column="stu" property="stuName" />
+	</association>
 </resultMap>
-
-	<select id="select" resultMap="Discuss" >
-					SELECT discuss.discuss_id,
-		discuss.stu_id,
-		discuss.discuss_title,
-		discuss.discuss_content,
-		discuss.discuss_date,
-		discuss.status
-		FROM discuss
+	<select id="getDiscussByCommid" resultType="com.manage.entity.Discuss" resultMap="Discuss" parameterType="int">
+		SELECT
+		d.discuss_id,
+		d.discuss_title,
+		d.discuss_content,
+		d.discuss_date,
+		d.status
+		FROM
+		discuss d
+		INNER JOIN student sc on d.stu_id = sc.stu_id
+		WHERE sc.stu_id = #{id} and d.status = 1
 	</select>
-	<select id="single" resultMap="Dsiscuss" resultType="int">
-				SELECT
-		discuss.discuss_id,
-		discuss.stu_id,
-		discuss.discuss_title,
-		discuss.discuss_content,
-		discuss.discuss_date,
-		discuss.`status`
-		FROM discuss
-		WHERE stu_id = 1 AND status = 1
+	<select id="single" resultMap="Discuss" resultType="com.manage.entity.Discuss">
+					SELECT
+			d.discuss_id,
+			d.discuss_title,
+			d.discuss_content,
+			d.discuss_date,
+			d.status
+			FROM
+			discuss d
+			INNER JOIN student sc on d.stu_id = sc.stu_id
 	</select>
 	<insert id="insert" parameterType="com.manage.entity.Discuss">
 		insert into Discuss(discussTitle,discussContent,discussDate) values

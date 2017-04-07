@@ -19,7 +19,6 @@ public class Discuss implements Serializable {
     private String discussTitle; // 讨论标题 修改数据库
     private String discussContent; // 讨论详细说明
     private String discussDate;// 发布时间 修改数据库
-    private String discussLabel; // 讨论标签 修改数据库
     private Integer status; // 是否被删除或者问题是否已经关闭回答
     private List<ReplyDiscuss> replyDiscusses;
     private List<ReportDisscuss> reportDiscusses;
@@ -62,14 +61,6 @@ public class Discuss implements Serializable {
 
     public void setDiscussid(Integer discussid) {
         this.discussid = discussid;
-    }
-
-    public String getDiscussLabel() {
-        return discussLabel;
-    }
-
-    public void setDiscussLabel(String discussLabel) {
-        this.discussLabel = discussLabel;
     }
 
     public String getDiscussContent() {

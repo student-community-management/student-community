@@ -12,11 +12,11 @@ import com.manage.service.StudentService;
 import com.manage.util.PageParam;
 
 @Controller
-public class StudentControl implements BaseControl {
+public class StudentControl{
 
     @Autowired
     private StudentService studentService;
-
+    
     @RequestMapping("all")
     @ResponseBody
     public List<Student> qeuryAll(PageParam pageParam,String kw) {

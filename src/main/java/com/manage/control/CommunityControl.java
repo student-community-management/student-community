@@ -12,7 +12,7 @@ import com.manage.entity.Student;
 import com.manage.service.CommunityService;
 
 @Controller
-public class CommunityControl implements BaseControl {
+public class CommunityControl{
 
     @Autowired
     private CommunityService communityService;
