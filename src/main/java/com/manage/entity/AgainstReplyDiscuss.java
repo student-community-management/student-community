@@ -1,15 +1,25 @@
 package com.manage.entity;
 
-public class AgainstDiscuss {
-    private int againstDiscussid;
+import java.io.Serializable;
+/**
+ * 
+ * @author ChenYuhao
+ *  踩讨论的回复
+ */
+public class AgainstReplyDiscuss implements Serializable {
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = 5327047271797095730L;
+    private Integer againstDiscussid;
     private Student stu;
     private ReplyDiscuss replyDiscuss;
 
-    public int getAgainstDiscussid() {
+    public Integer getAgainstDiscussid() {
         return againstDiscussid;
     }
 
-    public void setAgainstDiscussid(int againstDiscussid) {
+    public void setAgainstDiscussid(Integer againstDiscussid) {
         this.againstDiscussid = againstDiscussid;
     }
 
@@ -28,6 +38,5 @@ public class AgainstDiscuss {
     public void setReplyDiscuss(ReplyDiscuss replyDiscuss) {
         this.replyDiscuss = replyDiscuss;
     }
-
 
 }

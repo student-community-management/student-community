@@ -27,9 +27,9 @@ public class ActivityService {
     //需要返回给前台的,所有数据,总条数
     public PageData getAllActivity(Activity activity,PageParam page){
        Map<String, Object> map = new HashMap<String, Object>();
-       if(activity!=null){
+       /*if(activity!=null){
            map.put("activityTitle", activity.getActivityTitle());
-       }
+       }*/
        map.put("startIndex", page.getStartIndex());
        map.put("rows", page.getRows());
        List<Activity> list =  activitymapper.getAllActivity(map);
