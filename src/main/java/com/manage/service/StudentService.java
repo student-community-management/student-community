@@ -29,15 +29,18 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void delete(Integer id) {
-        // TODO Auto-generated method stub
-
+    public void delete(List<Integer> ids) {
+        if(ids == null || ids.size() == 0){
+            throw new RuntimeException("传入对象为空");
+        } else {
+            studentMapper.delete(ids);
+        }
     }
 
     @Override
-    public void save(Student t) throws Exception {
-        if(t == null){
-            throw new Exception("传入对象为空");
+    public void save(Student t) {
+        if (t == null) {
+            throw new RuntimeException("传入对象为空");
         } else {
             studentMapper.save(t);
         }
@@ -46,8 +49,11 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public void update(Student t) {
-        // TODO Auto-generated method stub
-
+        if (t == null) {
+            throw new RuntimeException("传入对象为空");
+        } else {
+            studentMapper.update(t);
+        }
     }
 
     @Override
@@ -68,5 +74,12 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
         return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
+    }
+    
+
+    @Override
+    public List<Student> getAllManager(PageParam pageParam, String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

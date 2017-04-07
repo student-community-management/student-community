@@ -31,7 +31,7 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(List<Integer> ids) {
         // TODO Auto-generated method stub
         
     }

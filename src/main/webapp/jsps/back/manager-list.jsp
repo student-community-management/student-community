@@ -3,9 +3,8 @@
 <div id="addStuWindow">
     <form method="post" id="stuForm">
          <input id="stuid" name="stuid" type="hidden">
-                    学生姓名: <input id="stuName" name="stuName"><br>
-                    学生性别: <input id="stuSex" name="stuSex"><br>
-                    班&nbsp;&nbsp;级:<input id="cls"  name="classes.classesid"><br> 
+                    姓名: <input id="stuName" name="stuName"><br>
+                    性别: <input id="stuSex" name="stuSex"><br>
                     祖&nbsp;&nbsp;籍:<input id="stuAddr" name="stuNativePlace"><br> 
                     出生日期:<input id="stuBirthday" name="stuBirthday"><br>
     </form>
@@ -56,23 +55,7 @@
             }, {
                 field : 'stuNativePlace',
                 title : '祖籍'
-            }, {
-                field : 'classes',
-                title : '班级',
-                formatter : function(value) {
-                    if (value.grade == 0) {
-                        return '一年级' + value.classes;
-                    } else if (value.grade == 1) {
-                        return '二年级' + value.classes;
-                    } else if (value.grade == 2) {
-                        return '三年级' + value.classes;
-                    } else if (value.grade == 3) {
-                        return '四年级' + value.classes;
-                    } else if (value.grade > 3) {
-                        return '已毕业';
-                    }
-                }
-            } ] ]
+            }] ]
         });
         //---datagrid---end
         //---searchbox---
@@ -105,7 +88,7 @@
             closed : true //加载时关闭按钮
         });
         
-        laodAddWindow = function(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday){
+        laodAddWindow = function(stuid,stuName,stuSex,stuNativePlace,stuBirthday){
             
             if(stuid != null){
                 $('#stuid').val(stuid);
@@ -180,89 +163,6 @@
             });
              */
             
-            //student classes infomation
-            $('#cls').combogrid({
-                url : '/student-community/cls/allCls.a',
-                queryParams : {kw : 'no'},
-                width : 200,
-                panelWidth : 300,
-                panelHeight : 'auto',
-                editable:false,
-                columns : [ [ {
-                    field : 'grade',
-                    title : '年级',
-                    width : 60,
-                    formatter : function(value) {
-                        if (value == 0) {
-                            return '一年级';
-                        } else if (value == 1) {
-                            return '二年级';
-                        } else if (value == 2) {
-                            return '三年级';
-                        } else if (value == 3) {
-                            return '四年级';
-                        }
-                    }
-                }, {
-                    field : 'classes',
-                    title : '班级',
-                    width : 100
-                }, {
-                    field : 'years',
-                    title : '入学时间',
-                    width : 120
-                } ] ],
-                onLoadSuccess:function(){
-                    var g = $('#cls').combogrid('grid');
-                    var row = g.datagrid('getRows');
-                    var gradeTxt = row[0].grade;
-                    
-                    if (gradeTxt == 0) {
-                        gradeTxt = '一年级';
-                    } else if (gradeTxt == 1) {
-                        gradeTxt = '二年级';
-                    } else if (gradeTxt == 2) {
-                        gradeTxt = '三年级';
-                    } else if (gradeTxt == 3) {
-                        gradeTxt = '四年级';
-                    }
-                    if(g != ''){
-                        if(cls != null){
-                            for(var i = 0;i<row.length;i++){
-                                if(row[i].classesid == cls){
-                                    $('#cls').combogrid('setValue',row[i].classesid);
-                                    $('#cls').combogrid('setText',gradeTxt+row[i].classes);
-                                    break;
-                                }
-                                
-                            }
-                        } else {
-                            $('#cls').combogrid('setValue',row[0].classesid);
-                            $('#cls').combogrid('setText',gradeTxt+row[0].classes);
-                        }
-                    }
-                },
-                onSelect : function(rowIndex, rowData) {
-                    var gradeTxt = rowData.grade;
-                    if (gradeTxt == 0) {
-                        gradeTxt = '一年级';
-                    } else if (gradeTxt == 1) {
-                        gradeTxt = '二年级';
-                    } else if (gradeTxt == 2) {
-                        gradeTxt = '三年级';
-                    } else if (gradeTxt == 3) {
-                        gradeTxt = '四年级';
-                    }
-                    $('#cls').combogrid({
-                      onLoadSuccess:function(){
-                        $('#cls').combogrid('setValue',rowData.classesid);
-                        $('#cls').combogrid('setText',gradeTxt+rowData.classes);
-                      }
-                        
-                    });
-                } 
-            });
-
             //student address combobox
             $('#stuAddr').combobox({
                 url:'/student-community/json/address.json',
@@ -325,8 +225,6 @@
                     }
                 });
                 
-                //if update sutdent info set the datebox value
-                //is student's birthday
                 if(stuBirthday != null){
                     $('#stuBirthday').datebox('setValue',stuBirthday);
                 }
@@ -389,12 +287,11 @@
          var stuid = rowData[0].stuid;
          var stuName = rowData[0].stuName;
          var stuSex = rowData[0].stuSex;
-         var cls = rowData[0].classesid;
          var stuNativePlace = rowData[0].stuNativePlace;
          var stuBirthday = rowData[0].stuBirthday;
          
         //init #addStuWindow
-        laodAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
+        laodAddWindow(stuid,stuName,stuSex,stuNativePlace,stuBirthday);
         
         //open #addStuWindow 
         $('#addStuWindow').window('open');

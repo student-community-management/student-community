@@ -66,20 +66,55 @@
         ) c
        <if test="keyWord != null">
         where c.stu_name like '%${keyWord}%'
+        or CONCAT(c.stu_id,'')  like '%${keyWord}%'
         or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
         or c.sex_name like '%${keyWord}%'
         </if>
     </select>
     
+    <select id="getAllManager" parameterType="map" resultType="com.manage.entity.Student"
+         resultMap="stuSimpleResultMap">
+        select * from (
+        select s.*, case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+        from   student s ) c where c.classes_id is  null
+        <if test="keyWord != null">
+        CONCAT(c.stu_id,'')  like '%1%' 
+        or c.stu_name like '%${keyWord}%'
+        or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+        or c.sex_name like '%${keyWord}%'
+        </if>
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+     </select>
+     
+     <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student">
+        select s.*,cls.classes,cls.grade,s.stu_sex
+        from  classes cls inner join student s on cls.classes_id = s.classes_id
+        where s.stu_id = #{id}
+     </select>
+     
+     
+     
     <insert id="save" parameterType="com.manage.entity.Student" 
             keyProperty="stuid" useGeneratedKeys="true">
         INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
         VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
     </insert>
+
+    <insert id="update" parameterType="com.manage.entity.Student" 
+            keyProperty="stuid" useGeneratedKeys="true">
+       UPDATE student SET stu_name=#{stuName}, stu_sex=#{stuSex}, stu_birthday=#{stuBirthday},
+        stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
+    </insert>
      
-     <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student">
-        select s.*,cls.classes,cls.grade,s.stu_sex
-        from  classes cls inner join student s on cls.classes_id = s.classes_id 
-        where s.stu_id = #{id}
-     </select>
+     
+    <delete id="delete">
+        DELETE FROM student WHERE stu_id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete> 
+    
+    
+    
+         
 </mapper>

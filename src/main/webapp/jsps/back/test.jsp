@@ -1,16 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>学生社区管理</title>
-<link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/material/easyui.css" />
-<link rel="stylesheet" type="text/css" href="/student-community/css/mycssback.css" />
-<link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/icon.css" />
-<script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/easyui/jquery.easyui.min.js"></script>
-</head>
 <body>
+
     <h2>Custom DataGrid Pager</h2>
     <p>You can append some buttons to the standard datagrid pager bar.</p>
     <div style="margin: 20px 0;"></div>
@@ -27,7 +16,7 @@
             </tr>
         </thead>
     </table>
-</body>
+
 <script type="text/javascript">
     $(function() {
         var pager = $('#dg').datagrid().datagrid('getPager'); // get the pager of datagrid
@@ -51,4 +40,4 @@
         });
     })
 </script>
-</html>
+</body>
