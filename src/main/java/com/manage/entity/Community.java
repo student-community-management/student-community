@@ -11,12 +11,12 @@ public class Community implements Serializable {
      * 可序列化id
      */
     private static final long serialVersionUID = -2087183388719817727L;
-    private int communityid;//社团编号
+    private Integer communityid;//社团编号
     private String communityName;//社团名称
-    public int getCommunityid() {
+    public Integer getCommunityid() {
         return communityid;
     }
-    public void setCommunityid(int communityid) {
+    public void setCommunityid(Integer communityid) {
         this.communityid = communityid;
     }
     public String getCommunityName() {

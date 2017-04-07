@@ -1,8 +1,8 @@
 package com.manage.control;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.manage.entity.Activity;
@@ -30,24 +30,40 @@ public class ActivityController {
         //跳转到你想要的路径
         return "back/activity";
     }
+  //准备发布活动
+    @RequestMapping("addactivitypre")
+    public ModelAndView addActivitypre(){
+        return service.addActivityPre();
+    }
+    //增加活动
+    
     //修改活动提前准备
-    public ModelAndView updateActivityPre(Integer activityId){
+    @RequestMapping("updateActivityPre")
+    //@ResponseBody
+    public ModelAndView updateActivityPre(Integer actId){
         ModelAndView mv = new ModelAndView();
-        mv = this.updateActivityPre(activityId);
-        List<Activity> activity = service.getActivity();
+        mv = this.addActivitypre();//获取社团类型//活动类型
+        Activity activity = service.getActivityOne(actId);
         mv.addObject("activity",activity);
-        mv.setViewName("updateActivity");
+        mv.setViewName("back/updateActivity");
         return mv;
     }
     //修改活动信息
-    @RequestMapping("updateactivity")
-    public String  UpdateActivity(Activity activity,Model model){
-        Integer result = service.UpdateActivity(activity);
-        if(result>0){
+    @RequestMapping("updateActivity")
+    //前台给后台传值@ModelAttribute
+    public String  UpdateActivity(@ModelAttribute Activity activity,Model model){
+        // name="activityType.activityTypeid"
+        Integer result = service.UpdateActivity(activity); 
+        if(result>0){ 
             model.addAttribute("state", 1);//成功
         }else{
             model.addAttribute("state", 0);//失败
         }
-        return "/back/activity";
+        return "back/activity";
+    }
+    @RequestMapping("deleteActivity")
+    public String deleteActivity(Activity activity,Model model){
+       /* Integer activityId = service.*/
+        return null;
     }
 }

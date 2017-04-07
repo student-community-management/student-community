@@ -9,6 +9,8 @@
 <link rel="icon" href="/student-community/ico/ico.png">
 <title>学生社区</title>
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
+<link href="/student-community/easyui/jquery.easyui.min.js" rel="stylesheet">
+<script src="/student-community/easyui/themes/icon.css"></script>
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
 <link href="/student-community/css/mycss.css" rel="stylesheet">
 <link href="/student-community/css/docs.css" rel="stylesheet">
@@ -16,57 +18,51 @@
 <script src="/student-community/js/bootstrap.min.js"></script>
 </head>
 <body>
+<script type="text/javascript">
+</script>
 	<!-- Fixed navbar -->
 	<%@include file="nav.jsp" %>
 	<div class="container">
-		<div class="page-header">
-			<h4><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 最新动态</h4>
-		</div>
 		<h3>最新活动</h3>
 		<c:if test="${list != '[]'}">
-			<c:forEach items="${list}" var="list">
+		<c:forEach items="${list}" var="list">
+		<span><a href="${pageContext.request.contextPath}/updateActivityPre.a?actId=${list.activityid}">修改</a></span>
+		<span><a href="${pageContext.request.contextPath}/deleteActivity.a">删除</a></span>
+		<span><a href="${pageContext.request.contextPath}/addactivitypre.a">发布活动</a></span>
 			<table width="100%" cellpadding="0" cellspacing="0" class = "myfont" border="1">
 				<tr>
-					<th>标题</th>
-					<th>社团编号</th>
+					<td>社团名称</td>
 					<th>活动标题</th>
 					<th>活动地点</th>
 					<th>活动内容</th>
 					<th>报名开始时间</th>
+					<th>报名截止时间</th>
 					<th>活动开始时间</th>
 					<th>活动截止时间</th>
 					<th>活动状态</th>
-					<td>取消此活动</td>
-					<td>查看活动详细信息</td>
 				</tr>
 				<tr>
-					<td>${list.activityid}</td>
-					<td>${list.communityid}</td>
+				<input type="hidden" value="${list.activityid}" id="activityid"/>
+					<td>${list.community.communityName}</td>
 					<td>${list.activityTitle }</td>
 					<td>${list.activityLoc}</td>
+					<td>${list.activityContent }</td>
 					<td>${list.activityDate }</td>
 					<td>${list.closeingDate }</td>
 					<td>${list.startDate }</td>
 					<td>${list.endDate }</td>
-					
-					<td><c:if test="${list.status ==1}">
+					<td><c:if test="${list.status == 1}">
 						已经结束
 					</c:if>
-					<c:if test="${list.status ==0 }">
+					<c:if test="${list.status == 0 }">
 						<h3>还在报名中!!!!</h3>
 					</c:if>
 					</td>
-					<td></td>
+					
 				</tr>
 			</table>
 			</c:forEach>
 		</c:if>
-		<h3>Non-responsive grid system</h3>
-		<div class="row">
-			<div class="col-xs-4">One third</div>
-			<div class="col-xs-4">One third</div>
-			<div class="col-xs-4">One third</div>
-		</div>
 	</div>
 </body>
 </html>

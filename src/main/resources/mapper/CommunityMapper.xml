@@ -14,7 +14,7 @@
         insert into community(community_id,community_name) values(#{communityName,jdbcType=VARCHAR})
     </insert>
     <update id="UpdateCommunity" parameterType="com.manage.entity.Community" >
-    update community set community_name =#{communityName}
+    update community set community_name = #{communityName}
     where community_id = #{communityid}
     </update>
     <delete id="deleteCommunity" parameterType="Integer">

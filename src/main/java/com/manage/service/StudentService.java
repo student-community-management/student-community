@@ -17,58 +17,50 @@ public class StudentService implements BaseService<Student> {
     @Autowired
     private StudentMapper studentMapper;
 
-    @Override
     public List<Student> queryAll(PageParam pageParam) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public List<Student> queryAll(Student t, PageParam pageParam) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public Student queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-
+        
     }
 
-    @Override
     public void save(Student t) {
         // TODO Auto-generated method stub
-
+        
     }
 
-    @Override
     public void update(Student t) {
         // TODO Auto-generated method stub
-
+        
     }
 
-    @Override
     public int getCount() {
         // TODO Auto-generated method stub
         return 0;
     }
 
-    @Override
+    public int getCount(String keyWord) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
     public PageData getPageData() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
 
 }
