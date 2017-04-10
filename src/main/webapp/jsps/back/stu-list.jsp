@@ -9,8 +9,8 @@
                     祖&nbsp;&nbsp;籍:<input id="stuAddr" name="stuNativePlace"><br> 
                     出生日期:<input id="stuBirthday" name="stuBirthday"><br>
     </form>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-filesave'"style="width: 80px" id="save">保存</a> 
-    <a href="#" class="easyui-linkbutton"data-options="iconCls:'icon-cancel'" style="width: 80px" id="close">关闭</a>
+    <a href="#" id="save">保存</a> 
+    <a href="#" id="close">关闭</a>
 </div>
 <div id="toolbar">
     <input id="search"></input> 
@@ -21,6 +21,18 @@
 <table id="stu-list"></table>
 <script type="text/javascript">
     $(function() {
+        
+        $('#save').linkbutton({    
+            iconCls: 'icon-save',
+            width: 70
+        });
+        
+        $('#close').linkbutton({    
+            iconCls: 'icon-cancel', 
+            width: 70
+        });  
+        
+        
         //---datagrid---
         $('#stu-list').datagrid({
             url : '/student-community/stu/getAllStu.a',
@@ -28,6 +40,9 @@
             pagination : true,
             fit : true,
             fitColumns : true,
+            queryParams: {
+        		'isClassesid': 'true',
+        	},
             pageNumber : 1,
             pageSize : 20,
             pageList : [20, 30, 40, 50 ],
@@ -417,6 +432,7 @@
                     ids.push(rowData[i].stuid);
                 }
                 
+                //转换成JSON字符串
                 var dataJson = JSON.stringify(ids);
                 $.ajax({
                     type:'post',
@@ -445,6 +461,7 @@
                 });
             }
          });
+         
      });
     
     //close add student window

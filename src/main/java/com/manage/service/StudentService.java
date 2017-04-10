@@ -19,7 +19,8 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public List<Student> queryAll(PageParam pageParam, String keyWord) {
-        return studentMapper.queryAll(pageParam, keyWord);
+       // return studentMapper.queryAll(pageParam, keyWord);
+        return null;
     }
 
     @Override
@@ -30,7 +31,7 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public void delete(List<Integer> ids) {
-        if(ids == null || ids.size() == 0){
+        if (ids == null || ids.size() == 0) {
             throw new RuntimeException("传入对象为空");
         } else {
             studentMapper.delete(ids);
@@ -73,9 +74,23 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
+        //return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
+        return null;
     }
-    
+
+    public PageData getPageDataForStu(PageParam pageParam, String keyWord, Boolean isClassesid) {
+        return new PageData(this.getCountForStu(keyWord,isClassesid), this.queryAllForStu(pageParam, keyWord,isClassesid));
+    }
+
+    @Override
+    public List<Student> queryAllForStu(PageParam pageParam, String keyWord, Boolean isClassesid) {
+        return studentMapper.queryAllForStu(pageParam, keyWord, isClassesid);
+    }
+
+    @Override
+    public int getCountForStu(String keyWord, Boolean isClassesid) {
+        return studentMapper.getCountForStu(keyWord, isClassesid);
+    }
 
     @Override
     public List<Student> getAllManager(PageParam pageParam, String keyWord) {

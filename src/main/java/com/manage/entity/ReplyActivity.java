@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -19,44 +19,44 @@ public class ReplyActivity implements Serializable {
     private Student stu;
     private Activity activity;
     private String content;
-    private List<ReplyActivity> replyActivities;
+    private Set<ReplyActivity> replyActivities;
     private Date replyDate;
-    private List<AgainstReplyActivity> againstReplyActivities;
-    private List<PraiseReplyActivity> praiseReplyActivities;
-    private List<ReportReplyActivity> ReportReplyActivities;
+    private Set<AgainstReplyActivity> againstReplyActivities;
+    private Set<PraiseReplyActivity> praiseReplyActivities;
+    private Set<ReportReplyActivity> ReportReplyActivities;
 
-    public List<AgainstReplyActivity> getAgainstReplyActivities() {
+    public Set<AgainstReplyActivity> getAgainstReplyActivities() {
         return againstReplyActivities;
     }
 
     public void setAgainstReplyActivities(
-            List<AgainstReplyActivity> againstReplyActivities) {
+            Set<AgainstReplyActivity> againstReplyActivities) {
         this.againstReplyActivities = againstReplyActivities;
     }
 
-    public List<PraiseReplyActivity> getPraiseReplyActivities() {
+    public Set<PraiseReplyActivity> getPraiseReplyActivities() {
         return praiseReplyActivities;
     }
 
     public void setPraiseReplyActivities(
-            List<PraiseReplyActivity> praiseReplyActivities) {
+            Set<PraiseReplyActivity> praiseReplyActivities) {
         this.praiseReplyActivities = praiseReplyActivities;
     }
 
-    public List<ReportReplyActivity> getReportReplyActivities() {
+    public Set<ReportReplyActivity> getReportReplyActivities() {
         return ReportReplyActivities;
     }
 
     public void setReportReplyActivities(
-            List<ReportReplyActivity> reportReplyActivities) {
+            Set<ReportReplyActivity> reportReplyActivities) {
         ReportReplyActivities = reportReplyActivities;
     }
 
-    public List<ReplyActivity> getReplyActivities() {
+    public Set<ReplyActivity> getReplyActivities() {
         return replyActivities;
     }
 
-    public void setReplyActivities(List<ReplyActivity> replyActivities) {
+    public void setReplyActivities(Set<ReplyActivity> replyActivities) {
         this.replyActivities = replyActivities;
     }
 

@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -21,13 +21,13 @@ public class Problem implements Serializable {
     private String problemContent;// 内容
     private Date problemDate; // 问题发布时间
     private Integer status; // 是否被删除
-    private List<ReplyProblem> replyProblems;
+    private Set<ReplyProblem> replyProblems;
 
-    public List<ReplyProblem> getReplyProblems() {
+    public Set<ReplyProblem> getReplyProblems() {
         return replyProblems;
     }
 
-    public void setReplyProblems(List<ReplyProblem> replyProblems) {
+    public void setReplyProblems(Set<ReplyProblem> replyProblems) {
         this.replyProblems = replyProblems;
     }
 

@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -18,26 +18,26 @@ public class ReplyDynamics implements Serializable {
     private Student stu;
     private Dynamics dynamics;
     private String content;
-    private List<ReplyDynamics> replyDynamicses;
+    private Set<ReplyDynamics> replyDynamicses;
     private Date replyDate;
-    private List<PraiseReplyDynamics> praiseReplyDynamicses;
-    private List<ReportReplyDynamics> ReportReplyDynamicses;
+    private Set<PraiseReplyDynamics> praiseReplyDynamicses;
+    private Set<ReportReplyDynamics> ReportReplyDynamicses;
 
-    public List<PraiseReplyDynamics> getPraiseReplyDynamicses() {
+    public Set<PraiseReplyDynamics> getPraiseReplyDynamicses() {
         return praiseReplyDynamicses;
     }
 
     public void setPraiseReplyDynamicses(
-            List<PraiseReplyDynamics> praiseReplyDynamicses) {
+            Set<PraiseReplyDynamics> praiseReplyDynamicses) {
         this.praiseReplyDynamicses = praiseReplyDynamicses;
     }
 
-    public List<ReportReplyDynamics> getReportReplyDynamicses() {
+    public Set<ReportReplyDynamics> getReportReplyDynamicses() {
         return ReportReplyDynamicses;
     }
 
     public void setReportReplyDynamicses(
-            List<ReportReplyDynamics> reportReplyDynamicses) {
+            Set<ReportReplyDynamics> reportReplyDynamicses) {
         ReportReplyDynamicses = reportReplyDynamicses;
     }
 
@@ -61,11 +61,11 @@ public class ReplyDynamics implements Serializable {
         this.content = content;
     }
 
-    public List<ReplyDynamics> getReplyDynamicses() {
+    public Set<ReplyDynamics> getReplyDynamicses() {
         return replyDynamicses;
     }
 
-    public void setReplyDynamicses(List<ReplyDynamics> replyDynamicses) {
+    public void setReplyDynamicses(Set<ReplyDynamics> replyDynamicses) {
         this.replyDynamicses = replyDynamicses;
     }
 

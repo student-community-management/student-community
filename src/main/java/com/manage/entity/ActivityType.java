@@ -1,7 +1,7 @@
 package com.manage.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -16,13 +16,13 @@ public class ActivityType implements Serializable {
     private static final long serialVersionUID = -5345625803428393006L;
     private Integer activityTypeid;
     private String activityTypeName;
-    private List<Activity> activities;
+    private Set<Activity> activities;
 
-    public List<Activity> getActivities() {
+    public Set<Activity> getActivities() {
         return activities;
     }
 
-    public void setActivities(List<Activity> activities) {
+    public void setActivities(Set<Activity> activities) {
         this.activities = activities;
     }
 

@@ -1,27 +1,24 @@
 package com.manage.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Community;
-import com.manage.mapper.CommunityMapper;
+import com.manage.mapper.authority.CommunityMapper;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
 public class CommunityService implements BaseService<Community>, CommunityMapper {
 
-    @SuppressWarnings("unused")
     @Autowired
     private CommunityMapper communityMapper;
 
     @Override
     public List<Community> queryAll(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
-        return null;
+        return communityMapper.queryAll(pageParam, keyWord);
     }
 
     @Override
@@ -38,8 +35,8 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Override
     public void save(Community t) {
-        // TODO Auto-generated method stub
-
+        communityMapper.save(t);
+        this.saveCommunityRole(this.getNewComunityid(), this.getRoleids());
     }
 
     @Override
@@ -58,5 +55,29 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     public PageData getPageData(PageParam pageParam, String keyWord) {
         return new PageData(this.getCount(keyWord), this.queryAll(pageParam, null));
     }
+
+    @Override
+    public List<Integer> getRoleids() {
+        return communityMapper.getRoleids();
+    }
+
+    @Override
+    public Integer getNewComunityid() {
+        return communityMapper.getNewComunityid();
+    }
+
+    @Override
+    public void saveCommunityRole(Integer newComunityid, List<Integer> Roleids) {
+        //communityMapper.saveCommunityRole(newComunityid, Roleids);
+    }
+
+    @Override
+    public void setRole(Integer stu_id, Integer communityRoleid) {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    
+    
 
 }

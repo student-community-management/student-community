@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -20,13 +20,13 @@ public class Dynamics implements Serializable {
     private String dynamicsContent; // 动态的内容
     private Date dynamicsDate; // 发布日期
     private Integer status; // 是否删除
-    private List<Dynamics> replyDynamics;
+    private Set<Dynamics> replyDynamics;
 
-    public List<Dynamics> getReplyDynamics() {
+    public Set<Dynamics> getReplyDynamics() {
         return replyDynamics;
     }
 
-    public void setReplyDynamics(List<Dynamics> replyDynamics) {
+    public void setReplyDynamics(Set<Dynamics> replyDynamics) {
         this.replyDynamics = replyDynamics;
     }
 

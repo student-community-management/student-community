@@ -1,32 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <body>
-<div id="addStuWindow">
-    <form method="post" id="stuForm">
-         <input id="stuid" name="stuid" type="hidden">
-                    姓名: <input id="stuName" name="stuName"><br>
-                    性别: <input id="stuSex" name="stuSex"><br>
-                    祖&nbsp;&nbsp;籍:<input id="stuAddr" name="stuNativePlace"><br> 
-                    出生日期:<input id="stuBirthday" name="stuBirthday"><br>
+<div id="maddStuWindow">
+    <form method="post" id="mstuForm">
+         <input id="mstuid" name="stuid" type="hidden">
+                    学生姓名: <input id="mstuName" name="stuName"><br>
+                    学生性别: <input id="mstuSex" name="stuSex"><br>
+                    祖&nbsp;&nbsp;籍:<input id="mstuAddr" name="stuNativePlace"><br> 
+                    出生日期:<input id="mstuBirthday" name="stuBirthday"><br>
     </form>
-    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-filesave'"style="width: 80px" id="save">保存</a> 
-    <a href="#" class="easyui-linkbutton"data-options="iconCls:'icon-cancel'" style="width: 80px" id="close">关闭</a>
+    <a href="#" id="msave">保存</a> 
+    <a href="#" id="mclose">关闭</a>
 </div>
-<div id="toolbar">
-    <input id="search"></input> 
-    <a href="#" id="addStu" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
-    <a href="#" id="removeStu" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
-    <a href="#" id="updateStu" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
+<div id="mtoolbar">
+    <input id="msearch"></input> 
+    <a href="#" id="maddStu" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
+    <a href="#" id="mremoveStu" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
+    <a href="#" id="mupdateStu" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
 </div>
-<table id="stu-list"></table>
+<table id="mstu-list"></table>
 <script type="text/javascript">
     $(function() {
+        
+        $('#msave').linkbutton({    
+            iconCls: 'icon-save',
+            width: 70
+        });
+        
+        $('#mclose').linkbutton({    
+            iconCls: 'icon-cancel', 
+            width: 70
+        });  
+        
         //---datagrid---
-        $('#stu-list').datagrid({
+        $('#mstu-list').datagrid({
             url : '/student-community/stu/getAllStu.a',
-            toolbar : '#toolbar',
+            toolbar : '#mtoolbar',
             pagination : true,
             fit : true,
             fitColumns : true,
+            queryParams: {
+                'isClassesid': 'false',
+            },
             pageNumber : 1,
             pageSize : 20,
             pageList : [20, 30, 40, 50 ],
@@ -55,16 +69,16 @@
             }, {
                 field : 'stuNativePlace',
                 title : '祖籍'
-            }] ]
+            } ] ]
         });
         //---datagrid---end
         //---searchbox---
-        $('#search').searchbox({
+        $('#msearch').searchbox({
             searcher : function(value) {
                 if (value.indexOf('\'') != -1) {
                     $.messager.alert('警告', '不能传入单引号！', 'warning');
                 } else {
-                    $('#stu-list').datagrid({
+                    $('#mstu-list').datagrid({
                         queryParams : {
                             'kw' : value
                         }
@@ -77,7 +91,7 @@
         //---searchbox--end
 
         // add student window
-        $('#addStuWindow').window({
+        $('#maddStuWindow').window({
             width : 500,
             height : 'auto',
             title : '添加学生',
@@ -88,14 +102,14 @@
             closed : true //加载时关闭按钮
         });
         
-        laodAddWindow = function(stuid,stuName,stuSex,stuNativePlace,stuBirthday){
+        mlaodAddWindow = function(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday){
             
             if(stuid != null){
-                $('#stuid').val(stuid);
+                $('#mstuid').val(stuid);
             }
             
           //student stuName textbox
-            $('#stuName').textbox({
+            $('#mstuName').textbox({
                 width:200,
                 required:true,
                 value:stuName,
@@ -104,7 +118,7 @@
                 invalidMessage:'姓名的长度在1-15位之间'
             });
             
-            $('#stuSex').combobox({
+            $('#mstuSex').combobox({
                 data : [ {
                     "id" : 0,
                     "text" : "女"
@@ -119,79 +133,47 @@
                 editable:false,
                 onLoadSuccess:function(){
                     if(stuSex==null){
-                        var data = $('#stuSex').combobox('getData');
+                        var data = $('#mstuSex').combobox('getData');
                         if(data != ''){
-                            $('#stuSex').combobox('select',data[0].id);
+                            $('#mstuSex').combobox('select',data[0].id);
                         }
                     } else {
-                            $('#stuSex').combobox('select',stuSex);
+                            $('#mstuSex').combobox('select',stuSex);
                     }
                     
                 }
             });
-            /*
-            //student grade data
-            var gradeData=[{    
-                "id":0,    
-                "text":'一年级',
-            },{    
-                "id":1,    
-                "text":'二年级',   
-            },{    
-                "id":2,    
-                "text":'三年级',   
-            },{    
-                "id":3,    
-                "text":'四年级',   
-            }];
             
-            $('#grade').combobox({
-                data:gradeData,
-                width:200,
-                valueField:'id',
-                textField:'text',
-                panelHeight:'auto',
-                onSelect:function(record){
-                    $('#cls').combobox({
-                        url:'/student-community/cls/getcls.a?grade='+record.id,
-                        width:200,
-                        valueField:'classes',
-                        textField:'classes',
-                        panelHeight:'auto'
-                    });
-                }
-            });
-             */
             
             //student address combobox
-            $('#stuAddr').combobox({
+            $('#mstuAddr').combobox({
                 url:'/student-community/json/address.json',
                 width : 200,
                 valueField : 'id',
                 textField : 'text',
                 editable:false,
                 onLoadSuccess:function(){
-                    var data = $('#stuAddr').combobox('getData');
+                    var data = $('#mstuAddr').combobox('getData');
                     if(data != ''){
                         if(stuNativePlace != null){
                             for(var i = 0;i<data.length;i++){
                                 if(data[i].id == stuNativePlace){
-                                    $('#stuAddr').combobox('select',data[i].id);
+                                    $('#mstuAddr').combobox('select',data[i].id);
                                     break;
                                 }
                             }
                         } else {
-                            $('#stuAddr').combobox('select',data[0].id);
+                            $('#mstuAddr').combobox('select',data[0].id);
                         }
                     }
                 }
             });
             
             
-            //initDatebox #stuBirthday
-            initDatebox = function(){
+            //minitDatebox #stuBirthday
+            minitDatebox = function(){
              // student birthday datebox
-                $('#stuBirthday').datebox({
+                $('#mstuBirthday').datebox({
                     width : 200,
                     editable:false,
                     formatter : function(date) {
@@ -225,17 +207,19 @@
                     }
                 });
                 
+                //if update sutdent info set the datebox value
+                //is student's birthday
                 if(stuBirthday != null){
-                    $('#stuBirthday').datebox('setValue',stuBirthday);
+                    $('#mstuBirthday').datebox('setValue',stuBirthday);
                 }
             }
             
             //初始化日期框
-            initDatebox();
+            minitDatebox();
         }
 
         //add student form 
-        $('#stuForm').form({
+        $('#mstuForm').form({
             url : '/student-community/stu/saveStu.a',
             onSubmit : function() {
               var isValid = $(this).form('validate');
@@ -260,48 +244,49 @@
                         showType:'slide'
                     });
                 }
-                $('#addStuWindow').window('close');
-                $('#stu-list').datagrid('reload');
+                $('#maddStuWindow').window('close');
+                $('#mstu-list').datagrid('reload');
             }
         });
     });
     
     //addStu button click event
-    $('#addStu').click(function() {
+    $('#maddStu').click(function() {
         //init #addStuWindow 
-        laodAddWindow();
+        mlaodAddWindow();
         
         //open #addStuWindow 
-        $('#addStuWindow').window('open');
+        $('#maddStuWindow').window('open');
     });
     
     //updateStu button click event
-     $('#updateStu').click(function() {
-         var rowData = $('#stu-list').datagrid('getSelections');
+     $('#mupdateStu').click(function() {
+         var rowData = $('#mstu-list').datagrid('getSelections');
          if(rowData.length == 0 || rowData.length > 1){
              $.messager.alert('消息','更新时只能选择一行数据','warning');
-             $('#stu-list').datagrid('clearSelections');
+             $('#mstu-list').datagrid('clearSelections');
              return;
          }
          
          var stuid = rowData[0].stuid;
          var stuName = rowData[0].stuName;
          var stuSex = rowData[0].stuSex;
+         var cls = rowData[0].classesid;
          var stuNativePlace = rowData[0].stuNativePlace;
          var stuBirthday = rowData[0].stuBirthday;
          
         //init #addStuWindow
-        laodAddWindow(stuid,stuName,stuSex,stuNativePlace,stuBirthday);
+        mlaodAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
         
         //open #addStuWindow 
-        $('#addStuWindow').window('open');
+        $('#maddStuWindow').window('open');
     });
         
     
     //remove student
     //the #removeStu click event
-     $('#removeStu').click(function(){
-         var rowData = $('#stu-list').datagrid('getSelections');
+     $('#mremoveStu').click(function(){
+         var rowData = $('#mstu-list').datagrid('getSelections');
          if(rowData.length == 0){
              alert('请选中数据');
              return;
@@ -329,7 +314,7 @@
                                 timeout:3000,
                                 showType:'slide'
                             });
-                         $('#stu-list').datagrid('reload');
+                         $('#mstu-list').datagrid('reload');
                         } else {
                             $.messager.show({
                                 title:'消息',
@@ -345,13 +330,13 @@
      });
     
     //close add student window
-    $("#close").click(function() {
-        $('#addStuWindow').window('close');
+    $('#mclose').click(function() {
+        $('#maddStuWindow').window('close');
     });
 
     //submit the form stuForm
-    $('#save').click(function() {
-        $('#stuForm').submit();
+    $('#msave').click(function() {
+        $('#mstuForm').submit();
     });
     
     

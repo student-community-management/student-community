@@ -29,8 +29,10 @@ public class StudentControl {
      */
     @RequestMapping("getAllStu")
     @ResponseBody
-    public PageData qeuryAll(PageParam pageParam, String kw) {
-        return studentService.getPageData(pageParam, kw);
+    public PageData qeuryAll(PageParam pageParam, String kw,Boolean isClassesid) {
+        //return studentService.getPageData(pageParam, kw);
+       return studentService.getPageDataForStu(pageParam, kw, isClassesid);
+        
     }
     
     /**

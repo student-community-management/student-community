@@ -1,7 +1,7 @@
 package com.manage.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -20,22 +20,22 @@ public class Discuss implements Serializable {
     private String discussContent; // 讨论详细说明
     private String discussDate;// 发布时间 修改数据库
     private Integer status; // 是否被删除或者问题是否已经关闭回答
-    private List<ReplyDiscuss> replyDiscusses;
-    private List<ReportDisscuss> reportDiscusses;
+    private Set<ReplyDiscuss> replyDiscusses;
+    private Set<ReportDisscuss> reportDiscusses;
 
-    public List<ReportDisscuss> getReportDiscusses() {
+    public Set<ReportDisscuss> getReportDiscusses() {
         return reportDiscusses;
     }
 
-    public void setReportDiscusses(List<ReportDisscuss> reportDiscusses) {
+    public void setReportDiscusses(Set<ReportDisscuss> reportDiscusses) {
         this.reportDiscusses = reportDiscusses;
     }
 
-    public List<ReplyDiscuss> getReplyDiscusses() {
+    public Set<ReplyDiscuss> getReplyDiscusses() {
         return replyDiscusses;
     }
 
-    public void setReplyDiscusses(List<ReplyDiscuss> replyDiscusses) {
+    public void setReplyDiscusses(Set<ReplyDiscuss> replyDiscusses) {
         this.replyDiscusses = replyDiscusses;
     }
 

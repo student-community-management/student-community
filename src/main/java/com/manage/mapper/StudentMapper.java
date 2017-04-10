@@ -27,4 +27,23 @@ public interface StudentMapper extends BaseMapper<Student> {
     List<Student> getAllManager(@Param("pageParam") PageParam pageParam,
             @Param("keyWord") String keyWord);
 
+    /**
+     * 
+     * @param pageParam
+     * @param keyWord
+     * @param isClassesid
+     * @return
+     */
+    List<Student> queryAllForStu(@Param("pageParam") PageParam pageParam,
+            @Param("keyWord") String keyWord, @Param("isClassesid") Boolean isClassesid);
+
+    /**
+     * 
+     * @param pageParam
+     * @param keyWord
+     * @param isClassesid
+     * @return
+     */
+    int getCountForStu(@Param("keyWord") String keyWord, @Param("isClassesid") Boolean isClassesid);
+
 }
