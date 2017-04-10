@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.StudentMapper">
-    
     <resultMap type="com.manage.entity.Student" id="stuSimpleResultMap">
         <id column="stu_id" property="stuid" />
         <result column="stu_name" property="stuName" />
@@ -138,15 +137,11 @@
         stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
     </insert>
      
-     
     <delete id="delete">
         DELETE FROM student WHERE stu_id in
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete> 
-    
-    
-    
          
 </mapper>

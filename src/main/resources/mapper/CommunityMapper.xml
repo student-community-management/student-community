@@ -39,21 +39,25 @@
         LIMIT ${pageParam.startIndex},${pageParam.rows}
     </select>
     
-    <select id="getRoleids" resultType="Integer">
-            select role_id FROM role where role_id > 2
-    </select>
-    
     <select id="getNewComunityid" resultType="Integer">
         select community_id from community order by community_id desc LIMIT 0,1
     </select>
     
     <insert id="save" parameterType="com.manage.entity.Community" keyProperty="communityid"
      useGeneratedKeys="true" >
-        INSERT INTO `community` (`community_name`) VALUES (#{communityName})
+        INSERT INTO community (community_name) VALUES (#{communityName})
     </insert>
     
+    <delete id="delete">
+        DELETE FROM community WHERE community_id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
     
-    
-    
+    <update id="update" parameterType="com.manage.entity.Community">
+        UPDATE community SET community_name=#{communityName} 
+        WHERE (community_id=#{communityid})
+    </update>
 </mapper>
 

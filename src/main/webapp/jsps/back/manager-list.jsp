@@ -3,8 +3,8 @@
 <div id="maddStuWindow">
     <form method="post" id="mstuForm">
          <input id="mstuid" name="stuid" type="hidden">
-                    学生姓名: <input id="mstuName" name="stuName"><br>
-                    学生性别: <input id="mstuSex" name="stuSex"><br>
+                   管理员姓名: <input id="mstuName" name="stuName"><br>
+                    性别: <input id="mstuSex" name="stuSex"><br>
                     祖&nbsp;&nbsp;籍:<input id="mstuAddr" name="stuNativePlace"><br> 
                     出生日期:<input id="mstuBirthday" name="stuBirthday"><br>
     </form>
@@ -49,13 +49,13 @@
                 checkbox : true
             }, {
                 field : 'stuid',
-                title : '学生编号'
+                title : '管理员编号'
             }, {
                 field : 'stuName',
-                title : '学生姓名'
+                title : '管理员姓名'
             }, {
                 field : 'stuSex',
-                title : '学生性别',
+                title : '性别',
                 formatter : function(value) {
                     if (value == 1) {
                         return '男';

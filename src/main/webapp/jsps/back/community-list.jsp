@@ -3,8 +3,8 @@
 <body>
 <div id="addCommWindow">
     <form method="post" id="commForm">
-         <input id="commid" name="stuid" type="hidden">
-                   社团名称:<input id="commName" name="stuName"><br>
+         <input id="commid" name="communityid" type="hidden">
+                   社团名称:<input id="commName" name="communityName"><br>
     </form>
     <a href="#" id="commsave">保存</a> 
     <a href="#" id="commclose">关闭</a>
@@ -47,7 +47,7 @@
                 title : '社团编号'
             }, {
                 field : 'communityName',
-                title : '学生姓名'
+                title : '社团'
             }, {
                 field : 'stus',
                 title : '团长',
@@ -102,26 +102,32 @@
             closed : true //加载时关闭按钮
         });
         
-        laodAddWindow = function(commid,commName){
+        loadAddWindow = function(commid,commName){
             
-            if(commid != null){
-                $('#commid').val(stuid);
+            
+            if(commid == undefined){
+                commid='';
+                commName='';
             }
             
-          //community stuName textbox
+            if(commid != null){
+                $('#commid').val(commid);
+            }
+            
+          //community commName textbox
             $('#commName').textbox({
                 width:200,
                 required:true,
-                value:stuName,
-                missingMessage:'姓名必填',
-                validType:['length[1,15]'],
-                invalidMessage:'姓名的长度在1-15位之间'
+                value:commName,
+                missingMessage:'社团名称必填',
+                validType:['length[1,10]'],
+                invalidMessage:'社团名称的长度在1-10位之间'
             });
         }
 
         //add community form 
         $('#commForm').form({
-            url : '/student-community/stu/saveComm.a',
+            url : '/student-community/comm/saveComm.a',
             onSubmit : function() {
               var isValid = $(this).form('validate');
               if(!isValid){
@@ -154,7 +160,7 @@
     //addComm button click event
     $('#addComm').click(function() {
         //init #addCommWindow 
-        laodAddWindow();
+        loadAddWindow();
         
         //open #addCommWindow 
         $('#addCommWindow').window('open');
@@ -169,15 +175,11 @@
              return;
          }
          
-         var stuid = rowData[0].stuid;
-         var stuName = rowData[0].stuName;
-         var stuSex = rowData[0].stuSex;
-         var cls = rowData[0].classesid;
-         var stuNativePlace = rowData[0].stuNativePlace;
-         var stuBirthday = rowData[0].stuBirthday;
+         var commid = rowData[0].communityid;
+         var commName = rowData[0].communityName;
          
         //init #addCommWindow
-        laodAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
+        loadAddWindow(commid,commName);
         
         //open #addCommWindow 
         $('#addCommWindow').window('open');
@@ -197,17 +199,18 @@
             if (r){
                 var ids = new Array(); 
                 for(var i = 0;i<rowData.length;i++){
-                    ids.push(rowData[i].stuid);
+                    ids.push(rowData[i].communityid);
                 }
                 
                 var dataJson = JSON.stringify(ids);
                 $.ajax({
                     type:'post',
-                    url:'/student-community/comm/getAllComm.a',
+                    url:'/student-community/comm/delComm.a',
                     data:dataJson,
                     datatype : 'json',
                     contentType : 'application/json;charset=utf-8',
                     success: function(msg){
+                        console.log("msg msg msg msg msg"+msg);
                         if(msg == 'ok'){
                             $.messager.show({
                                 title:'消息',
@@ -236,7 +239,7 @@
         $('#addCommWindow').window('close');
     });
 
-    //submit the form stuForm
+    //submit the form commForm
     $('#commsave').click(function() {
         $('#commForm').submit();
     });

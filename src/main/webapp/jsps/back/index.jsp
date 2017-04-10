@@ -18,7 +18,7 @@
             <div title="社区管理" iconCls="icon-ok" class="mnav-item">
                 <ul>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/stu-list.jsp" class="mnav-items">学生管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/manager-list.jsp" class="mnav-items">管理员管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/manager-list.jsp" class="mnav-items">管理人员管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">活动管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">问吧管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">讨论管理</a></li>

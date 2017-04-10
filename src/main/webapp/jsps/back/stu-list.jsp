@@ -36,16 +36,16 @@
         //---datagrid---
         $('#stu-list').datagrid({
             url : '/student-community/stu/getAllStu.a',
-            toolbar : '#toolbar',
-            pagination : true,
-            fit : true,
-            fitColumns : true,
-            queryParams: {
+            toolbar : '#toolbar', //工具栏
+            pagination : true, //是否显示分页
+            fit : true, //是否自动扩充
+            fitColumns : true, //自动扩充列
+            queryParams: {   //添加参数
         		'isClassesid': 'true',
         	},
-            pageNumber : 1,
-            pageSize : 20,
-            pageList : [20, 30, 40, 50 ],
+            pageNumber : 1, //初始化指定当前页
+            pageSize : 20,  //初始化指定每页显示行数
+            pageList : [20, 30, 40, 50 ], //分页行数选择
             columns : [ [ {
                 field : ' ',
                 checkbox : true
@@ -120,8 +120,13 @@
             closed : true //加载时关闭按钮
         });
         
-        laodAddWindow = function(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday){
+        loadAddWindow = function(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday){
             
+            if(stuid == undefined){
+                stuid = '';
+                stuName = '';
+            }
+
             if(stuid != null){
                 $('#stuid').val(stuid);
             }
@@ -144,7 +149,7 @@
                     "id" : 1,
                     "text" : "男"
                 } ],
-                width : 200,
+                width :  200,
                 valueField : 'id',
                 textField : 'text',
                 panelHeight : 'auto',
@@ -230,32 +235,40 @@
                 onLoadSuccess:function(){
                     var g = $('#cls').combogrid('grid');
                     var row = g.datagrid('getRows');
-                    var gradeTxt = row[0].grade;
                     
-                    if (gradeTxt == 0) {
-                        gradeTxt = '一年级';
-                    } else if (gradeTxt == 1) {
-                        gradeTxt = '二年级';
-                    } else if (gradeTxt == 2) {
-                        gradeTxt = '三年级';
-                    } else if (gradeTxt == 3) {
-                        gradeTxt = '四年级';
-                    }
-                    if(g != ''){
-                        if(cls != null){
-                            for(var i = 0;i<row.length;i++){
+                    for (var i = 0; i < row.length; i++) {
+                        var gradeTxt = row[i].grade;
+                        
+                        if (gradeTxt == 0) {
+                            gradeTxt = '一年级';
+                        } else if (gradeTxt == 1) {
+                            gradeTxt = '二年级';
+                        } else if (gradeTxt == 2) {
+                            gradeTxt = '三年级';
+                        } else if (gradeTxt == 3) {
+                            gradeTxt = '四年级';
+                        } else{
+                            gradeTxt = '已毕业';
+                        }
+                        if(g != ''){
+                            if(cls != undefined){
                                 if(row[i].classesid == cls){
                                     $('#cls').combogrid('setValue',row[i].classesid);
                                     $('#cls').combogrid('setText',gradeTxt+row[i].classes);
+                                    $('#cls').combogrid('readonly',false); 
                                     break;
+                                } else {
+                                    $('#cls').combogrid('setValue',cls);
+                                    $('#cls').combogrid('setText','已毕业');
+                                    $('#cls').combogrid('readonly',true); 
                                 }
-                                
                             }
-                        } else {
-                            $('#cls').combogrid('setValue',row[0].classesid);
-                            $('#cls').combogrid('setText',gradeTxt+row[0].classes);
+                            } else {
+                                $('#cls').combogrid('setValue',row[0].classesid);
+                                $('#cls').combogrid('setText',gradeTxt+row[0].classes);
+                            }
                         }
-                    }
+                    
                 },
                 onSelect : function(rowIndex, rowData) {
                     var gradeTxt = rowData.grade;
@@ -386,7 +399,7 @@
     //addStu button click event
     $('#addStu').click(function() {
         //init #addStuWindow 
-        laodAddWindow();
+        loadAddWindow();
         
         //open #addStuWindow 
         $('#addStuWindow').window('open');
@@ -404,12 +417,14 @@
          var stuid = rowData[0].stuid;
          var stuName = rowData[0].stuName;
          var stuSex = rowData[0].stuSex;
-         var cls = rowData[0].classesid;
+         var cls = rowData[0].classes.classesid;
          var stuNativePlace = rowData[0].stuNativePlace;
          var stuBirthday = rowData[0].stuBirthday;
          
+         console.log('cls cls cls========'+cls);
+         
         //init #addStuWindow
-        laodAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
+        loadAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
         
         //open #addStuWindow 
         $('#addStuWindow').window('open');

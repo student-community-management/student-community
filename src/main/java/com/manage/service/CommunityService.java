@@ -1,12 +1,17 @@
 package com.manage.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Community;
+import com.manage.entity.CommunityRole;
+import com.manage.entity.Role;
 import com.manage.mapper.authority.CommunityMapper;
+import com.manage.mapper.authority.CommunityRoleMapper;
+import com.manage.mapper.authority.RoleMapper;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
@@ -15,6 +20,11 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Autowired
     private CommunityMapper communityMapper;
+    @Autowired
+    private CommunityRoleMapper communityRoleMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     @Override
     public List<Community> queryAll(PageParam pageParam, String keyWord) {
@@ -29,20 +39,25 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Override
     public void delete(List<Integer> ids) {
-        // TODO Auto-generated method stub
-
+        communityMapper.delete(ids);
     }
 
     @Override
     public void save(Community t) {
         communityMapper.save(t);
-        this.saveCommunityRole(this.getNewComunityid(), this.getRoleids());
+        List<Role> roles = roleMapper.getCommunityRoles();
+        List<Integer> ids = new ArrayList<Integer>();
+
+        for (Role role : roles) {
+            ids.add(role.getRoleid());
+        }
+        communityRoleMapper.autoSave(communityMapper.getNewComunityid(), ids);
+
     }
 
     @Override
     public void update(Community t) {
-        // TODO Auto-generated method stub
-
+        communityMapper.update(t);
     }
 
     @Override
@@ -57,27 +72,8 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     }
 
     @Override
-    public List<Integer> getRoleids() {
-        return communityMapper.getRoleids();
-    }
-
-    @Override
     public Integer getNewComunityid() {
         return communityMapper.getNewComunityid();
     }
-
-    @Override
-    public void saveCommunityRole(Integer newComunityid, List<Integer> Roleids) {
-        //communityMapper.saveCommunityRole(newComunityid, Roleids);
-    }
-
-    @Override
-    public void setRole(Integer stu_id, Integer communityRoleid) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    
-    
 
 }
