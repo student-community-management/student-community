@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -19,36 +19,36 @@ public class ReplyProblem implements Serializable {
     private Student stu;
     private Problem problem;
     private String content;
-    private List<ReplyProblem> replyProblems;
+    private Set<ReplyProblem> replyProblems;
     private Date replyDate;
-    private List<AgainstReplyDiscuss> againstReplyProblems;
-    private List<PraiseReplyDiscuss> praiseReplyProblems;
-    private List<ReportReplyDiscuss> ReportReplyProblems;
+    private Set<AgainstReplyDiscuss> againstReplyProblems;
+    private Set<PraiseReplyDiscuss> praiseReplyProblems;
+    private Set<ReportReplyDiscuss> ReportReplyProblems;
 
-    public List<AgainstReplyDiscuss> getAgainstReplyProblems() {
+    public Set<AgainstReplyDiscuss> getAgainstReplyProblems() {
         return againstReplyProblems;
     }
 
     public void setAgainstReplyProblems(
-            List<AgainstReplyDiscuss> againstReplyProblems) {
+            Set<AgainstReplyDiscuss> againstReplyProblems) {
         this.againstReplyProblems = againstReplyProblems;
     }
 
-    public List<PraiseReplyDiscuss> getPraiseReplyProblems() {
+    public Set<PraiseReplyDiscuss> getPraiseReplyProblems() {
         return praiseReplyProblems;
     }
 
     public void setPraiseReplyProblems(
-            List<PraiseReplyDiscuss> praiseReplyProblems) {
+            Set<PraiseReplyDiscuss> praiseReplyProblems) {
         this.praiseReplyProblems = praiseReplyProblems;
     }
 
-    public List<ReportReplyDiscuss> getReportReplyProblems() {
+    public Set<ReportReplyDiscuss> getReportReplyProblems() {
         return ReportReplyProblems;
     }
 
     public void setReportReplyProblems(
-            List<ReportReplyDiscuss> reportReplyProblems) {
+            Set<ReportReplyDiscuss> reportReplyProblems) {
         ReportReplyProblems = reportReplyProblems;
     }
 
@@ -64,11 +64,11 @@ public class ReplyProblem implements Serializable {
         this.content = content;
     }
 
-    public List<ReplyProblem> getReplyProblems() {
+    public Set<ReplyProblem> getReplyProblems() {
         return replyProblems;
     }
 
-    public void setReplyProblems(List<ReplyProblem> replyProblems) {
+    public void setReplyProblems(Set<ReplyProblem> replyProblems) {
         this.replyProblems = replyProblems;
     }
 

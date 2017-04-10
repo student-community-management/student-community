@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -26,15 +26,15 @@ public class Activity implements Serializable {
     private Date endDate; // 活动结束时间
     private Integer status; // 是否被删除,这里只做一个标记
     private Community community;
-    private List<ReplyActivity> replyActivities;
-    private List<ReportActivity> reportActivities;
-    private List<Student> students;
+    private Set<ReplyActivity> replyActivities;
+    private Set<ReportActivity> reportActivities;
+    private Set<Student> students;
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 
@@ -46,19 +46,19 @@ public class Activity implements Serializable {
         this.community = community;
     }
 
-    public List<ReportActivity> getReportActivities() {
+    public Set<ReportActivity> getReportActivities() {
         return reportActivities;
     }
 
-    public void setReportActivities(List<ReportActivity> reportActivities) {
+    public void setReportActivities(Set<ReportActivity> reportActivities) {
         this.reportActivities = reportActivities;
     }
 
-    public List<ReplyActivity> getReplyActivities() {
+    public Set<ReplyActivity> getReplyActivities() {
         return replyActivities;
     }
 
-    public void setReplyActivities(List<ReplyActivity> replyActivities) {
+    public void setReplyActivities(Set<ReplyActivity> replyActivities) {
         this.replyActivities = replyActivities;
     }
 

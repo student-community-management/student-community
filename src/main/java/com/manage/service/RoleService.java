@@ -3,29 +3,25 @@ package com.manage.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.manage.entity.Classes;
-import com.manage.mapper.ClassesMapper;
+import com.manage.entity.Role;
+import com.manage.mapper.authority.RoleMapper;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
-@Service
-public class ClassesService implements BaseService<Classes>,ClassesMapper{
+public class RoleService implements BaseService<Role>,RoleMapper {
     
     @Autowired
-    private ClassesMapper classesMapper;
+    private RoleMapper roleMapper;
     
-    /**
-     * 读取所有的年级所以 pageParam(分页)为null
-     * 如果只想查询为毕业的班级,则keyWord 为no
-     */
-    @Override public List<Classes> queryAll(PageParam pageParam, String keyWord) {
-        return classesMapper.queryAll(pageParam, keyWord);
+    @Override
+    public List<Role> queryAll(PageParam pageParam, String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
-    public Classes queryOne(Integer id) {
+    public Role queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -37,13 +33,13 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
     }
 
     @Override
-    public void save(Classes t) {
+    public void save(Role t) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void update(Classes t) {
+    public void update(Role t) {
         // TODO Auto-generated method stub
         
     }
@@ -55,14 +51,14 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
     }
 
     @Override
+    public List<Role> getCommunityRoles() {
+        return roleMapper.getCommunityRoles();
+    }
+
+    @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
-    public List<String> queryClassesByGrade(Integer grade) {
-        return classesMapper.queryClassesByGrade(grade);
-    }
-    
 }
