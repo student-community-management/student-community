@@ -1,9 +1,11 @@
 package com.manage.control;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.manage.entity.Activity;
 import com.manage.service.ActivityService;
@@ -35,8 +37,23 @@ public class ActivityController {
     public ModelAndView addActivitypre(){
         return service.addActivityPre();
     }
-    //增加活动
     
+  //@ModelAttribute全局变量
+    @RequestMapping("addActivity")
+    @ResponseBody
+    public String addActivity(@ModelAttribute Activity activity,Model model){
+        System.out.println(activity.getActivityContent());
+       //Integer data = service.insertActivity(activity);
+//       if(data>0){
+//           List<Activity> list = service.getActivity();
+//           model.addAttribute("list", list);
+//           return "back/activity";
+//          /* return "redirect:back/activity";*/
+//       }else{
+//           return "redirect:addactivitypre.a";
+//       }
+        return null;
+    }
     //修改活动提前准备
     @RequestMapping("updateActivityPre")
     //@ResponseBody
@@ -52,7 +69,6 @@ public class ActivityController {
     @RequestMapping("updateActivity")
     //前台给后台传值@ModelAttribute
     public String  UpdateActivity(@ModelAttribute Activity activity,Model model){
-        // name="activityType.activityTypeid"
         Integer result = service.UpdateActivity(activity); 
         if(result>0){ 
             model.addAttribute("state", 1);//成功
@@ -62,8 +78,16 @@ public class ActivityController {
         return "back/activity";
     }
     @RequestMapping("deleteActivity")
-    public String deleteActivity(Activity activity,Model model){
-       /* Integer activityId = service.*/
-        return null;
+    public String deleteActivity(Activity activity,Model model,Integer actId){
+       Integer result = service.deleteActivity(actId);
+       System.out.println("result"+result);
+       if(result>0){ 
+           model.addAttribute("state", 1);//成功
+       }else{
+           model.addAttribute("state", 0);//失败
+       }
+       List<Activity> list = service.getActivity();
+       model.addAttribute("list", list);
+        return "back/activity";
     }
 }

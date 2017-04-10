@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import com.manage.service.StudentService;
 
 @Controller
-public class StudentControl implements BaseControl {
+public class StudentControl{
     @Autowired
     private StudentService studentService;
 

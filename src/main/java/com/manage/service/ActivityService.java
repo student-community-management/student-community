@@ -27,9 +27,6 @@ public class ActivityService {
     //需要返回给前台的,所有数据,总条数
     public PageData getAllActivity(Activity activity,PageParam page){
        Map<String, Object> map = new HashMap<String, Object>();
-       /*if(activity!=null){
-           map.put("activityTitle", activity.getActivityTitle());
-       }*/
        map.put("startIndex", page.getStartIndex());
        map.put("rows", page.getRows());
        List<Activity> list =  activitymapper.getAllActivity(map);
@@ -58,17 +55,15 @@ public class ActivityService {
         return model;
     }
     //添加活动
-    public Integer insertActivity(Activity activity,String studentId){
-        activitymapper.addActivity(activity);
-        Integer actId = activitymapper.getActivityByperId(studentId);//插入活动到数据库
-        return actId;
+    public Integer insertActivity(Activity activity){
+        return  activitymapper.addActivity(activity);
     }
     //修改活动信息
     public Integer UpdateActivity(Activity activity){
         return  activitymapper.UpdateActivity(activity);
     }
     //取消活动
-    public Integer deleteActivity(Activity activity){
-        return activitymapper.deleteActivity(activity);
+    public Integer deleteActivity(Integer actId){
+        return activitymapper.deleteActivity(actId);
     }
 }

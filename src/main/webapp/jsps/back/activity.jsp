@@ -27,7 +27,7 @@
 		<c:if test="${list != '[]'}">
 		<c:forEach items="${list}" var="list">
 		<span><a href="${pageContext.request.contextPath}/updateActivityPre.a?actId=${list.activityid}">修改</a></span>
-		<span><a href="${pageContext.request.contextPath}/deleteActivity.a">删除</a></span>
+		<span><a href="${pageContext.request.contextPath}/deleteActivity.a?actId=${list.activityid}">删除</a></span>
 		<span><a href="${pageContext.request.contextPath}/addactivitypre.a">发布活动</a></span>
 			<table width="100%" cellpadding="0" cellspacing="0" class = "myfont" border="1">
 				<tr>
@@ -58,7 +58,6 @@
 						<h3>还在报名中!!!!</h3>
 					</c:if>
 					</td>
-					
 				</tr>
 			</table>
 			</c:forEach>

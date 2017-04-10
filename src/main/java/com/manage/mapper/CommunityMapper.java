@@ -1,7 +1,7 @@
 package com.manage.mapper;
 import java.util.List;
 import com.manage.entity.Community;
-public interface CommunityMapper {
+public interface CommunityMapper extends BaseMapper<Community>{
     public List<Community> getAllCommunity();//查询所有活动
     public Integer getAllcount();//活动总数
     public void addCommunity(Community community);//增加活动
