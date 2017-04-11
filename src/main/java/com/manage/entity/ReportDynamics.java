@@ -1,19 +1,29 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReportDynamics {
-    private int reportDyanmicsid;
+/**
+ * 
+ * @author ChenYuhao
+ * 举报动态
+ */
+public class ReportDynamics implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -7271625060585214870L;
+    private Integer reportDyanmicsid;
     private Student stu;
     private Dynamics dynamics;
     private String message;
     private Date reportDate;
 
-    public int getReportDyanmicsid() {
+    public Integer getReportDyanmicsid() {
         return reportDyanmicsid;
     }
 
-    public void setReportDyanmicsid(int reportDyanmicsid) {
+    public void setReportDyanmicsid(Integer reportDyanmicsid) {
         this.reportDyanmicsid = reportDyanmicsid;
     }
 

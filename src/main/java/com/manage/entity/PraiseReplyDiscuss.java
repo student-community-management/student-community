@@ -1,16 +1,28 @@
 package com.manage.entity;
 
-public class PraiseReplyDiscuss {
-    private int praiseReplyDiscussid;
+import java.io.Serializable;
+import java.sql.Date;
+
+/**
+ * 
+ * @author ChenYuhao
+ * 赞讨论的回复
+ */
+public class PraiseReplyDiscuss implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -4362368629861596362L;
     private Student stu;
     private Discuss discuss;
+    private Date praiseDate;
 
-    public int getPraiseReplyDiscussid() {
-        return praiseReplyDiscussid;
+    public Date getPraiseDate() {
+        return praiseDate;
     }
 
-    public void setPraiseReplyDiscussid(int praiseReplyDiscussid) {
-        this.praiseReplyDiscussid = praiseReplyDiscussid;
+    public void setPraiseDate(Date praiseDate) {
+        this.praiseDate = praiseDate;
     }
 
     public Student getStu() {

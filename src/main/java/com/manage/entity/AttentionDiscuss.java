@@ -1,18 +1,21 @@
 package com.manage.entity;
 
-public class AttentionDiscuss {
+import java.io.Serializable;
 
-    private int attentionDiscussid;
+/**
+ * 
+ * @author ChenYuhao
+ * 关注讨论
+ * 
+ */
+public class AttentionDiscuss implements Serializable {
+
+    /**
+     * 指定序列化id
+     */
+    private static final long serialVersionUID = 2486029631801727918L;
     private Student stu;
     private Discuss discuss;
-
-    public int getAttentionDiscussid() {
-        return attentionDiscussid;
-    }
-
-    public void setAttentionDiscussid(int attentionDiscussid) {
-        this.attentionDiscussid = attentionDiscussid;
-    }
 
     public Student getStu() {
         return stu;

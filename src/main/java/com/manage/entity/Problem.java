@@ -1,20 +1,35 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 /**
  * 
  * @author ChenYuhao
  * Problem 问题
  */
-public class Problem {
+public class Problem implements Serializable {
 
-    private int problemid; // 问题id
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 8109171527970213161L;
+    private Integer problemid; // 问题id
     private String problemTitle; // 问题标题
-    private int problemType; // 1感情问题 2学习问题
+    private Integer problemType; // 1感情问题 2学习问题
     private String problemContent;// 内容
-    private Date problemDate; //问题发布时间
-    private int status; // 是否被删除
+    private Date problemDate; // 问题发布时间
+    private Integer status; // 是否被删除
+    private Set<ReplyProblem> replyProblems;
+
+    public Set<ReplyProblem> getReplyProblems() {
+        return replyProblems;
+    }
+
+    public void setReplyProblems(Set<ReplyProblem> replyProblems) {
+        this.replyProblems = replyProblems;
+    }
 
     public Date getProblemDate() {
         return problemDate;
@@ -24,11 +39,11 @@ public class Problem {
         this.problemDate = problemDate;
     }
 
-    public int getProblemid() {
+    public Integer getProblemid() {
         return problemid;
     }
 
-    public void setProblemid(int problemid) {
+    public void setProblemid(Integer problemid) {
         this.problemid = problemid;
     }
 
@@ -40,11 +55,11 @@ public class Problem {
         this.problemTitle = problemTitle;
     }
 
-    public int getProblemType() {
+    public Integer getProblemType() {
         return problemType;
     }
 
-    public void setProblemType(int problemType) {
+    public void setProblemType(Integer problemType) {
         this.problemType = problemType;
     }
 
@@ -56,11 +71,11 @@ public class Problem {
         this.problemContent = problemContent;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

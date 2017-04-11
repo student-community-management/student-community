@@ -1,16 +1,47 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
-public class ReplyDynamics {
-    private int replyDynamicsid;
+/**
+ * 
+ * @author ChenYuhao
+ *  回复动态
+ */
+public class ReplyDynamics implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -1666208194787216434L;
+    private Integer replyDynamicsid;
     private Student stu;
     private Dynamics dynamics;
     private String content;
-    private ReplyDynamics replyDynamics;
+    private Set<ReplyDynamics> replyDynamicses;
     private Date replyDate;
+    private Set<PraiseReplyDynamics> praiseReplyDynamicses;
+    private Set<ReportReplyDynamics> ReportReplyDynamicses;
 
-    public int getReplyDynamicsid() {
+    public Set<PraiseReplyDynamics> getPraiseReplyDynamicses() {
+        return praiseReplyDynamicses;
+    }
+
+    public void setPraiseReplyDynamicses(
+            Set<PraiseReplyDynamics> praiseReplyDynamicses) {
+        this.praiseReplyDynamicses = praiseReplyDynamicses;
+    }
+
+    public Set<ReportReplyDynamics> getReportReplyDynamicses() {
+        return ReportReplyDynamicses;
+    }
+
+    public void setReportReplyDynamicses(
+            Set<ReportReplyDynamics> reportReplyDynamicses) {
+        ReportReplyDynamicses = reportReplyDynamicses;
+    }
+
+    public Integer getReplyDynamicsid() {
         return replyDynamicsid;
     }
 
@@ -30,15 +61,15 @@ public class ReplyDynamics {
         this.content = content;
     }
 
-    public ReplyDynamics getReplyDynamics() {
-        return replyDynamics;
+    public Set<ReplyDynamics> getReplyDynamicses() {
+        return replyDynamicses;
     }
 
-    public void setReplyDynamics(ReplyDynamics replyDynamics) {
-        this.replyDynamics = replyDynamics;
+    public void setReplyDynamicses(Set<ReplyDynamics> replyDynamicses) {
+        this.replyDynamicses = replyDynamicses;
     }
 
-    public void setReplyDynamicsid(int replyDynamicsid) {
+    public void setReplyDynamicsid(Integer replyDynamicsid) {
         this.replyDynamicsid = replyDynamicsid;
     }
 

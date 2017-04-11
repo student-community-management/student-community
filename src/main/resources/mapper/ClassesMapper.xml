@@ -5,7 +5,7 @@
         <id column="classes_id" property="classesid" />
         <result column="grade" property="grade" />
         <result column="classes" property="classes" />
-        <result column="years" property="years"/>
+        <result column="years" property="years" />
     </resultMap>
 
     <select id="queryAll" parameterType="map" resultType="com.manage.entity.Classes" resultMap="classesResultMap">

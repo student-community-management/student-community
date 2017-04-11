@@ -1,17 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.StudentMapper">
+    <resultMap type="com.manage.entity.Student" id="stuSimpleResultMap">
+        <id column="stu_id" property="stuid" />
+        <result column="stu_name" property="stuName" />
+        <result column="stu_sex" property="stuSex" />
+        <result column="stu_birthday" property="stuBirthday" />
+        <result column="stu_native_place" property="stuNativePlace" />
+        <association property="classes" javaType="com.manage.entity.Classes">
+            <id column="classes_id" property="classesid" />
+            <result column="grade" property="grade" />
+            <result column="classes" property="classes" />
+            <result column="year" property="years" />
+        </association>
+    </resultMap>
     
-    <sql id="sqlColumn">
-        stu_id as stuid,
-        stu_pwd as stuPwd,
-        stu_name as stuName,
-        stu_sex as stuSex,
-        stu_birthday as stuBirthday,
-        stu_native_place as stuNative
+    <sql id="stuColumn">
+        s.stu_id,s.stu_pwd,s.stu_name,s.stu_sex,s.stu_birthday,s.stu_native_place
     </sql>
-    
-    <select id="queryAll" resultType="com.manage.entity.Student">
-       select <include refid="sqlColumn"/> from student LIMIT 2, 10
+    <select id="getStudentByCommid" parameterType="int" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
+        select
+        <include refid="stuColumn" />
+        ,cls.grade,cls.classes
+        from student s
+        INNER JOIN stu_community sc on s.stu_id = sc.stu_id
+        INNER JOIN classes cls on
+        s.classes_id = cls.classes_id
+        where
+        sc.community_id = #{id}
     </select>
+    
+    <select id="queryAllForStu" parameterType="map" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
+        <if test="isClassesid == false"> 
+            select * from (
+            select s.*, case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+            from   student s ) c where c.classes_id is  null
+            <if test="keyWord != null">
+            CONCAT(c.stu_id,'')  like '%1%' 
+            or c.stu_name like '%${keyWord}%'
+            or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+            or c.sex_name like '%${keyWord}%'
+            </if>
+            LIMIT ${pageParam.startIndex},${pageParam.rows}
+        </if>
+        <if test="isClassesid == true">
+            select * from (
+            select *, case 
+            when grade = 0 then '一年级'
+            when grade = 1 then '二年级' 
+            when grade = 2 then '三年级' 
+            when grade = 3 then '四年级'
+            else '已毕业'
+            end as 'grade_name'
+            from (
+            select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+             from  classes cls inner join student s on cls.classes_id = s.classes_id
+             ) t
+            ) c 
+            <if test="keyWord != null">
+            where c.stu_name like '%${keyWord}%'
+            or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+            or c.sex_name like '%${keyWord}%'
+            </if>
+            LIMIT ${pageParam.startIndex},${pageParam.rows}
+        </if>
+    </select>
+
+    <select id="getCountForStu" parameterType="map" resultType="int">
+        
+        <if test="isClassesid == false"> 
+        select COUNT(*) from (
+        select * from (
+        select * ,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name' 
+        from student s ) w 
+        ) c
+        where  c.classes_id is  null 
+        <if test="keyWord != null">
+        and (CONCAT(c.stu_id,'')  like '%1%'
+             or c.stu_name like '%1%'
+             or CONCAT(c.stu_birthday,'')  like '%1%'
+             or c.sex_name like '%1%')
+        </if>
+        
+        </if>
+        <if test="isClassesid == true"> 
+            select COUNT(*) from (
+            select * from (select *, case  
+            when grade = 0 then '一年级' 
+            when grade = 1 then '二年级' 
+            when grade = 2 then '三年级' 
+            when grade = 3 then '四年级' 
+            else '已毕业' end as 'grade_name'
+             from (select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+            from  classes cls inner join student s on cls.classes_id = s.classes_id) t) b 
+            ) c
+           <if test="keyWord != null">
+            where c.stu_name like '%${keyWord}%'
+            or CONCAT(c.stu_id,'')  like '%${keyWord}%'
+            or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+            or c.sex_name like '%${keyWord}%'
+            </if>
+        </if>
+    </select>
+    
+    <select id="getAllManager" parameterType="map" resultType="com.manage.entity.Student"
+         resultMap="stuSimpleResultMap">
+        select * from (
+        select s.*, case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
+        from   student s ) c where c.classes_id is  null
+        <if test="keyWord != null">
+        CONCAT(c.stu_id,'')  like '%1%' 
+        or c.stu_name like '%${keyWord}%'
+        or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+        or c.sex_name like '%${keyWord}%'
+        </if>
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+     </select>
+     
+     <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student">
+        select s.*,cls.classes,cls.grade,s.stu_sex
+        from  classes cls inner join student s on cls.classes_id = s.classes_id
+        where s.stu_id = #{id}
+     </select>
+     
+     
+     
+    <insert id="save" parameterType="com.manage.entity.Student" 
+            keyProperty="stuid" useGeneratedKeys="true">
+        INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
+        VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
+    </insert>
+
+    <insert id="update" parameterType="com.manage.entity.Student" 
+            keyProperty="stuid" useGeneratedKeys="true">
+       UPDATE student SET stu_name=#{stuName}, stu_sex=#{stuSex}, stu_birthday=#{stuBirthday},
+        stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
+    </insert>
+     
+    <delete id="delete">
+        DELETE FROM student WHERE stu_id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete> 
+         
 </mapper>

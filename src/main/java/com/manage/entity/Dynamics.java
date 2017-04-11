@@ -1,25 +1,40 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 /**
  * 
  * @author ChenYuhao
  * Dynamics 动态
  */
-public class Dynamics {
+public class Dynamics implements Serializable {
 
-    private int dynamicsid; // 动态id
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = -7012014024232950309L;
+    private Integer dynamicsid; // 动态id
     private Student stu; // 发布动态的学生
     private String dynamicsContent; // 动态的内容
-    private Date dynamicsDate;  //发布日期
-    private int status; //是否删除
+    private Date dynamicsDate; // 发布日期
+    private Integer status; // 是否删除
+    private Set<Dynamics> replyDynamics;
 
-    public int getDynamicsid() {
+    public Set<Dynamics> getReplyDynamics() {
+        return replyDynamics;
+    }
+
+    public void setReplyDynamics(Set<Dynamics> replyDynamics) {
+        this.replyDynamics = replyDynamics;
+    }
+
+    public Integer getDynamicsid() {
         return dynamicsid;
     }
 
-    public void setDynamicsid(int dynamicsid) {
+    public void setDynamicsid(Integer dynamicsid) {
         this.dynamicsid = dynamicsid;
     }
 
@@ -39,11 +54,11 @@ public class Dynamics {
         this.dynamicsDate = dynamicsDate;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

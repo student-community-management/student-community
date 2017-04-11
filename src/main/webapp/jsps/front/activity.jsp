@@ -43,7 +43,7 @@
 					<td>${list.activityTitle }</td>
 					<td>${list.activityLoc}</td>
 					<td>${list.activityDate }</td>
-					<td>${list.closeingDate }</td>
+					<td>${list.closingDate }</td>
 					<td>${list.startDate }</td>
 					<td>${list.endDate }</td>
 					<td><c:if test="${list.status ==1}">

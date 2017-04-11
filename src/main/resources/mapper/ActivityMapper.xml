@@ -7,7 +7,7 @@
         <result column="activity_loc" property="activityLoc" jdbcType="VARCHAR" />
         <result column="activity_content" property="activityContent"/>
         <result column="activity_date" property="activityDate" jdbcType="TIMESTAMP" />
-        <result column="closing_date" property="closeingDate" jdbcType="TIMESTAMP" />
+        <result column="closing_date" property="closingDate" jdbcType="TIMESTAMP" />
         <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
         <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
         <result column="status" property="status" jdbcType="INTEGER" />
@@ -83,7 +83,7 @@ on community.community_id = activity.activity_id
     <!-- 输入参数 -->
     <insert id="addActivity" parameterType="com.manage.mapper.ActivityMapper">
             insert into activity(activity_type_id,community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status) 
-            VALUES(#{activityType.activityTypeid},#{community.communityid,jdbcType=INTEGER},#{activityTitle},#{activityLoc},#{activityContent},#{activityDate},#{closeingDate},#{startDate},#{endDate},0) 
+            VALUES(#{activityType.activityTypeid},#{community.communityid,jdbcType=INTEGER},#{activityTitle},#{activityLoc},#{activityContent},#{activityDate},#{closingDate},#{startDate},#{endDate},0) 
     </insert>
     <!-- 修改 -->
     <update id="UpdateActivity" parameterType="com.manage.entity.Activity">
@@ -94,7 +94,7 @@ on community.community_id = activity.activity_id
       activity_loc = #{activityLoc},
       activity_content = #{activityContent},
       activity_date = #{activityDate},
-      closing_date = #{closeingDate},
+      closing_date = #{closingDate},
       start_date = #{startDate},
       end_date = #{endDate}
     where activity_id = #{activityid}

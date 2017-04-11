@@ -222,9 +222,9 @@
    					<td style="width:25%" align="center">活动截止日期</td>
    					<td>
    					<div class="layui-inline">
-  							<input class="layui-input" id="closeingDateN"  value="${activity.closeingDate}" name="closeingDate" placeholder="自定义日期格式" value="${activity.activityDate}" name="activityDate" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+  							<input class="layui-input" id="closingDateN"  value="${activity.closingDate}" name="closingDate" placeholder="自定义日期格式" value="${activity.activityDate}" name="activityDate" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
 						</div>
-   						<span style="display:none" id="closeingDateN"><font color="red">日期不能为空</font></span>
+   						<span style="display:none" id="closingDateN"><font color="red">日期不能为空</font></span>
    					</td>
    			</tr>
    			<tr>

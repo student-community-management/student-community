@@ -15,63 +15,54 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
     
     @Autowired
     private ClassesMapper classesMapper;
-   
+    
+    /**
+     * 读取所有的年级所以 pageParam(分页)为null
+     * 如果只想查询为毕业的班级,则keyWord 为no
+     */
+    @Override public List<Classes> queryAll(PageParam pageParam, String keyWord) {
+        return classesMapper.queryAll(pageParam, keyWord);
+    }
+
+    @Override
     public Classes queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public void delete(Integer id) {
+    @Override
+    public void delete(List<Integer> ids) {
         // TODO Auto-generated method stub
         
     }
 
+    @Override
+    public void save(Classes t) {
+        // TODO Auto-generated method stub
+        
+    }
 
-
+    @Override
     public void update(Classes t) {
         // TODO Auto-generated method stub
         
     }
 
+    @Override
     public int getCount(String keyWord) {
         // TODO Auto-generated method stub
         return 0;
     }
 
+    @Override
+    public PageData getPageData(PageParam pageParam, String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public List<String> queryClassesByGrade(Integer grade) {
         return classesMapper.queryClassesByGrade(grade);
-    }
-
-    public PageData getPageData() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    /**
-     * 读取所有的年级所以 pageParam(分页)为null
-     * 如果只想查询为毕业的班级,则keyWord 为no
-     */
-/*    public PageData getPageData(PageParam pageParam, String keyWord) {
-        return classesMapper.queryAll(pageParam, keyWord);
-    }*/
-
-    public List<Classes> queryAll(PageParam pageParam) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public List<Classes> queryAll(Classes t, PageParam pageParam) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public void save(Classes t) {
-        // TODO Auto-generated method stub
-        
     }
     
 }

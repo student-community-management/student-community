@@ -1,19 +1,29 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReportDisscuss {
-    private int reportDiscussid;
+/**
+ * 
+ * @author ChenYuhao
+ * 举报讨论
+ */
+public class ReportDisscuss implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 1192653922355780028L;
+    private Integer reportDiscussid;
     private Student stu;
     private Discuss discuss;
     private String message;
     private Date reportDate;
 
-    public int getReportDiscussid() {
+    public Integer getReportDiscussid() {
         return reportDiscussid;
     }
 
-    public void setReportDiscussid(int reportDiscussid) {
+    public void setReportDiscussid(Integer reportDiscussid) {
         this.reportDiscussid = reportDiscussid;
     }
 

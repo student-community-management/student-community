@@ -1,17 +1,58 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
-public class ReplyProblem {
+/**
+ * 
+ * @author ChenYuhao
+ * 回复问题
+ */
+public class ReplyProblem implements Serializable {
 
-    private int replyProblemid;
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 4032185445898797512L;
+    private Integer replyProblemid;
     private Student stu;
     private Problem problem;
     private String content;
-    private ReplyProblem replyProblem;
+    private Set<ReplyProblem> replyProblems;
     private Date replyDate;
+    private Set<AgainstReplyDiscuss> againstReplyProblems;
+    private Set<PraiseReplyDiscuss> praiseReplyProblems;
+    private Set<ReportReplyDiscuss> ReportReplyProblems;
 
-    public int getReplyProblemid() {
+    public Set<AgainstReplyDiscuss> getAgainstReplyProblems() {
+        return againstReplyProblems;
+    }
+
+    public void setAgainstReplyProblems(
+            Set<AgainstReplyDiscuss> againstReplyProblems) {
+        this.againstReplyProblems = againstReplyProblems;
+    }
+
+    public Set<PraiseReplyDiscuss> getPraiseReplyProblems() {
+        return praiseReplyProblems;
+    }
+
+    public void setPraiseReplyProblems(
+            Set<PraiseReplyDiscuss> praiseReplyProblems) {
+        this.praiseReplyProblems = praiseReplyProblems;
+    }
+
+    public Set<ReportReplyDiscuss> getReportReplyProblems() {
+        return ReportReplyProblems;
+    }
+
+    public void setReportReplyProblems(
+            Set<ReportReplyDiscuss> reportReplyProblems) {
+        ReportReplyProblems = reportReplyProblems;
+    }
+
+    public Integer getReplyProblemid() {
         return replyProblemid;
     }
 
@@ -23,15 +64,15 @@ public class ReplyProblem {
         this.content = content;
     }
 
-    public ReplyProblem getReplyProblem() {
-        return replyProblem;
+    public Set<ReplyProblem> getReplyProblems() {
+        return replyProblems;
     }
 
-    public void setReplyProblem(ReplyProblem replyProblem) {
-        this.replyProblem = replyProblem;
+    public void setReplyProblems(Set<ReplyProblem> replyProblems) {
+        this.replyProblems = replyProblems;
     }
 
-    public void setReplyProblemid(int replyProblemid) {
+    public void setReplyProblemid(Integer replyProblemid) {
         this.replyProblemid = replyProblemid;
     }
 

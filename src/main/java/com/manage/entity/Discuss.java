@@ -1,19 +1,43 @@
 package com.manage.entity;
 
+import java.io.Serializable;
+import java.util.Set;
+
 /**
  * 
  * @author ChenYuhao
  * Discuss 讨论
  */
-public class Discuss {
+public class Discuss implements Serializable {
 
-    private int discussid; // 讨论id
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 770760671163884985L;
+    private Integer discussid; // 讨论id
     private Student stu; // 讨论发起人 数据库添加
     private String discussTitle; // 讨论标题 修改数据库
     private String discussContent; // 讨论详细说明
     private String discussDate;// 发布时间 修改数据库
-    private String discussLabel; // 讨论标签 修改数据库
-    private int status; // 是否被删除或者问题是否已经关闭回答
+    private Integer status; // 是否被删除或者问题是否已经关闭回答
+    private Set<ReplyDiscuss> replyDiscusses;
+    private Set<ReportDisscuss> reportDiscusses;
+
+    public Set<ReportDisscuss> getReportDiscusses() {
+        return reportDiscusses;
+    }
+
+    public void setReportDiscusses(Set<ReportDisscuss> reportDiscusses) {
+        this.reportDiscusses = reportDiscusses;
+    }
+
+    public Set<ReplyDiscuss> getReplyDiscusses() {
+        return replyDiscusses;
+    }
+
+    public void setReplyDiscusses(Set<ReplyDiscuss> replyDiscusses) {
+        this.replyDiscusses = replyDiscusses;
+    }
 
     public Student getStu() {
         return stu;
@@ -23,28 +47,20 @@ public class Discuss {
         this.stu = stu;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public int getDiscussid() {
+    public Integer getDiscussid() {
         return discussid;
     }
 
-    public void setDiscussid(int discussid) {
+    public void setDiscussid(Integer discussid) {
         this.discussid = discussid;
-    }
-
-    public String getDiscussLabel() {
-        return discussLabel;
-    }
-
-    public void setDiscussLabel(String discussLabel) {
-        this.discussLabel = discussLabel;
     }
 
     public String getDiscussContent() {

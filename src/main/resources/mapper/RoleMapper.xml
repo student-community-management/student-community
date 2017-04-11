@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.manage.mapper.authority.RoleMapper">
+    <resultMap type="com.manage.entity.Role" id="roleResultMap">
+        <id column="role_id" property="roleid" />
+        <result column="role_name" property="roleName" />
+    </resultMap>
+
+    <select id="getCommunityRoles" resultMap="roleResultMap" parameterType="map"
+        resultType="com.manage.entity.Role">
+        select * FROM role where role_id > 2 
+    </select>
+
+</mapper>

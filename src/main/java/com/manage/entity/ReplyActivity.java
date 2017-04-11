@@ -1,17 +1,66 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
-public class ReplyActivity {
+/**
+ * 
+ * @author ChenYuhao
+ * 评论活动
+ */
+public class ReplyActivity implements Serializable {
 
-    private int replyActivityid;
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 6675904212394929252L;
+    private Integer replyActivityid;
     private Student stu;
     private Activity activity;
     private String content;
-    private ReplyActivity replyActivity;
+    private Set<ReplyActivity> replyActivities;
     private Date replyDate;
+    private Set<AgainstReplyActivity> againstReplyActivities;
+    private Set<PraiseReplyActivity> praiseReplyActivities;
+    private Set<ReportReplyActivity> ReportReplyActivities;
 
-    public int getReplyActivityid() {
+    public Set<AgainstReplyActivity> getAgainstReplyActivities() {
+        return againstReplyActivities;
+    }
+
+    public void setAgainstReplyActivities(
+            Set<AgainstReplyActivity> againstReplyActivities) {
+        this.againstReplyActivities = againstReplyActivities;
+    }
+
+    public Set<PraiseReplyActivity> getPraiseReplyActivities() {
+        return praiseReplyActivities;
+    }
+
+    public void setPraiseReplyActivities(
+            Set<PraiseReplyActivity> praiseReplyActivities) {
+        this.praiseReplyActivities = praiseReplyActivities;
+    }
+
+    public Set<ReportReplyActivity> getReportReplyActivities() {
+        return ReportReplyActivities;
+    }
+
+    public void setReportReplyActivities(
+            Set<ReportReplyActivity> reportReplyActivities) {
+        ReportReplyActivities = reportReplyActivities;
+    }
+
+    public Set<ReplyActivity> getReplyActivities() {
+        return replyActivities;
+    }
+
+    public void setReplyActivities(Set<ReplyActivity> replyActivities) {
+        this.replyActivities = replyActivities;
+    }
+
+    public Integer getReplyActivityid() {
         return replyActivityid;
     }
 
@@ -23,15 +72,7 @@ public class ReplyActivity {
         this.content = content;
     }
 
-    public ReplyActivity getReplyActivity() {
-        return replyActivity;
-    }
-
-    public void setReplyActivity(ReplyActivity replyActivity) {
-        this.replyActivity = replyActivity;
-    }
-
-    public void setReplyActivityid(int replyActivityid) {
+    public void setReplyActivityid(Integer replyActivityid) {
         this.replyActivityid = replyActivityid;
     }
 

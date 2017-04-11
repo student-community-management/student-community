@@ -1,19 +1,29 @@
 package com.manage.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ReportProblem {
-    private int reportProblemid;
+/**
+ * 
+ * @author ChenYuhao
+ * 举报问题
+ */
+public class ReportProblem implements Serializable {
+    /**
+     * 序列化id
+     */
+    private static final long serialVersionUID = 2112528905777619055L;
+    private Integer reportProblemid;
     private Student stu;
     private Problem problem;
     private String message;
     private Date reportDate;
 
-    public int getReportProblemid() {
+    public Integer getReportProblemid() {
         return reportProblemid;
     }
 
-    public void setReportProblemid(int reportProblemid) {
+    public void setReportProblemid(Integer reportProblemid) {
         this.reportProblemid = reportProblemid;
     }
 

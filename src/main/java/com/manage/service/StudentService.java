@@ -1,6 +1,7 @@
 package com.manage.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,56 +12,89 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class StudentService implements BaseService<Student> {
+public class StudentService implements BaseService<Student>, StudentMapper {
 
-    @SuppressWarnings("unused")
     @Autowired
     private StudentMapper studentMapper;
 
-    public List<Student> queryAll(PageParam pageParam) {
-        // TODO Auto-generated method stub
+    @Override
+    public List<Student> queryAll(PageParam pageParam, String keyWord) {
+       // return studentMapper.queryAll(pageParam, keyWord);
         return null;
     }
 
-    public List<Student> queryAll(Student t, PageParam pageParam) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
+    @Override
     public Student queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        
+    @Override
+    public void delete(List<Integer> ids) {
+        if (ids == null || ids.size() == 0) {
+            throw new RuntimeException("传入对象为空");
+        } else {
+            studentMapper.delete(ids);
+        }
     }
 
+    @Override
     public void save(Student t) {
-        // TODO Auto-generated method stub
-        
+        if (t == null) {
+            throw new RuntimeException("传入对象为空");
+        } else {
+            studentMapper.save(t);
+        }
+
     }
 
+    @Override
     public void update(Student t) {
-        // TODO Auto-generated method stub
-        
+        if (t == null) {
+            throw new RuntimeException("传入对象为空");
+        } else {
+            studentMapper.update(t);
+        }
     }
 
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
+    @Override
     public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
-        return 0;
+        return studentMapper.getCount(keyWord);
     }
 
-    public PageData getPageData() {
-        // TODO Auto-generated method stub
+    @Override
+    public List<Student> getStudentByCommid(Integer id) {
+
+        if (id != null) {
+            return studentMapper.getStudentByCommid(id);
+        } else {
+            throw new RuntimeException("查询参数有误");
+        }
+    }
+
+    @Override
+    public PageData getPageData(PageParam pageParam, String keyWord) {
+        //return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
         return null;
     }
 
+    public PageData getPageDataForStu(PageParam pageParam, String keyWord, Boolean isClassesid) {
+        return new PageData(this.getCountForStu(keyWord,isClassesid), this.queryAllForStu(pageParam, keyWord,isClassesid));
+    }
 
+    @Override
+    public List<Student> queryAllForStu(PageParam pageParam, String keyWord, Boolean isClassesid) {
+        return studentMapper.queryAllForStu(pageParam, keyWord, isClassesid);
+    }
+
+    @Override
+    public int getCountForStu(String keyWord, Boolean isClassesid) {
+        return studentMapper.getCountForStu(keyWord, isClassesid);
+    }
+
+    @Override
+    public List<Student> getAllManager(PageParam pageParam, String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

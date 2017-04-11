@@ -82,8 +82,8 @@
    					</tr>
    					<tr>
    					<td style="width:35%" align="center">活动截止日期</td>
-   					<td><input type ="text" id="closeingDateN" value="${activity.closeingDate}" name="closeingDate" class="form-control" style="width:250px;"/>
-   						<span style="display:none" id="closeingDateN"><font color="red">日期不能为空</font></span>
+   					<td><input type ="text" id="closingDateN" value="${activity.closingDate}" name="closingDate" class="form-control" style="width:250px;"/>
+   						<span style="display:none" id="closingDateN"><font color="red">日期不能为空</font></span>
    					</td>
    			</tr>
    			<tr>
