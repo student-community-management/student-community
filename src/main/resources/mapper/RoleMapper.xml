@@ -5,11 +5,20 @@
     <resultMap type="com.manage.entity.Role" id="roleResultMap">
         <id column="role_id" property="roleid" />
         <result column="role_name" property="roleName" />
+        <result column="community_role_id" property="communityRoleid" />
     </resultMap>
 
-    <select id="getCommunityRoles" resultMap="roleResultMap" parameterType="map"
-        resultType="com.manage.entity.Role">
-        select * FROM role where role_id > 2 
+    <select id="getCommunityRoles" resultType="int">
+        SELECT DISTINCT r.role_id FROM role r
+        INNER JOIN community_role cr
+        ON r.role_id = cr.role_id
+        WHERE cr.community_id != 1
+    </select>
+
+    <select id="getMgrRoles" resultMap="roleResultMap" resultType="com.manage.entity.Role">
+        SELECT  cr.community_role_id,r.role_name FROM role r INNER JOIN community_role cr
+        ON r.role_id = cr.role_id
+        WHERE cr.community_id = 1
     </select>
 
 </mapper>

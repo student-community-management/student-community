@@ -1,4 +1,4 @@
-package com.manage.control;
+package com.manage.control.authority;
 
 import java.util.List;
 
@@ -7,10 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.manage.entity.Role;
 import com.manage.entity.Student;
-import com.manage.service.StudentService;
+import com.manage.service.authority.RoleService;
+import com.manage.service.authority.StudentService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
@@ -22,24 +25,26 @@ public class StudentControl {
     private StudentService studentService;
     
     /**
-     * 得到所有的学生信息
+     * 得到所有的学生(管理人员)信息
+     * 当classid不为空时为学生
+     * 当classid为空时则为管理人员
      * @param pageParam 分页条件
      * @param kw  查询关键字
+     * @param isClassesid classid是否为空 false为空
      * @return 符合查询条件的学生
      */
     @RequestMapping("getAllStu")
     @ResponseBody
     public PageData qeuryAll(PageParam pageParam, String kw,Boolean isClassesid) {
-        //return studentService.getPageData(pageParam, kw);
        return studentService.getPageDataForStu(pageParam, kw, isClassesid);
-        
     }
     
     /**
-     * 得到所有的学生信息
+     * 暂时没有用到
+     * 得到所有的管理人员信息
      * @param pageParam 分页条件
      * @param kw  查询关键字
-     * @return 符合查询条件的学生
+     * @return 符合查询条件的管理人员
      */
     @RequestMapping("getAllMgr")
     @ResponseBody
@@ -48,6 +53,7 @@ public class StudentControl {
     }
     
     /**
+     * 暂时没有用到
      * 查询此社团下的学生
      * @param id 社团的id
      * @return 符合条件的学生
@@ -75,20 +81,21 @@ public class StudentControl {
      *      stuPwd 默认为 '123123'
      * 
      * @param stu 学生对象
+     * @param crid communiotyRoleid 社团角色对应的id
      * @throws Exception
      */
     @RequestMapping("saveStu")
     @ResponseBody
-    public String saveStu(@ModelAttribute Student stu)
+    public String saveStu(@ModelAttribute Student stu,Integer crid)
             throws Exception {
         if(stu.getStuid() == null){
+            StudentService.crid = crid;
             studentService.save(stu);
             return "save is ok";
         } else {
             studentService.update(stu);
             return "update is ok";
         }
-        
     }
     
     /**
@@ -99,11 +106,12 @@ public class StudentControl {
      */
     @RequestMapping("deleteStu")
     @ResponseBody
-    public String deleteStu(@RequestBody List<Integer> ids,boolean isBatch){
+    public String deleteStu(@RequestBody List<Integer> ids){
         studentService.delete(ids);
         return "ok";
     }
     
-    
+   
+   
 
 }

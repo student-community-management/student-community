@@ -14,14 +14,17 @@ public interface CommunityRoleMapper extends BaseMapper<CommunityRole> {
      * @param stu_id
      * @param communityRoleid
      */
-    void setRoleToStu(@Param("stu_id") Integer stu_id,
+    void setRoleToStu(@Param("stuid") Integer stuid,
             @Param("communityRoleid") Integer communityRoleid);
-    
+
     /**
-     * 自动生成数据到数据库
+     * 自动生成社团对应的角色
      * @param commid 社团的id
      * @param roleids 角色的ids
      */
-    void autoSave(@Param("commid") Integer commid,@Param("roleids") List<Integer> roleids  );
+    void autoSaveCommRoles(@Param("commid") Integer commid, @Param("roleids") List<Integer> roleids);
+    
+    
+    
     
 }
