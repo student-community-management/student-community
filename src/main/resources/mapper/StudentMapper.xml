@@ -12,7 +12,7 @@
             <id column="classes_id" property="classesid" />
             <result column="grade" property="grade" />
             <result column="classes" property="classes" />
-            <result column="year" property="year" />
+            <result column="year" property="years" />
         </association>
     </resultMap>
     
