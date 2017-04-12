@@ -15,11 +15,22 @@
         style="height: 60px; background: #B3DFDA; padding: 10px">north region</div>
     <div data-options="region:'west',split:true,title:'管理菜单'" style="width: 200px;">
         <div id="mnav-accordion" class="mnav-accordion">
+            <div title="社区管理" iconCls="icon-ok" class="mnav-item">
+                <ul>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/stu-list.jsp" class="mnav-items">学生管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/manager-list.jsp" class="mnav-items">管理人员管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">活动管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">问吧管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">讨论管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">说说管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/community-list.jsp" class="mnav-items">社团管理</a></li>
+                </ul>
+            </div>
             <div title="权限管理" iconCls="icon-ok" class="mnav-item">
                 <ul>
-                    <li iconCls="icon-ok"><a hrefs="test.jsp" class="mnav-items">用户管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">权限管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">职能管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">角色管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">权限分配</a></li>
+                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">权限功能</a></li>
                 </ul>
             </div>
         </div>
@@ -59,11 +70,16 @@
     });
 
     $('.mnav-items').click(function() {
+        
+        if($('#tabs').tabs('exists',$(this).text())){
+            $('#tabs').tabs('select',$(this).text());
+            return;
+        }
+        
         $('#tabs').tabs('add', {
             title : $(this).text(), //把a标签的内容赋值给标签标题
             href : $(this).attr('hrefs'),//得到连接
-            closable : true
-        //可关闭
+            closable : true ,//可关闭
         });
     });
 </script>

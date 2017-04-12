@@ -18,7 +18,6 @@ public interface BaseInterface<T> {
      */
     List<T> queryAll(@Param("pageParam") PageParam pageParam, @Param("keyWord") String keyWord);
     
-
     /**
      * 通过id查询单条信息
      * 
@@ -31,14 +30,14 @@ public interface BaseInterface<T> {
      * 根据id删除
      * @param id 实体类对象的id
      */
-    void delete(Integer id);
+    void delete(List<Integer> ids);
 
     /**
      * 添加信息
      * @param t 全新的实体类对象
      * @throws Exception 
      */
-    void save(T t) throws Exception;
+    void save(T t);
 
     /**
      * 更新信息
@@ -53,5 +52,5 @@ public interface BaseInterface<T> {
      * @return 返回查询结果数量
      */
     int getCount(@Param("keyWord") String keyWord);
-
+    
 }

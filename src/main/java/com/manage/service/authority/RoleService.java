@@ -1,51 +1,50 @@
-package com.manage.service;
+package com.manage.service.authority;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manage.entity.Community;
-import com.manage.mapper.CommunityMapper;
+import com.manage.entity.Role;
+import com.manage.mapper.authority.RoleMapper;
+import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class CommunityService implements BaseService<Community>, CommunityMapper {
-
-    @SuppressWarnings("unused")
+public class RoleService implements BaseService<Role>,RoleMapper {
+    
     @Autowired
-    private CommunityMapper communityMapper;
-
+    private RoleMapper roleMapper;
+    
     @Override
-    public List<Community> queryAll(PageParam pageParam, String keyWord) {
+    public List<Role> queryAll(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Community queryOne(Integer id) {
+    public Role queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(List<Integer> ids) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
-    public void save(Community t) {
+    public void save(Role t) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
-    public void update(Community t) {
+    public void update(Role t) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
@@ -55,8 +54,19 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     }
 
     @Override
+    public List<Integer> getCommunityRoles() {
+        return roleMapper.getCommunityRoles();
+    }
+
+    @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        return new PageData(this.getCount(keyWord), this.queryAll(pageParam, null));
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<Role> getMgrRoles() {
+        return roleMapper.getMgrRoles();
     }
 
 }

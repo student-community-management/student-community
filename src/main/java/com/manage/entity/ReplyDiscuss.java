@@ -2,7 +2,7 @@ package com.manage.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 
@@ -18,36 +18,36 @@ public class ReplyDiscuss implements Serializable {
     private Student stu;
     private Discuss discuss;
     private String content;
-    private List<ReplyDiscuss> replyDiscusses;
+    private Set<ReplyDiscuss> replyDiscusses;
     private Date replyDate;
-    private List<AgainstReplyDiscuss> againstReplyDiscusses;
-    private List<PraiseReplyDiscuss> praiseReplyDiscusses;
-    private List<ReportReplyDiscuss> ReportReplyDiscusses;
+    private Set<AgainstReplyDiscuss> againstReplyDiscusses;
+    private Set<PraiseReplyDiscuss> praiseReplyDiscusses;
+    private Set<ReportReplyDiscuss> ReportReplyDiscusses;
 
-    public List<AgainstReplyDiscuss> getAgainstReplyDiscusses() {
+    public Set<AgainstReplyDiscuss> getAgainstReplyDiscusses() {
         return againstReplyDiscusses;
     }
 
     public void setAgainstReplyDiscusses(
-            List<AgainstReplyDiscuss> againstReplyDiscusses) {
+            Set<AgainstReplyDiscuss> againstReplyDiscusses) {
         this.againstReplyDiscusses = againstReplyDiscusses;
     }
 
-    public List<PraiseReplyDiscuss> getPraiseReplyDiscusses() {
+    public Set<PraiseReplyDiscuss> getPraiseReplyDiscusses() {
         return praiseReplyDiscusses;
     }
 
     public void setPraiseReplyDiscusses(
-            List<PraiseReplyDiscuss> praiseReplyDiscusses) {
+            Set<PraiseReplyDiscuss> praiseReplyDiscusses) {
         this.praiseReplyDiscusses = praiseReplyDiscusses;
     }
 
-    public List<ReportReplyDiscuss> getReportReplyDiscusses() {
+    public Set<ReportReplyDiscuss> getReportReplyDiscusses() {
         return ReportReplyDiscusses;
     }
 
     public void setReportReplyDiscusses(
-            List<ReportReplyDiscuss> reportReplyDiscusses) {
+            Set<ReportReplyDiscuss> reportReplyDiscusses) {
         ReportReplyDiscusses = reportReplyDiscusses;
     }
 
@@ -63,11 +63,11 @@ public class ReplyDiscuss implements Serializable {
         this.content = content;
     }
 
-    public List<ReplyDiscuss> getReplyDiscusses() {
+    public Set<ReplyDiscuss> getReplyDiscusses() {
         return replyDiscusses;
     }
 
-    public void setReplyDiscusses(List<ReplyDiscuss> replyDiscusses) {
+    public void setReplyDiscusses(Set<ReplyDiscuss> replyDiscusses) {
         this.replyDiscusses = replyDiscusses;
     }
 
