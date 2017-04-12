@@ -1,4 +1,4 @@
-package com.manage.mapper.activity;
+package com.manage.mapper.item;
 
 import com.manage.entity.Activity;
 import com.manage.mapper.BaseMapper;

@@ -2,11 +2,10 @@
 <body>
 <div id="maddStuWindow">
     <form method="post" id="mstuForm">
-         <input id="mstuid" name="stuid" type="hidden">
+         <input id="mstuid" name="stuid" type="text">
                    管理员姓名: <input id="mstuName" name="stuName"><br>
                     性别: <input id="mstuSex" name="stuSex"><br>
-                    祖&nbsp;&nbsp;籍:<input id="mstuAddr" name="stuNativePlace"><br> 
-                    出生日期:<input id="mstuBirthday" name="stuBirthday"><br>
+                    职位:<input id="mgrRoles" name="crid">
     </form>
     <a href="#" id="msave">保存</a> 
     <a href="#" id="mclose">关闭</a>
@@ -63,13 +62,10 @@
                         return '女';
                     }
                 }
-            }, {
-                field : 'stuBirthday',
-                title : '生日'
-            }, {
-                field : 'stuNativePlace',
-                title : '祖籍'
-            } ] ]
+            },{
+                field : 'roleName',
+                title : '职位'
+            }] ]
         });
         //---datagrid---end
         //---searchbox---
@@ -102,7 +98,12 @@
             closed : true //加载时关闭按钮
         });
         
-        mlaodAddWindow = function(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday){
+        mlaodAddWindow = function(stuid,stuName,stuSex,roleName){
+            
+            if(stuid == undefined){
+                stuid = '';
+                stuName = '';
+            }
             
             if(stuid != null){
                 $('#mstuid').val(stuid);
@@ -144,78 +145,29 @@
                 }
             });
             
-            
-            //student address combobox
-            $('#mstuAddr').combobox({
-                url:'/student-community/json/address.json',
-                width : 200,
-                valueField : 'id',
-                textField : 'text',
-                editable:false,
+            $('#mgrRoles').combobox({    
+                url:'/student-community/role/getMgrRoles.a',    
+                valueField:'communityRoleid',    
+                textField:'roleName',
+                panelHeight:'auto',
+                width:200,
                 onLoadSuccess:function(){
-                    var data = $('#mstuAddr').combobox('getData');
-                    if(data != ''){
-                        if(stuNativePlace != null){
-                            for(var i = 0;i<data.length;i++){
-                                if(data[i].id == stuNativePlace){
-                                    $('#mstuAddr').combobox('select',data[i].id);
-                                    break;
-                                }
-                            }
-                        } else {
-                            $('#mstuAddr').combobox('select',data[0].id);
+                    var data = $('#mgrRoles').combobox('getData');
+                    if(roleName == null){
+                        if(data != ''){
+                            $('#mgrRoles').combobox('select',data[0].communityRoleid);
                         }
+                    } else {
+                        for(var i = 0;i < data.length; i++){
+                            if(data[i].roleName = roleName){
+                                $('#mgrRoles').combobox('select',data[i].communityRoleid);
+                            }
+                        }	
                     }
+                    
                 }
             });
             
-            
-            //minitDatebox #stuBirthday
-            minitDatebox = function(){
-             // student birthday datebox
-                $('#mstuBirthday').datebox({
-                    width : 200,
-                    editable:false,
-                    formatter : function(date) {
-                        var y = date.getFullYear();
-                        var m = date.getMonth() + 1;
-                        var d = date.getDate();
-                        return y + '-' + m + '-' + d;
-                    },
-                    parser : function(s) {
-                        if (!s)
-                            return new Date();
-                        var ss = (s.split('-'));
-                        var y = parseInt(ss[0], 10);
-                        var m = parseInt(ss[1], 10);
-                        var d = parseInt(ss[2], 10);
-                        if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
-                            return new Date(y, m - 1, d);
-                        } else {
-                            return new Date();
-                        }
-                    },
-                    onSelect:function(date){
-                        var now = new Date(); 
-                        if(date > now){
-                            alert('日期选择错误,不能大于当前日期');
-                            var strDate = now.getFullYear()+"-";
-                                strDate += now.getMonth()+1+"-";
-                                strDate += now.getDate();
-                            $(this).datebox('setValue',strDate);
-                        }
-                    }
-                });
-                
-                //if update sutdent info set the datebox value
-                //is student's birthday
-                if(stuBirthday != null){
-                    $('#mstuBirthday').datebox('setValue',stuBirthday);
-                }
-            }
-            
-            //初始化日期框
-            minitDatebox();
         }
 
         //add student form 
@@ -271,12 +223,10 @@
          var stuid = rowData[0].stuid;
          var stuName = rowData[0].stuName;
          var stuSex = rowData[0].stuSex;
-         var cls = rowData[0].classesid;
-         var stuNativePlace = rowData[0].stuNativePlace;
-         var stuBirthday = rowData[0].stuBirthday;
+         var roleName = rowData[0].roleName;
          
         //init #addStuWindow
-        mlaodAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
+        mlaodAddWindow(stuid,stuName,stuSex,roleName);
         
         //open #addStuWindow 
         $('#maddStuWindow').window('open');

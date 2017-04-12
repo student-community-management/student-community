@@ -24,7 +24,10 @@
         
     </insert>
 
-
+    <insert id="setRoleToStu" parameterType="map">
+        INSERT INTO stu_community_role(stu_id,community_role_id) 
+        VALUE(#{stuid},#{communityRoleid})
+    </insert>
 
 
 </mapper>

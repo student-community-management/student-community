@@ -25,7 +25,8 @@ public class Student implements Serializable {
     private String stuNativePlace; // 祖籍
     private Classes classes; // 班级
     private Set<Community> communitys; // 参加的社团
-    private Set<StuCommunityRole> communityRoles;// 担任的职务
+    private Set<StuCommunityRole> stuCommunityRoles;// 担任的职务
+    private String roleName; // 数据库中没有,为了方便的mapper映射
 
     public Set<Community> getCommunitys() {
         return communitys;
@@ -91,12 +92,20 @@ public class Student implements Serializable {
         this.classes = classes;
     }
 
-    public Set<StuCommunityRole> getCommunityRoles() {
-        return communityRoles;
+    public Set<StuCommunityRole> getStuCommunityRoles() {
+        return stuCommunityRoles;
     }
 
-    public void setCommunityRoles(Set<StuCommunityRole> communityRoles) {
-        this.communityRoles = communityRoles;
+    public void setStuCommunityRoles(Set<StuCommunityRole> stuCommunityRoles) {
+        this.stuCommunityRoles = stuCommunityRoles;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.manage.mapper.activity;
+package com.manage.mapper.item;
 
 import com.manage.entity.AgainstReplyActivity;
 import com.manage.mapper.BaseMapper;

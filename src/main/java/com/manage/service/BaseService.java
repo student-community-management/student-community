@@ -17,9 +17,5 @@ public interface BaseService<T> extends BaseInterface<T> {
      * @return 结果集
      */
     PageData getPageData(PageParam pageParam, String keyWord);
-    
-    
-    
-    
 
 }

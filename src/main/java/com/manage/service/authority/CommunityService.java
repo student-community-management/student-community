@@ -1,4 +1,4 @@
-package com.manage.service;
+package com.manage.service.authority;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import com.manage.entity.Role;
 import com.manage.mapper.authority.CommunityMapper;
 import com.manage.mapper.authority.CommunityRoleMapper;
 import com.manage.mapper.authority.RoleMapper;
+import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
@@ -44,15 +45,12 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Override
     public void save(Community t) {
+        //添加社团
         communityMapper.save(t);
-        List<Role> roles = roleMapper.getCommunityRoles();
-        List<Integer> ids = new ArrayList<Integer>();
-
-        for (Role role : roles) {
-            ids.add(role.getRoleid());
-        }
-        communityRoleMapper.autoSave(communityMapper.getNewComunityid(), ids);
-
+        //获得社团都有什么角色
+        List<Integer> ids = roleMapper.getCommunityRoles();
+        //自动生成社团对应的角色
+        communityRoleMapper.autoSaveCommRoles(communityMapper.getNewComunityid(), ids);
     }
 
     @Override

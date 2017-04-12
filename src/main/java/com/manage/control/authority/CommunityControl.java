@@ -1,4 +1,4 @@
-package com.manage.control;
+package com.manage.control.authority;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.Community;
-import com.manage.service.CommunityService;
+import com.manage.service.authority.CommunityService;
 import com.manage.util.PageParam;
 
 @Controller

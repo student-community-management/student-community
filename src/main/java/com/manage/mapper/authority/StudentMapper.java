@@ -1,10 +1,11 @@
-package com.manage.mapper;
+package com.manage.mapper.authority;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.manage.entity.Student;
+import com.manage.mapper.BaseMapper;
 import com.manage.util.PageParam;
 
 public interface StudentMapper extends BaseMapper<Student> {
@@ -45,5 +46,19 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return
      */
     int getCountForStu(@Param("keyWord") String keyWord, @Param("isClassesid") Boolean isClassesid);
+
+    /**
+     * 学生加入社团
+     * @param studentid 加入社团的学生的id
+     * @param communityid 加入的社团的id
+     */
+    void joinCommunity(@Param("studentid") Integer studentid,
+            @Param("communityid") Integer communityid);
+
+    /**
+     * 获得刚录取的管理员id
+     * @return
+     */
+    Integer getNewMgrid();
 
 }

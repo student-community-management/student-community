@@ -12,8 +12,4 @@ public interface CommunityMapper extends BaseMapper<Community> {
      * @return 最新录入的社团id
      */
     Integer getNewComunityid();
-    
-    
-    
-
 }

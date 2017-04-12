@@ -1,13 +1,14 @@
-package com.manage.service;
+package com.manage.service.authority;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Student;
-import com.manage.mapper.StudentMapper;
+import com.manage.mapper.authority.CommunityRoleMapper;
+import com.manage.mapper.authority.StudentMapper;
+import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
@@ -16,10 +17,19 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private CommunityRoleMapper communityRoleMapper;
+    
+    /**
+     * crid(communityRoleid) 为了在添加管理人员时获得社团对应的角色id
+     * 为了保存{@link com.manage.control.authority.StudentControl#saveStu(Student, Integer) }中
+     * Integer 参数
+     */
+    public static Integer crid;
 
     @Override
     public List<Student> queryAll(PageParam pageParam, String keyWord) {
-       // return studentMapper.queryAll(pageParam, keyWord);
+        // return studentMapper.queryAll(pageParam, keyWord);
         return null;
     }
 
@@ -34,7 +44,7 @@ public class StudentService implements BaseService<Student>, StudentMapper {
         if (ids == null || ids.size() == 0) {
             throw new RuntimeException("传入对象为空");
         } else {
-            studentMapper.delete(ids);
+            studentMapper.delete(ids);// 删除学生对象
         }
     }
 
@@ -43,7 +53,17 @@ public class StudentService implements BaseService<Student>, StudentMapper {
         if (t == null) {
             throw new RuntimeException("传入对象为空");
         } else {
-            studentMapper.save(t);
+            studentMapper.save(t);// 录入学生(或管理人员)信息
+            // 如果stuNativePlace 或 classes 为空 则为添加管理人员
+            if (t.getStuNativePlace() == null || t.getClasses() == null) {
+                //获得刚添加的管理人员id
+                int newMgrid = studentMapper.getNewMgrid();
+                // 将管理人员添加到校本部
+                studentMapper.joinCommunity(newMgrid,1);
+                //赋予管理人员角色
+                System.out.println("this.getCrid()"+crid);
+                communityRoleMapper.setRoleToStu(newMgrid, crid);
+            }
         }
 
     }
@@ -74,12 +94,14 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        //return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
+        // return new PageData(this.getCount(keyWord), this.queryAll(pageParam,
+        // keyWord));
         return null;
     }
 
     public PageData getPageDataForStu(PageParam pageParam, String keyWord, Boolean isClassesid) {
-        return new PageData(this.getCountForStu(keyWord,isClassesid), this.queryAllForStu(pageParam, keyWord,isClassesid));
+        return new PageData(this.getCountForStu(keyWord, isClassesid),
+                this.queryAllForStu(pageParam, keyWord, isClassesid));
     }
 
     @Override
@@ -97,4 +119,17 @@ public class StudentService implements BaseService<Student>, StudentMapper {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public void joinCommunity( Integer studentid,Integer communityid) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public Integer getNewMgrid() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
