@@ -31,9 +31,6 @@
 		</div>
 
 		<div class="container">
-			<div class="row">
-				<div class="aw-content-wrap clearfix">
-					<div class="col-sm-12 col-md-9 aw-main-content">
 						<div class="aw-mod aw-topic-list-mod">
 							<div class="mod-head">
 								<div class="tabbable">
@@ -59,8 +56,7 @@
 							
 							<div class="tab-content">
 								<div class="tab-pane active" id="home">
-									<div class="aw-item active" data-topic-id="1176,814,">
-
+									<div class="aw-item active" data-topic-id="1176,814," style="border-bottom: 1px solid black;">
 										<a href="#" class="aw-user-name">韦森</a> <span
 											class="text-color-999">发起了问题 &nbsp;&nbsp;最佳回复者:&nbsp;
 											<a class="aw-user-name" href="" data-id="29">FiveSay<i
@@ -73,24 +69,74 @@
 											rel="nofollow"><img src="" alt="" /></a>
 											
 										<div class="aw-question-content">
+										<a href="/student-community/jsps/front/answer.jsp"
+												class="pull-right text-color-999">回复</a>
 											<h4>
 												<a href="/student-community/jsps/front/answer.jsp">laravel项目本地运行良好，上传apache服务器后访问首页显示空白无报错
 													PHP版本5.6</a>
 											</h4>
-											<a href="/student-community/jsps/front/answer.jsp"
-												class="pull-right text-color-999">回复</a>
-
-											<p>
-
-												<span class="text-color-999 related-topic hide"> •
-													来自相关话题</span>
-											</p>
-
+											
 										</div>
 									</div>
+									
+									
+									
+									<div class="aw-item active" data-topic-id="1176,814," style="border-bottom: 1px solid black;">
+										<a href="#" class="aw-user-name">韦森</a> <span
+											class="text-color-999">发起了问题 &nbsp;&nbsp;最佳回复者:&nbsp;
+											<a class="aw-user-name" href="" data-id="29">FiveSay<i
+												class="icon-v" title="个人认证"></i>
+										</a> <span>获得 <b>12</b> 次赞同
+										</span>
+
+										</span> <a class="aw-user-name hidden-xs" data-id="4444"
+											href="http://wenda.golaravel.com/people/%E9%9F%A6%E6%A3%AE"
+											rel="nofollow"><img src="" alt="" /></a>
+											
+										<div class="aw-question-content">
+										<a href="/student-community/jsps/front/answer.jsp"
+												class="pull-right text-color-999">回复</a>
+											<h4>
+												<a href="/student-community/jsps/front/answer.jsp">laravel项目本地运行良好，上传apache服务器后访问首页显示空白无报错
+													PHP版本5.6</a>
+											</h4>
+											
+										</div>
+									</div>
+									
+									<div class="aw-item active" data-topic-id="1176,814," style="border-bottom: 1px solid black;">
+										<a href="#" class="aw-user-name">韦森</a> <span
+											class="text-color-999">发起了问题 &nbsp;&nbsp;最佳回复者:&nbsp;
+											<a class="aw-user-name" href="" data-id="29">FiveSay<i
+												class="icon-v" title="个人认证"></i>
+										</a> <span>获得 <b>12</b> 次赞同
+										</span>
+
+										</span> <a class="aw-user-name hidden-xs" data-id="4444"
+											href="http://wenda.golaravel.com/people/%E9%9F%A6%E6%A3%AE"
+											rel="nofollow"><img src="" alt="" /></a>
+											
+										<div class="aw-question-content">
+										<a href="/student-community/jsps/front/answer.jsp"
+												class="pull-right text-color-999">回复</a>
+											<h4>
+												<a href="/student-community/jsps/front/answer.jsp">laravel项目本地运行良好，上传apache服务器后访问首页显示空白无报错
+													PHP版本5.6</a>
+											</h4>
+											
+										</div>
+									</div>
+									
+									
+									
+									
+									
+									
+									
+									
 									<!-- end tab 切换 -->
 								</div>
-								<div class="tab-pane" id="profile">
+							<div class="tab-pane" id="profile">
 							<div class="mod-body">
 								<div class="aw-common-list">
 									<div class="aw-item active" data-topic-id="1176,814,">
@@ -163,10 +209,7 @@
 							</div>
 						</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div>`
 
 </body>
 </html>

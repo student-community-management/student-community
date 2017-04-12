@@ -22,6 +22,12 @@
 			<li role="presentation"><a
 				href="/student-community/jsps/front/community.jsp">全新论坛</a></li>
 		</ul>
+		<div class="page-header">
+			<h4>
+				<img class="mlist" src="/student-community/ico/list.png" width="20">
+				讨论话题
+			</h4>
+		</div>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">标题</label>
@@ -36,11 +42,9 @@
 					<textarea class="form-control" rows="3" placeholder="请输入内容"></textarea>
 				</div>
 			</div>
-		</form>
-		<div id="ddd" class="dropdown">
 				<button type="submit" class="btn btn-default">提交</button>
-
-			</div>
+		</form>
+		
 	</div>
 </body>
 </html>
