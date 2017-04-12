@@ -15,8 +15,10 @@
             <result property="stuName" column="stu_name"/>
         </collection>
     </resultMap>
-    
-    
+    <!-- 输出参数,为下拉框做准备 -->
+    <select id="getAllCommunity" resultMap="communityResultMap">
+        select community_id,community_name from community
+    </select>
     <select id="queryAll" parameterType="map" resultMap="communityResultMap"  resultType="com.manage.entity.Community"  >
         SELECT
             c.*, s.stu_name, CASE WHEN t.stu_num IS NULL THEN 0 ELSE t.stu_num END AS 'stu_num'

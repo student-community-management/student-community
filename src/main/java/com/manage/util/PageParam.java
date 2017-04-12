@@ -1,26 +1,16 @@
 package com.manage.util;
 
 public class PageParam {
-<<<<<<< HEAD
-    private Integer currPage;//当前页数
-    private Integer rows;//每页显示行数
-    @SuppressWarnings("unused")//警告错误
-    private Integer startIndex;//查询条件,每页开始的下标
-=======
-    private Integer page;
+    private Integer page;//当前页
     private Integer rows;
     @SuppressWarnings("unused")
     private int startIndex;
 
->>>>>>> refs/heads/master
     public PageParam() {
+        // TODO Auto-generated constructor stub
     }
-<<<<<<< HEAD
-    public PageParam(Integer currPage, Integer rows) {
-=======
 
     public PageParam(Integer page, Integer rows) {
->>>>>>> refs/heads/master
         super();
         this.page = page;
         this.rows = rows;
@@ -42,16 +32,11 @@ public class PageParam {
         this.rows = rows;
     }
 
-<<<<<<< HEAD
-    public Integer getStartIndex() {
-        return (this.getCurrPage()-1)*this.getRows();
-=======
     public int getStartIndex() {
         return (this.getPage() - 1) * this.getRows();
->>>>>>> refs/heads/master
     }
 
-    public void setStartIndex(Integer startIndex) {
+    public void setStartIndex(int startIndex) {
         this.startIndex = startIndex;
     }
 

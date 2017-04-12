@@ -4,11 +4,6 @@ import java.util.List;
 
 public class PageData{
 
-<<<<<<< HEAD
-    private int total;//总条数
-    private List rows;//所有数据
-
-=======
     private int total;
     @SuppressWarnings("rawtypes")
     private List rows;
@@ -29,7 +24,6 @@ public class PageData{
         this.total = total;
         this.rows = rows;
     }
->>>>>>> refs/heads/master
     public int getTotal() {
         return total;
     }
@@ -47,14 +41,4 @@ public class PageData{
         this.rows = rows;
     }
 
-    public PageData() {
-        super();
-    }
-
-    public PageData(int total, List rows) {
-        super();
-        this.total = total;
-        this.rows = rows;
-    }
-    
 }

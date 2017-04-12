@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.manage.mapper.ActivityMapper">
+<mapper namespace="com.manage.mapper.activity.ActivityMapper">
     <resultMap type="com.manage.entity.Activity" id="Activity">
         <id property="activityid" column="activity_id"/>
         <result column="activity_title" property="activityTitle" jdbcType="VARCHAR" />
@@ -81,7 +81,7 @@ on community.community_id = activity.activity_id
         where activity_id =#{_parameter}
     </select>
     <!-- 输入参数 -->
-    <insert id="addActivity" parameterType="com.manage.mapper.ActivityMapper">
+    <insert id="addActivity" parameterType="com.manage.mapper.activity.ActivityMapper">
             insert into activity(activity_type_id,community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status) 
             VALUES(#{activityType.activityTypeid},#{community.communityid,jdbcType=INTEGER},#{activityTitle},#{activityLoc},#{activityContent},#{activityDate},#{closingDate},#{startDate},#{endDate},0) 
     </insert>

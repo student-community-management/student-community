@@ -1,4 +1,4 @@
-package com.manage.mapper;
+package com.manage.mapper.activity;
 
 import java.util.List;
 import com.manage.entity.ActivityType;

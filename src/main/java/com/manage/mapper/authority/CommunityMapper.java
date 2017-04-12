@@ -1,5 +1,7 @@
 package com.manage.mapper.authority;
 
+import java.util.List;
+
 import com.manage.entity.Community;
 import com.manage.mapper.BaseMapper;
 
@@ -12,7 +14,7 @@ public interface CommunityMapper extends BaseMapper<Community> {
      * @return 最新录入的社团id
      */
     Integer getNewComunityid();
-    
+    public List<Community> getAllCommunity();//查询所有活动
     
     
 
