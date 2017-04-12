@@ -74,7 +74,7 @@ public class StudentControl {
      * 
      * 前台参数有:
      *      stuName,stuNativePlace,stuBirthday,
-     *      sutSex,classes.classesid
+     *      sutSex,classes.classesid,crid(communityRoleid)
      * 其他参数:
      *      stuid 在添加方法中为自增,
      *            在更新方法中作为条件
@@ -89,6 +89,12 @@ public class StudentControl {
     public String saveStu(@ModelAttribute Student stu,Integer crid)
             throws Exception {
         if(stu.getStuid() == null){
+            /**
+             * 保存crid(communityRoleid)
+             * 如果是添加管理人员则为
+             * {@link com.manage.mapper.authority.CommunityRoleMapper#setRoleToStu(Integer,Integer)} 
+             * 方法中社团角色的id
+             */
             StudentService.crid = crid;
             studentService.save(stu);
             return "save is ok";
