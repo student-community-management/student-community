@@ -61,7 +61,6 @@ public class StudentService implements BaseService<Student>, StudentMapper {
                 // 将管理人员添加到校本部
                 studentMapper.joinCommunity(newMgrid,1);
                 //赋予管理人员角色
-                System.out.println("this.getCrid()"+crid);
                 communityRoleMapper.setRoleToStu(newMgrid, crid);
             }
         }
