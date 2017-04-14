@@ -8,9 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.manage.entity.Community;
-import com.manage.service.CommunityService;
+import com.manage.service.authority.CommunityService;
 import com.manage.util.PageParam;
-
 @Controller
 @Transactional
 public class CommunityController {

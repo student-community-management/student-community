@@ -1,7 +1,6 @@
 package com.manage.entity;
-
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 /**
  * 
@@ -17,7 +16,15 @@ public class Activity implements Serializable {
     private Integer activityid; // 活动id
     private Student stu; // 活动发起人 数据库添加
     private Community community;//社团
-    private ActivityType activityType;//活动类型
+    private Integer activityTypeid;//活动类型
+    public Integer getActivityTypeid() {
+        return activityTypeid;
+    }
+
+    public void setActivityTypeid(Integer activityTypeid) {
+        this.activityTypeid = activityTypeid;
+    }
+
     private String activityTitle; // 活动标题 
     private String activityLoc; // 活动地点
     private String activityContent; // 活动内容
@@ -45,14 +52,6 @@ public class Activity implements Serializable {
         this.community = community;
     }
 
-
-    public ActivityType getActivityType() {
-        return activityType;
-    }
-
-    public void setActivityType(ActivityType activityType) {
-        this.activityType = activityType;
-    }
 
     public Set<Student> getStudents() {
         return students;
@@ -122,7 +121,6 @@ public class Activity implements Serializable {
     public void setActivityDate(Date activityDate) {
         this.activityDate = activityDate;
     }
-
 
     public Date getStartDate() {
         return startDate;

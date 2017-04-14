@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.manage.mapper.activity.ActivityMapper">
+<mapper namespace="com.manage.mapper.item.ActivityMapper">
     <resultMap type="com.manage.entity.Activity" id="Activity">
         <id property="activityid" column="activity_id"/>
         <result column="activity_title" property="activityTitle" jdbcType="VARCHAR" />
+        <result column="activity_type_id" property="activityTypeid"/>
         <result column="activity_loc" property="activityLoc" jdbcType="VARCHAR" />
-        <result column="activity_content" property="activityContent"/>
+        <result column="activity_content" property="activityContent" jdbcType="VARCHAR"/>
         <result column="activity_date" property="activityDate" jdbcType="TIMESTAMP" />
         <result column="closing_date" property="closingDate" jdbcType="TIMESTAMP" />
         <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
@@ -16,11 +17,6 @@
 			<id column="community_id" property="communityid"/>
 			<result column="community_name" property="communityName"/>
 		</association>
-         <!-- 关联活动类型 -->
-         <association property="activityType"  column="activity_type_id" javaType="com.manage.entity.ActivityType">
-            <id column="activity_type_id" property="activityTypeid"/>
-            <result column="activity_type_name" property="activityTypeName"/>
-        </association>
     </resultMap>
     <sql id="sqlColumn">
           activity_id,community.community_name,community.community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status
@@ -32,7 +28,7 @@
     <select id="getAllActivity" parameterType="map"  resultMap="Activity">
         select 
         <include refid="sqlColumn"></include>
-        from activity  inner join community on community.community_id = activity.activity_id   
+        from activity  inner join community on community.community_id = activity.community_id   
         <where>
         <if test="communityid != null ">
          and  community.community_id = #{communityid} 
@@ -51,7 +47,7 @@
     </select>
     <!-- 总条数 -->
     <select id="getAllCount" parameterType="map" resultType="int">
-        select count(activity_id) from activity  inner join community on community.community_id = activity.activity_id  
+        select count(activity_id) from activity  inner join community on community.community_id = activity.community_id  
         <where>
         <if test="communityid != null ">
          and  activity.community_id = #{communityid} 
@@ -76,20 +72,20 @@
     </select>
     <!-- 通过活动编号查询 -->
     <select id="getActivityOne" parameterType="Integer" resultMap="Activity">
-        select  activity_id,community.community_name,community.community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status from activity  inner join community
-on community.community_id = activity.activity_id 
+        select  activity_id,activity_type_id,community.community_name,community.community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status from activity  inner join community
+on community.community_id = activity.community_id 
         where activity_id =#{_parameter}
     </select>
     <!-- 输入参数 -->
-    <insert id="addActivity" parameterType="com.manage.mapper.activity.ActivityMapper">
+    <insert id="addActivity" parameterType="com.manage.entity.Activity">
             insert into activity(activity_type_id,community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status) 
-            VALUES(#{activityType.activityTypeid},#{community.communityid,jdbcType=INTEGER},#{activityTitle},#{activityLoc},#{activityContent},#{activityDate},#{closingDate},#{startDate},#{endDate},0) 
+            VALUES(#{activityTypeid},#{community.communityid,jdbcType=INTEGER},#{activityTitle},#{activityLoc},#{activityContent,jdbcType=VARCHAR},#{activityDate},#{closingDate},#{startDate},#{endDate},0) 
     </insert>
     <!-- 修改 -->
     <update id="UpdateActivity" parameterType="com.manage.entity.Activity">
           update activity 
       set community_id = #{community.communityid}, 
-      activity_type_id = #{activityType.activityTypeid} ,
+      activity_type_id = #{activityTypeid} ,
       activity_title = #{activityTitle},
       activity_loc = #{activityLoc},
       activity_content = #{activityContent},
@@ -108,6 +104,10 @@ on student.stu_id = stu_community.stu_id
 where student.stu_id = #{stuid}
     </select>
     <delete id="deleteActivity" parameterType="Integer">
-        update activity set status = 1 where activity_id = #{activityid}
+     update activity set status = 1 where activity_id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+         #{activityid}
+        </foreach>
+       
     </delete>
 </mapper>

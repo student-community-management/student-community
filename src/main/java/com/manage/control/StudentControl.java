@@ -1,26 +1,20 @@
 package com.manage.control;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.manage.entity.Student;
-import com.manage.service.StudentService;
+import com.manage.service.authority.StudentService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
-
 @Controller
 @RequestMapping("stu/")
 public class StudentControl {
-
     @Autowired
     private StudentService studentService;
-    
     /**
      * 得到所有的学生信息
      * @param pageParam 分页条件

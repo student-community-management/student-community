@@ -1,4 +1,4 @@
-package com.manage.mapper.activity;
+package com.manage.mapper.item;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +13,5 @@ public interface ActivityMapper extends BaseMapper<Activity>{
     public int getAllCount(Map<String,Object> map);//活动总数
     public Integer addActivity(Activity activity);//增加活动
     public Integer UpdateActivity(Activity activity);//修改活动信息
-    public Integer deleteActivity(Integer actId);//取消此活动
     public Integer getActivityByperId(String perId);//查询出某人最新发布的活动id
 }

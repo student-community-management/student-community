@@ -13,7 +13,7 @@
         </collection>
     </resultMap>
 
-    <insert id="autoSave" parameterType="map">
+    <insert id="autoSaveCommRoles" parameterType="map">
         
         <if test="roleids != null">
             INSERT INTO community_role (community_id, role_id) VALUES 

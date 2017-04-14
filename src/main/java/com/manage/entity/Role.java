@@ -15,14 +15,15 @@ public class Role implements Serializable {
     private static final long serialVersionUID = -1798901243945178909L;
     private Integer roleid;
     private String roleName;
-    private Set<Authority> setAuthority;
+    private Set<Authority> authorities;
+    private Integer communityRoleid;
 
-    public Set<Authority> getSetAuthority() {
-        return setAuthority;
+    public Set<Authority> getAuthorities() {
+        return authorities;
     }
 
-    public void setSetAuthority(Set<Authority> setAuthority) {
-        this.setAuthority = setAuthority;
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 
     public Integer getRoleid() {
@@ -39,6 +40,14 @@ public class Role implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public Integer getCommunityRoleid() {
+        return communityRoleid;
+    }
+
+    public void setCommunityRoleid(Integer communityRoleid) {
+        this.communityRoleid = communityRoleid;
     }
 
 }

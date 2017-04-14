@@ -1,9 +1,17 @@
 package com.manage.control;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,9 +20,17 @@ import com.manage.service.ActivityService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 @Controller
+@Transactional
 public class ActivityController {
     @Autowired
     private ActivityService activityService;//活动
+    @InitBinder
+    //时间转化
+    protected void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+    
     //查询所有活动(分页)
     //访问路径
     @RequestMapping("getActivity")
@@ -22,8 +38,10 @@ public class ActivityController {
         if(page == null){
             page.setRows(5);//每页显示行数
             page.setPage(1);
-            /*page.setCurrPage(1); */
         }
+        //当前时间获取，为时间比较做准备
+        String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+        model.addAttribute("currentTime",datetime);
         //无条件查询
         PageData data = activityService.getAllActivity(activity, page);
         model.addAttribute("currentPage",page.getPage());//当前页
@@ -43,17 +61,12 @@ public class ActivityController {
     @RequestMapping("addActivity")
     @ResponseBody
     public String addActivity(@ModelAttribute Activity activity,Model model){
-        System.out.println(activity.getActivityContent());
-       //Integer data = activityService.insertActivity(activity);
-//       if(data>0){
-//           List<Activity> list = service.getActivity();
-//           model.addAttribute("list", list);
-//           return "back/activity";
-//          /* return "redirect:back/activity";*/
-//       }else{
-//           return "redirect:addactivitypre.a";
-//       }
-        return null;
+       Integer data = activityService.insertActivity(activity);
+       if(data>0){
+           return "ok";
+       }else{
+           return "no";
+       }
     }
     //修改活动提前准备
     @RequestMapping("updateActivityPre")
@@ -68,27 +81,26 @@ public class ActivityController {
     }
     //修改活动信息
     @RequestMapping("updateActivity")
+    @ResponseBody
     //前台给后台传值@ModelAttribute
     public String  UpdateActivity(@ModelAttribute Activity activity,Model model){
-        Integer result = activityService.UpdateActivity(activity); 
-        if(result>0){ 
-            model.addAttribute("state", 1);//成功
+        Integer data = activityService.UpdateActivity(activity); 
+        if(data>0){
+            return "ok";
         }else{
-            model.addAttribute("state", 0);//失败
+            return "no";
         }
-        return "back/activity";
     }
+    /**
+     * 通过活动的id来取消活动
+     * 要删除的活动id封装在list中
+     * @param ids 需要取消的活动id
+     * 
+     */
     @RequestMapping("deleteActivity")
-    public String deleteActivity(Activity activity,Model model,Integer actId){
-       Integer result = activityService.deleteActivity(actId);
-       System.out.println("result"+result);
-       if(result>0){ 
-           model.addAttribute("state", 1);//成功
-       }else{
-           model.addAttribute("state", 0);//失败
-       }
-       List<Activity> list = activityService.getActivity();
-       model.addAttribute("list", list);
-        return "back/activity";
+    @ResponseBody
+    public String deleteActivity(@RequestBody List<Integer> ids){
+       activityService.delete(ids);
+       return "ok";
     }
 }

@@ -15,7 +15,4 @@ public interface CommunityMapper extends BaseMapper<Community> {
      */
     Integer getNewComunityid();
     public List<Community> getAllCommunity();//查询所有活动
-    
-    
-
 }
