@@ -17,10 +17,11 @@
 	<%@ include file="nav.jsp"%>
 	<div class="container">
 		<ul class="nav nav-tabs nav-justified">
+		<li role="presentation" class="active"><a
+				href="/student-community/jsps/front/community.jsp">全新论坛</a></li>
 			<li role="presentation"><a
 				href="/student-community/jsps/front/discuss.jsp">发表话题</a></li>
-			<li role="presentation" class="active"><a
-				href="/student-community/jsps/front/community.jsp">全新论坛</a></li>
+			
 
 		</ul>
 		<div class="page-header">
@@ -78,9 +79,6 @@
 											
 										</div>
 									</div>
-									
-									
-									
 									<div class="aw-item active" data-topic-id="1176,814," style="border-bottom: 1px solid black;">
 										<a href="#" class="aw-user-name">韦森</a> <span
 											class="text-color-999">发起了问题 &nbsp;&nbsp;最佳回复者:&nbsp;
@@ -126,14 +124,6 @@
 											
 										</div>
 									</div>
-									
-									
-									
-									
-									
-									
-									
-									
 									<!-- end tab 切换 -->
 								</div>
 							<div class="tab-pane" id="profile">
@@ -209,7 +199,7 @@
 							</div>
 						</div>
 						</div>
-					</div>`
+					</div>
 
 </body>
 </html>

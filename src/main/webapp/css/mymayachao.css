@@ -53,36 +53,79 @@ a.QuestionMainAction {
 	width: 100%;
 	text-align: center;
 }
-.topone
-{
-	position: relative;
-    min-width: 927px;
-    padding: 20px 0;
-    padding-left:30px;
-    background: #fff;
-    border-bottom: 1px solid #e7eaf1;
-    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
-}
-.modc {
-    width: 100%;
-}
 .list-m {
-	overflow: hidden;
     list-style: none;
     list-style-type: none;
     list-style-position: initial;
     list-style-image: initial;
 }
-.modc-one
-{
-	padding: 0px 0px;
+.ma-QuestionHeader-main {
+    width: 300px;
+    padding-left: 20px;
+    box-sizing: border-box;
 }
-.events-list-s
-{
-	width: 30%;
-	overflow:hidden;
+.ma-QuestionHeader-side {
+  	width:570px;
+    padding-left: 20px;
 }
-.modc-two
+.ma-QuestionFollowStatus-counts {
+    width: 560px;
+    text-align: center;
+}
+.ma-btn
 {
-	overflow: hidden;
+	text-align: center;
+}
+.ma-substance
+{
+	font-size: 18px;
+	padding-left: 20px;
+	line-height: 50px;
+}
+.ma-baseone-one
+{
+	width:100%;
+    padding-bottom: 20px;
+}
+.ma-widch
+{
+	
+	margin-bottom: 15px;
+    clear: both;
+}
+.ma-label {
+	display:block;
+	float: left;
+	padding: 1px 10px;
+	width: 80px;
+	font-weight: 400;
+	text-align: right
+}
+.ma-form-control
+{
+    font-size: 14px;
+    line-height: 1.42857143;
+    display: block;
+	float:left;
+
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+         -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    background-image: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+.ma-layui-input-block
+{
+	margin-left: 110px;
+    min-height: 36px;
 }

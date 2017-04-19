@@ -18,11 +18,12 @@
 
 	<%@ include file="nav.jsp"%>
 	<div class="container">
+	<div class="middle">
 		<ul class="nav nav-tabs nav-justified">
 			<li role="presentation" class="active"><a
-				href="#">活动社区</a></li>
+				href="/student-community/jsps/front/activity.jsp">活动社区</a></li>
 			<li role="presentation"><a
-				href="#">发起活动</a></li>
+				href="/student-community/jsps/front/initiate.jsp">发起活动</a></li>
 			<li role="presentation"><a
 				href="#">活动相册</a></li>
 		</ul>
@@ -34,49 +35,35 @@
 			<small><a>本活动内容最终解释权归版权方所有</a></small>
 		</div>
 		</div>
-			<div class="modc">
+			<div class="moddces">
 			<div class="modc-two">
 				<div class="events-list-s">
 					<ul class="list-m">
-						<li class="item closes">
-							<div class="date">
-								已结束
-									<span class="follow">加关注</span>
-							</div>
+						<li class="item-s">
+							
 							<div class="pic">
 								
 							</div>
 							<div class="info">
 								<h3>
-									<a href="#">校园祭</a>
+									<a href="/student-community/jsps/front/activity_ma.jsp">校园祭</a>
 								</h3>
+							</div>
+							<div class="date">
+								<button class="btn " type="button">
+							正在进行
+						</button>
+									<button class="btn btn-primary " type="button">
+							生活部
+						</button>
 							</div>
 						</li>
 					</ul>
-					
 				</div>
-				<div class="events-list-s">
-					<ul class="list-m">
-						<li class="item closes">
-							<div class="date">
-								已结束
-									<span class="follow">加关注</span>
-							</div>
-							<div class="pic">
-								
-							</div>
-							<div class="info">
-								<h3>
-									<a href="#">校园祭</a>
-								</h3>
-							</div>
-						</li>
-					</ul>
-					
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>
