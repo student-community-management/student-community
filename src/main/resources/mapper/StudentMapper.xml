@@ -48,6 +48,7 @@
             </if>
             LIMIT ${pageParam.startIndex},${pageParam.rows}
         </if>
+        <!-- 判断是不是管理员,如果是管理员就没有班级,是学生才有班级 -->
         <if test="isClassesid == true">
             select * from (
             select *, case 
@@ -153,8 +154,7 @@
         
     </insert>
 
-    <update id="update" parameterType="com.manage.entity.Student" 
-            keyProperty="stuid" useGeneratedKeys="true">
+    <update id="update" parameterType="com.manage.entity.Student" >
        UPDATE student SET stu_name=#{stuName}, stu_sex=#{stuSex}, stu_birthday=#{stuBirthday},
         stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
     </update>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.dynamics.DynamicsMapper"> 
+    <resultMap id="Dynamics" type="com.manage.entity.Dynamics">
+    <id column="dynamics_id" property="dynamicsid"/>
+    <result column="dynamics_content" property="dynamicsContent"/>
+    <result column="dynamics_date" property="dynamicsDate"/>
+    <result column="status" property="status"/>
+    <association column="stu_id" property="stu" javaType="com.manage.entity.Student">
+        <id column="stu_id" property="stuid"/>
+        <result column="stu_pwd" property="stuPwd"/>
+        <result column="stu_name" property="stuName"/>
+        <result column="stu_sex" property="stuSex"/>
+        <result column="stu_birthday" property="stuBirthday"/>
+        <result column="stu_native_place" property="stuNativePlace"/>
+    </association>
+    </resultMap>
+ <!--    <sql id="sqlColumn">
+     t.dynamics_id,t.dynamics_content,t.dynamics_date,t.dynamics_search,t.`status`,t.stu_id,t.stu_name,t.stu_birthday,t.stu_pwd,t.stu_native_place,t.sex_name
+    </sql>
+   <select id="queryAllForDyns" parameterType="map" resultMap="Dynamics">
+    SELECT 
+    <include refid="sqlColumn"></include>
+     from (
+    SELECT  dynamics.dynamics_id,dynamics.dynamics_content,dynamics.dynamics_date,dynamics.dynamics_search,dynamics.`status`,student.stu_id,student.stu_name,student.stu_birthday,student.stu_pwd,student.stu_native_place,CASE student.stu_sex 
+    WHEN 1 then '男' WHEN 0 then '女' END AS 'sex_name' 
+    from dynamics inner join student 
+    on student.stu_id = dynamics.stu_id )t
+    <where>
+       <if test="keyWord != null">
+            and (CONCAT(t.stu_id,'')  like '%${keyWord}%'
+                 or t.stu_name like '%${keyWord}%'
+                 or t.sex_name like '%${keyWord}%')
+                 or t.role_name like '%${keyWord}%'
+        </if>
+            LIMIT ${pageParam.startIndex},${pageParam.rows}
+            and status=0
+        </where>
+        and  t.stu_id = 10000  AND t.dynamics_search = 1
+        order by dynamics.dynamics_id desc
+   </select> -->
+</mapper>

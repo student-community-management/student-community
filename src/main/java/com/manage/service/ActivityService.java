@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import com.manage.entity.Activity;
 import com.manage.entity.Community;
+import com.manage.mapper.activity.ActivityMapper;
 import com.manage.mapper.authority.CommunityMapper;
-import com.manage.mapper.authority.StudentMapper;
-import com.manage.mapper.item.ActivityMapper;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 @Service
@@ -44,7 +43,7 @@ public class ActivityService implements BaseService<Activity>,ActivityMapper{
         ModelAndView model = new ModelAndView();
         List<Community> community = communityMapper.getAllCommunity();
         model.addObject("community", community);
-        model.setViewName("back/addactivity");
+        model.setViewName("front/addactivity");
         return model;
     }
     //添加活动

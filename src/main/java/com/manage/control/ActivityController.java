@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +39,7 @@ public class ActivityController {
             page.setPage(1);
         }
         //当前时间获取，为时间比较做准备
-        String datetime=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //获取系统时间 
+        String datetime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()); //获取系统时间 
         model.addAttribute("currentTime",datetime);
         //无条件查询
         PageData data = activityService.getAllActivity(activity, page);
@@ -49,7 +48,7 @@ public class ActivityController {
         model.addAttribute("Total",data.getTotal());//总行数
         model.addAttribute("startIndex",page.getStartIndex());//每页开始的下标
         //跳转到你想要的路径
-        return "back/activity";
+        return "front/activity";
     }
   //准备发布活动
     @RequestMapping("addactivitypre")
@@ -76,7 +75,7 @@ public class ActivityController {
         mv = this.addActivitypre();//获取社团类型//活动类型
         Activity activity = activityService.getActivityOne(actId);
         mv.addObject("activity",activity);
-        mv.setViewName("back/updateActivity");
+        mv.setViewName("front/updateActivity");
         return mv;
     }
     //修改活动信息
@@ -94,13 +93,14 @@ public class ActivityController {
     /**
      * 通过活动的id来取消活动
      * 要删除的活动id封装在list中
-     * @param ids 需要取消的活动id
+     * @param ids 需要删除的活动的id
      * 
      */
     @RequestMapping("deleteActivity")
-    @ResponseBody
-    public String deleteActivity(@RequestBody List<Integer> ids){
-       activityService.delete(ids);
-       return "ok";
+    public String deleteActivity(Activity activity,Model model,List<Integer> ids){
+       activityService.delete(ids);;
+       List<Activity> list = activityService.getActivity();
+       model.addAttribute("list", list);
+        return "front/activity";
     }
 }

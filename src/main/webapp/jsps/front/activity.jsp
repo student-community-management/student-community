@@ -24,7 +24,6 @@
 <script>
 layui.use('form', function(){
   var $ = layui.jquery, form = layui.form();
-  
   //全选
   form.on('checkbox(allChoose)', function(data){
     var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
@@ -42,15 +41,16 @@ layui.use('form', function(){
 	<div class="container">
 		<h3>最新活动</h3>
 		<div class="layui-form">
+		<form id="activityForm" class="layui-form">
 			<table  class="layui-table" style="margin-top:10px;" width="100%" cellpadding="0" cellspacing="0" class = "myfont" border="1">
 				 <thead>
 				<tr style="margin-top:10px;">
-				<td><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
+				<td><input type="checkbox" name="" onclick="onclick()" class="activityid" lay-skin="primary" lay-filter="allChoose"></td>
 					<td>社团名称</td>
 					<th>活动标题</th>
 					<th>活动地点</th>
 					<th>活动内容</th>
-					<th>报名开始时间</th>
+					<th>活动发起日期</th>
 					<th>报名截止时间</th>
 					<th>活动开始时间</th>
 					<th>活动截止时间</th>
@@ -58,13 +58,14 @@ layui.use('form', function(){
 				</tr>
 				</thead>
 				<c:if test="${list != '[]'}">
-					<c:forEach items="${list}" var="list">
+		<c:forEach items="${list}" var="list">
 		<span><a href="${pageContext.request.contextPath}/updateActivityPre.a?actId=${list.activityid}">修改</a></span>
 		<span><a href="${pageContext.request.contextPath}/deleteActivity.a?actId=${list.activityid}">删除</a></span>
 		<span><a href="${pageContext.request.contextPath}/addactivitypre.a">发布活动</a></span>
 				<tbody>
 				<tr>
-				<td><input type="checkbox" name="" lay-skin="primary" ><input type="hidden" value="${list.activityid}" id="activityid"/></td>
+				<td><input type="checkbox" name="" lay-skin="primary" value="${list.activityid}" onclick="onclick()"  class="activityid" >
+					<input type="hidden" value="${list.activityid}" id="activityid"/></td>
 					<td>${list.community.communityName}</td>
 					<td>${list.activityTitle }</td>
 					<td>${list.activityLoc}</td>
@@ -73,11 +74,12 @@ layui.use('form', function(){
 					<td><f:formatDate value="${list.closingDate}" type="both"/></td>
 					<td><f:formatDate value="${list.startDate}" type="both"/></td>
 					<td><f:formatDate value="${list.endDate}" type="both"/></td>
-					<td><c:if test="${list.closingDate>currentTime}">
-						已经结束
+					<!-- 时间比较 -->
+					<td><c:if test="${list.closingDate>=currentTime}">
+						在报名
 					</c:if>
 					<c:if test="${list.closingDate<currentTime}">
-						<h3>还在报名中!!!!</h3>
+						<h3>该活动已经结束!!!!</h3>
 					</c:if>
 					</td>
 				</tr>
@@ -85,6 +87,7 @@ layui.use('form', function(){
 					</c:forEach>
 			</c:if>
 			</table>
+			</form>
 	</div>
 	</div>
 </body>

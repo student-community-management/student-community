@@ -94,9 +94,8 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        // return new PageData(this.getCount(keyWord), this.queryAll(pageParam,
-        // keyWord));
-        return null;
+         return new PageData(this.getCount(keyWord), this.queryAll(pageParam,
+         keyWord));
     }
 
     public PageData getPageDataForStu(PageParam pageParam, String keyWord, Boolean isClassesid) {

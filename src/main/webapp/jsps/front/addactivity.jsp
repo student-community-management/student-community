@@ -92,13 +92,15 @@
             form.on('select(area)', function(data) {
             });
         }
-        
         layui.use('laydate', function(){
         	  var laydate = layui.laydate;
         });
-        layui.use(['form', 'layedit', 'laydate'], function(){
+        layui.use(['form', 'layedit', 'laydate','upload','iquery','layer','flow'], function(){
         	  var form = layui.form()
+        	  ,$=layui.jquery
         	  ,layer = layui.layer
+        	  ,upload = layui.upload
+        	  ,flow = layui.flow
         	  ,layedit = layui.layedit
         	  ,laydate = layui.laydate;
         	  
@@ -187,7 +189,7 @@
 						</td>
 					</tr>
 				<tr>
-   					 <!-- <td style="width:25%" align="center">活动地址</td>
+   					 <td style="width:25%" align="center">活动地址</td>
 				   	<td> <div style="margin:50px auto;">
 				            <div class="layui-form-item">
 				                <label class="layui-form-label">选择地区</label>
@@ -210,9 +212,10 @@
 				    </div>
    						<span style="display:none" id="activityLocN"><font color="red">活动地址不能为空</font></span>
    					</td>
-   					</tr> -->
+   					</tr>
    					
    					<tr>
+   					<!-- 当前日期 -->
    					<td style="width:25%" align="center">活动报名日期</td>
    					<td>
    						<div class="layui-inline">
@@ -228,15 +231,6 @@
   							<input class="layui-input" id="closingDateN"  value="${activity.closingDate}" name="closingDate" placeholder="自定义日期格式" value="${activity.activityDate}" name="activityDate" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
 						</div>
    						<span style="display:none" id="closingDateN"><font color="red">日期不能为空</font></span>
-   					</td>
-   			</tr>
-   			<tr>
-   					<td style="width:25%" align="center">活动开始日期</td>
-   					<td>
-   					<div class="layui-inline">
-  							<input class="layui-input"  id="startDateN" value="${activity.startDate}" name="startDate" placeholder="自定义日期格式" value="${activity.activityDate}" name="activityDate" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-						</div>
-   						<span style="display:none" id="startDateN"><font color="red">日期不能为空</font></span>
    					</td>
    			</tr>
    			<tr>

@@ -37,7 +37,6 @@ public interface StudentMapper extends BaseMapper<Student> {
      */
     List<Student> queryAllForStu(@Param("pageParam") PageParam pageParam,
             @Param("keyWord") String keyWord, @Param("isClassesid") Boolean isClassesid);
-
     /**
      * 
      * @param pageParam
@@ -46,7 +45,6 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return
      */
     int getCountForStu(@Param("keyWord") String keyWord, @Param("isClassesid") Boolean isClassesid);
-
     /**
      * 学生加入社团
      * @param studentid 加入社团的学生的id

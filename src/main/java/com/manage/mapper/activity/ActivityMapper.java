@@ -1,4 +1,4 @@
-package com.manage.mapper.item;
+package com.manage.mapper.activity;
 
 import java.util.List;
 import java.util.Map;

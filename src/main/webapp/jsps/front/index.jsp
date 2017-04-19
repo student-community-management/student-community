@@ -30,7 +30,7 @@
 					<li><a href="${pageContext.request.contextPath}/getActivity.a">活动</a></li>
 					<li><a href="/student-community/jsps/front/activity.jsp">讨论</a></li>
 					<li><a href="/student-community/jsps/front/activity.jsp">问吧</a></li>
-					<li><a href="/student-community/jsps/front/activity.jsp">动态</a></li>
+					<li><a href="${pageContext.request.contextPath}/activity.jsp">动态</a></li>
 				</ul>
 				<form class="navbar-form navbar-left">
 					<div class="form-group">
