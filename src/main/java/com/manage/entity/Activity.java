@@ -21,7 +21,7 @@ public class Activity implements Serializable {
     private String activityLoc; // 活动地点
     private String activityContent; // 活动内容
     private Date activityDate; // 活动发表(发起)时间
-    private Date closeingDate; // 活动报名截止时间
+    private Date closingDate; // 活动报名截止时间
     private Date startDate; // 活动开始时间
     private Date endDate; // 活动结束时间
     private Integer status; // 是否被删除,这里只做一个标记
@@ -111,11 +111,11 @@ public class Activity implements Serializable {
     }
 
     public Date getCloseingDate() {
-        return closeingDate;
+        return closingDate;
     }
 
     public void setCloseingDate(Date closeingDate) {
-        this.closeingDate = closeingDate;
+        this.closingDate = closeingDate;
     }
 
     public Date getStartDate() {

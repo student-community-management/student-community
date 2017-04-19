@@ -19,7 +19,7 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     private StudentMapper studentMapper;
     @Autowired
     private CommunityRoleMapper communityRoleMapper;
-    
+
     /**
      * crid(communityRoleid) 为了在添加管理人员时获得社团对应的角色id
      * 为了保存{@link com.manage.control.authority.StudentControl#saveStu(Student, Integer) }中
@@ -35,8 +35,7 @@ public class StudentService implements BaseService<Student>, StudentMapper {
 
     @Override
     public Student queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return studentMapper.queryOne(id);
     }
 
     @Override
@@ -56,11 +55,11 @@ public class StudentService implements BaseService<Student>, StudentMapper {
             studentMapper.save(t);// 录入学生(或管理人员)信息
             // 如果stuNativePlace 或 classes 为空 则为添加管理人员
             if (t.getStuNativePlace() == null || t.getClasses() == null) {
-                //获得刚添加的管理人员id
+                // 获得刚添加的管理人员id
                 int newMgrid = studentMapper.getNewMgrid();
                 // 将管理人员添加到校本部
-                studentMapper.joinCommunity(newMgrid,1);
-                //赋予管理人员角色
+                studentMapper.joinCommunity(newMgrid, 1);
+                // 赋予管理人员角色
                 communityRoleMapper.setRoleToStu(newMgrid, crid);
             }
         }
@@ -120,7 +119,7 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void joinCommunity( Integer studentid,Integer communityid) {
+    public void joinCommunity(Integer studentid, Integer communityid) {
         // TODO Auto-generated method stub
 
     }
@@ -129,6 +128,16 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     public Integer getNewMgrid() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public Integer stuFrontLogin(Student stu) {
+        return studentMapper.stuFrontLogin(stu);
+    }
+
+    @Override
+    public Integer stuBackLogin(Student stu) {
+        return studentMapper.stuBackLogin(stu);
     }
 
 }

@@ -2,6 +2,8 @@ package com.manage.control.authority;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,7 +25,7 @@ public class StudentControl {
 
     @Autowired
     private StudentService studentService;
-    
+
     /**
      * 得到所有的学生(管理人员)信息
      * 当classid不为空时为学生
@@ -35,10 +37,10 @@ public class StudentControl {
      */
     @RequestMapping("getAllStu")
     @ResponseBody
-    public PageData qeuryAll(PageParam pageParam, String kw,Boolean isClassesid) {
-       return studentService.getPageDataForStu(pageParam, kw, isClassesid);
+    public PageData qeuryAll(PageParam pageParam, String kw, Boolean isClassesid) {
+        return studentService.getPageDataForStu(pageParam, kw, isClassesid);
     }
-    
+
     /**
      * 暂时没有用到
      * 得到所有的管理人员信息
@@ -51,7 +53,7 @@ public class StudentControl {
     public PageData qeuryAllMgr(PageParam pageParam, String kw) {
         return studentService.getPageData(pageParam, kw);
     }
-    
+
     /**
      * 暂时没有用到
      * 查询此社团下的学生
@@ -64,7 +66,7 @@ public class StudentControl {
         List<Student> list = studentService.getStudentByCommid(id);
         return list;
     }
-    
+
     /**
      * 添加/修改 学生信息
      * 从前台传stu的属性值
@@ -86,9 +88,8 @@ public class StudentControl {
      */
     @RequestMapping("saveStu")
     @ResponseBody
-    public String saveStu(@ModelAttribute Student stu,Integer crid)
-            throws Exception {
-        if(stu.getStuid() == null){
+    public String saveStu(@ModelAttribute Student stu, Integer crid) throws Exception {
+        if (stu.getStuid() == null) {
             /**
              * 保存crid(communityRoleid)
              * 如果是添加管理人员则为
@@ -103,7 +104,7 @@ public class StudentControl {
             return "update is ok";
         }
     }
-    
+
     /**
      * 通过学生的id来删除学生信息
      * 要删除的学生id封装在list中
@@ -112,12 +113,45 @@ public class StudentControl {
      */
     @RequestMapping("deleteStu")
     @ResponseBody
-    public String deleteStu(@RequestBody List<Integer> ids){
+    public String deleteStu(@RequestBody List<Integer> ids) {
         studentService.delete(ids);
         return "ok";
     }
     
-   
-   
+    /**
+     * 前台登陆
+     * @param stu 学生的帐号和密码
+     * @param req request 获取session
+     * @return 是否登陆成功: 1为登录成功
+     */
+    @RequestMapping("flogin")
+    @ResponseBody
+    public String frontLogin(@ModelAttribute Student stu, HttpServletRequest req) {
+        String status = studentService.stuFrontLogin(stu).toString();
+
+        if ("1".equals(status)) {
+            req.getSession().setAttribute("fstu", studentService.queryOne(stu.getStuid()));
+        }
+        //System.out.println("stuName================="+req.getSession().getAttribute("fstu").toString());
+        return status;
+    }
+    
+    /**
+     * 后台管理员登陆
+     * @param stu 管理员的帐号和密码
+     * @param req request 获取session
+     * @return 是否登陆成功: 1为登录成功
+     */
+    @RequestMapping("blogin")
+    @ResponseBody
+    public String backLogin(@ModelAttribute Student stu, HttpServletRequest req) {
+        String status = studentService.stuBackLogin(stu).toString();
+        
+        if ("1".equals(status)) {
+            req.getSession().setAttribute("bstu", studentService.queryOne(stu.getStuid()));
+        }
+        
+        return status;
+    }
 
 }

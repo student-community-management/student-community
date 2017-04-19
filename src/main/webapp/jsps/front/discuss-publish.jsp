@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="cn">
 <head>
@@ -8,19 +9,23 @@
 <link rel="icon" href="/student-community/ico/ico.png">
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
+<link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
 <link href="/student-community/css/mycssfront.css" rel="stylesheet">
 <link href="/student-community/css/docs.css" rel="stylesheet">
 <script src="/student-community/js/jquery.min.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
+<script src="/student-community/js/bootstrapValidator.min.js"></script>
 </head>
 <body>
+<!----------------发布讨论------------->
+
 	<%@ include file="nav.jsp" %>
 	<div class="container">
 		<ul class="nav nav-tabs nav-justified">
+        <li role="presentation"><a
+                href="/student-community/discuss/getAllDiscuss.a">话题发现</a></li>
 			<li role="presentation" class="active"><a
-				href="/student-community/jsps/front/discuss.jsp">发表话题</a></li>
-			<li role="presentation"><a
-				href="/student-community/jsps/front/community.jsp">全新论坛</a></li>
+				href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a></li>
 		</ul>
 		<div class="page-header">
 			<h4>
@@ -40,11 +45,10 @@
 				<label for="inputPassword3" class="col-sm-2 control-label">内容</label>
 				<div class="col-sm-9">
 					<textarea class="form-control" rows="3" placeholder="请输入内容"></textarea>
-				</div>
+				</div> 
 			</div>
 				<button type="submit" class="btn btn-default">提交</button>
 		</form>
-		
 	</div>
 </body>
 </html>
