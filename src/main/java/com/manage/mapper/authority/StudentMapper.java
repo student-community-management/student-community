@@ -60,5 +60,16 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return
      */
     Integer getNewMgrid();
+    
+    /**
+     * 前台页面登陆
+     * @return 如果为1则为登陆成功
+     */
+    Integer stuFrontLogin(Student stu);
 
+    /**
+     * 后台页面登录
+     * @return 如果为1则为登陆成功
+     */
+    Integer stuBackLogin(Student stu);
 }
