@@ -45,9 +45,9 @@
 				<label for="inputPassword3" class="col-sm-2 control-label">内容</label>
 				<div class="col-sm-9">
 					<textarea class="form-control" rows="3" placeholder="请输入内容"></textarea>
-				</div> 
+				</div>
 			</div>
-				<button type="submit" class="btn btn-default">提交</button>
+				<button type="submit" class="btn btn-default"style="width:75%;margin-left:17%">提交</button>
 		</form>
 	</div>
 </body>
