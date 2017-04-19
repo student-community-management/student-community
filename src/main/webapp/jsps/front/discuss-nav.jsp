@@ -27,7 +27,7 @@
                         <a href="/student-community/discuss/getChoicenessDiscuss.a">精选</a>
                     </li>
                     <li <c:if test="${ choose == 3 }">class="active"</c:if>>
-                        <a href="/student-community/discuss/getMyAttentionDiscuss.a">关于我的话题</a>
+                        <a href="/student-community/discuss/getMyAttentionDiscuss.a">我关注的话题</a>
                     </li>
                     <div class="aw-search-bar pull-right hidden-xs">
                         <i class="icon icon-search"></i>

@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="mod-body">
-                            <div class="content markitup-box">
+                            <div class="content markitup-box" style="width:150%;">
                             我（某HR）曾经鼓励一个很聪明的姑娘（此人已经申请到了北美的PHD
                                 ）,
                                 攒学费期间来做点人参的生意。姑娘却觉得，只有半年时间，自己什么都不懂，也没有既成的销售渠道，
@@ -76,42 +76,19 @@
                                 <button class="btn" type="button">
                                     <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报
                                 </button>
+                                <span>发布时间:2017-9-3</span>
                             </div>
                         </div>
                         <div class="QuestionHeader-footer-inner-side">
                             <div class="QuestionButtonGroup">
                                 <button class="btn" type="button">关注问题</button>
-                                <button type="button" class="btn" data-toggle="modal"
-                                    data-target="#myModal">写回答</button>
-                            </div>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-                                aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            <h4 class="modal-title" id="myModalLabel">Modal
-                                                title</h4>
-                                        </div>
-                                        <div class="modal-body">...</div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default"
-                                                data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save
-                                                changes</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <button type="button" class="btn" data-toggle="modal">写回答</button>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
         <div class="base">
             <div class="baseone">

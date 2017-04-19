@@ -12,14 +12,14 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class DiscussService implements BaseService<Discuss>,DiscussMapper {
-    
+public class DiscussService implements BaseService<Discuss>, DiscussMapper {
+
     @Autowired
     private DiscussMapper discussMapper;
-    
+
     @Override
     public List<Discuss> queryAll(PageParam pageParam, String keyWord) {
-        return  discussMapper.queryAll(pageParam, keyWord);
+        return discussMapper.queryAll(pageParam, keyWord);
     }
 
     @Override
@@ -31,19 +31,19 @@ public class DiscussService implements BaseService<Discuss>,DiscussMapper {
     @Override
     public void delete(List<Integer> ids) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void save(Discuss t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void update(Discuss t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -63,14 +63,13 @@ public class DiscussService implements BaseService<Discuss>,DiscussMapper {
     }
 
     @Override
-    public List<Discuss> getMyAttentionDiscuss(PageParam pageParam, Integer id,String keyWord) {
-        return discussMapper.getMyAttentionDiscuss(pageParam, id,keyWord);
+    public List<Discuss> getMyAttentionDiscuss(PageParam pageParam, Integer id, String keyWord) {
+        return discussMapper.getMyAttentionDiscuss(pageParam, id, keyWord);
     }
 
     @Override
-    public Integer getMyAttentionDiscussCount(Integer id,String keyWord) {
-        return discussMapper.getMyAttentionDiscussCount(id,keyWord);
+    public Integer getMyAttentionDiscussCount(Integer id, String keyWord) {
+        return discussMapper.getMyAttentionDiscussCount(id, keyWord);
     }
-
 
 }
