@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.manage.mapper.item.ActivityMapper">
+<mapper namespace="com.manage.mapper.activity.ActivityMapper"> 
     <resultMap type="com.manage.entity.Activity" id="activityResultMap">
-    
         <id column="activity_id" property="activityid" />
         <result column="activity_loc" property="activityLoc" />
         <result column="activity_content" property="activityContent" />
@@ -11,8 +10,8 @@
         <result column="start_date" property="startDate" />
         <result column="end_date" property="endDate" />
         <result column="status" property="status" />
-        <!-- association
-                        多对一映射
+        <!-- 
+            association  多对一映射
             property 
          -->
         <association property="stu" javaType="com.manage.entity.Student">

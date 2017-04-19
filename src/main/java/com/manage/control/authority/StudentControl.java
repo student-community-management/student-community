@@ -1,6 +1,8 @@
-package com.manage.control;
+package com.manage.control.authority;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,34 +21,37 @@ public class StudentControl {
 
     @Autowired
     private StudentService studentService;
-    
+
     /**
-     * 得到所有的学生信息
+     * 得到所有的学生(管理人员)信息
+     * 当classid不为空时为学生
+     * 当classid为空时则为管理人员
      * @param pageParam 分页条件
      * @param kw  查询关键字
+     * @param isClassesid classid是否为空 false为空
      * @return 符合查询条件的学生
      */
     @RequestMapping("getAllStu")
     @ResponseBody
-    public PageData qeuryAll(PageParam pageParam, String kw,Boolean isClassesid) {
-        //return studentService.getPageData(pageParam, kw);
-       return studentService.getPageDataForStu(pageParam, kw, isClassesid);
-        
+    public PageData qeuryAll(PageParam pageParam, String kw, Boolean isClassesid) {
+        return studentService.getPageDataForStu(pageParam, kw, isClassesid);
     }
-    
+
     /**
-     * 得到所有的学生信息
+     * 暂时没有用到
+     * 得到所有的管理人员信息
      * @param pageParam 分页条件
      * @param kw  查询关键字
-     * @return 符合查询条件的学生
+     * @return 符合查询条件的管理人员
      */
     @RequestMapping("getAllMgr")
     @ResponseBody
     public PageData qeuryAllMgr(PageParam pageParam, String kw) {
         return studentService.getPageData(pageParam, kw);
     }
-    
+
     /**
+     * 暂时没有用到
      * 查询此社团下的学生
      * @param id 社团的id
      * @return 符合条件的学生
@@ -57,7 +62,7 @@ public class StudentControl {
         List<Student> list = studentService.getStudentByCommid(id);
         return list;
     }
-    
+
     /**
      * 添加/修改 学生信息
      * 从前台传stu的属性值
@@ -67,29 +72,35 @@ public class StudentControl {
      * 
      * 前台参数有:
      *      stuName,stuNativePlace,stuBirthday,
-     *      sutSex,classes.classesid
+     *      sutSex,classes.classesid,crid(communityRoleid)
      * 其他参数:
      *      stuid 在添加方法中为自增,
      *            在更新方法中作为条件
      *      stuPwd 默认为 '123123'
      * 
      * @param stu 学生对象
+     * @param crid communiotyRoleid 社团角色对应的id
      * @throws Exception
      */
     @RequestMapping("saveStu")
     @ResponseBody
-    public String saveStu(@ModelAttribute Student stu)
-            throws Exception {
-        if(stu.getStuid() == null){
+    public String saveStu(@ModelAttribute Student stu, Integer crid) throws Exception {
+        if (stu.getStuid() == null) {
+            /**
+             * 保存crid(communityRoleid)
+             * 如果是添加管理人员则为
+             * {@link com.manage.mapper.authority.CommunityRoleMapper#setRoleToStu(Integer,Integer)} 
+             * 方法中社团角色的id
+             */
+            StudentService.crid = crid;
             studentService.save(stu);
             return "save is ok";
         } else {
             studentService.update(stu);
             return "update is ok";
         }
-        
     }
-    
+
     /**
      * 通过学生的id来删除学生信息
      * 要删除的学生id封装在list中
@@ -98,11 +109,45 @@ public class StudentControl {
      */
     @RequestMapping("deleteStu")
     @ResponseBody
-    public String deleteStu(@RequestBody List<Integer> ids,boolean isBatch){
+    public String deleteStu(@RequestBody List<Integer> ids) {
         studentService.delete(ids);
         return "ok";
     }
     
+    /**
+     * 前台登陆
+     * @param stu 学生的帐号和密码
+     * @param req request 获取session
+     * @return 是否登陆成功: 1为登录成功
+     */
+    @RequestMapping("flogin")
+    @ResponseBody
+    public String frontLogin(@ModelAttribute Student stu, HttpServletRequest req) {
+        String status = studentService.stuFrontLogin(stu).toString();
+
+        if ("1".equals(status)) {
+            req.getSession().setAttribute("fstu", studentService.queryOne(stu.getStuid()));
+        }
+        //System.out.println("stuName================="+req.getSession().getAttribute("fstu").toString());
+        return status;
+    }
     
+    /**
+     * 后台管理员登陆
+     * @param stu 管理员的帐号和密码
+     * @param req request 获取session
+     * @return 是否登陆成功: 1为登录成功
+     */
+    @RequestMapping("blogin")
+    @ResponseBody
+    public String backLogin(@ModelAttribute Student stu, HttpServletRequest req) {
+        String status = studentService.stuBackLogin(stu).toString();
+        
+        if ("1".equals(status)) {
+            req.getSession().setAttribute("bstu", studentService.queryOne(stu.getStuid()));
+        }
+        
+        return status;
+    }
 
 }

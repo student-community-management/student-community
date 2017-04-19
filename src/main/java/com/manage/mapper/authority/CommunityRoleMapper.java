@@ -22,9 +22,7 @@ public interface CommunityRoleMapper extends BaseMapper<CommunityRole> {
      * @param commid 社团的id
      * @param roleids 角色的ids
      */
-    void autoSaveCommRoles(@Param("commid") Integer commid, @Param("roleids") List<Integer> roleids);
-    
-    
-    
-    
+    void autoSaveCommRoles(@Param("commid") Integer commid,
+            @Param("roleids") List<Integer> roleids);
+
 }

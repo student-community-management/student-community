@@ -109,16 +109,13 @@ public class Activity implements Serializable {
     public void setActivityDate(Date activityDate) {
         this.activityDate = activityDate;
     }
-
-
-    public Date getClosingDate() {
+    public Date getCloseingDate() {
         return closingDate;
     }
 
     public void setClosingDate(Date closingDate) {
         this.closingDate = closingDate;
-    }
-
+}
     public Date getStartDate() {
         return startDate;
     }
