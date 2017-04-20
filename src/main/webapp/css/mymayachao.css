@@ -20,7 +20,6 @@
     overflow: hidden;
     background: #fff;
     border-bottom: 1px solid #e7eaf1;
-    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
 }
 .baseone-one
 {
@@ -129,3 +128,8 @@ a.QuestionMainAction {
 	margin-left: 110px;
     min-height: 36px;
 }
+.mbox-shadow
+{
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+}
+

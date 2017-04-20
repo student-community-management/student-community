@@ -6,17 +6,21 @@
 <meta charset="utf-8">
 <title>学生社区</title>
 <link rel="icon" href="/student-community/ico/ico.png">
+<link href="/student-community/layui/css/modules/laydate/laydate.css" rel="stylesheet">
+<link href="/student-community/layui/css/layui.css" rel="stylesheet">
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
 <link href="/student-community/css/mycssfront.css" rel="stylesheet">
 <link href="/student-community/css/docs.css" rel="stylesheet">
 <link href="/student-community/css/mymayachao.css" rel="stylesheet">
-
 <script src="/student-community/js/jquery.min.js"></script>
+<script src="/student-community/layui/layui.js"></script>
+<script src="/student-community/layui/lay/modules/layedit.js"></script>
+<script src="/student-community/layui/lay/modules/layer.js"></script>
+<script src="/student-community/layui/area.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <div class="container">
 	<%@ include file="nav.jsp"%>
 	<div class="middle">
@@ -51,20 +55,19 @@
 				<div class="QuestionHeader-footer-inner">
 					<div class="QuestionHeader-footer-inner-main">
 						<div class="QuestionHeader-actions">
-							<button class="btn" type="button">
+							<button id="share" class="btn" type="button">
 								<span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;&nbsp;分享
 							</button>
-							
-							<button class="btn" type="button">
+							<button id="inform" class="btn" type="button">
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;&nbsp;收藏
 							</button>
-							<button class="btn" type="button">
+							<button id="collect" class="btn" type="button">
 							<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报
 							</button>
 						</div>
 					</div>
 						<div class="ma-btn">
-			<button class="btn btn-primary" type="button">
+			<button id="apply" class="btn btn-primary" type="button">
 							申请报名
 						</button>
 						</div>
@@ -97,18 +100,111 @@
 11、参与者应该知道户外运动必然有一定的危险性和不可预知性，所以必须自行承担除他人故意造成的人身损害外之全部的安全责任。
 12、对于隐瞒自身身体及其它真实情况者，责任一律自负。
 13、您明确知道参与户外运动只能相对增强心肺功能锻炼，并随个体差异不同会必然造成身体之物理及其他损伤。
-14、请您认真阅读上述声明条款，慎重选择和参与，如果报名即表示已经阅读和完全同意上述声明条款。
-		
+14、请您认真阅读上述条款，慎重选择和参与，如果报名即表示已经阅读和完全同意上述声明条款。
 	</div>
 	<div class="tab-pane" id="profile">
-			11111
+			<div class="baseone mbox-shadow">
+				姓名：111
+			</div><br/>
+			<div class="baseone mbox-shadow">
+				姓名：111
+			</div><br/>
+			<div class="baseone mbox-shadow">
+				姓名：111
+			</div>
 		</div>
 		<div class="tab-pane" id="messages">
-			11111
+			 <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">发送</button>
+      </span>
+    </div><!-- /input-group -->
+  </div>
 		</div>
 		</div>
 		</div>
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+
+//申请报名
+$('#apply').click(function(){
+	 layer.confirm('确定要报名吗？', {
+	  btn: ['确定','取消'] //按钮
+	}, function(){
+	  layer.msg('报名成功', {icon: 1});
+	}, function(){
+	}); 
+});
+//举报
+$('#inform').click(function(){
+	layer.msg('已举报');
+	$(this).html('<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;已举报');
+});
+
+//这是收藏按钮
+$('#collect').click(function(){
+	layer.msg('已收藏');
+	$(this).html('<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;已收藏');
+});
+
+//分享
+$('#share').click(function(){
+	//$(this).attr('data-copytarget','#twitter');
+	var url = window.location.href;
+layer.msg('<input type="text" id="twitter" value="'+url+'" /> <button data-copytarget="#twitter" id="copyUrl">复制</button>', {icon: 1,time:30000});
+
+$('#copyUrl').click(function(){
+	layer.msg('已复制,快去告诉你的小伙伴吧');
+});
+});
+
+//复制
+(function() {
+
+	'use strict';
+  
+  // click events
+  document.body.addEventListener('click', copy, true);
+
+	// event handler
+	function copy(e) {
+
+    // find target element
+    var 
+      t = e.target,
+      c = t.dataset.copytarget,
+      inp = (c ? document.querySelector(c) : null);
+      
+    // is element selectable?
+    if (inp && inp.select) {
+      
+      // select text
+      inp.select();
+
+      try {
+        // copy text
+        document.execCommand('copy');
+        inp.blur();
+        
+        // copied animation
+        t.classList.add('copied');
+        setTimeout(function() { t.classList.remove('copied'); }, 1500);
+      }
+      catch (err) {
+        alert('please press Ctrl/Cmd+C to copy');
+      }
+      
+    }
+    
+	}
+
+})();
+
+
+
+</script>
 </html>

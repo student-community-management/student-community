@@ -67,6 +67,35 @@
 					</ul>
 				</div>
 				</div>
+				<div class="modc-two">
+				<div class="events-list-s">
+					<ul class="list-m">
+						<li class="item-s">
+						<li class="item closes">
+							<div class="date">
+								已结束
+							<span class="follow">加关注</span>
+							</div>
+							<div class="pic">
+								
+							</div>
+							<div class="info">
+								<h3>
+									<a href="/student-community/jsps/front/activity_ma.jsp">校园祭</a>
+								</h3>
+							</div>
+							<div class="date">
+								<button class="btn " type="button">
+							正在进行
+						</button>
+									<button class="btn btn-primary " type="button">
+							生活部
+						</button>
+							</div>
+						</li>
+					</ul>
+				</div>
+				</div>
 				</div>
 			</div>
 		</div>
