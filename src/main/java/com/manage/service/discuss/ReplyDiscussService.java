@@ -1,30 +1,30 @@
-package com.manage.service.authority;
+package com.manage.service.discuss;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manage.entity.Role;
-import com.manage.mapper.authority.RoleMapper;
+import com.manage.entity.ReplyDiscuss;
+import com.manage.mapper.discuss.ReplyDiscussMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class RoleService implements BaseService<Role>,RoleMapper {
-    
+public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDiscussMapper {
+
     @Autowired
-    private RoleMapper roleMapper;
-    
+    private ReplyDiscussMapper replyDiscussMapper;
+
     @Override
-    public List<Role> queryAll(PageParam pageParam, String keyWord) {
+    public List<ReplyDiscuss> queryAll(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Role queryOne(Integer id) {
+    public ReplyDiscuss queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -32,19 +32,18 @@ public class RoleService implements BaseService<Role>,RoleMapper {
     @Override
     public void deleteMany(List<Integer> ids) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void save(Role t) {
-        // TODO Auto-generated method stub
-        
+    public void save(ReplyDiscuss t) {
+        replyDiscussMapper.save(t);
     }
 
     @Override
-    public void update(Role t) {
+    public void update(ReplyDiscuss t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -54,25 +53,15 @@ public class RoleService implements BaseService<Role>,RoleMapper {
     }
 
     @Override
-    public List<Integer> getCommunityRoles() {
-        return roleMapper.getCommunityRoles();
-    }
-
-    @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<Role> getMgrRoles() {
-        return roleMapper.getMgrRoles();
-    }
-
-    @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

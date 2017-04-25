@@ -2,13 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.discuss.DiscussMapper">
     <resultMap id="discussResultMap" type="com.manage.entity.Discuss">
-        <id column="disucss_id" property="discussid" />
+        <id column="discuss_id" property="discussid" />
         <result column="discuss_title" property="discussTitle" />
         <result column="discuss_content" property="discussContent" />
         <result column="discuss_date" property="discussDate" />
         <result column="status" property="status" />
         <association property="stu" javaType="com.manage.entity.Student">
             <result column="stu_name" property="stuName" />
+        </association>
+    </resultMap>
+    <resultMap type="com.manage.entity.ReplyDiscuss" id="replyDiscussResultMap">
+        <id column="reply_discuss_id" property="replyDiscussid"/>
+        <result column="content" property="content"/>
+        <result column="praise_count" property="praiseCount"/>
+        <result column="against_count" property="againstCount"/>
+        <result column="reply_date" property="replyDate"/>
+        <association property="stu" javaType="com.manage.entity.Student">
+            <result column="reply_stu_name" property="stuName"/>
         </association>
     </resultMap>
     <select id="queryAll" resultType="com.manage.entity.Discuss" resultMap="discussResultMap"
@@ -62,7 +72,7 @@
     
     <select id="getMyAttentionDiscuss" resultMap="discussResultMap" resultType="com.manage.entity.Discuss"
      parameterType="map">
-        SELECT d.discuss_title,MAX(rd.reply_date) FROM discuss d 
+        SELECT d.discuss_id,d.discuss_title,MAX(rd.reply_date) FROM discuss d 
         INNER JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id 
         INNER JOIN attention_discuss ad ON d.discuss_id = ad.discuss_id
         INNER JOIN student s ON ad.stu_id = s.stu_id 
@@ -86,6 +96,65 @@
         </if>
         GROUP BY d.discuss_id
         ) t
+    </select>
+    
+    <select id="checkAttention" resultType="int" parameterType="map">
+        SELECT COUNT(*) FROM student s 
+        INNER JOIN attention_discuss ad ON  ad.stu_id = s.stu_id
+        WHERE s.stu_id = #{stuid} AND ad.discuss_id = #{discussid}
+    </select>
+    
+    <select id="checkReport" resultType="int" parameterType="map">
+        SELECT COUNT(*) FROM student s 
+        INNER JOIN report_discuss rd ON  rd.stu_id = s.stu_id
+        WHERE s.stu_id = #{stuid} AND rd.discuss_id = #{discussid}
+    </select>
+    
+    <select id="getAttentionDiscussNum" resultType="int" parameterType="int">
+        SELECT COUNT(*) FROM attention_discuss ad
+        WHERE ad.discuss_id = #{id}
+    </select>
+    
+    <select id="getReplyDiscusses" resultMap="replyDiscussResultMap" parameterType="map" 
+        resultType="com.manage.entity.ReplyDiscuss">
+        SELECT * FROM(
+        SELECT rd.reply_discuss_id,s.stu_name AS 'reply_stu_name',rd.content,rd.reply_date,
+        COUNT(prd.reply_discuss_id) AS 'praise_count',
+        COUNT(ard.reply_discuss_id) AS 'against_count' FROM discuss d
+        LEFT JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id
+        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN student s ON rd.stu_id = s.stu_id
+        WHERE d.discuss_id = #{discussid}
+        GROUP BY rd.reply_discuss_id) t
+        ORDER BY YEAR(t.reply_date) DESC,MONTH(t.reply_date) DESC,t.praise_count DESC
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="getReplyDiscussesCount" parameterType="int" resultType="int">
+        SELECT COUNT(t.reply_discuss_id) FROM(
+        SELECT rd.reply_discuss_id,COUNT(prd.reply_discuss_id) AS 'praise_count',
+        COUNT(ard.reply_discuss_id) AS 'against_count' FROM discuss d
+        LEFT JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id
+        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN student s ON rd.stu_id = s.stu_id
+        WHERE d.discuss_id = #{discussid}
+        GROUP BY rd.reply_discuss_id) t
+    </select>
+    
+    <select id="checkPraiseReply" parameterType="map" resultType="int" >
+        SELECT COUNT(*) FROM  reply_discuss rd
+        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id  = rd.reply_discuss_id
+        LEFT JOIN student s ON s.stu_id = prd.stu_id
+        WHERE prd.reply_discuss_id = #{replyDiscussid} AND prd.stu_id = #{stuid}
+    </select>
+    
+    <select id="checkAgainstReply" parameterType="map" resultType="int" >
+        SELECT COUNT(*) FROM  reply_discuss rd
+        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id  = rd.reply_discuss_id
+        LEFT JOIN student s ON s.stu_id = ard.stu_id
+        WHERE ard.reply_discuss_id = #{replyDiscussid} AND ard.stu_id = #{stuid}
     </select>
     
 </mapper>

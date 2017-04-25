@@ -25,10 +25,10 @@
                                 <a href="#" class="aw-user-name">${discuss.stu.stuName }</a> <span
                                     class="text-color-999"> 发起了问题 </span> 
                                 <div class="aw-question-content">
-                                    <a href="/student-community/jsps/front/answer.jsp"
+                                    <a href="/student-community/jsps/front/discuss-details.jsp"
                                         class="pull-right text-color-999">回复</a>
                                     <h4>
-                                        <a href="/student-community/jsps/front/answer.jsp">${discuss.discussTitle }</a>
+                                        <a href="/student-community/discuss/getDicussDetail.a?discussid=${ discuss.discussid}">${discuss.discussTitle }</a>
                                     </h4>
                                 </div>
                             </div>

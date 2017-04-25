@@ -30,7 +30,13 @@ public interface BaseInterface<T> {
      * 根据id删除
      * @param id 实体类对象的id
      */
-    void delete(List<Integer> ids);
+    void delete(Integer id);
+    
+    /**
+     * 一次删除多条信息
+     * @param ids 多条信息的id
+     */
+    void deleteMany(List<Integer> ids);
 
     /**
      * 添加信息

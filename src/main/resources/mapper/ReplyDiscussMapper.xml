@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.ReplyDiscussMapper">
+
+    <insert id="save" parameterType="com.manage.entity.ReplyDiscuss">
+        INSERT INTO `reply_discuss` (`stu_id`, `discuss_id`, `content`)
+        VALUES (#{stu.stuid}, #{discuss.discussid}, #{content})
+    </insert>
+
+
+
+</mapper>

@@ -39,8 +39,8 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     }
 
     @Override
-    public void delete(List<Integer> ids) {
-        communityMapper.delete(ids);
+    public void deleteMany(List<Integer> ids) {
+        communityMapper.deleteMany(ids);
     }
 
     @Override
@@ -72,6 +72,12 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     @Override
     public Integer getNewComunityid() {
         return communityMapper.getNewComunityid();
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -14,13 +14,14 @@
 }
 .baseone
 {
-	 position: relative;
+	position: relative;
     min-width: 927px;
-    padding: 10px 0;
+    padding: 10px;
     overflow: hidden;
     background: #fff;
     border-bottom: 1px solid #e7eaf1;
-    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
+    font-size:17px;
+    margin:5px 0px;
 }
 .baseone-one
 {
@@ -128,4 +129,14 @@ a.QuestionMainAction {
 {
 	margin-left: 110px;
     min-height: 36px;
+}
+.may-QuestionHeader-side{
+    width: 280px;
+    padding-right: 20px;
+    text-align: right;
+}
+.may-QuestionHeader-main {
+    width: 687px;
+    padding-left: 20px;
+    box-sizing: border-box;
 }

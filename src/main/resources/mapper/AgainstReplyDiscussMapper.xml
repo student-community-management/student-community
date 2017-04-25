@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.AgainstReplyDiscussMapper">
+
+    <insert id="save" parameterType="com.manage.entity.AgainstReplyDiscuss">
+        INSERT INTO against_reply_discuss(reply_discuss_id,stu_id) 
+        VALUES(#{replyDiscuss.replyDiscussid},#{stu.stuid})
+    </insert>
+
+    <delete id="deleteByObj" parameterType="com.manage.entity.AgainstReplyDiscuss">
+        DELETE FROM against_reply_discuss WHERE
+        reply_discuss_id=#{replyDiscuss.replyDiscussid} AND stu_id=#{stu.stuid}
+    </delete>
+
+</mapper>

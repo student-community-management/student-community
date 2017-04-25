@@ -33,9 +33,8 @@
 
 </body>
 <script type="text/javascript">
-
 $(function() {
-    
+    $('#account').focus();
     $('#loginForm').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {

@@ -41,7 +41,7 @@ public class CommunityControl  {
     @RequestMapping("delComm")
     @ResponseBody
     public String deleteComm(@RequestBody List<Integer> ids ){
-        communityService.delete(ids);
+        communityService.deleteMany(ids);
         return "ok";
     }
 }

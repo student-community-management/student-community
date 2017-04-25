@@ -161,8 +161,6 @@
     <insert id="joinCommunity" parameterType="map">
          INSERT INTO stu_community(stu_id,community_id)
         VALUES(#{studentid},#{communityid})
-        
-        
     </insert>
 
     <update id="update" parameterType="com.manage.entity.Student">

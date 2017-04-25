@@ -14,15 +14,15 @@ public class PraiseReplyDiscuss implements Serializable {
      */
     private static final long serialVersionUID = -4362368629861596362L;
     private Student stu;
-    private Discuss discuss;
-    private Date praiseDate;
+    private ReplyDiscuss replyDiscuss;
+    private Date dateTime;
 
-    public Date getPraiseDate() {
-        return praiseDate;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setPraiseDate(Date praiseDate) {
-        this.praiseDate = praiseDate;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Student getStu() {
@@ -33,12 +33,12 @@ public class PraiseReplyDiscuss implements Serializable {
         this.stu = stu;
     }
 
-    public Discuss getDiscuss() {
-        return discuss;
+    public ReplyDiscuss getReplyDiscuss() {
+        return replyDiscuss;
     }
 
-    public void setDiscuss(Discuss discuss) {
-        this.discuss = discuss;
+    public void setReplyDiscuss(ReplyDiscuss replyDiscuss) {
+        this.replyDiscuss = replyDiscuss;
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Discuss;
+import com.manage.entity.ReplyDiscuss;
 import com.manage.mapper.discuss.DiscussMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
@@ -24,12 +25,11 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
     @Override
     public Discuss queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return discussMapper.queryOne(id);
     }
 
     @Override
-    public void delete(List<Integer> ids) {
+    public void deleteMany(List<Integer> ids) {
         // TODO Auto-generated method stub
 
     }
@@ -70,6 +70,52 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     @Override
     public Integer getMyAttentionDiscussCount(Integer id, String keyWord) {
         return discussMapper.getMyAttentionDiscussCount(id, keyWord);
+    }
+
+//    @Override
+//    public Discuss getDicsusDetail(Integer id) {
+//        return discussMapper.getDicsusDetail(id);
+//    }
+
+    @Override
+    public Integer checkAttention(Integer stuid, Integer discussid) {
+        return discussMapper.checkAttention(stuid, discussid);
+    }
+
+    @Override
+    public Integer checkReport(Integer stuid, Integer discussid) {
+        return discussMapper.checkReport(stuid, discussid);
+    }
+
+    @Override
+    public Integer getAttentionDiscussNum(Integer id) {
+        return discussMapper.getAttentionDiscussNum(id);
+    }
+
+    @Override
+    public List<ReplyDiscuss> getReplyDiscusses(PageParam pageParam, Integer discussid) {
+        return discussMapper.getReplyDiscusses(pageParam, discussid);
+    }
+
+    @Override
+    public Integer getReplyDiscussesCount(Integer discussid) {
+        return discussMapper.getReplyDiscussesCount(discussid);
+    }
+
+    @Override
+    public Integer checkPraiseReply(Integer replyDiscussid, Integer stuid) {
+        return discussMapper.checkPraiseReply(replyDiscussid, stuid);
+    }
+
+    @Override
+    public Integer checkAgainstReply(Integer replyDiscussid, Integer stuid) {
+        return discussMapper.checkAgainstReply(replyDiscussid, stuid);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

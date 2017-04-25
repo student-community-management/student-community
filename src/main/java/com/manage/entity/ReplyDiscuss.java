@@ -23,6 +23,43 @@ public class ReplyDiscuss implements Serializable {
     private Set<AgainstReplyDiscuss> againstReplyDiscusses;
     private Set<PraiseReplyDiscuss> praiseReplyDiscusses;
     private Set<ReportReplyDiscuss> ReportReplyDiscusses;
+    private Integer praiseCount; //赞的数量,在数据库中并没有,只是为了方便显示
+    private Integer againstCount; //踩的数量,在数据库中并没有,只是为了方便显示
+    private Integer checkPraise;
+    private Integer checkAgainst;
+
+    
+    public Integer getCheckPraise() {
+        return checkPraise;
+    }
+
+    public void setCheckPraise(Integer checkPraise) {
+        this.checkPraise = checkPraise;
+    }
+
+    public Integer getCheckAgainst() {
+        return checkAgainst;
+    }
+
+    public void setCheckAgainst(Integer checkAgainst) {
+        this.checkAgainst = checkAgainst;
+    }
+
+    public Integer getPraiseCount() {
+        return praiseCount;
+    }
+
+    public void setPraiseCount(Integer praiseCount) {
+        this.praiseCount = praiseCount;
+    }
+
+    public Integer getAgainstCount() {
+        return againstCount;
+    }
+
+    public void setAgainstCount(Integer againstCount) {
+        this.againstCount = againstCount;
+    }
 
     public Set<AgainstReplyDiscuss> getAgainstReplyDiscusses() {
         return againstReplyDiscusses;

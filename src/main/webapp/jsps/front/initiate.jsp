@@ -6,18 +6,18 @@
 <meta charset="utf-8">
 <title>学生社区</title>
 <link rel="icon" href="/student-community/ico/ico.png">
-<script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/layui/lay/modules/layedit.js"></script>
-<script src="/student-community/layui/layui.js"></script>
-<script src="/student-community/layui/area.js"></script>
 <link href="/student-community/layui/css/modules/laydate/laydate.css" rel="stylesheet">
 <link href="/student-community/layui/css/layui.css" rel="stylesheet">
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
 <link href="/student-community/css/mycssfront.css" rel="stylesheet">
 <link href="/student-community/css/docs.css" rel="stylesheet">
-<script src="/student-community/js/bootstrap.min.js"></script>
 <link href="/student-community/css/mymayachao.css" rel="stylesheet">
+<script src="/student-community/js/jquery.min.js"></script>
+<script src="/student-community/layui/layui.js"></script>
+<script src="/student-community/layui/lay/modules/layedit.js"></script>
+<script src="/student-community/layui/area.js"></script>
+<script src="/student-community/js/bootstrap.min.js"></script>
 </head>
 <script>
         layui.use('laydate', function(){
@@ -131,16 +131,16 @@
 </div>      
 			
 			 <div class="layui-form-item layui-form-text">
-					    <label class="ma-label">活动内容</label>
-					    <div class="layui-input-block">
-					      <textarea class="layui-textarea layui-hide" lay-verify="content" id="LAY_demo_editor">${activity.endDate}</textarea>
-					    </div>
-					  </div>
-				<div class="btn-group btn-group-justified" role="group" aria-label="...">
-				<div class="btn-group" role="group">
-				<button type="submit" class="btn btn-default">提交</button>
-				</div>
-				</div>
+			    <label class="ma-label">活动内容</label>
+			    <div class="layui-input-block">
+			      <textarea class="layui-textarea layui-hide" lay-verify="content" id="LAY_demo_editor">${activity.endDate}</textarea>
+			    </div>
+			  </div>
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+			<div class="btn-group" role="group">
+			<button type="submit" class="btn btn-default">提交</button>
+			</div>
+			</div>
 		</form>
 		
 	</div>

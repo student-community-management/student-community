@@ -39,11 +39,11 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void delete(List<Integer> ids) {
+    public void deleteMany(List<Integer> ids) {
         if (ids == null || ids.size() == 0) {
             throw new RuntimeException("传入对象为空");
         } else {
-            studentMapper.delete(ids);// 删除学生对象
+            studentMapper.deleteMany(ids);// 删除学生对象
         }
     }
 
@@ -138,6 +138,12 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     @Override
     public Integer stuBackLogin(Student stu) {
         return studentMapper.stuBackLogin(stu);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

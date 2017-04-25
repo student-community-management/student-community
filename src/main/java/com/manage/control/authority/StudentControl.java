@@ -114,7 +114,7 @@ public class StudentControl {
     @RequestMapping("deleteStu")
     @ResponseBody
     public String deleteStu(@RequestBody List<Integer> ids) {
-        studentService.delete(ids);
+        studentService.deleteMany(ids);
         return "ok";
     }
     
@@ -128,11 +128,10 @@ public class StudentControl {
     @ResponseBody
     public String frontLogin(@ModelAttribute Student stu, HttpServletRequest req) {
         String status = studentService.stuFrontLogin(stu).toString();
-
+        
         if ("1".equals(status)) {
             req.getSession().setAttribute("fstu", studentService.queryOne(stu.getStuid()));
         }
-        //System.out.println("stuName================="+req.getSession().getAttribute("fstu").toString());
         return status;
     }
     

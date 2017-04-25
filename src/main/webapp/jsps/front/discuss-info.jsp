@@ -29,10 +29,10 @@
                         rel="nofollow"><img src="" alt="" /></a>
 
                     <div class="aw-question-content">
-                        <a href="/student-community/jsps/front/answer.jsp"
+                        <a href="/student-community/jsps/front/discuss-details.jsp"
                             class="pull-right text-color-999">回复</a>
                         <h4>
-                            <a href="/student-community/jsps/front/answer.jsp">${discuss.discussTitle }</a>
+                            <a href="/student-community/discuss/getDicussDetail.a?discussid=${ discuss.discussid}">${discuss.discussTitle }</a>
                         </h4>
 
                     </div>
@@ -115,22 +115,19 @@
 </body>
 <script type="text/javascript">
 
-$(function(){
-    console.log(${pagination.currentPage});
-    console.log(${pagination.totalPage});
-});
-
     $("#question-input").keydown(function(event) {
         if (event.which == "13")
             window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
             "&currentPage=1";
     });
     
+    //直接点击的哪一页
     $('.pageNum').click(function(){
        window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
                "&currentPage="+$(this).html()+"&totalRecord="+${pagination.totalRecord};
     });  
     
+    //上一页
     $('.prev').click(function(){
         if(${pagination.currentPage == 1}){
             console.log('上一页不可用');
@@ -140,6 +137,7 @@ $(function(){
         "&currentPage="+${pagination.currentPage - 1}+"&totalRecord="+${pagination.totalRecord};
     }); 
     
+    //下一页
     $('.next').click(function(){
         if(${pagination.currentPage == pagination.totalPage}){
             console.log('下一页不可用');

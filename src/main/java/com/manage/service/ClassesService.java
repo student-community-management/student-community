@@ -31,7 +31,7 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
     }
 
     @Override
-    public void delete(List<Integer> ids) {
+    public void deleteMany(List<Integer> ids) {
         // TODO Auto-generated method stub
         
     }
@@ -63,6 +63,12 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
     @Override
     public List<String> queryClassesByGrade(Integer grade) {
         return classesMapper.queryClassesByGrade(grade);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+        
     }
     
 }
