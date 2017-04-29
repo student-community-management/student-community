@@ -29,14 +29,8 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     }
 
     @Override
-    public void deleteMany(List<Integer> ids) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void save(Discuss t) {
-        // TODO Auto-generated method stub
+        discussMapper.save(t);
 
     }
 
@@ -53,8 +47,8 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
-        return null;
+        return new PageData( discussMapper.getReportDiscussCount(keyWord), 
+                discussMapper.getReportDiscuss(pageParam,keyWord));
     }
 
     @Override
@@ -72,29 +66,9 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
         return discussMapper.getMyAttentionDiscussCount(id, keyWord);
     }
 
-//    @Override
-//    public Discuss getDicsusDetail(Integer id) {
-//        return discussMapper.getDicsusDetail(id);
-//    }
-
-    @Override
-    public Integer checkAttention(Integer stuid, Integer discussid) {
-        return discussMapper.checkAttention(stuid, discussid);
-    }
-
     @Override
     public Integer checkReport(Integer stuid, Integer discussid) {
         return discussMapper.checkReport(stuid, discussid);
-    }
-
-    @Override
-    public Integer getAttentionDiscussNum(Integer id) {
-        return discussMapper.getAttentionDiscussNum(id);
-    }
-
-    @Override
-    public List<ReplyDiscuss> getReplyDiscusses(PageParam pageParam, Integer discussid) {
-        return discussMapper.getReplyDiscusses(pageParam, discussid);
     }
 
     @Override
@@ -103,19 +77,19 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     }
 
     @Override
-    public Integer checkPraiseReply(Integer replyDiscussid, Integer stuid) {
-        return discussMapper.checkPraiseReply(replyDiscussid, stuid);
-    }
-
-    @Override
-    public Integer checkAgainstReply(Integer replyDiscussid, Integer stuid) {
-        return discussMapper.checkAgainstReply(replyDiscussid, stuid);
-    }
-
-    @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-        
+    }
+
+    @Override
+    public List<Discuss> getReportDiscuss(PageParam pageParam,String keyWord) {
+        return discussMapper.getReportDiscuss(pageParam,keyWord);
+    }
+
+    @Override
+    public Integer getReportDiscussCount(String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

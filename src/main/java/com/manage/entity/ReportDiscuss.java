@@ -8,7 +8,7 @@ import java.sql.Date;
  * @author ChenYuhao
  * 举报讨论
  */
-public class ReportDisscuss implements Serializable {
+public class ReportDiscuss implements Serializable {
     /**
      * 序列化id
      */

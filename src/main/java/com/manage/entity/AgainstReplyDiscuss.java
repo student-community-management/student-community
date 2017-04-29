@@ -15,6 +15,16 @@ public class AgainstReplyDiscuss implements Serializable {
     private Student stu;
     private ReplyDiscuss replyDiscuss;
     private Date dateTime;
+    
+    public AgainstReplyDiscuss() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public AgainstReplyDiscuss(Student stu, ReplyDiscuss replyDiscuss) {
+        super();
+        this.stu = stu;
+        this.replyDiscuss = replyDiscuss;
+    }
 
     public Date getDateTime() {
         return dateTime;

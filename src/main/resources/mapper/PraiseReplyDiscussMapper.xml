@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.discuss.PraiseReplyDiscussMapper">
-
+    
+    <select id="checkPraiseReply" parameterType="com.manage.entity.PraiseReplyDiscuss" resultType="int">
+        SELECT COUNT(*) FROM reply_discuss rd
+        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN student s ON s.stu_id = prd.stu_id
+        WHERE prd.reply_discuss_id = #{replyDiscuss.replyDiscussid} 
+        AND prd.stu_id = #{stu.stuid}
+    </select>
+    
     <insert id="save" parameterType="com.manage.entity.PraiseReplyDiscuss">
         INSERT INTO
         praise_reply_discuss(reply_discuss_id,stu_id)

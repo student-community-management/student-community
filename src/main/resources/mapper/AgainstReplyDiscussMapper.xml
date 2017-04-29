@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.discuss.AgainstReplyDiscussMapper">
 
+    <select id="checkAgainstReply" parameterType="com.manage.entity.AgainstReplyDiscuss" resultType="int" >
+        SELECT COUNT(*) FROM  reply_discuss rd
+        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id  = rd.reply_discuss_id
+        LEFT JOIN student s ON s.stu_id = ard.stu_id
+        WHERE ard.reply_discuss_id = #{replyDiscuss.replyDiscussid} 
+        AND ard.stu_id = #{stu.stuid}
+    </select>
+    
     <insert id="save" parameterType="com.manage.entity.AgainstReplyDiscuss">
-        INSERT INTO against_reply_discuss(reply_discuss_id,stu_id) 
+        INSERT INTO against_reply_discuss(reply_discuss_id,stu_id)
         VALUES(#{replyDiscuss.replyDiscussid},#{stu.stuid})
     </insert>
 
     <delete id="deleteByObj" parameterType="com.manage.entity.AgainstReplyDiscuss">
-        DELETE FROM against_reply_discuss WHERE
-        reply_discuss_id=#{replyDiscuss.replyDiscussid} AND stu_id=#{stu.stuid}
+        DELETE FROM against_reply_discuss 
+        WHERE reply_discuss_id=#{replyDiscuss.replyDiscussid} AND stu_id=#{stu.stuid}
     </delete>
 
 </mapper>

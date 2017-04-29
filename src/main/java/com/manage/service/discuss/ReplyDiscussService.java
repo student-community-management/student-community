@@ -18,6 +18,36 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
     private ReplyDiscussMapper replyDiscussMapper;
 
     @Override
+    public List<ReplyDiscuss> getReplyDiscusses(PageParam pageParam, Integer discussid) {
+        return replyDiscussMapper.getReplyDiscusses(pageParam, discussid);
+    }
+
+    @Override
+    public void save(ReplyDiscuss t) {
+        replyDiscussMapper.save(t);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        replyDiscussMapper.delete(id);
+    }
+
+    @Override
+    public void replyToReplyDisucss(ReplyDiscuss replyDisucss) {
+        replyDiscussMapper.replyToReplyDisucss(replyDisucss);
+    }
+
+    @Override
+    public List<ReplyDiscuss> queryReplyToReply(PageParam pageParam, Integer replyDiscussid) {
+        return replyDiscussMapper.queryReplyToReply(pageParam, replyDiscussid);
+    }
+
+    @Override
+    public Integer queryReplyToReplyCount(Integer replyDiscussid) {
+        return replyDiscussMapper.queryReplyToReplyCount(replyDiscussid);
+    }
+
+    @Override
     public List<ReplyDiscuss> queryAll(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
@@ -27,17 +57,6 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
     public ReplyDiscuss queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public void deleteMany(List<Integer> ids) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void save(ReplyDiscuss t) {
-        replyDiscussMapper.save(t);
     }
 
     @Override
@@ -52,16 +71,25 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
         return 0;
     }
 
+    public int getCount(String keyWord, int a) {
+
+        return 0;
+    }
+
+    public int getCount(String keyWord, String a) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    public void getCount(int a, String b) {
+        // TODO Auto-generated method stub
+
+    }
+
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public void delete(Integer id) {
-        // TODO Auto-generated method stub
-
     }
 
 }

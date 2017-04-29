@@ -23,8 +23,6 @@
             <c:forEach var="discuss" items="${ discussList }">
                 <div class="aw-item active discuss-content" data-topic-id="1176,814,">
                     <div class="aw-question-content">
-                        <a href="/student-community/jsps/front/discuss-details.jsp"
-                            class="pull-right text-color-999">回复</a>
                         <h4>
                             <a href="/student-community/discuss/getDicussDetail.a?discussid=${ discuss.discussid}">${discuss.discussTitle }</a>
                         </h4>

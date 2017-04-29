@@ -21,7 +21,7 @@ public class PraiseReplyDiscussControl {
 
     /**
      * 为回复点赞
-     * @param req reqeust
+     * @param req request
      * @param t PraiseReplyDiscuss 对象
      * @return
      */
@@ -36,7 +36,7 @@ public class PraiseReplyDiscussControl {
     
     /**
      * 为回复点赞
-     * @param req reqeust
+     * @param req request
      * @param t PraiseReplyDiscuss 对象
      * @return
      */

@@ -30,12 +30,6 @@ public class RoleService implements BaseService<Role>,RoleMapper {
     }
 
     @Override
-    public void deleteMany(List<Integer> ids) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
     public void save(Role t) {
         // TODO Auto-generated method stub
         

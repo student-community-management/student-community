@@ -11,15 +11,8 @@
 					<li><a href="/student-community/jsps/front/index.jsp">首页</a></li>
 					<li><a href="/student-community/jsps/front/activity.jsp">活动</a></li>
 					<li><a href="/student-community/discuss/getAllDiscuss.a">讨论</a></li>
-					<li><a href="#contact">问吧</a></li>
 					<li><a href="#contact">动态</a></li>
 				</ul>
-				<form class="navbar-form navbar-left">
-					<div class="form-group">
-						<input type="text" class="form-control msearch" placeholder="搜索你感兴趣的内容">
-					</div>
-					<button type="submit" class="btn btn-default msearch">搜索</button>
-				</form>
 				<ul class="nav navbar-nav navbar-right">
 					<li style="height:60px"><a href="#"><img src="/student-community/face/1.jpg" width="30px">&nbsp;${sessionScope.fstu.stuName }</a></li>
 				</ul>

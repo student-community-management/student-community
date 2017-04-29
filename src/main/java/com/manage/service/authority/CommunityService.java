@@ -1,14 +1,11 @@
 package com.manage.service.authority;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Community;
-import com.manage.entity.CommunityRole;
-import com.manage.entity.Role;
 import com.manage.mapper.authority.CommunityMapper;
 import com.manage.mapper.authority.CommunityRoleMapper;
 import com.manage.mapper.authority.RoleMapper;

@@ -9,6 +9,12 @@ import com.manage.mapper.BaseMapper;
 import com.manage.util.PageParam;
 
 public interface StudentMapper extends BaseMapper<Student> {
+    
+    /**
+     * 一次删除多条信息
+     * @param ids 多条信息的id
+     */
+    void deleteMany(List<Integer> ids);
 
     /**
      * 通过社团的id查询出社团中的所有学生

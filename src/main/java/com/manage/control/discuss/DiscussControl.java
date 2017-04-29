@@ -11,10 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.manage.entity.AgainstReplyDiscuss;
+import com.manage.entity.AttentionDiscuss;
 import com.manage.entity.Discuss;
+import com.manage.entity.PraiseReplyDiscuss;
 import com.manage.entity.ReplyDiscuss;
 import com.manage.entity.Student;
+import com.manage.mapper.discuss.AgainstReplyDiscussMapper;
+import com.manage.mapper.discuss.PraiseReplyDiscussMapper;
+import com.manage.service.discuss.AttentionDiscussService;
 import com.manage.service.discuss.DiscussService;
+import com.manage.service.discuss.ReplyDiscussService;
+import com.manage.util.PageData;
 import com.manage.util.PageParam;
 import com.manage.util.Pagination;
 
@@ -24,6 +32,29 @@ public class DiscussControl {
 
     @Autowired
     private DiscussService discussService;
+
+    @Autowired
+    private PraiseReplyDiscussMapper praiseReplyDiscussMapper;
+
+    @Autowired
+    private AgainstReplyDiscussMapper againstReplyDiscussMapper;
+
+    @Autowired
+    private AttentionDiscussService attentionDiscussService;
+
+    @Autowired
+    private ReplyDiscussService replyDiscussService;
+    
+    @RequestMapping("save")
+    @ResponseBody
+    public String save(HttpServletRequest req, @ModelAttribute Discuss discuss) {
+        
+        //获得学生对象
+        discuss.setStu((Student) req.getSession().getAttribute("fstu"));
+        //执行添加方法
+        discussService.save(discuss);
+        return "1";
+    }
 
     /**
      * 查询所有的讨论并按照时间倒序来排序
@@ -57,10 +88,13 @@ public class DiscussControl {
 
         // 将信息数据添加到ModelAndView中
         modelAndView.addObject("discussList", discussList);
+
         // 将分页数据添加到ModelAndView中
         modelAndView.addObject("pagination", pagination);
+
         // 前台选中哪个tabs选项
         modelAndView.addObject("choose", 1);
+
         // 跳转页面
         modelAndView.setViewName("front/discuss-info");
         return modelAndView;
@@ -104,7 +138,7 @@ public class DiscussControl {
         // 前台选中哪个tabs选项
         modelAndView.addObject("choose", 2);
         // 跳转页面
-        modelAndView.setViewName("front/discuss-info");
+        modelAndView.setViewName("front/discuss-choiceness");
         return modelAndView;
     }
 
@@ -168,7 +202,7 @@ public class DiscussControl {
      * @return
      */
     @RequestMapping("getDicussDetail")
-    public ModelAndView getDicsusDetail(ModelAndView modelAndView, Integer discussid,
+    public ModelAndView getDicsusDetail(ModelAndView modelAndView, @ModelAttribute Discuss discuss,
             HttpServletRequest req, @ModelAttribute Pagination pagination) {
 
         /**
@@ -180,45 +214,61 @@ public class DiscussControl {
          */
 
         // 获得学生的id
-        Integer stuid = ((Student) req.getSession().getAttribute("fstu")).getStuid();
+        Student stu = (Student) req.getSession().getAttribute("fstu");
+
+        // 得到此讨论的详细信息
+        discuss = discussService.queryOne(discuss.getDiscussid());
 
         // 添加-->详细的讨论信息
-        modelAndView.addObject("discuss", discussService.queryOne(discussid));
+        modelAndView.addObject("discuss", discuss);
+
+        AttentionDiscuss attentionDiscuss = new AttentionDiscuss();
+        attentionDiscuss.setStu(stu);
+        attentionDiscuss.setDiscuss(discuss);
 
         // 添加-->是否已经关注此讨论
-        modelAndView.addObject("checkAttention", discussService.checkAttention(stuid, discussid));
+        modelAndView.addObject("checkAttention",
+                attentionDiscussService.checkAttention(attentionDiscuss));
 
         // 添加-->是否已经举报过此讨论
-        modelAndView.addObject("checkReport", discussService.checkReport(stuid, discussid));
+        modelAndView.addObject("checkReport",
+                discussService.checkReport(stu.getStuid(), discuss.getDiscussid()));
 
         // 添加-->此讨论关注的人数
-        modelAndView.addObject("attentionNum", discussService.getAttentionDiscussNum(discussid));
+        modelAndView.addObject("attentionNum",
+                attentionDiscussService.getAttentionDiscussNum(discuss.getDiscussid()));
 
         // 信息总数
         pagination.setTotalRecord(pagination.getTotalRecord() == null
-                ? discussService.getReplyDiscussesCount(discussid) : pagination.getTotalRecord());
-        
-        System.out.println("pagination.getTotalRecord()====="+pagination.getTotalRecord());
-        
+                ? discussService.getReplyDiscussesCount(discuss.getDiscussid())
+                : pagination.getTotalRecord());
+
         // 当前页
         pagination.setCurrentPage(
                 pagination.getCurrentPage() == null ? 1 : pagination.getCurrentPage());
 
         // 分页数据
-        List<ReplyDiscuss> replyDiscussList = discussService.getReplyDiscusses(
-                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()), discussid);
+        List<ReplyDiscuss> replyDiscussList = replyDiscussService.getReplyDiscusses(
+                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()),
+                discuss.getDiscussid());
+
+        PraiseReplyDiscuss prd = null;
+        AgainstReplyDiscuss ard = null;
 
         // 将判断是否点赞/踩的变量赋值到回复中
         // 如果此讨论有回复才判断
         if (pagination.getTotalRecord() > 0) {
             for (ReplyDiscuss replyDiscuss : replyDiscussList) {
 
+                prd = new PraiseReplyDiscuss(stu, replyDiscuss);
+                ard = new AgainstReplyDiscuss(stu, replyDiscuss);
+
                 // 赞
-                replyDiscuss.setCheckPraise(
-                        discussService.checkPraiseReply(replyDiscuss.getReplyDiscussid(), stuid));
+                replyDiscuss.setCheckPraise(praiseReplyDiscussMapper.checkPraiseReply(prd));
+
                 // 踩
-                replyDiscuss.setCheckAgainst(
-                        discussService.checkAgainstReply(replyDiscuss.getReplyDiscussid(), stuid));
+                replyDiscuss.setCheckAgainst(againstReplyDiscussMapper.checkAgainstReply(ard));
+
             }
         }
 
@@ -233,4 +283,12 @@ public class DiscussControl {
 
         return modelAndView;
     }
+    
+    @RequestMapping("getReportDiscusses")
+    @ResponseBody
+    public PageData getReportDiscusses(PageParam pageParam, String kw){
+        return discussService.getPageData(pageParam, kw);
+    }
+    
+    
 }

@@ -27,6 +27,15 @@ public class Student implements Serializable {
     private Set<Community> communitys; // 参加的社团
     private Set<StuCommunityRole> stuCommunityRoles;// 担任的职务
     private String roleName; // 数据库中没有,为了方便的mapper映射
+    
+    public Student() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public Student(Integer stuid) {
+        super();
+        this.stuid = stuid;
+    }
 
     public Set<Community> getCommunitys() {
         return communitys;

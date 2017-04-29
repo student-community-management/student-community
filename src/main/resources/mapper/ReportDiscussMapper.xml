@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.ReportDiscussMapper"> 
+    <resultMap type="com.manage.entity.ReportDiscuss" id="reportDiscussMap">
+        <id column="reportDiscussid" property="report_discuss_id"/>
+        <result column="message" property="message"/>
+        <result column="report_date" property="reportDate"/>
+        <association property="stu" javaType="com.manage.entity.Student">
+            <id column="stu_id" property="stuid" />
+            <result column="stu_name" property="stuName"/>
+        </association>
+        <association property="discuss" javaType="com.manage.entity.Discuss">
+            <id column="stu_id" property="stuid" />
+            <result column="stu_name" property="stuName"/>
+        </association>
+    </resultMap>
+    
+    <insert id="save" parameterType="com.manage.entity.ReportDiscuss">
+        INSERT INTO report_discuss (stu_id, discuss_id, message) 
+        VALUES (#{stu.stuid}, #{discuss.discussid}, #{message})
+    </insert>
+    
+    
+    
+    
+</mapper>
+

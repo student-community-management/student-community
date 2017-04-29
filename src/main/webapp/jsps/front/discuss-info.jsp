@@ -29,8 +29,6 @@
                         rel="nofollow"><img src="" alt="" /></a>
 
                     <div class="aw-question-content">
-                        <a href="/student-community/jsps/front/discuss-details.jsp"
-                            class="pull-right text-color-999">回复</a>
                         <h4>
                             <a href="/student-community/discuss/getDicussDetail.a?discussid=${ discuss.discussid}">${discuss.discussTitle }</a>
                         </h4>

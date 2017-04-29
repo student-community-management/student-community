@@ -5,7 +5,7 @@
 <html lang="cn">
 <head>
 <meta charset="utf-8">
-<title>学生社区</title>
+<title>${ discuss.discussTitle }</title>
 <link rel="icon" href="/student-community/ico/ico.png">
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
@@ -35,18 +35,18 @@
                         </div>
                         <div class="mod-body">
                             <div class="content markitup-box">${ discuss.discussContent }</div>
-              </div>
+                        </div>
 
                     </div>
                     <div class="may-QuestionHeader-side">
                         <div class="QuestionFollowStatus-counts">
                             <div class="btn-group" role="group" aria-label="...">
-                                <button class="btn " type="button">关注者 ${ attentionNum }</button>
+                                <button class="btn " type="button">关注者<span id="attentionNum">${ attentionNum }</span> </button>
                                 <c:if test="${ checkAttention == 1 }">
-                                    <button class="btn btn-primary" type="button">取消关注</button>
+                                    <button class="btn btn-primary" type="button" id="attention">取消关注</button>
                                 </c:if>
                                 <c:if test="${ checkAttention == 0 || checkAttention == null }">
-                                    <button class="btn btn-primary" type="button">关注话题</button>
+                                    <button class="btn btn-primary" type="button" id="attention">关注话题</button>
                                 </c:if>
                             </div>
                         </div>
@@ -64,13 +64,11 @@
                                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;&nbsp;收藏
                                 </button>
                                 <c:if test="${checkReport == 0 || checkReport == null }">
-                                <button class="btn" type="button">
-                                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报
-                                </button>
+                                <button class="btn" type="button" id="report"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报</button>
                                 </c:if>
                                 <c:if test="${checkReport == 1 }">
                                 <button class="btn" type="button">
-                                    <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;已举报
+                                    <span class="glyphicon glyphicon-flag disable" aria-hidden="true"></span>&nbsp;&nbsp;已举报
                                 </button>
                                 </c:if>
                                 <span> 发布时间: ${ fn:substring(discuss.discussDate,0,fn:length(discuss.discussDate)-2)}</span>
@@ -101,6 +99,11 @@
                     <c:if test="${ replyDiscuss.checkAgainst != 1 }"> class="btn btn-default btn-sm down"</c:if>>
                       <span class="glyphicon glyphicon-chevron-down"></span><span class="downNum">${replyDiscuss.againstCount }</span>
                     </button>
+                     <button type="button" class="btn btn-default btn-sm reply">回复</button>
+                    <c:if test="${sessionScope.fstu.stuid == replyDiscuss.stu.stuid }">
+                        <button type="button" class="btn btn-default btn-sm del">删除此回复</button>
+                    </c:if>
+                         <button type="button" class="btn btn-default btn-sm look">查看回复</button>
                 </div>
         </div>
         </c:forEach>
@@ -218,8 +221,6 @@ $(function(){
             return false;
         }
         
-        
-       console.log('$(#discussid).val()'+$('#discussid').val());
        layer.msg('发表成功',{time:1000}); 
        setTimeout(function(){
             $.ajax({
@@ -237,6 +238,78 @@ $(function(){
     
 });
 
+// 举报
+$('#report').click(function(){
+    var $btn = $(this);
+    var $text = $(this).html();
+    
+    console.log('text='+$text);
+    if($text == '<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报'){
+        layer.prompt({
+       		formType: 2,
+       	  	title: '请输入你要举报的内容200字内',
+       		maxlength: 200,
+       	  	area: ['230px', '230px'] //自定义文本域宽高
+       		}, function(value, index){
+       		 $.ajax({
+                 type:'post',
+                 url:'/student-community/rd/save.a',
+                 data:{"discuss.discussid":${ discuss.discussid },'message':value},
+                 success:function(data){
+                     if(data == '1'){
+                         layer.msg('添加评论成功');
+                         $btn.html('<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;已举报');
+                         $btn.addClass('disable');
+                         layer.close(index);
+                     }
+                 }
+              });
+           	  
+       		}
+       	);
+    }
+    
+});
+
+
+
+// 关注
+$('#attention').click(function(){
+    var $text = $(this).html();
+    var $btn = $(this);
+    var $num = parseInt($('#attentionNum').text());
+    if($text == '取消关注'){
+        $.ajax({
+            type:'post',
+            url:'/student-community/ad/del.a',
+            data:{"discuss.discussid":${ discuss.discussid }},
+            success:function(data){
+                if(data == '1'){
+                    $btn.html('关注话题');
+                    $('#attentionNum').text($num-1);
+                }
+            }
+         });
+    } else if($text == '关注话题'){
+        $.ajax({
+            type:'post',
+            url:'/student-community/ad/save.a',
+            data:{"discuss.discussid":${ discuss.discussid }},
+            success:function(data){
+                if(data == '1'){
+                    $btn.html('取消关注');
+                    $('#attentionNum').text($num+1);
+                }
+            }
+         });
+        
+    }
+    
+    
+});
+
+
+//点赞
 $('.up').click(function(){
     var replyDiscussid = $(this).parent().find('.replyDiscussid').val();
     var $up    = $(this).find('.upNum')
@@ -245,7 +318,6 @@ $('.up').click(function(){
  	var $btn   = $(this);
  	
  	if(active.indexOf('active') == -1){
-	    console.log("没被点击过");
 	    $.ajax({
 	        type:'post',
 	        url:'/student-community/prd/save.a',
@@ -259,7 +331,6 @@ $('.up').click(function(){
 	    });
 	    
        } else {
-           console.log("被点击过");
            $.ajax({
    	        type:'post',
    	        url:'/student-community/prd/delete.a',
@@ -276,6 +347,7 @@ $('.up').click(function(){
 	
 });
 
+// 踩
 $('.down').click(function(){
     var replyDiscussid = $(this).parent().find('.replyDiscussid').val();
     var $down    = $(this).find('.downNum');
@@ -312,6 +384,84 @@ $('.down').click(function(){
         
        }
 });
+
+// 删除回复
+$('.del').click(function(){
+   	var $parent = $(this).parent().parent();
+   	var $replyDiscussid = $(this).parent().find('.replyDiscussid').val();
+    layer.confirm('此条回复是您写的所以您才可以删除.是否确定删除?',{icon:3,title:'温馨提示'},function(index){
+        $.ajax({
+         	type:'post',   
+            url:'/student-community/replyDiscuss/del.a',
+            data:{replyDiscussid : $replyDiscussid },
+            success:function(data){
+                if(data == '1'){
+                    layer.msg('删除成功');
+                    $parent.remove();
+                }
+            }
+            
+        });
+    });
+});
+
+
+// 回复讨论中的回答
+
+$('.reply').click(function(){
+   	var $replyDiscussid = $(this).parent().find('.replyDiscussid').val();
+   	layer.prompt({
+   		formType: 2,
+   	  	title: '请出入你要回复的内容200字内',
+   		maxlength: 200,
+   	  	area: ['230px', '230px'] //自定义文本域宽高
+   		}, function(value, index, elem){
+       	  
+   		  	$.ajax({
+   		  	    type:'post',
+   		  	    url:'/student-community/replyDiscuss/replyToReplyDiscuss.a',
+   		  	    data:{'replyDiscuss.replyDiscussid':$replyDiscussid,'content':value  },
+   		  	    success:function(data){
+   		  	        layer.msg('添加评论成功');
+   		  	   		layer.close(index);
+   		  	    }
+   		  	});
+   		    
+       	  
+   		}
+   	);
+   	
+   	
+    
+});
+
+// 查看回复
+
+$('.look').click(function(){
+    var $replyDiscussid = $(this).parent().find('.replyDiscussid').val();
+    $.ajax({
+        type:'post',
+        url:'/student-community/replyDiscuss/getRepliesCount.a',
+        data:{'replyDiscussid':$replyDiscussid},
+        success:function(data){
+            if(data == '0' || data == 'null'){
+                layer.msg('此评论下没有回复');
+            } else {
+                layer.open({
+                    type:2,
+                    title:'查看回复',
+                    content:'/student-community/replyDiscuss/getReplies.a?totalRecord='+parseInt(data)
+                            +'&replyDiscussid='+$replyDiscussid,
+                    area:['600px','90%'],
+                    btn:['关闭']
+                });
+                
+            }
+        }
+    });
+});
+
+//-------------------------------------分页---------------------------------------
 //直接点击的哪一页
 $('.pageNum').click(function(){
    window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
@@ -337,9 +487,8 @@ $('.next').click(function(){
 });
 
 $("#answer").click(function(){
-    console.log('这是answer的click事件');
     $("html,body").animate({scrollTop:$("#ss").offset().top},1000);
-});
+}); 
 
 </script>
 </html>
