@@ -284,6 +284,12 @@ public class DiscussControl {
         return modelAndView;
     }
     
+    /**
+     * 后台查看讨论,这些讨论都是被举报过的
+     * @param pageParam
+     * @param kw
+     * @return
+     */
     @RequestMapping("getReportDiscusses")
     @ResponseBody
     public PageData getReportDiscusses(PageParam pageParam, String kw){

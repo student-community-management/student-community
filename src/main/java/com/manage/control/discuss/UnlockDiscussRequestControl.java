@@ -3,8 +3,6 @@ package com.manage.control.discuss;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,62 +11,56 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.Discuss;
 import com.manage.entity.LockDiscuss;
-import com.manage.entity.ReportDiscuss;
-import com.manage.entity.Student;
+import com.manage.entity.UnlockDiscussRequest;
 import com.manage.service.discuss.DiscussService;
 import com.manage.service.discuss.LockDiscussService;
-import com.manage.service.discuss.ReportDiscussService;
+import com.manage.service.discuss.UnlockDiscussRequestService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Controller
-@RequestMapping("rd/")
-public class ReportDiscussControl {
+@RequestMapping("udr/")
+public class UnlockDiscussRequestControl {
+
+    @Autowired
+    private UnlockDiscussRequestService unlockDiscussRequestService;
     
     @Autowired
-    private ReportDiscussService reportDiscussService;
-
+    private LockDiscussService lockDiscussService;
+    
     @Autowired
     private DiscussService discussService;
 
-    @Autowired
-    private LockDiscussService lockDiscussService;
-
-    @RequestMapping("save")
-    @ResponseBody
-    public String save(HttpServletRequest req, ReportDiscuss reportDiscuss) {
-        reportDiscuss.setStu((Student) req.getSession().getAttribute("fstu"));
-        reportDiscussService.save(reportDiscuss);
-        return "1";
-    }
-
-    @RequestMapping("del")
-    @ResponseBody
-    public String del() {
+    public String save(UnlockDiscussRequest unlockDiscussRequest) {
+        unlockDiscussRequestService.save(unlockDiscussRequest);
         return "1";
     }
 
     /**
-     * 得到举报的详细内容
+     * 查看讨论的解锁 请求(未处理的)
      * @param pageParam
-     * @param discussid
+     * @param kw
      * @return
      */
-    @RequestMapping("getReportContent")
+    @RequestMapping("query")
     @ResponseBody
-    public PageData getReportContent(PageParam pageParam, Integer discussid) {
-        return reportDiscussService.getPageData(pageParam, discussid);
+    public PageData query(PageParam pageParam, String kw) {
+        return unlockDiscussRequestService.getPageData(pageParam, kw);
     }
 
+    /**
+     * 
+     * @param ids 需要处理的 UnlockDiscussRequest的id
+     * @param status 如果处理结果0则是不通过,结果为1时则为通过(int 类型,如果没有接收则默认为未通过)
+     * @return
+     */
     @RequestMapping("setStatus")
     @ResponseBody
-    public String setReportStatus(@RequestBody List<Integer> ids, Integer unlock, String msg) {
-
+    public String setStatus(@RequestBody List<Integer> ids, Integer lock, String msg) {
         // 更改处理状态为已处理
-        reportDiscussService.setReportDiscussStatus(ids);
-        
-        //如果确认解封
-        if (unlock == 1) {
+        unlockDiscussRequestService.setStatus(ids);
+
+        if (lock == 1) {
             // 用List来封装前台获取的数据(LockDiscuss)
             List<LockDiscuss> list = new ArrayList<LockDiscuss>();
             // LockDiscuss对象
@@ -81,12 +73,13 @@ public class ReportDiscussControl {
                 lockDiscuss.setMessage(msg);
                 list.add(lockDiscuss);
             }
-            // status 为1 则为显示
-            discussService.setDiscussStatus(ids, 1);
+            // status 为0 则为不显示
+            discussService.setDiscussStatus(ids, 0);
             // 将处理结果保存到数据库
             lockDiscussService.save(list);
         }
 
         return "ok";
     }
+
 }

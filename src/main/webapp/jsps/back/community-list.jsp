@@ -10,7 +10,7 @@
     <a href="#" id="commclose">关闭</a>
 </div>
 <div id="commtoolbar">
-    <input id="search"></input> 
+    <input id="csearch"></input> 
     <a href="#" id="addComm" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
     <a href="#" id="removeComm" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
     <a href="#" id="updateComm" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
@@ -73,7 +73,7 @@
         
         //---datagrid---end
         //---searchbox---
-        $('#search').searchbox({
+        $('#csearch').searchbox({
             searcher : function(value) {
                 if (value.indexOf('\'') != -1) {
                     $.messager.alert('警告', '不能传入单引号！', 'warning');

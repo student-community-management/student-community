@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.manage.entity.Discuss;
-import com.manage.entity.ReplyDiscuss;
 import com.manage.mapper.BaseMapper;
 import com.manage.util.PageParam;
 
@@ -51,18 +50,27 @@ public interface DiscussMapper extends BaseMapper<Discuss> {
      * @return 回复数量
      */
     Integer getReplyDiscussesCount(@Param("discussid") Integer discussid);
-    
+
     /**
-     * 得到举报过的讨论
+     * 得到举报过的讨论,举报的处理结果为未处理,显示状态为显示
      * @param pageParam 分页条件
      * @param keyWord 查询关键字
      * @return
      */
-    List<Discuss> getReportDiscuss(PageParam pageParam,String keyWord);
-    
+    List<Discuss> getReportDiscusses(@Param("pageParam") PageParam pageParam,
+            @Param("keyWord") String keyWord);
+
     /**
-     * 得到举报过的讨论的数量
+     * 得到举报过的讨论的数量,处理结果为未处理,显示状态为显示
      * @return
      */
-    Integer getReportDiscussCount(String keyWord);
+    Integer getReportDiscussesCount(@Param("keyWord") String keyWord);
+
+    /**
+     * 更改讨论的状态 0为不显示,1为显示
+     * @param ids 要删除的id
+     * @param status 修改显示状态
+     */
+    void setDiscussStatus(@Param("ids") List<Integer> ids, @Param("status") Integer status);
+
 }

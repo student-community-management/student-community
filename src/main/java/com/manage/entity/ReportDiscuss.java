@@ -18,6 +18,7 @@ public class ReportDiscuss implements Serializable {
     private Discuss discuss;
     private String message;
     private Date reportDate;
+    private int status; //处理状态 0.未处理 1.已经处理
 
     public Integer getReportDiscussid() {
         return reportDiscussid;
@@ -25,6 +26,14 @@ public class ReportDiscuss implements Serializable {
 
     public void setReportDiscussid(Integer reportDiscussid) {
         this.reportDiscussid = reportDiscussid;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Student getStu() {

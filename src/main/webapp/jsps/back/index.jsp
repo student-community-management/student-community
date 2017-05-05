@@ -15,14 +15,17 @@
         style="height: 60px; background: #B3DFDA; padding: 10px">north region</div>
     <div data-options="region:'west',split:true,title:'管理菜单'" style="width: 200px;">
         <div id="mnav-accordion" class="mnav-accordion">
-            <div title="社区管理" iconCls="icon-ok" class="mnav-item">
+            <div title="社区用户管理" iconCls="icon-ok" class="mnav-item">
                 <ul>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/stu-list.jsp" class="mnav-items">学生管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/manager-list.jsp" class="mnav-items">管理人员管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">活动管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/discuss-list.jsp" class="mnav-items">讨论管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">说说管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/community-list.jsp" class="mnav-items">社团管理</a></li>
+                </ul>
+            </div>
+            <div title="社区内容管理" iconCls="icon-ok" class="mnav-item">
+                <ul>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/reportDiscuss-list.jsp" class="mnav-items">被举报讨论</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/unlockDiscuss-list.jsp" class="mnav-items">申请解锁讨论</a></li>
                 </ul>
             </div>
             <div title="权限管理" iconCls="icon-ok" class="mnav-item">

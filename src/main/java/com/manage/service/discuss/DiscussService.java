@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Discuss;
-import com.manage.entity.ReplyDiscuss;
 import com.manage.mapper.discuss.DiscussMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
+/**
+ * 讨论的Service层
+ * @author ChenYuhao
+ *
+ */
 @Service
 public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
@@ -47,8 +51,8 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        return new PageData( discussMapper.getReportDiscussCount(keyWord), 
-                discussMapper.getReportDiscuss(pageParam,keyWord));
+        return new PageData(discussMapper.getReportDiscussesCount(keyWord),
+                discussMapper.getReportDiscusses(pageParam, keyWord));
     }
 
     @Override
@@ -82,14 +86,20 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     }
 
     @Override
-    public List<Discuss> getReportDiscuss(PageParam pageParam,String keyWord) {
-        return discussMapper.getReportDiscuss(pageParam,keyWord);
+    public List<Discuss> getReportDiscusses(PageParam pageParam, String keyWord) {
+        return discussMapper.getReportDiscusses(pageParam, keyWord);
     }
 
     @Override
-    public Integer getReportDiscussCount(String keyWord) {
+    public Integer getReportDiscussesCount(String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public void setDiscussStatus(List<Integer> ids, Integer status) {
+        discussMapper.setDiscussStatus(ids, status);
+    }
+
 
 }
