@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.manager.MgrRoleMapper">
+    <resultMap type="com.manage.entity.MgrRole" id="mgrRoleMap">
+        <id column="mgr_role_id" property="mgrRoleid"/>
+        <result column="mgr_role_name" property="mgrRoleName"/>
+        <result column="level" property="level"/>
+    </resultMap>
+    
+    
+    <select id="queryAll" parameterType="map" resultMap="mgrRoleMap">
+        SELECT * FROM mgr_role mr
+        WHERE mr.mgr_role_id != 1
+        <if test="keyWord != null">
+            AND mr.mgr_role_name LIKE '%${keyWord}%' 
+        </if>
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+    </select>
+    
+    
+    <select id="getCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM mgr_role mr
+        WHERE mr.mgr_role_id != 1
+        <if test="keyWord != null">
+            AND mr.mgr_role_name LIKE '%${keyWord}%' 
+        </if>
+    </select>
+    
+    <select id="queryForCommbo" resultMap="mgrRoleMap">
+        SELECT * FROM mgr_role mr
+        WHERE mr.mgr_role_id != 1
+    </select>
+    
+</mapper>

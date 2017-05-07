@@ -114,7 +114,7 @@ public class StudentControl {
         studentService.deleteMany(ids);
         return "ok";
     }
-    
+
     /**
      * 前台登陆
      * @param stu 学生的帐号和密码
@@ -125,13 +125,14 @@ public class StudentControl {
     @ResponseBody
     public String frontLogin(@ModelAttribute Student stu, HttpServletRequest req) {
         String status = studentService.stuFrontLogin(stu).toString();
-        
+
         if ("1".equals(status)) {
+            //将学生信息保存到session中
             req.getSession().setAttribute("fstu", studentService.queryOne(stu.getStuid()));
         }
         return status;
     }
-    
+
     /**
      * 后台管理员登陆
      * @param stu 管理员的帐号和密码
@@ -142,12 +143,20 @@ public class StudentControl {
     @ResponseBody
     public String backLogin(@ModelAttribute Student stu, HttpServletRequest req) {
         String status = studentService.stuBackLogin(stu).toString();
-        
+
         if ("1".equals(status)) {
-            req.getSession().setAttribute("bstu", studentService.queryOne(stu.getStuid()));
+            //将管理人员信息保存在session中
+            req.getSession().setAttribute("bstu", studentService.queryOneForBack(stu.getStuid()));
         }
-        
         return status;
+    }
+
+    @RequestMapping("invalidate")
+    @ResponseBody
+    public String invalidate(HttpServletRequest req) {
+        //注销用户
+        req.getSession().invalidate();
+        return "1";
     }
 
 }

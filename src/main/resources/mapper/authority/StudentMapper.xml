@@ -24,17 +24,18 @@
         select
         <include refid="stuColumn" />
         ,cls.grade,cls.classes
-        from student s
+        FROM student s
         INNER JOIN stu_community sc on s.stu_id = sc.stu_id
         INNER JOIN classes cls on
         s.classes_id = cls.classes_id
-        where
+        WHERE
         sc.community_id = #{id}
     </select>
     
     <select id="queryAllForStu" parameterType="map" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
         <if test="isClassesid == false"> 
-           select c.stu_id,c.stu_name,c.stu_sex,CASE c.stu_sex WHEN 1 then '男' WHEN 0 then '女' END AS 'sex_name',c.role_name FROM (
+            SELECT c.stu_id,c.stu_name,c.stu_sex,CASE c.stu_sex WHEN 1 THEN '男' WHEN 0 THEN '女'
+            END AS 'sex_name',c.role_name FROM (
             SELECT s.stu_id,s.stu_name,s.stu_sex,r.role_name FROM community_role cr
             INNER JOIN role r ON cr.role_id = r.role_id
             INNER JOIN stu_community_role scr ON scr.community_role_id = cr.community_role_id
@@ -42,31 +43,31 @@
             where cr.community_id = 1
             ) c
             <if test="keyWord != null">
-            and (CONCAT(c.stu_id,'')  like '%${keyWord}%'
-                 or c.stu_name like '%${keyWord}%'
-                 or c.sex_name like '%${keyWord}%')
-                 or r.role_name like '%${keyWord}%'
+            and (CONCAT(c.stu_id,'')  LIKE '%${keyWord}%'
+                 OR c.stu_name LIKE '%${keyWord}%'
+                 OR c.sex_name LIKE '%${keyWord}%')
+                 OR r.role_name LIKE '%${keyWord}%'
             </if>
             LIMIT ${pageParam.startIndex},${pageParam.rows}
         </if>
         <if test="isClassesid == true">
-            select * from (
-            select *, case 
-            when grade = 0 then '一年级'
-            when grade = 1 then '二年级' 
-            when grade = 2 then '三年级' 
-            when grade = 3 then '四年级'
-            else '已毕业'
-            end as 'grade_name'
-            from (
-            select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
-             from  classes cls inner join student s on cls.classes_id = s.classes_id
+            SELECT * from (
+            SELECT *, case 
+            WHEN grade = 0 then '一年级'
+            WHEN grade = 1 then '二年级' 
+            WHEN grade = 2 then '三年级' 
+            WHEN grade = 3 then '四年级'
+            ELSE '已毕业'
+            END AS 'grade_name'
+            FROM (
+            SELECT s.*,cls.classes,cls.grade,CASE s.stu_sex WHEN 1 then '男' WHEN 0 then '女' end as 'sex_name'
+             FROM  classes cls INNER JOIN student s on cls.classes_id = s.classes_id
              ) t
             ) c 
             <if test="keyWord != null">
-            where c.stu_name like '%${keyWord}%'
-            or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
-            or c.sex_name like '%${keyWord}%'
+            WHERE c.stu_name like '%${keyWord}%'
+            OR CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
+            OR c.sex_name like '%${keyWord}%'
             </if>
             LIMIT ${pageParam.startIndex},${pageParam.rows}
         </if>
@@ -76,63 +77,68 @@
         
         <if test="isClassesid == false">
         SELECT COUNT(*) FROM (
-        SELECT c.stu_id,c.stu_name,c.stu_sex,CASE c.stu_sex WHEN 1 then '男' WHEN 0 then '女' END AS 'sex_name',c.role_name FROM (
+        SELECT c.stu_id,c.stu_name,c.stu_sex,CASE c.stu_sex WHEN 1 then '男' WHEN 0 THEN '女' 
+        END AS 'sex_name',c.role_name FROM (
         SELECT s.stu_id,s.stu_name,s.stu_sex,r.role_name FROM community_role cr
         INNER JOIN role r ON cr.role_id = r.role_id
         INNER JOIN stu_community_role scr ON scr.community_role_id = cr.community_role_id
         INNER JOIN student s ON scr.stu_id = s.stu_id
-        where cr.community_id = 1
+        WHERE cr.community_id = 1
         ) c
             <if test="keyWord != null">
-            and (CONCAT(c.stu_id,'')  like '%${keyWord}%'
-                 or c.stu_name like '%${keyWord}%'
-                 or c.sex_name like '%${keyWord}%')
-                 or r.role_name like '%${keyWord}%'
+            AND (CONCAT(c.stu_id,'')  LIKE '%${keyWord}%'
+                 OR c.stu_name LIKE '%${keyWord}%'
+                 OR c.sex_name LIKE '%${keyWord}%')
+                 OR r.role_name LIKE '%${keyWord}%'
             </if>
         ) t
         </if>
         <if test="isClassesid == true"> 
-            select COUNT(*) from (
-            select * from (select *, case  
-            when grade = 0 then '一年级' 
-            when grade = 1 then '二年级' 
-            when grade = 2 then '三年级' 
-            when grade = 3 then '四年级' 
-            else '已毕业' end as 'grade_name'
-             from (select s.*,cls.classes,cls.grade,case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
-            from  classes cls inner join student s on cls.classes_id = s.classes_id) t) b 
+            SELECT COUNT(*) from (
+            SELECT * FROM (SELECT *, CASE  
+            WHEN grade = 0 THEN '一年级' 
+            WHEN grade = 1 THEN '二年级' 
+            WHEN grade = 2 THEN '三年级' 
+            WHEN grade = 3 THEN '四年级' 
+            ELSE '已毕业' end as 'grade_name'
+             FROM (select s.*,cls.classes,cls.grade,case s.stu_sex WHEN 1 THEN '男' WHEN 0 THEN '女' END AS 'sex_name'
+            FROM  classes cls inner join student s on cls.classes_id = s.classes_id) t) b 
             ) c
            <if test="keyWord != null">
-            where c.stu_name like '%${keyWord}%'
-            or CONCAT(c.stu_id,'')  like '%${keyWord}%'
-            or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
-            or c.sex_name like '%${keyWord}%'
+            WHERE c.stu_name LIKE '%${keyWord}%'
+            OR CONCAT(c.stu_id,'')  LIKE '%${keyWord}%'
+            OR CONCAT(c.stu_birthday,'')  LIKE '%${keyWord}%'
+            OR c.sex_name LIKE '%${keyWord}%'
             </if>
         </if>
     </select>
     
     <select id="getAllManager" parameterType="map" resultType="com.manage.entity.Student"
          resultMap="stuSimpleResultMap">
-        select * from (
-        select s.*, case s.stu_sex when 1 then '男' when 0 then '女' end as 'sex_name'
-        from   student s ) c where c.classes_id is  null
+        SELECT * from (
+        SELECT s.*, CASE s.stu_sex WHEN 1 then '男' WHEN 0 THEN '女' END AS 'sex_name'
+        FROM   student s ) c WHERE c.classes_id IS  NULL
         <if test="keyWord != null">
-        CONCAT(c.stu_id,'')  like '%1%' 
-        or c.stu_name like '%${keyWord}%'
-        or CONCAT(c.stu_birthday,'')  like '%${keyWord}%'
-        or c.sex_name like '%${keyWord}%'
+        CONCAT(c.stu_id,'')  LIKE '%${keyWord}%' 
+        OR c.stu_name LIKE '%${keyWord}%'
+        OR CONCAT(c.stu_birthday,'')  LIKE '%${keyWord}%'
+        OR c.sex_name LIKE '%${keyWord}%'
         </if>
         LIMIT ${pageParam.startIndex},${pageParam.rows}
      </select>
      
      <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student"  resultMap="stuSimpleResultMap">
-        select s.*,cls.classes,cls.grade
-        from  classes cls inner join student s on cls.classes_id = s.classes_id
-        where s.stu_id = #{id}
+        SELECT s.*,cls.classes,cls.grade
+        FROM  classes cls INNER JOIN student s ON cls.classes_id = s.classes_id
+        WHERE s.stu_id = #{id}
+     </select>
+
+     <select id="queryOneForBack" parameterType="int" resultType="com.manage.entity.Student"  resultMap="stuSimpleResultMap">
+        SELECT * FROM  student s  WHERE s.stu_id = #{id}
      </select>
      
      <select id="getNewMgrid" resultType="java.lang.Integer">
-        select stu_id from student ORDER BY stu_id desc LIMIT 0,1
+        SELECT stu_id FROM student ORDER BY stu_id DESC LIMIT 0,1
      </select>  
      
      <select id="stuFrontLogin" parameterType="com.manage.entity.Student" resultType="Integer">

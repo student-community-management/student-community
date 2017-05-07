@@ -151,6 +151,7 @@
                 textField:'roleName',
                 panelHeight:'auto',
                 width:200,
+                editable:false,
                 onLoadSuccess:function(){
                     var data = $('#mgrRoles').combobox('getData');
                     if(roleName == null){

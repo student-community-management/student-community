@@ -146,4 +146,10 @@ public class StudentService implements BaseService<Student>, StudentMapper {
         
     }
 
+    @Override
+    public Student queryOneForBack(Integer id) {
+        
+        return studentMapper.queryOneForBack(id);
+    }
+
 }

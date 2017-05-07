@@ -24,5 +24,13 @@ public interface CommunityRoleMapper extends BaseMapper<CommunityRole> {
      */
     void autoSaveCommRoles(@Param("commid") Integer commid,
             @Param("roleids") List<Integer> roleids);
-
+    
+    
+    /**
+     * 当删除社团时也会删除社团所对应的角色
+     * @param ids 社团的id
+     * 
+     */
+    void delInvalidCommRoles(@Param("ids") List<Integer> ids);
+    
 }

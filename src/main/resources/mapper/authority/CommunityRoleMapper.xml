@@ -30,6 +30,15 @@
         VALUE(#{stuid},#{communityRoleid})
     </insert>
 
-
+    
+    <delete id="delInvalidCommRoles">
+        DELETE FROM community_role 
+        WHERE community_id IN 
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        
+    </delete>
+    
 </mapper>
 

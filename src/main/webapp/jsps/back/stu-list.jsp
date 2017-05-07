@@ -398,10 +398,8 @@
     
     //addStu button click event
     $('#addStu').click(function() {
-        //init #addStuWindow 
         loadAddWindow();
         
-        //open #addStuWindow 
         $('#addStuWindow').window('open');
     });
     
@@ -420,8 +418,6 @@
          var cls = rowData[0].classes.classesid;
          var stuNativePlace = rowData[0].stuNativePlace;
          var stuBirthday = rowData[0].stuBirthday;
-         
-         console.log('cls cls cls========'+cls);
          
         //init #addStuWindow
         loadAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);

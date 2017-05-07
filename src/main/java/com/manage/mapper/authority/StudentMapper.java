@@ -78,4 +78,12 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return 如果为1则为登陆成功
      */
     Integer stuBackLogin(Student stu);
+    
+    
+    /**
+     * 通过id获取后台管理人员的信息
+     * @param id 管理人员的id
+     * @return 管理人员对象
+     */
+    Student queryOneForBack(Integer id);
 }

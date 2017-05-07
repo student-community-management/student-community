@@ -10,14 +10,14 @@
     </resultMap>
 
     <select id="queryAll" parameterType="map" resultType="com.manage.entity.Classes" resultMap="classesResultMap">
-        select * from classes
+        SELECT * FROM classes
         <if test="keyWord == 'no'">
-            where grade  &lt;= 3
+            WHERE grade  &lt;= 3
         </if>
     </select>
 
     <select id="queryClassesByGrade" parameterType="int" resultType="string">
-        select classes from classes where grade = #{grade}
+        SELECT classes FROM classes WHERE grade = #{grade}
     
     </select>
 

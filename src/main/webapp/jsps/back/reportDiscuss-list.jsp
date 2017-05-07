@@ -126,23 +126,26 @@ $(function() {
             }]
         ],
         onRowContextMenu: function(e, index, data) {
-            e.preventDefault();
-
             if (index != -1) {
+                $('#report-discuss-list').datagrid('clearSelections');
+                $('#report-discuss-list').datagrid('selectRow',index);
+                e.preventDefault(); // 屏蔽浏览器自带的右键菜单
                 $('#right').menu('show', {
                     left: e.pageX,
                     top: e.pageY
                 });
-                $('#details').click(function() {
-                    $('#model').window({
-                        href:'report-content.jsp?discussid='+data.discussid
-                    });
-                    
-                    $('#model').window('open');
-
+                
+                $('#right').menu({
+                    onClick:function(item){
+                        $('#model').window({
+                            href:'report-content.jsp?discussid='+data.discussid
+                        });
+                        
+                        $('#model').window('open');
+                    }
                 });
+                e.preventDefault(); // 屏蔽浏览器自带的右键菜单
             }
-
         }
     });
     
@@ -178,7 +181,6 @@ $('#lockDiscuss').click(function() {
         return;
     }
     
-    
     //将选中数据的id保存到数组中
     var ids = new Array();
     for (var i = 0; i < rowData.length; i++) {
@@ -190,5 +192,6 @@ $('#lockDiscuss').click(function() {
     loadConfirmDialog(dataJson);
     $('#confirm').dialog('open');
 });
+
 </script>
 </body>

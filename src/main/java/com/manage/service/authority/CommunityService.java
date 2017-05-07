@@ -18,6 +18,7 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Autowired
     private CommunityMapper communityMapper;
+    
     @Autowired
     private CommunityRoleMapper communityRoleMapper;
 
@@ -37,7 +38,10 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Override
     public void deleteMany(List<Integer> ids) {
+        //删除社团
         communityMapper.deleteMany(ids);
+        //删除社团所对应的角色
+        communityRoleMapper.delInvalidCommRoles(ids);
     }
 
     @Override
