@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.activity.ActivityMapper"> 
     <resultMap type="com.manage.entity.Activity" id="activityResultMap">
         <id column="activity_id" property="activityid" />
-        <result column="activity_loc" property="activityLoc" />
+        <result column="activity_loc" property="activityLoc" /> 
         <result column="activity_content" property="activityContent" />
-        <result column="activity_date" property="activityDate" />
+        <result column="activity_date" property="activityDate" />  
         <result column="closing_date" property="closingDate" />
         <result column="start_date" property="startDate" />
-        <result column="end_date" property="endDate" />
+        <result column="end_date" property="endDate" /> 
         <result column="status" property="status" />
-        <!-- 
-            association  多对一映射
-            property 
+        <!--
+            association 多对一映射
+            property
          -->
         <association property="stu" javaType="com.manage.entity.Student">
             <id column="stu_id" property="stuid" />
             <result column="stu_name" property="stuName" />
         </association>
-        <association property="community" javaType="com.manage.entity.Community">
+        <association property="community" javaType="com.manage.entity.Community"> 
             <id column="community_id" property="communityid" />
             <result column="community_name" property="communityName" />
         </association>

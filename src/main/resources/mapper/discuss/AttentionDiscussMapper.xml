@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.AttentionDiscussMapper">
+    
+    <select id="checkAttention" parameterType="com.manage.entity.AttentionDiscuss"
+        resultType="int">
+        SELECT COUNT(*) FROM attention_discuss
+        WHERE stu_id=#{stu.stuid} AND discuss_id=#{discuss.discussid}
+    </select>
+    
+    <select id="getAttentionDiscussNum" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM attention_discuss
+        WHERE discuss_id=#{discuss.discussid}
+    </select>
+    
+    <insert id="save" parameterType="com.manage.mapper.discuss.AttentionDiscussMapper">
+        INSERT INTO attention_discuss(stu_id,discuss_id)
+        VALUES(#{stu.stuid},#{discuss.discussid})
+    </insert>
+    
+    <delete id="delete" parameterType="com.manage.mapper.discuss.AttentionDiscussMapper">
+        DELETE FROM attention_discuss
+        WHERE stu_id=#{stu.stuid} AND discuss_id=#{discuss.discussid}
+    </delete>
+    
+</mapper>

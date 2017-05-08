@@ -21,13 +21,22 @@ public class Discuss implements Serializable {
     private String discussDate;// 发布时间 修改数据库
     private Integer status; // 是否被删除或者问题是否已经关闭回答
     private Set<ReplyDiscuss> replyDiscusses;
-    private Set<ReportDisscuss> reportDiscusses;
+    private Set<ReportDiscuss> reportDiscusses;
+    private Integer reportNum; // 被举报的次数
 
-    public Set<ReportDisscuss> getReportDiscusses() {
+    public Integer getReportNum() {
+        return reportNum;
+    }
+
+    public void setReportNum(Integer reportNum) {
+        this.reportNum = reportNum;
+    }
+
+    public Set<ReportDiscuss> getReportDiscusses() {
         return reportDiscusses;
     }
 
-    public void setReportDiscusses(Set<ReportDisscuss> reportDiscusses) {
+    public void setReportDiscusses(Set<ReportDiscuss> reportDiscusses) {
         this.reportDiscusses = reportDiscusses;
     }
 

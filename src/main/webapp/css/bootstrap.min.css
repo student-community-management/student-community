@@ -1825,106 +1825,7 @@ a.bg-danger:hover
 {
     background-color: #e4b9b9;
 }
-.page-header
-{
-    margin: 40px 0 20px;
-    padding-bottom: 9px;
 
-    border-bottom: 1px solid #eee;
-}
-.tab-content
-{
-	margin: 10px 0 15px;
-    padding-bottom: 20px;
-
-    border-bottom: 1px solid #eee;
-}
-.Maac {
-    width: 970px;
-    max-width: none !important;
-}
-.QuestionHeader {
-    position: relative;
-    min-width: 927px;
-    padding: 20px 0;
-    overflow: hidden;
-    background: #fff;
-    border-bottom: 1px solid #e7eaf1;
-    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
-}
-.QuestionHeader-content {
-	display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 0 16px;
-    margin: 0 auto;
-}
-.QuestionHeader-main {
-	width: 687px;
-    padding-left: 20px;
-    box-sizing: border-box;
-}
-.QuestionHeader-topics {
-    padding: 1px 0;
-    padding-top: 1px;
-    padding-right: 0px;
-    padding-bottom: 1px;
-    padding-left: 0px;
-    margin-right: -2px;
-    margin-left: -2px;
-}
-.QuestionHeader-side {
-   width: 344px;
-    padding-right: 20px;
-    text-align: right;
-}
-.QuestionFollowStatus-counts {
-    width: 200px;
-    margin-left: auto;
-}
-.NumberBoard {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    text-align: center;
-}
-.QuestionHeader-footer {
-    padding-bottom: 12px;
-    margin-top: 4px;
-    margin-bottom: -12px;
-    background: #fff;
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: rgb(255, 255, 255);
-}
-.QuestionHeader-footer-inner {
-	display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 930px;
-    height: 100%;
-    padding: 0 16px;
-    margin: 0 auto;
-}
-.QuestionHeader-footer-inner-main {
-    width: 600px;
-    padding-left: 20px;
-    box-sizing: border-box;
-}
-.QuestionHeader-footer-inner-side {
-    width: 287px;
-    padding-right: 20px;
-    text-align: right;
-}
 ol,
 ul
 {
@@ -8910,6 +8811,92 @@ button.close
     {
         display: none!important;
     }
+}
+.Maac {
+    width: 970px;
+    max-width: none !important;
+}
+.QuestionHeader {
+    position: relative;
+    min-width: 927px;
+    padding: 20px 0;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #e7eaf1;
+    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
+}
+.QuestionHeader-content {
+	display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+.QuestionHeader-main {
+	width: 687px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.QuestionHeader-topics {
+    padding: 1px 0;
+    padding-top: 1px;
+    padding-right: 0px;
+    padding-bottom: 1px;
+    padding-left: 0px;
+    margin-right: -2px;
+    margin-left: -2px;
+}
+.QuestionHeader-side {
+   width: 344px;
+    padding-right: 20px;
+    text-align: right;
+}
+.QuestionFollowStatus-counts {
+    width: 200px;
+    margin-left: auto;
+}
+.NumberBoard {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: center;
+}
+.QuestionHeader-footer {
+    padding-bottom: 12px;
+    margin-top: 4px;
+    margin-bottom: -12px;
+    background: #fff;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+}
+.QuestionHeader-footer-inner {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 930px;
+    height: 100%;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+.QuestionHeader-footer-inner-main {
+    width: 600px;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.QuestionHeader-footer-inner-side {
+    width: 287px;
+    padding-right: 20px;
+    text-align: right;
 }
 
 /*# sourceMappingURL=bootstrap.min.css.map */

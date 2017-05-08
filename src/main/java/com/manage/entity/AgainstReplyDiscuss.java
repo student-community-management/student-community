@@ -1,6 +1,7 @@
 package com.manage.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 /**
  * 
  * @author ChenYuhao
@@ -11,16 +12,26 @@ public class AgainstReplyDiscuss implements Serializable {
      * 指定序列化id
      */
     private static final long serialVersionUID = 5327047271797095730L;
-    private Integer againstDiscussid;
     private Student stu;
     private ReplyDiscuss replyDiscuss;
-
-    public Integer getAgainstDiscussid() {
-        return againstDiscussid;
+    private Date dateTime;
+    
+    public AgainstReplyDiscuss() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public AgainstReplyDiscuss(Student stu, ReplyDiscuss replyDiscuss) {
+        super();
+        this.stu = stu;
+        this.replyDiscuss = replyDiscuss;
     }
 
-    public void setAgainstDiscussid(Integer againstDiscussid) {
-        this.againstDiscussid = againstDiscussid;
+    public Date getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Student getStu() {

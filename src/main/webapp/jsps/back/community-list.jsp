@@ -10,7 +10,7 @@
     <a href="#" id="commclose">关闭</a>
 </div>
 <div id="commtoolbar">
-    <input id="search"></input> 
+    <input id="csearch"></input> 
     <a href="#" id="addComm" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
     <a href="#" id="removeComm" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
     <a href="#" id="updateComm" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
@@ -73,7 +73,7 @@
         
         //---datagrid---end
         //---searchbox---
-        $('#search').searchbox({
+        $('#csearch').searchbox({
             searcher : function(value) {
                 if (value.indexOf('\'') != -1) {
                     $.messager.alert('警告', '不能传入单引号！', 'warning');
@@ -92,7 +92,6 @@
 
         // add community window
         $('#addCommWindow').window({
-            width : 500,
             height : 'auto',
             title : '添加社团',
             collapsible : true, //显示折叠按钮
@@ -210,7 +209,6 @@
                     datatype : 'json',
                     contentType : 'application/json;charset=utf-8',
                     success: function(msg){
-                        console.log("msg msg msg msg msg"+msg);
                         if(msg == 'ok'){
                             $.messager.show({
                                 title:'消息',

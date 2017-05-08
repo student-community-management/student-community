@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.manager.SubmenuMapper">
+    <resultMap type="com.manage.entity.Submenu" id="submenuMap">
+    
+        <id column="submenu_id" property="id"/>
+        <result column="submenu_name" property="submenuName"/>
+        <result column="url" property="url"/>
+        <result column="parent_menu_id" property="_parentId"/>
+        <association property="parentMenu" javaType="com.manage.entity.ParentMenu">
+            <id column="parentMenuid" property="id"/>
+        <result column="parent_menu_name" property="parentMenuName"/>
+        </association>
+    </resultMap>
+    
+    <select id="queryAll" resultMap="submenuMap">
+        SELECT * FROM submenu s
+        UNION ALL
+        SELECT * FROM parent_menu pm
+    </select>
+    
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM (
+        SELECT s.submenu_id FROM submenu s
+        UNION ALL
+        SELECT pm.parent_menu_id FROM parent_menu pm
+        ) t
+    </select>
+    
+</mapper>

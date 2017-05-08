@@ -22,20 +22,16 @@
         <div class="tab-pane active" id="home">
             <c:forEach var="discuss" items="${ discussList }">
                 <div class="aw-item active discuss-content" data-topic-id="1176,814,">
-                    <a href="#" class="aw-user-name">${discuss.stu.stuName }</a> <span
-                        class="text-color-999"> 发起了问题 </span>
                     <div class="aw-question-content">
-                        <a href="/student-community/jsps/front/answer.jsp"
-                            class="pull-right text-color-999">回复</a>
                         <h4>
-                            <a href="/student-community/jsps/front/answer.jsp">${discuss.discussTitle }</a>
+                            <a href="/student-community/discuss/getDicussDetail.a?discussid=${ discuss.discussid}">${discuss.discussTitle }</a>
                         </h4>
-
                     </div>
                 </div>
             </c:forEach>
 
             <!-------------分页------------->
+            <c:if test="${pagination.totalPage != 0 && pagination.totalPage != null }">
             <ul class="pagination">
                 <li <c:if test="${pagination.currentPage == 1}">class="disabled"</c:if>>
                     <a href="javascript:void(0);" aria-label="Previous" class="prev"> <span
@@ -96,6 +92,10 @@
                     </a>
                 </li>
             </ul>
+            </c:if>
+            <c:if test="${pagination.totalPage == 0 || pagination.totalPage == null }">
+                暂无关注的话题!
+            </c:if>
             <!-------------分页 end------------->
 
             <!-- end tab 切换 -->
