@@ -1,12 +1,11 @@
 package com.manage.service;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import com.manage.entity.Activity;
 import com.manage.entity.Community;
+import com.manage.entity.StuActivity;
 import com.manage.mapper.activity.ActivityMapper;
 import com.manage.mapper.authority.CommunityMapper;
 import com.manage.util.PageData;
@@ -19,15 +18,6 @@ public class ActivityService implements BaseService<Activity>,ActivityMapper{
     private CommunityMapper communityMapper;
     //查询所有活动
     //需要返回给前台的,所有数据,总条数
-    public PageData getAllActivity(Activity activity,PageParam page){
-       Map<String, Object> map = new HashMap<String, Object>();
-       map.put("startIndex", page.getStartIndex());
-       map.put("rows", page.getRows());
-       List<Activity> list =  activityMapper.getAllActivity(map);
-       //活动总数(无条件筛选)
-       int count = activityMapper.getAllCount(map);
-       return new PageData(count,list);
-    }
     //所有活动不带分页
     public List<Activity> getActivity(){
         List<Activity> list = activityMapper.getActivity();
@@ -54,10 +44,16 @@ public class ActivityService implements BaseService<Activity>,ActivityMapper{
     public Integer UpdateActivity(Activity activity){
         return  activityMapper.UpdateActivity(activity);
     }
+    /**
+     * 带分页所有活动
+     */
     @Override
     public List<Activity> queryAll(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
-        return null;
+        return activityMapper.queryAll(pageParam, keyWord);
+    }
+    @Override
+    public int getCount(String keyWord) {
+        return activityMapper.getCount(keyWord);
     }
     @Override
     public Activity queryOne(Integer id) {
@@ -84,25 +80,11 @@ public class ActivityService implements BaseService<Activity>,ActivityMapper{
         // TODO Auto-generated method stub
         
     }
-    @Override
-    public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
-    }
-    @Override
-    public List<Activity> getAllActivity(Map<String, Object> map) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    @Override
-    public int getAllCount(Map<String, Object> map) {
-        // TODO Auto-generated method stub
-        return 0;
     }
     @Override
     public Integer addActivity(Activity activity) {
@@ -111,7 +93,30 @@ public class ActivityService implements BaseService<Activity>,ActivityMapper{
     }
     @Override
     public Integer getActivityByperId(String perId) {
-        // TODO Auto-generated method stub
-        return null;
+        return activityMapper.getActivityByperId(perId);
     }
+    @Override
+    public List<Activity> getAllStudentByActId(Integer ActId) {
+        return activityMapper.getAllStudentByActId(ActId);
+    }
+    /**
+     * 申请加入活动
+     */
+    @Override
+    public Integer addActivityPerson(StuActivity stuActivity) {
+        return activityMapper.addActivityPerson(stuActivity);
+    }
+   /**
+    * 
+    * 判断是否申请参加活动
+    */
+    @Override
+    public Activity validateFlag(Integer ActId) {
+        return activityMapper.validateFlag(ActId);
+    }
+    /**
+     * 
+     * 判断是否举报活动
+     */
+
 }

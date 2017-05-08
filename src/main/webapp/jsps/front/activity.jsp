@@ -3,92 +3,177 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="icon" href="/student-community/ico/ico.png">
 <title>学生社区</title>
-<script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/layui/lay/modules/layedit.js"></script>
-<script src="/student-community/layui/layui.js" charset="utf-8"></script>
-<script src="/student-community/layui/area.js"></script>
-<script src="/student-community/js/bootstrap.min.js"></script>
-<link href="/student-community/layui/css/modules/laydate/laydate.css" rel="stylesheet">
-<link href="/student-community/layui/css/layui.css"  rel="stylesheet" media="all"/>
+<link rel="icon" href="/student-community/ico/ico.png">
+<link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
+<link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
 <link href="/student-community/css/non-responsive.css" rel="stylesheet">
+<link href="/student-community/css/mycssfront.css" rel="stylesheet">
 <link href="/student-community/css/docs.css" rel="stylesheet">
-<link href="/student-community/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/student-community/css/mymayachao.css" rel="stylesheet">
+<script src="/student-community/js/jquery.min.js"></script>
+<script src="/student-community/js/bootstrap.min.js"></script>
+<script src="/student-community/js/bootstrapValidator.min.js"></script>
 </head>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-layui.use('form', function(){
-  var $ = layui.jquery, form = layui.form();
-  //全选
-  form.on('checkbox(allChoose)', function(data){
-    var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-    child.each(function(index, item){
-      item.checked = data.elem.checked;
-    });
-    form.render('checkbox');
-  });
-  
-});
-</script>
 <body>
-	<!-- Fixed navbar -->
-	<%@include file="nav.jsp" %>
+	<%@ include file="nav.jsp"%>
 	<div class="container">
-		<h3>最新活动</h3>
-		<div class="layui-form">
-		<form id="activityForm" class="layui-form">
-			<table  class="layui-table" style="margin-top:10px;" width="100%" cellpadding="0" cellspacing="0" class = "myfont" border="1">
-				 <thead>
-				<tr style="margin-top:10px;">
-				<td><input type="checkbox" name="" onclick="onclick()" class="activityid" lay-skin="primary" lay-filter="allChoose"></td>
-					<td>社团名称</td>
-					<th>活动标题</th>
-					<th>活动地点</th>
-					<th>活动内容</th>
-					<th>活动发起日期</th>
-					<th>报名截止时间</th>
-					<th>活动开始时间</th>
-					<th>活动截止时间</th>
-					<th>活动状态</th>
-				</tr>
-				</thead>
-				<c:if test="${list != '[]'}">
-		<c:forEach items="${list}" var="list">
-		<span><a href="${pageContext.request.contextPath}/updateActivityPre.a?actId=${list.activityid}">修改</a></span>
-		<span><a href="${pageContext.request.contextPath}/deleteActivity.a?actId=${list.activityid}">删除</a></span>
-		<span><a href="${pageContext.request.contextPath}/addactivitypre.a">发布活动</a></span>
-				<tbody>
-				<tr>
-				<td><input type="checkbox" name="" lay-skin="primary" value="${list.activityid}" onclick="onclick()"  class="activityid" >
-					<input type="hidden" value="${list.activityid}" id="activityid"/></td>
-					<td>${list.community.communityName}</td>
-					<td>${list.activityTitle }</td>
-					<td>${list.activityLoc}</td>
-					<td>${list.activityContent }</td>
-					<td> <f:formatDate value="${list.activityDate}" type="both"/> </td>
-					<td><f:formatDate value="${list.closingDate}" type="both"/></td>
-					<td><f:formatDate value="${list.startDate}" type="both"/></td>
-					<td><f:formatDate value="${list.endDate}" type="both"/></td>
-					<!-- 时间比较 -->
-					<td><c:if test="${list.closingDate>=currentTime}">
-						在报名
-					</c:if>
-					<c:if test="${list.closingDate<currentTime}">
-						<h3>该活动已经结束!!!!</h3>
-					</c:if>
-					</td>
-				</tr>
-				</tbody>
-					</c:forEach>
-			</c:if>
-			</table>
-			</form>
+	<div class="middle">
+		<ul class="nav nav-tabs nav-justified">
+			<li role="presentation" class="active"><a
+				href="/student-community/getActivity.a">活动社区</a></li>
+		</ul>
+	<div class="topone">
+		<div class="ccc">
+		<div class="hb"><h2 class="glyphicon glyphicon-user">公告栏 <input type="text" id="question-input" value="${pagination.keyWord }"
+                            class="search-query form-control" placeholder="搜索..."></h2>
+		</div>
+		<div class="bd">
+			<small><a>本活动内容最终解释权归版权方所有</a></small>
+		</div>
+		</div>
+			<div class="moddces">
+			<div class="modc-two">
+				<div class="events-list-s">
+					<ul class="list-m">
+						<li class="item-s">
+						<li class="item closes">
+						<c:if test="${activityList != '[]'}">
+							<c:forEach items="${activityList}" var="activityList">
+							<div class="date">
+								已结束
+							<span class="follow">加关注</span>
+							</div>
+							<div class="pic">
+							</div>
+							<div class="info">
+								<h3>
+									<a href="/student-community/getlistActivityAttention.a?ActId=${activityList.activityid}">${activityList.activityTitle}</a>
+								</h3>
+							</div>
+							<div class="date">
+								<button class="btn " type="button">
+							<c:if test="${activityList.closingDate>=currentTime}">
+									在报名
+								</c:if>
+								<c:if test="${activityList.closingDate<currentTime}">
+									<h3>该活动已经结束!!!!</h3>
+								</c:if>
+						</button>
+						<button class="btn btn-primary " type="button">
+							${activityList.community.communityName}
+						</button>
+							</div>
+							</c:forEach>
+							</c:if>
+						</li>
+						 <ul class="pagination">
+                <li <c:if test="${pagination.currentPage == 1}">class="disabled"</c:if>>
+                    <a href="javascript:void(0);" aria-label="Previous" class="prev"> <span
+                        aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <c:if test="${pagination.totalPage <= 5}">
+                    <c:forEach var="page" begin="1" end="${pagination.totalPage}">
+                        <li <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
+                            <a href="javascript:void(0);"
+                                <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
+                                class="pageNum">${ page }</a>
+                        </li>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${pagination.totalPage > 5}">
+
+                    <c:if test="${pagination.currentPage+5 <= pagination.totalPage}">
+                        <c:if test="${pagination.currentPage-5 <= 1}">
+                            <c:forEach var="page" begin="1" end="${ pagination.currentPage+5}">
+                                <li
+                                    <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
+                                    <a href="javascript:void(0);"
+                                        <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
+                                        class="pageNum">${ page }</a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${pagination.currentPage-5 > 1}">
+                            <c:forEach var="page" begin="${pagination.currentPage-5}"
+                                end="${ pagination.currentPage+5}">
+                                <li
+                                    <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
+                                    <a href="javascript:void(0);"
+                                        <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
+                                        class="pageNum">${ page }</a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                    </c:if>
+
+                    <c:if
+                        test="${pagination.currentPage+5 > pagination.totalPage && pagination.currentPage-5 >= 1 }">
+                        <c:forEach var="page" begin="${ pagination.currentPage - 5}"
+                            end="${ pagination.totalPage}">
+                            <li <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
+                                <a href="javascript:void(0);"
+                                    <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
+                                    class="pageNum">${ page }</a>
+                            </li>
+                        </c:forEach>
+                    </c:if>
+                </c:if>
+                <li
+                    <c:if test="${pagination.currentPage == pagination.totalPage}">class="disabled"</c:if>>
+                    <a href="javascript:void(0);" aria-label="Next" class="next"> <span
+                        aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+					</ul>
+					
+            <!-------------分页 end------------->
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	</div>
+	
 </body>
+<script type="text/javascript">
+$(function(){
+    console.log(${pagination.currentPage});
+    console.log(${pagination.totalPage});
+});
+
+    $("#question-input").keydown(function(event) {
+        if (event.which == "13")
+            window.location="/student-community/getActivity.a?keyWord="+$('#question-input').val()+
+            "&currentPage=1";
+    });
+    
+    $('.pageNum').click(function(){
+       window.location="/student-community/getActivity.a?keyWord="+$('#question-input').val()+
+               "&currentPage="+$(this).html()+"&totalRecord="+${pagination.totalRecord};
+    });  
+    
+    $('.prev').click(function(){
+        if(${pagination.currentPage == 1}){
+            console.log('上一页不可用');
+            return;
+        }
+        window.location="/student-community/getActivity.a?keyWord="+$('#question-input').val()+
+        "&currentPage="+${pagination.currentPage - 1}+"&totalRecord="+${pagination.totalRecord};
+    }); 
+    $('.next').click(function(){
+        if(${pagination.currentPage == pagination.totalPage}){
+            console.log('下一页不可用');
+            return;
+        }
+        window.location="/student-community/getActivity.a?keyWord="+$('#question-input').val()+
+        "&currentPage="+${pagination.currentPage+1}+"&totalRecord="+${pagination.totalRecord};
+    });   
+    $('#question-input').val();
+</script>
 </html>

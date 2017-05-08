@@ -4,16 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.manage.entity.Classes;
 import com.manage.service.ClassesService;
 
 @Controller
 @RequestMapping("cls/")
 public class ClassesController{
-    
     @Autowired
     private ClassesService classesService;
-    
     @RequestMapping("allCls")
     @ResponseBody
     public List<Classes> queryAll(String kw){

@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+.middle
+{
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.base
+{
+    margin-right: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.baseone
+{
+	 position: relative;
+    min-width: 927px;
+    padding: 10px 0;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #e7eaf1;
+    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
+}
+.baseone-one
+{
+	width:72%;
+    padding-bottom: 20px;
+}
+.Card {
+    margin-bottom: 10px;
+    background: #fff;
+    border: 1px solid #e7eaf1;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,37,55,.05);
+    box-sizing: border-box;
+}
+a.QuestionMainAction {
+    display: block;
+    line-height: 50px;
+    color: #8590a6;
+    text-align: center;
+}
+.QuestionMainAction {
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    border: none;
+    border-radius: 0;
+}
+.ccc
+{
+	width: 100%;
+	text-align: center;
+}
+.topone
+{
+	position: relative;
+    min-width: 927px;
+    padding: 20px 0;
+    padding-left:30px;
+    background: #fff;
+    border-bottom: 1px solid #e7eaf1;
+    box-shadow: 0 1px 3px 0 rgba(0,37,55,.05);
+}
+.modc {
+    width: 100%;
+}
+.list-m {
+	overflow: hidden;
+    list-style: none;
+    list-style-type: none;
+    list-style-position: initial;
+    list-style-image: initial;
+}
+.modc-one
+{
+	padding: 0px 0px;
+}
+.events-list-s
+{
+	width: 30%;
+	overflow:hidden;
+}
+.modc-two
+{
+	overflow: hidden;
+}

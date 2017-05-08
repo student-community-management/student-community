@@ -6,7 +6,6 @@ import java.util.Date;
  * 日期时间运算/转换类
  * 
  */
-
 public class WindDate {
 
 	/**

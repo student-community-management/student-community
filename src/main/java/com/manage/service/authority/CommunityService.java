@@ -2,6 +2,7 @@ package com.manage.service.authority;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.manage.entity.Community;
 import com.manage.mapper.authority.CommunityMapper;
 import com.manage.mapper.authority.CommunityRoleMapper;

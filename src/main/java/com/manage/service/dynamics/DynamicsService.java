@@ -12,10 +12,6 @@ public class DynamicsService implements BaseInterface<Dynamics>,DynamicsMapper{
     @Autowired
     private DynamicsMapper dynamicsMapper;
     @Override
-    public List<Dynamics> queryAll(PageParam pageParam, String keyWord) {
-        return null;
-    }
-    @Override
     public Dynamics queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
@@ -34,12 +30,30 @@ public class DynamicsService implements BaseInterface<Dynamics>,DynamicsMapper{
     }
     @Override
     public int getCount(String keyWord) {
-        return 0;
+        return dynamicsMapper.getCount(keyWord);
     }
-    //分页查询所有动态
-    //
+    /**
+     * @author 
+     * 用户自身的动态
+     */
     @Override
-    public List<Dynamics> queryAllForDyns(PageParam pageParam, String keyWord, Dynamics dynamics) {
-        return dynamicsMapper.queryAllForDyns(pageParam, keyWord, dynamics);
+    public List<Dynamics> getMyselfAllDynamics(PageParam pageParam, Integer id, String keyWord) {
+        return dynamicsMapper.getMyselfAllDynamics(pageParam, id, keyWord);
     }
+    /**
+     * @author 
+     * 用户自身的动态数量
+     */
+    @Override
+    public Integer getMyselfAllDynamicsCount(Integer id, String keyWord) {
+        return dynamicsMapper.getMyselfAllDynamicsCount(id, keyWord);
+    }
+    /**
+     * 所有人动态
+     */
+    @Override
+    public List<Dynamics> queryAll(PageParam pageParam, String keyWord) {
+        return dynamicsMapper.queryAll(pageParam, keyWord);
+    }
+  
 }

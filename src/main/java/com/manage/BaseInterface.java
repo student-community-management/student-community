@@ -17,7 +17,6 @@ public interface BaseInterface<T> {
      * @return 返回查询后的所有实体类对象
      */
     List<T> queryAll(@Param("pageParam") PageParam pageParam, @Param("keyWord") String keyWord);
-    
     /**
      * 通过id查询单条信息
      * 

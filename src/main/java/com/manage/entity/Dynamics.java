@@ -19,8 +19,16 @@ public class Dynamics implements Serializable {
     private Student stu; // 发布动态的学生
     private String dynamicsContent; // 动态的内容
     private Date dynamicsDate; // 发布日期
+    private Integer dynamicsSearch;//0代表仅自己可见,1代表所有人可见
     private Integer status; // 是否删除
     private Set<Dynamics> replyDynamics;
+    public Integer getDynamicsSearch() {
+        return dynamicsSearch;
+    }
+
+    public void setDynamicsSearch(Integer dynamicsSearch) {
+        this.dynamicsSearch = dynamicsSearch;
+    }
 
     public Set<Dynamics> getReplyDynamics() {
         return replyDynamics;
