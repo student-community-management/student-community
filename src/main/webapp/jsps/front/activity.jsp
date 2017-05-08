@@ -25,8 +25,6 @@
 			<li role="presentation" class="active"><a
 				href="/student-community/jsps/front/activity.jsp">活动社区</a></li>
 			<li role="presentation"><a
-				href="/student-community/jsps/front/initiate.jsp">发起活动</a></li>
-			<li role="presentation"><a
 				href="#">活动相册</a></li>
 		</ul>
 	<div class="topone">

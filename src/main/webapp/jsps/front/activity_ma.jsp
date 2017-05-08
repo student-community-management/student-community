@@ -58,10 +58,10 @@
 							<button id="share" class="btn" type="button">
 								<span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;&nbsp;分享
 							</button>
-							<button id="inform" class="btn" type="button">
+							<button id="collect" class="btn" type="button">
 								<span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;&nbsp;收藏
 							</button>
-							<button id="collect" class="btn" type="button">
+							<button id="inform" class="btn" type="button">
 							<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报
 							</button>
 						</div>
@@ -135,9 +135,11 @@ $('#apply').click(function(){
 	 layer.confirm('确定要报名吗？', {
 	  btn: ['确定','取消'] //按钮
 	}, function(){
-	  layer.msg('报名成功', {icon: 1});
+		layer.msg('已报名');
+		$('#apply').text('已报名');
 	}, function(){
 	}); 
+	
 });
 //举报
 $('#inform').click(function(){
