@@ -92,7 +92,6 @@
 
         // add community window
         $('#addCommWindow').window({
-            width : 500,
             height : 'auto',
             title : '添加社团',
             collapsible : true, //显示折叠按钮

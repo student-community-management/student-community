@@ -1,6 +1,8 @@
-package com.manage.mapper.authority;
+package com.manage.mapper.student;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.manage.entity.Community;
 import com.manage.mapper.BaseMapper;
@@ -19,5 +21,6 @@ public interface CommunityMapper extends BaseMapper<Community> {
      * 一次删除多条信息
      * @param ids 多条信息的id
      */
-    void deleteMany(List<Integer> ids);
+    void deleteMany(@Param("ids") List<Integer> ids);
+    
 }

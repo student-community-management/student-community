@@ -1,4 +1,4 @@
-package com.manage.control.authority;
+package com.manage.control.student;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.Student;
-import com.manage.service.authority.StudentService;
+import com.manage.service.student.StudentService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
@@ -29,13 +29,12 @@ public class StudentControl {
      * 当classid为空时则为管理人员
      * @param pageParam 分页条件
      * @param kw  查询关键字
-     * @param isClassesid classid是否为空 false为空
      * @return 符合查询条件的学生
      */
     @RequestMapping("getAllStu")
     @ResponseBody
-    public PageData qeuryAll(PageParam pageParam, String kw, Boolean isClassesid) {
-        return studentService.getPageDataForStu(pageParam, kw, isClassesid);
+    public PageData qeuryAll(PageParam pageParam, String kw) {
+        return studentService.getPageData(pageParam, kw);
     }
 
     /**
@@ -85,15 +84,8 @@ public class StudentControl {
      */
     @RequestMapping("saveStu")
     @ResponseBody
-    public String saveStu(@ModelAttribute Student stu, Integer crid) throws Exception {
+    public String saveStu(@ModelAttribute Student stu) throws Exception {
         if (stu.getStuid() == null) {
-            /**
-             * 保存crid(communityRoleid)
-             * 如果是添加管理人员则为
-             * {@link com.manage.mapper.authority.CommunityRoleMapper#setRoleToStu(Integer,Integer)} 
-             * 方法中社团角色的id
-             */
-            StudentService.crid = crid;
             studentService.save(stu);
             return "save is ok";
         } else {
@@ -124,7 +116,7 @@ public class StudentControl {
     @RequestMapping("flogin")
     @ResponseBody
     public String frontLogin(@ModelAttribute Student stu, HttpServletRequest req) {
-        String status = studentService.stuFrontLogin(stu).toString();
+        String status = studentService.login(stu).toString();
 
         if ("1".equals(status)) {
             //将学生信息保存到session中
@@ -133,23 +125,6 @@ public class StudentControl {
         return status;
     }
 
-    /**
-     * 后台管理员登陆
-     * @param stu 管理员的帐号和密码
-     * @param req request 获取session
-     * @return 是否登陆成功: 1为登录成功
-     */
-    @RequestMapping("blogin")
-    @ResponseBody
-    public String backLogin(@ModelAttribute Student stu, HttpServletRequest req) {
-        String status = studentService.stuBackLogin(stu).toString();
-
-        if ("1".equals(status)) {
-            //将管理人员信息保存在session中
-            req.getSession().setAttribute("bstu", studentService.queryOneForBack(stu.getStuid()));
-        }
-        return status;
-    }
 
     @RequestMapping("invalidate")
     @ResponseBody

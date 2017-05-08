@@ -1,4 +1,4 @@
-package com.manage.control.authority;
+package com.manage.control.student;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.Community;
-import com.manage.service.authority.CommunityService;
+import com.manage.service.student.CommunityService;
+import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Controller
@@ -22,8 +23,8 @@ public class CommunityControl  {
     
     @RequestMapping("getAllComm")
     @ResponseBody
-    public List<Community> getAllCommunity(PageParam pageParam,String kw){
-       return communityService.queryAll(pageParam, kw);
+    public PageData getAllCommunity(PageParam pageParam,String kw){
+       return communityService.getPageData(pageParam, kw);
     }
     
     @RequestMapping("saveComm")

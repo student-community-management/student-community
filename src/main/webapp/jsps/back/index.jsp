@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/material/easyui.css" />
 <link rel="stylesheet" type="text/css" href="/student-community/css/mycssback.css" />
 <link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/icon.css" />
-<link rel="stylesheet" type="text/css" href="/student-community/easyui/local/easyui-lang-zh_CN.js" />
+<link type="text/css" href="/student-community/easyui/local/easyui-lang-zh_CN.js" />
 
 <script src="/student-community/js/jquery.min.js"></script>
 <script src="/student-community/easyui/jquery.easyui.min.js"></script>
@@ -26,7 +26,7 @@
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/stu-list.jsp" class="mnav-items">学生管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/mgr-list.jsp" class="mnav-items">管理人员管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/community-list.jsp" class="mnav-items">社团管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/manager-list.jsp" class="mnav-items">管理人员管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/role-list.jsp" class="mnav-items">权限配置</a></li>
                 </ul>
             </div>
             <div title="社区内容管理" iconCls="icon-ok" class="mnav-item">

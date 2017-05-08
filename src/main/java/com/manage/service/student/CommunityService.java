@@ -1,4 +1,4 @@
-package com.manage.service.authority;
+package com.manage.service.student;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Community;
-import com.manage.mapper.authority.CommunityMapper;
-import com.manage.mapper.authority.CommunityRoleMapper;
-import com.manage.mapper.authority.RoleMapper;
+import com.manage.mapper.student.CommunityMapper;
+import com.manage.mapper.student.CommunityRoleMapper;
+import com.manage.mapper.student.StuCommunityMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
@@ -18,13 +18,13 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Autowired
     private CommunityMapper communityMapper;
-    
+
     @Autowired
     private CommunityRoleMapper communityRoleMapper;
-
+    
     @Autowired
-    private RoleMapper roleMapper;
-
+    private StuCommunityMapper  stuCommunityMapper;
+    
     @Override
     public List<Community> queryAll(PageParam pageParam, String keyWord) {
         return communityMapper.queryAll(pageParam, keyWord);
@@ -40,18 +40,22 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     public void deleteMany(List<Integer> ids) {
         //删除社团
         communityMapper.deleteMany(ids);
-        //删除社团所对应的角色
-        communityRoleMapper.delInvalidCommRoles(ids);
+        
+        //删除社团对应的角色
+        communityRoleMapper.deleteByCommid(ids);
+        
+        //当删除社团时,自动解除社团和学生的关系
+        stuCommunityMapper.deleteByCommids(ids);
     }
 
     @Override
     public void save(Community t) {
         //添加社团
         communityMapper.save(t);
-        //获得社团都有什么角色
-        List<Integer> ids = roleMapper.getCommunityRoles();
-        //自动生成社团对应的角色
-        communityRoleMapper.autoSaveCommRoles(communityMapper.getNewComunityid(), ids);
+        //获得刚刚添加的社团id
+        Integer communityid = communityMapper.getNewComunityid();
+        //自动添加对应的角色
+        communityRoleMapper.saveByCommid(communityid);
     }
 
     @Override
@@ -61,13 +65,12 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     @Override
     public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
-        return 0;
+        return communityMapper.getCount(keyWord);
     }
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        return new PageData(this.getCount(keyWord), this.queryAll(pageParam, null));
+        return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
     }
 
     @Override

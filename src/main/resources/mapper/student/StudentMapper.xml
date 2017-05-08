@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.manage.mapper.authority.StudentMapper">
+<mapper namespace="com.manage.mapper.student.StudentMapper">
     <resultMap type="com.manage.entity.Student" id="stuSimpleResultMap">
         <id column="stu_id" property="stuid" />
         <result column="stu_name" property="stuName" />
@@ -32,25 +32,7 @@
         sc.community_id = #{id}
     </select>
     
-    <select id="queryAllForStu" parameterType="map" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
-        <if test="isClassesid == false"> 
-            SELECT c.stu_id,c.stu_name,c.stu_sex,CASE c.stu_sex WHEN 1 THEN '男' WHEN 0 THEN '女'
-            END AS 'sex_name',c.role_name FROM (
-            SELECT s.stu_id,s.stu_name,s.stu_sex,r.role_name FROM community_role cr
-            INNER JOIN role r ON cr.role_id = r.role_id
-            INNER JOIN stu_community_role scr ON scr.community_role_id = cr.community_role_id
-            INNER JOIN student s ON scr.stu_id = s.stu_id
-            where cr.community_id = 1
-            ) c
-            <if test="keyWord != null">
-            and (CONCAT(c.stu_id,'')  LIKE '%${keyWord}%'
-                 OR c.stu_name LIKE '%${keyWord}%'
-                 OR c.sex_name LIKE '%${keyWord}%')
-                 OR r.role_name LIKE '%${keyWord}%'
-            </if>
-            LIMIT ${pageParam.startIndex},${pageParam.rows}
-        </if>
-        <if test="isClassesid == true">
+    <select id="queryAll" parameterType="map" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
             SELECT * from (
             SELECT *, case 
             WHEN grade = 0 then '一年级'
@@ -70,30 +52,9 @@
             OR c.sex_name like '%${keyWord}%'
             </if>
             LIMIT ${pageParam.startIndex},${pageParam.rows}
-        </if>
     </select>
 
-    <select id="getCountForStu" parameterType="map" resultType="int">
-        
-        <if test="isClassesid == false">
-        SELECT COUNT(*) FROM (
-        SELECT c.stu_id,c.stu_name,c.stu_sex,CASE c.stu_sex WHEN 1 then '男' WHEN 0 THEN '女' 
-        END AS 'sex_name',c.role_name FROM (
-        SELECT s.stu_id,s.stu_name,s.stu_sex,r.role_name FROM community_role cr
-        INNER JOIN role r ON cr.role_id = r.role_id
-        INNER JOIN stu_community_role scr ON scr.community_role_id = cr.community_role_id
-        INNER JOIN student s ON scr.stu_id = s.stu_id
-        WHERE cr.community_id = 1
-        ) c
-            <if test="keyWord != null">
-            AND (CONCAT(c.stu_id,'')  LIKE '%${keyWord}%'
-                 OR c.stu_name LIKE '%${keyWord}%'
-                 OR c.sex_name LIKE '%${keyWord}%')
-                 OR r.role_name LIKE '%${keyWord}%'
-            </if>
-        ) t
-        </if>
-        <if test="isClassesid == true"> 
+    <select id="getCount" parameterType="map" resultType="int">
             SELECT COUNT(*) from (
             SELECT * FROM (SELECT *, CASE  
             WHEN grade = 0 THEN '一年级' 
@@ -110,59 +71,26 @@
             OR CONCAT(c.stu_birthday,'')  LIKE '%${keyWord}%'
             OR c.sex_name LIKE '%${keyWord}%'
             </if>
-        </if>
     </select>
     
-    <select id="getAllManager" parameterType="map" resultType="com.manage.entity.Student"
-         resultMap="stuSimpleResultMap">
-        SELECT * from (
-        SELECT s.*, CASE s.stu_sex WHEN 1 then '男' WHEN 0 THEN '女' END AS 'sex_name'
-        FROM   student s ) c WHERE c.classes_id IS  NULL
-        <if test="keyWord != null">
-        CONCAT(c.stu_id,'')  LIKE '%${keyWord}%' 
-        OR c.stu_name LIKE '%${keyWord}%'
-        OR CONCAT(c.stu_birthday,'')  LIKE '%${keyWord}%'
-        OR c.sex_name LIKE '%${keyWord}%'
-        </if>
-        LIMIT ${pageParam.startIndex},${pageParam.rows}
-     </select>
-     
      <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student"  resultMap="stuSimpleResultMap">
         SELECT s.*,cls.classes,cls.grade
         FROM  classes cls INNER JOIN student s ON cls.classes_id = s.classes_id
         WHERE s.stu_id = #{id}
      </select>
 
-     <select id="queryOneForBack" parameterType="int" resultType="com.manage.entity.Student"  resultMap="stuSimpleResultMap">
-        SELECT * FROM  student s  WHERE s.stu_id = #{id}
-     </select>
-     
-     <select id="getNewMgrid" resultType="java.lang.Integer">
-        SELECT stu_id FROM student ORDER BY stu_id DESC LIMIT 0,1
-     </select>  
-     
-     <select id="stuFrontLogin" parameterType="com.manage.entity.Student" resultType="Integer">
+     <select id="login" parameterType="com.manage.entity.Student" resultType="Integer">
         SELECT COUNT(*) FROM  student 
         where classes_id IS NOT NULL
         AND stu_id = #{stuid} AND stu_pwd = #{stuPwd}
      </select>
      
-     <select id="stuBackLogin" parameterType="com.manage.entity.Student" resultType="Integer">
-        SELECT COUNT(*) FROM  student 
-        where classes_id IS  NULL
-        AND stu_id = #{stuid} AND stu_pwd = #{stuPwd}
-     </select>
      
     <insert id="save" parameterType="com.manage.entity.Student" 
             keyProperty="stuid" useGeneratedKeys="true">
-          <if test="stuBirthday != null">
-                INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
-                VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
-          </if>
-          <if test="stuBirthday == null">
-                INSERT INTO `student` (`stu_name`, `stu_sex`) 
-                VALUES (#{stuName}, #{stuSex})
-          </if>      
+        INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
+        VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
+             
     </insert>
     
     <insert id="joinCommunity" parameterType="map">
@@ -175,7 +103,7 @@
         stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
     </update>
      
-    <delete id="delete">
+    <delete id="deleteMany">
         DELETE FROM student WHERE stu_id in
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}

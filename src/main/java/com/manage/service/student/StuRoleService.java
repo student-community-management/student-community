@@ -1,44 +1,44 @@
-package com.manage.service.authority;
+package com.manage.service.student;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manage.entity.Role;
-import com.manage.mapper.authority.RoleMapper;
+import com.manage.entity.StuRole;
+import com.manage.mapper.student.StuRoleMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class RoleService implements BaseService<Role>,RoleMapper {
-    
+public class StuRoleService implements BaseService<StuRole>, StuRoleMapper {
+
     @Autowired
-    private RoleMapper roleMapper;
-    
+    private StuRoleMapper stuRoleMapper;
+
     @Override
-    public List<Role> queryAll(PageParam pageParam, String keyWord) {
+    public List<StuRole> queryAll(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Role queryOne(Integer id) {
+    public StuRole queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void save(Role t) {
+    public void save(StuRole t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void update(Role t) {
+    public void update(StuRole t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -48,25 +48,15 @@ public class RoleService implements BaseService<Role>,RoleMapper {
     }
 
     @Override
-    public List<Integer> getCommunityRoles() {
-        return roleMapper.getCommunityRoles();
-    }
-
-    @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<Role> getMgrRoles() {
-        return roleMapper.getMgrRoles();
-    }
-
-    @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

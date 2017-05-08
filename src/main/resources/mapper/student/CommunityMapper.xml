@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.manage.mapper.authority.CommunityMapper">
+<mapper namespace="com.manage.mapper.student.CommunityMapper">
     <resultMap type="com.manage.entity.Community" id="communityResultMap">
         <id property="communityid" column="community_id"/>
         <result property="communityName" column="community_name"/>
@@ -18,7 +18,7 @@
     </resultMap>
     
     
-    <select id="queryAll" parameterType="map" resultMap="communityResultMap"  resultType="com.manage.entity.Community"  >
+    <select id="queryAll" parameterType="map" resultMap="communityResultMap" >
         SELECT
             c.*, s.stu_name, CASE WHEN t.stu_num IS NULL THEN 0 ELSE t.stu_num END AS 'stu_num'
         FROM
@@ -26,18 +26,40 @@
         LEFT JOIN community_role cr ON c.community_id = cr.community_id
         LEFT JOIN stu_community_role scr ON cr.community_role_id = scr.community_role_id
         LEFT JOIN student s ON scr.stu_id = s.stu_id
-        LEFT JOIN role r ON cr.role_id = r.role_id
+        LEFT JOIN stu_role r ON cr.role_id = r.role_id
         LEFT JOIN (SELECT sc.community_id,COUNT(*) as 'stu_num' FROM stu_community sc GROUP BY sc.community_id ) t ON c.community_id =  t.community_id
         WHERE
-            cr.role_id = 3
+            cr.role_id = 1
         <if test="keyWord != null">
         AND(
-            c.community_id LIKE  '%${keyWord}%'
+            c.community_id LIKE '%${keyWord}%'
 			OR c.community_name LIKE '%${keyWord}%'
 			OR s.stu_name LIKE '%${keyWord}%'
            )
         </if>
         LIMIT ${pageParam.startIndex},${pageParam.rows}
+    </select>
+    
+    <select id="getCount"  parameterType="map"  resultType="int">
+        SELECT COUNT(*) FROM (
+             SELECT
+                    c.community_id
+            FROM
+                    community c
+            LEFT JOIN community_role cr ON c.community_id = cr.community_id
+            LEFT JOIN stu_community_role scr ON cr.community_role_id = scr.community_role_id
+            LEFT JOIN student s ON scr.stu_id = s.stu_id
+            LEFT JOIN stu_role r ON cr.role_id = r.role_id
+            LEFT JOIN (SELECT sc.community_id,COUNT(*) as 'stu_num' FROM stu_community sc GROUP BY sc.community_id ) t ON c.community_id =  t.community_id
+            WHERE
+                    cr.role_id = 1
+         <if test="keyWord != null">
+            AND(
+            c.community_id LIKE '%${keyWord}%'
+            OR c.community_name LIKE '%${keyWord}%'
+            OR s.stu_name LIKE '%${keyWord}%')
+        </if>
+        ) t
     </select>
     
     <select id="getNewComunityid" resultType="Integer">
@@ -51,7 +73,7 @@
     
     <delete id="deleteMany">
         DELETE FROM community WHERE community_id in
-        <foreach collection="list" item="id" open="(" close=")" separator=",">
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
     </delete>

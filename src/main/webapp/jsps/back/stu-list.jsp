@@ -40,9 +40,6 @@
             pagination : true, //是否显示分页
             fit : true, //是否自动扩充
             fitColumns : true, //自动扩充列
-            queryParams: {   //添加参数
-        		'isClassesid': 'true',
-        	},
             pageNumber : 1, //初始化指定当前页
             pageSize : 20,  //初始化指定每页显示行数
             pageList : [20, 30, 40, 50 ], //分页行数选择
@@ -166,39 +163,6 @@
                     
                 }
             });
-            /*
-            //student grade data
-            var gradeData=[{    
-                "id":0,    
-                "text":'一年级',
-            },{    
-                "id":1,    
-                "text":'二年级',   
-            },{    
-                "id":2,    
-                "text":'三年级',   
-            },{    
-                "id":3,    
-                "text":'四年级',   
-            }];
-            
-            $('#grade').combobox({
-                data:gradeData,
-                width:200,
-                valueField:'id',
-                textField:'text',
-                panelHeight:'auto',
-                onSelect:function(record){
-                    $('#cls').combobox({
-                        url:'/student-community/cls/getcls.a?grade='+record.id,
-                        width:200,
-                        valueField:'classes',
-                        textField:'classes',
-                        panelHeight:'auto'
-                    });
-                }
-            });
-             */
             
             //student classes infomation
             $('#cls').combogrid({
