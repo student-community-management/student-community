@@ -3,6 +3,7 @@ package com.manage.mapper.activity;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import com.manage.entity.Activity;
 import com.manage.entity.StuActivity;

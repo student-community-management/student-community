@@ -13,8 +13,9 @@ import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
-@Service
+@Service("activityService")
 public class ActivityService implements BaseService<Activity>, ActivityMapper {
+    
     @Autowired
     private ActivityMapper activityMapper;
     @Autowired

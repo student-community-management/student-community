@@ -21,7 +21,7 @@ public class Dynamics implements Serializable {
     private Date dynamicsDate; // 发布日期
     private Integer dynamicsSearch;//0代表仅自己可见,1代表所有人可见
     private Integer status; // 是否删除
-    private Set<Dynamics> replyDynamics;
+    private Set<ReplyDynamics> replyDynamics;
     public Integer getDynamicsSearch() {
         return dynamicsSearch;
     }
@@ -30,11 +30,11 @@ public class Dynamics implements Serializable {
         this.dynamicsSearch = dynamicsSearch;
     }
 
-    public Set<Dynamics> getReplyDynamics() {
+    public Set<ReplyDynamics> getReplyDynamics() {
         return replyDynamics;
     }
 
-    public void setReplyDynamics(Set<Dynamics> replyDynamics) {
+    public void setReplyDynamics(Set<ReplyDynamics> replyDynamics) {
         this.replyDynamics = replyDynamics;
     }
 

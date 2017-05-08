@@ -22,6 +22,7 @@ import com.manage.util.Pagination;
 
 @Controller
 public class ActivityController {
+    
     @Autowired
     private ActivityService activityService;// 活动
     @Autowired
