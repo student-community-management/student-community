@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.dynamics.ReplyDynamicsMapper"> 
+ <resultMap type="com.manage.entity.ReplyDynamics" id="replyDynamicsResultMap">
+    <id column="reply_dynamics_id" property="replyDynamicsid"/>
+    <result column="content" property="content"/>
+    <result column="reply_date" property="replyDate"/>
+    <association property="stu" javaType="com.manage.entity.Student">
+            <id column="stu_id" property="stuid" />
+            <result column="stu_name" property="stuName" />
+        </association>
+        <association property="dynamics" javaType="com.manage.entity.Dynamics" >
+        <id column="dynamics_id" property="dynamicsid" />
+        <result column="dynamics_content" property="dynamicsContent"/>
+        <result column="dynamics_date" property="dynamicsDate" />
+        <result column="dynamics_search" property="dynamicsSearch" />
+        <result column="status" property="status" />
+        </association>
+        <!-- 第一层回复 -->
+        <collection property="replyDynamicses" ofType="com.manage.entity.ReplyDynamics">
+            <id column="reply_dynamics_id" property="replyDynamicsid"/>
+            <result column="content" property="content"/>
+            <result column="reply_date" property="replyDate"/>
+             <association property="stu" javaType="com.manage.entity.Student">
+                <id column="stu_id" property="stuid" />
+                <result column="stu_name" property="stuName" />
+             </association>
+            <association property="dynamics" javaType="com.manage.entity.Dynamics" >
+                <id column="dynamics_id" property="dynamicsid" />
+                <result column="dynamics_content" property="dynamicsContent"/>
+                <result column="dynamics_date" property="dynamicsDate" />
+                <result column="dynamics_search" property="dynamicsSearch" />
+                <result column="status" property="status" />
+            </association>
+        </collection>
+ </resultMap>
+ <!-- 对动态的评论以及子评论 -->
+ <select id="selectReplyDynamics" parameterType="map" resultMap="replyDynamicsResultMap"> 
+    select m.reply_dynamics_id,m.content,m.reply_to_reply,m.reply_date,m.stu_id,m.stu_name,m.dynamics_id,m.dynamics_content,m.dynamics_date,m.dynamics_search,m.status,t.reply_dynamics_id as rereply_dynamics_id,t.content as recontent,t.reply_to_reply rereply_to_reply,t.reply_date as rereply_date,t.stu_id as restu_id,t.stu_name as restu_name,t.dynamics_id as redynamics_id,t.dynamics_content as redynamics_content,t.dynamics_date as redynamics_date,t.dynamics_search as redynamics_search,t.status as restatus from (
+select  reply_dynamics.reply_dynamics_id,reply_dynamics.content,reply_dynamics.reply_to_reply,reply_dynamics.reply_date,student.stu_id,student.stu_name,dynamics.dynamics_id,dynamics_content,dynamics_date,dynamics_search,status from reply_dynamics inner JOIN student
+on student.stu_id = reply_dynamics.stu_id inner join dynamics
+on dynamics.dynamics_id = reply_dynamics.dynamisc_id 
+where reply_dynamics.reply_to_reply is null)m left JOIN (
+select reply_dynamics.reply_dynamics_id,reply_dynamics.content,reply_dynamics.reply_to_reply,reply_dynamics.reply_date,student.stu_id,student.stu_name,dynamics.dynamics_id,dynamics_content,dynamics_date,dynamics_search,status from reply_dynamics inner JOIN student
+on student.stu_id = reply_dynamics.stu_id inner join dynamics
+on dynamics.dynamics_id = reply_dynamics.dynamisc_id 
+where reply_dynamics.reply_to_reply is not null)t
+on m.reply_dynamics_id = t.reply_to_reply
+where m.dynamics_id = #{_parameter}
+ </select>
+</mapper>

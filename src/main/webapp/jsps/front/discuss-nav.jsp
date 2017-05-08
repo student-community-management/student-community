@@ -9,9 +9,9 @@
             <a href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a>
         </li>
     </ul>
-    <div class="page-header">
+    <div class="page-header" style="margin-top:30px;">
         <h4>
-            <img class="mlist" src="/student-community/ico/list.png" width="20"> 最新动态
+            <img class="mlist" src="/student-community/ico/list.png" width="20" > 最新动态
         </h4>
     </div>
     <div class="container">
@@ -26,7 +26,7 @@
                         <a href="/student-community/discuss/getChoicenessDiscuss.a">精选</a>
                     </li>
                     <li <c:if test="${ choose == 3 }">class="active"</c:if>>
-                        <a href="/student-community/discuss/getMyAttentionDiscuss.a">关于我的话题</a>
+                        <a href="/student-community/discuss/getMyAttentionDiscuss.a">我关注的话题</a>
                     </li>
                     <div class="aw-search-bar pull-right hidden-xs">
                         <i class="icon icon-search"></i>

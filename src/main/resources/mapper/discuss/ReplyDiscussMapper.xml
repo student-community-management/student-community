@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.ReplyDiscussMapper">
+    <resultMap type="com.manage.entity.ReplyDiscuss" id="replyDiscussResultMap">
+        <id column="reply_discuss_id" property="replyDiscussid"/>
+        <result column="content" property="content"/>
+        <result column="praise_count" property="praiseCount"/>
+        <result column="against_count" property="againstCount"/>
+        <result column="reply_date" property="replyDate"/>
+        <association property="stu" javaType="com.manage.entity.Student">
+            <id column="reply_stu_id" property="stuid" />
+            <result column="reply_stu_name" property="stuName"/>
+        </association>
+    </resultMap>
+    
+    <insert id="save" parameterType="com.manage.entity.ReplyDiscuss">
+        INSERT INTO reply_discuss (stu_id, discuss_id, content)
+        VALUES (#{stu.stuid}, #{discuss.discussid}, #{content})
+    </insert>
+    
+    <insert id="replyToReplyDisucss" parameterType="com.manage.entity.ReplyDiscuss">
+        INSERT INTO reply_discuss (stu_id,content, reply_to_reply) 
+        VALUES (#{stu.stuid}, #{content}, #{replyDiscuss.replyDiscussid})
+    </insert>
+    
+    <select id="getReplyDiscusses" parameterType="map" resultMap="replyDiscussResultMap">
+        SELECT * FROM(
+        SELECT rd.reply_discuss_id,s.stu_name AS 'reply_stu_name',s.stu_id AS 'reply_stu_id',
+        rd.content,rd.reply_date,COUNT(prd.reply_discuss_id) AS 'praise_count',
+        COUNT(ard.reply_discuss_id) AS 'against_count' 
+        FROM discuss d
+        LEFT JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id
+        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN student s ON rd.stu_id = s.stu_id
+        WHERE d.discuss_id = #{discussid}
+        GROUP BY rd.reply_discuss_id) t
+        ORDER BY YEAR(t.reply_date) DESC,MONTH(t.reply_date) DESC,t.praise_count DESC
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="queryReplyToReply" parameterType="map" resultMap="replyDiscussResultMap">
+        SELECT rd.content,s.stu_name AS 'reply_stu_name' FROM reply_discuss rd 
+        INNER JOIN student s ON rd.stu_id = s.stu_id
+        WHERE rd.discuss_id IS NULL AND rd.reply_to_reply = ${replyDiscussid}
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="queryReplyToReplyCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM reply_discuss rd
+        WHERE rd.discuss_id IS NULL AND rd.reply_to_reply = #{replyDiscussid}
+    </select>
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM reply_discuss
+        WHERE reply_discuss_id=#{id}
+    </delete>
+
+</mapper>

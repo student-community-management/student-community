@@ -26,10 +26,12 @@
         <property name="password" value="11111111" />
     </bean>
     
+    <!--  得到session  -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- "classpath*:sqlmap/*-mapper.xml" -->
-        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath:mapper/**/*.xml"></property>
+       
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.manage.mapper"></property>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.DiscussMapper"> 
+    <resultMap id="discussResultMap" type="com.manage.entity.Discuss">
+        <id column="discuss_id" property="discussid" />
+        <result column="discuss_title" property="discussTitle" />
+        <result column="discuss_content" property="discussContent" />
+        <result column="discuss_date" property="discussDate" />
+        <result column="status" property="status" />
+        <result column="reportNum" property="reportNum" />
+        <association property="stu" javaType="com.manage.entity.Student">
+            <id column="stu_id" property="stuid" />
+            <result column="stu_name" property="stuName" />
+        </association>
+    </resultMap>
+    
+    <insert id="save" parameterType="com.manage.entity.Discuss">
+        INSERT INTO discuss (stu_id, discuss_title, discuss_content) 
+        VALUES (#{stu.stuid},#{discussTitle}, #{discussContent})
+    </insert>
+    
+    <update id="setDiscussStatus" parameterType="map">
+        UPDATE discuss d SET d.status = #{status}
+        WHERE d.discuss_id IN 
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+    
+    <select id="queryAll" resultType="com.manage.entity.Discuss" resultMap="discussResultMap"
+        parameterType="map">
+        SELECT d.discuss_id,d.discuss_title,s.stu_name FROM discuss d 
+        INNER JOIN student s ON d.stu_id = s.stu_id
+        WHERE d.STATUS = 1 
+        <if test="keyWord != null">
+        AND ( d.discuss_title LIKE '%${keyWord}%' 
+        OR s.stu_name LIKE '%${keyWord}%')
+        </if>
+        ORDER BY d.discuss_id DESC
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="queryChoicenessDiscuss" resultType="com.manage.entity.Discuss" 
+    resultMap="discussResultMap"
+        parameterType="map">
+        SELECT * FROM (
+        SELECT d.discuss_id,d.discuss_title,d.discuss_content,d.discuss_date,s.stu_name,
+        COUNT(*) AS 'count' FROM discuss d 
+        LEFT  JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id 
+        LEFT JOIN student s ON d.stu_id = s.stu_id
+        WHERE d.status = 1
+        <if test="keyWord != null">
+        AND ( d.discuss_title LIKE '%${keyWord}%' 
+        OR s.stu_name LIKE '%${keyWord}%')
+        </if>
+        GROUP BY d.discuss_id
+        ) t ORDER BY YEAR(t.discuss_date) DESC,MONTH(t.discuss_date) DESC,t.count DESC
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="queryOne" resultMap="discussResultMap" resultType="com.manage.entity.Discuss"
+        parameterType="Integer">
+        SELECT d.discuss_id,d.discuss_title,d.discuss_content,d.discuss_date,s.stu_name,s.stu_id FROM discuss d 
+        INNER JOIN student s ON d.stu_id = s.stu_id
+        WHERE d.STATUS = 1 AND d.discuss_id = #{id}
+    </select>
+    
+    
+    <select id="getCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        SELECT d.discuss_id,d.discuss_title,d.discuss_date,s.stu_name FROM discuss d 
+        INNER JOIN student s ON d.stu_id = s.stu_id
+        WHERE d.STATUS = 1 
+        <if test="keyWord != null">
+        AND ( d.discuss_title LIKE '%${keyWord}%' 
+        OR s.stu_name LIKE '%${keyWord}%')
+        </if> 
+        ) t
+    </select>
+    
+    <select id="getMyAttentionDiscuss" resultMap="discussResultMap" parameterType="map">
+        SELECT d.discuss_id,d.discuss_title FROM discuss d 
+        LEFT JOIN attention_discuss ad ON d.discuss_id = ad.discuss_id
+        LEFT JOIN student s ON ad.stu_id = s.stu_id 
+        WHERE ad.stu_id = #{id}
+        <if test="keyWord != null">
+        AND d.discuss_title LIKE  '%${keyWord}%'
+        </if>
+        GROUP BY d.discuss_id
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="getMyAttentionDiscussCount"  resultType="int" parameterType="map">
+        SELECT COUNT(*) FROM (
+        SELECT d.discuss_title FROM discuss d 
+        LEFT JOIN attention_discuss ad ON d.discuss_id = ad.discuss_id
+        LEFT JOIN student s ON ad.stu_id = s.stu_id 
+        WHERE ad.stu_id = #{id} 
+        <if test="keyWord != null">
+        AND d.discuss_title LIKE  '%${keyWord}%'
+        </if>
+        GROUP BY d.discuss_id
+        ) t
+    </select>
+    
+    <select id="checkReport" resultType="int" parameterType="map">
+        SELECT COUNT(*) FROM student s 
+        INNER JOIN report_discuss rd ON  rd.stu_id = s.stu_id
+        WHERE s.stu_id = #{stuid} AND rd.discuss_id = #{discussid}
+    </select>
+    
+    <select id="getReplyDiscussesCount" parameterType="int" resultType="int">
+        SELECT COUNT(t.reply_discuss_id) FROM(
+        SELECT rd.reply_discuss_id,COUNT(prd.reply_discuss_id) AS 'praise_count',
+        COUNT(ard.reply_discuss_id) AS 'against_count' FROM discuss d
+        LEFT JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id
+        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id = rd.reply_discuss_id
+        LEFT JOIN student s ON rd.stu_id = s.stu_id
+        WHERE d.discuss_id = #{discussid}
+        GROUP BY rd.reply_discuss_id) t
+    </select>
+    
+    <select id="getReportDiscusses" parameterType="map" resultMap="discussResultMap">
+        SELECT * FROM (
+        SELECT d.discuss_id,d.discuss_title,d.discuss_content,COUNT(rd.discuss_id) AS 'reportNum' FROM report_discuss rd 
+        INNER JOIN discuss d ON rd.discuss_id = d.discuss_id
+        WHERE d.status = 1 AND rd.status = 0 
+        <if test="keyWord != null">
+            AND (d.discuss_title LIKE '%${keyWord}%' OR d.discuss_content LIKE '%${keyWord}%')
+        </if>
+        GROUP BY rd.discuss_id )t
+        ORDER BY  t.reportNum DESC
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="getReportDiscussesCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        SELECT d.discuss_id,COUNT(rd.discuss_id) AS 'reportNum' FROM report_discuss rd 
+        INNER JOIN discuss d ON rd.discuss_id = d.discuss_id
+        WHERE d.status = 1 AND rd.status = 0 
+        <if test="keyWord != null">
+            AND (d.discuss_title LIKE '%${keyWord}%' OR d.discuss_content LIKE '%${keyWord}%')
+        </if>
+        GROUP BY rd.discuss_id )t
+    </select>
+    
+</mapper>

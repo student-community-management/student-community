@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.LockDiscussMapper">
+    <resultMap type="com.manage.entity.LockDiscuss" id="lockDiscussMap">
+        <id property="lockDiscussid" column="lock_discuss_id" />
+        <result property="message" column="message" />
+        <result property="datetime" column="datetime" />
+        <association property="discuss" javaType="com.manage.entity.Discuss">
+            <id column="discuss_id" property="discussid" />
+            <result column="disucss_title" property="discussTitle" />
+            <result column="disucss_content" property="discussContent" />
+        </association>
+    </resultMap>
+    
+    <select id="getByid" parameterType="com.manage.entity.LockDiscuss" resultMap="lockDiscussMap">
+        SELECT ld.message FROM lock_disscuss ld 
+        INNER JOIN discuss d ON ld.discuss_id = d.discuss_id
+        WHERE d.discuss_id = #{discuss.discussid} AND d.status = 0
+    </select>
+    
+    <insert id="save">
+        INSERT INTO lock_disscuss(message,discuss_id)
+        VALUE
+        <foreach collection="lockDiscusses" item="dis" separator="," >
+            (#{dis.message},#{dis.discuss.discussid})
+        </foreach>
+    </insert>
+
+    <update id="setLockDiscussStatus">
+        UPDATE lock_disscuss ld SET ld.status = 1 WHERE lock_discuss_id IN 
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+</mapper>

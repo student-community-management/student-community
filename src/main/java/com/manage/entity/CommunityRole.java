@@ -1,7 +1,6 @@
 package com.manage.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
 public class CommunityRole implements Serializable{
     
@@ -11,8 +10,8 @@ public class CommunityRole implements Serializable{
      */
     private static final long serialVersionUID = 6010600382760068660L;
     private Integer communityRoleid;
-    private Set<Community> communities;
-    private Set<Role> roles;
+    private Community community;
+    private StuRole stuRole;
     
     public Integer getCommunityRoleid() {
         return communityRoleid;
@@ -20,18 +19,23 @@ public class CommunityRole implements Serializable{
     public void setCommunityRoleid(Integer communityRoleid) {
         this.communityRoleid = communityRoleid;
     }
-    public Set<Community> getCommunities() {
-        return communities;
+
+    public Community getCommunity() {
+        return community;
     }
-    public void setCommunities(Set<Community> communities) {
-        this.communities = communities;
+
+    public void setCommunity(Community community) {
+        this.community = community;
     }
-    public Set<Role> getRoles() {
-        return roles;
+
+    public StuRole getStuRole() {
+        return stuRole;
     }
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+
+    public void setStuRole(StuRole stuRole) {
+        this.stuRole = stuRole;
     }
+    
     
     
 }

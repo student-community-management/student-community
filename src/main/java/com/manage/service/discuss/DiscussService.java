@@ -1,43 +1,47 @@
 package com.manage.service.discuss;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.manage.entity.Discuss;
 import com.manage.mapper.discuss.DiscussMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
+
+/**
+ * 讨论的Service层
+ * @author ChenYuhao
+ *
+ */
 @Service
-public class DiscussService implements BaseService<Discuss>,DiscussMapper {
+public class DiscussService implements BaseService<Discuss>, DiscussMapper {
+
     @Autowired
     private DiscussMapper discussMapper;
+
     @Override
     public List<Discuss> queryAll(PageParam pageParam, String keyWord) {
-        return  discussMapper.queryAll(pageParam, keyWord);
+        return discussMapper.queryAll(pageParam, keyWord);
     }
 
     @Override
     public Discuss queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void delete(List<Integer> ids) {
-        // TODO Auto-generated method stub
-        
+        return discussMapper.queryOne(id);
     }
 
     @Override
     public void save(Discuss t) {
-        // TODO Auto-generated method stub
-        
+        discussMapper.save(t);
+
     }
 
     @Override
     public void update(Discuss t) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -47,8 +51,8 @@ public class DiscussService implements BaseService<Discuss>,DiscussMapper {
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
-        return null;
+        return new PageData(discussMapper.getReportDiscussesCount(keyWord),
+                discussMapper.getReportDiscusses(pageParam, keyWord));
     }
 
     @Override
@@ -57,13 +61,44 @@ public class DiscussService implements BaseService<Discuss>,DiscussMapper {
     }
 
     @Override
-    public List<Discuss> getMyAttentionDiscuss(PageParam pageParam, Integer id,String keyWord) {
-        return discussMapper.getMyAttentionDiscuss(pageParam, id,keyWord);
+    public List<Discuss> getMyAttentionDiscuss(PageParam pageParam, Integer id, String keyWord) {
+        return discussMapper.getMyAttentionDiscuss(pageParam, id, keyWord);
     }
 
     @Override
-    public Integer getMyAttentionDiscussCount(Integer id,String keyWord) {
-        return discussMapper.getMyAttentionDiscussCount(id,keyWord);
+    public Integer getMyAttentionDiscussCount(Integer id, String keyWord) {
+        return discussMapper.getMyAttentionDiscussCount(id, keyWord);
+    }
+
+    @Override
+    public Integer checkReport(Integer stuid, Integer discussid) {
+        return discussMapper.checkReport(stuid, discussid);
+    }
+
+    @Override
+    public Integer getReplyDiscussesCount(Integer discussid) {
+        return discussMapper.getReplyDiscussesCount(discussid);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public List<Discuss> getReportDiscusses(PageParam pageParam, String keyWord) {
+        return discussMapper.getReportDiscusses(pageParam, keyWord);
+    }
+
+    @Override
+    public Integer getReportDiscussesCount(String keyWord) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setDiscussStatus(List<Integer> ids, Integer status) {
+        discussMapper.setDiscussStatus(ids, status);
     }
 
 
