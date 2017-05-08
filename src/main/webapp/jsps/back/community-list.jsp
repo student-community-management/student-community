@@ -209,7 +209,6 @@
                     datatype : 'json',
                     contentType : 'application/json;charset=utf-8',
                     success: function(msg){
-                        console.log("msg msg msg msg msg"+msg);
                         if(msg == 'ok'){
                             $.messager.show({
                                 title:'消息',

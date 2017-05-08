@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="/student-community/css/mycssback.css" />
 <link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/icon.css" />
 <link type="text/css" href="/student-community/easyui/local/easyui-lang-zh_CN.js" />
-
 <script src="/student-community/js/jquery.min.js"></script>
 <script src="/student-community/easyui/jquery.easyui.min.js"></script>
 </head>
@@ -31,8 +30,8 @@
             </div>
             <div title="社区内容管理" iconCls="icon-ok" class="mnav-item">
                 <ul>
-                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/reportDiscuss-list.jsp" class="mnav-items">被举报讨论</a></li>
-                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/unlockDiscuss-list.jsp" class="mnav-items">申请解锁讨论</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/reportDiscuss-list.jsp" class="mnav-items">被举报的讨论</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/unlockDiscuss-list.jsp" class="mnav-items">申请解锁的讨论</a></li>
                 </ul>
             </div>
             <div title="权限管理" iconCls="icon-ok" class="mnav-item">

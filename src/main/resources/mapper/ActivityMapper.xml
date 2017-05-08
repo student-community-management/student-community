@@ -7,7 +7,7 @@
         <result column="community_title" property="communityTitle" />
         <result column="activity_loc" property="activityLoc" /> 
         <result column="activity_content" property="activityContent" />
-        <result column="activity_date" property="activityDate" /> 
+        <result column="activity_date" property="activityDate" />  
         <result column="closing_date" property="closingDate" />
         <result column="start_date" property="startDate" />
         <result column="end_date" property="endDate" /> 
