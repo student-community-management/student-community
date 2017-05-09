@@ -1,7 +1,7 @@
 package com.manage.util;
 
 public class PageParam {
-    private Integer page;
+    private Integer page;//当前页
     private Integer rows;
     @SuppressWarnings("unused")
     private int startIndex;

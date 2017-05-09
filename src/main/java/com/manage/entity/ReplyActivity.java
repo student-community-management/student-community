@@ -19,16 +19,14 @@ public class ReplyActivity implements Serializable {
     private Student stu;
     private Activity activity;
     private String content;
-    private Set<ReplyActivity> replyActivities;
+    private Set<ReplyActivity> replyActivities;//活动回复外键
     private Date replyDate;
-    private Set<AgainstReplyActivity> againstReplyActivities;
-    private Set<PraiseReplyActivity> praiseReplyActivities;
-    private Set<ReportReplyActivity> ReportReplyActivities;
-
+    private Set<AgainstReplyActivity> againstReplyActivities;//踩的外键
+    private Set<PraiseReplyActivity> praiseReplyActivities;//点赞回复
+    private Set<ReportReplyActivity> ReportReplyActivities;//举报回复
     public Set<AgainstReplyActivity> getAgainstReplyActivities() {
         return againstReplyActivities;
     }
-
     public void setAgainstReplyActivities(
             Set<AgainstReplyActivity> againstReplyActivities) {
         this.againstReplyActivities = againstReplyActivities;

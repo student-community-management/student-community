@@ -3,17 +3,6 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.manage.mapper.student.CommunityRoleMapper">
-    <resultMap type="com.manage.entity.CommunityRole" id="communityRoleMap">
-        <id column="community_role_id" property="communityRoleid" />
-        <collection property="communities" ofType="com.manage.entity.Community">
-            <id property="communityid" column="community_id" />
-            <result property="communityName" column="community_name" />
-        </collection>
-        <collection property="roles" ofType="com.manage.entity.StuRole">
-            <id column="role_id" property="roleid" />
-            <result column="role_name" property="roleName" />
-        </collection>
-    </resultMap>
     
     <insert id="saveByCommid" parameterType="int">
         INSERT INTO community_role (community_id, role_id) 
@@ -27,6 +16,5 @@
             #{id}
         </foreach>
     </delete>
-    
     
 </mapper>

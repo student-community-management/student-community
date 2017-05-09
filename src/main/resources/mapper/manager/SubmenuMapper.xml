@@ -10,7 +10,7 @@
         <result column="parent_menu_id" property="_parentId"/>
         <association property="parentMenu" javaType="com.manage.entity.ParentMenu">
             <id column="parentMenuid" property="id"/>
-        <result column="parentMenuName" property="parent_menu_name"/>
+        <result column="parent_menu_name" property="parentMenuName"/>
         </association>
     </resultMap>
     

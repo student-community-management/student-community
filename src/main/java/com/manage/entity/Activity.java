@@ -1,9 +1,8 @@
 package com.manage.entity;
-
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
-
 /**
  * 
  * @author ChenYuhao
@@ -17,7 +16,11 @@ public class Activity implements Serializable {
     private static final long serialVersionUID = 2761423697905688288L;
     private Integer activityid; // 活动id
     private Student stu; // 活动发起人 数据库添加
-    private String activityTitle; // 活动标题
+    private StuActivity stuactivity;//中间表申请活动
+    private ReportActivity reportActivity;//举报活动
+    private Community community;//社团
+    private Integer activityTypeid;//活动类型
+    private String activityTitle; // 活动标题 
     private String activityLoc; // 活动地点
     private String activityContent; // 活动内容
     private Date activityDate; // 活动发表(发起)时间
@@ -25,17 +28,49 @@ public class Activity implements Serializable {
     private Date startDate; // 活动开始时间
     private Date endDate; // 活动结束时间
     private Integer status; // 是否被删除,这里只做一个标记
-    private Community community;
     private Set<ReplyActivity> replyActivities;
     private Set<ReportActivity> reportActivities;
-    private Set<Student> students;
-
-    public Set<Student> getStudents() {
-        return students;
+    private List<Photos> photo;
+    public ReportActivity getReportActivity() {
+        return reportActivity;
     }
 
-    public void setStudents(Set<Student> students) {
-        this.students = students;
+    public void setReportActivity(ReportActivity reportActivity) {
+        this.reportActivity = reportActivity;
+    }
+
+    public Integer getActivityTypeid() {
+        return activityTypeid;
+    }
+
+    public void setActivityTypeid(Integer activityTypeid) {
+        this.activityTypeid = activityTypeid;
+    }
+
+    
+    public StuActivity getStuactivity() {
+        return stuactivity;
+    }
+
+    public void setStuactivity(StuActivity stuactivity) {
+        this.stuactivity = stuactivity;
+    }
+
+    public List<Photos> getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(List<Photos> photo) {
+        this.photo = photo;
+    }
+
+    private Set<Student> students;//活动参加的人
+    public Date getClosingDate() {
+        return closingDate;
+    }
+
+    public void setClosingDate(Date closingDate) {
+        this.closingDate = closingDate;
     }
 
     public Community getCommunity() {
@@ -46,6 +81,14 @@ public class Activity implements Serializable {
         this.community = community;
     }
 
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
     public Set<ReportActivity> getReportActivities() {
         return reportActivities;
     }
@@ -69,7 +112,6 @@ public class Activity implements Serializable {
     public void setStu(Student stu) {
         this.stu = stu;
     }
-
     public Integer getActivityid() {
         return activityid;
     }
@@ -77,7 +119,6 @@ public class Activity implements Serializable {
     public void setActivityid(Integer activityid) {
         this.activityid = activityid;
     }
-
     public String getActivityTitle() {
         return activityTitle;
     }
@@ -109,15 +150,9 @@ public class Activity implements Serializable {
     public void setActivityDate(Date activityDate) {
         this.activityDate = activityDate;
     }
-
     public Date getCloseingDate() {
         return closingDate;
     }
-
-    public void setCloseingDate(Date closeingDate) {
-        this.closingDate = closeingDate;
-    }
-
     public Date getStartDate() {
         return startDate;
     }

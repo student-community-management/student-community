@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.discuss.ReportDiscussMapper"> 
     <resultMap type="com.manage.entity.ReportDiscuss" id="reportDiscussMap">
-        <id column="reportDiscussid" property="report_discuss_id"/>
+        <id column="report_discuss_id" property="reportDiscussid"/>
         <result column="message" property="message"/>
         <result column="report_date" property="reportDate"/>
         <association property="stu" javaType="com.manage.entity.Student">

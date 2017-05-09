@@ -8,8 +8,8 @@
         <result property="datetime" column="datetime" />
         <association property="discuss" javaType="com.manage.entity.Discuss">
             <id column="discuss_id" property="discussid" />
-            <result column="disucss_title" property="disucssTitle" />
-            <result column="disucss_content" property="disucssContent" />
+            <result column="disucss_title" property="discussTitle" />
+            <result column="disucss_content" property="discussContent" />
         </association>
     </resultMap>
     

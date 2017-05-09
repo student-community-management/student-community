@@ -14,13 +14,12 @@
             <img class="mlist" src="/student-community/ico/list.png" width="20" > 最新动态
         </h4>
     </div>
-
     <div class="container">
         <div class="aw-mod aw-topic-list-mod">
             <div class="mod-head">
 
                 <ul class="nav nav-tabs">
-                    <li <c:if test="${ choose == 1 }">class="active"</c:if> >
+                    <li <c:if test="${ choose == 1 }">class="active"</c:if>>
                         <a href="/student-community/discuss/getAllDiscuss.a">全部内容</a>
                     </li>
                     <li <c:if test="${ choose == 2 }">class="active"</c:if>>
