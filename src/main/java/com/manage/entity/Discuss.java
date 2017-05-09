@@ -19,7 +19,7 @@ public class Discuss implements Serializable {
     private Student stu; // 讨论发起人 数据库添加
     private String discussTitle; // 讨论标题 修改数据库
     private String discussContent; // 讨论详细说明
-    private Date discussDate;// 发布时间 修改数据库
+    private String discussDate;// 发布时间 修改数据库
     private Integer status; // 是否被删除或者问题是否已经关闭回答
     private Set<ReplyDiscuss> replyDiscusses;
     private Set<ReportDiscuss> reportDiscusses;
@@ -81,11 +81,11 @@ public class Discuss implements Serializable {
         this.discussContent = discussContent;
     }
 
-    public Date getDiscussDate() {
+    public String getDiscussDate() {
         return discussDate;
     }
 
-    public void setDiscussDate(Date discussDate) {
+    public void setDiscussDate(String discussDate) {
         this.discussDate = discussDate;
     }
 
