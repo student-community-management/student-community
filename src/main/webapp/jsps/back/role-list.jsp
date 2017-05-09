@@ -27,7 +27,7 @@ $(function(){
         idField:'id',
         treeField:'submenuName',
         columns:[[   
-            {field:'id',title:'菜单名称',align:'left'},
+            {field:'submenuName',title:'菜单名称',align:'left'},
             {field:'url',title:'链接地址'},  
         ]],
         onContextMenu: function(e,data) {
