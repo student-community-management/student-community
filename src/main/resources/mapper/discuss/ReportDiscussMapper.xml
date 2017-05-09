@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.discuss.ReportDiscussMapper"> 
+    <resultMap type="com.manage.entity.ReportDiscuss" id="reportDiscussMap">
+        <id column="report_discuss_id" property="reportDiscussid"/>
+        <result column="message" property="message"/>
+        <result column="report_date" property="reportDate"/>
+        <association property="stu" javaType="com.manage.entity.Student">
+            <id column="stu_id" property="stuid" />
+            <result column="stu_name" property="stuName"/>
+        </association>
+    </resultMap>
+    
+    <select id="getReportsByDiscussid" resultMap="reportDiscussMap" parameterType="map">
+        SELECT s.stu_name,rd.message,rd.report_date FROM report_discuss rd
+        INNER JOIN student s ON rd.stu_id = s.stu_id
+        WHERE rd.discuss_id = #{discussid} AND rd.status = 0
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="getReportsByDiscussidCount" resultType="int" parameterType="int">
+        SELECT COUNT(rd.report_discuss_id) FROM report_discuss rd
+        INNER JOIN student s ON rd.stu_id = s.stu_id
+        WHERE rd.discuss_id = #{discussid} AND rd.status = 0
+    </select>
+    
+    <insert id="save" parameterType="com.manage.entity.ReportDiscuss">
+        INSERT INTO report_discuss (stu_id, discuss_id, message) 
+        VALUES (#{stu.stuid}, #{discuss.discussid}, #{message})
+    </insert>
+    
+    <update id="setReportDiscussStatus">
+        UPDATE report_discuss rd SET rd.status = 1 
+        WHERE rd.discuss_id IN
+        <foreach collection="discussids"  open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </update>
+    
+</mapper>
+

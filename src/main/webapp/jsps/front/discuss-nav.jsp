@@ -9,18 +9,17 @@
             <a href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a>
         </li>
     </ul>
-    <div class="page-header">
+    <div class="page-header" style="margin-top:30px;">
         <h4>
-            <img class="mlist" src="/student-community/ico/list.png" width="20"> 最新动态
+            <img class="mlist" src="/student-community/ico/list.png" width="20" > 最新动态
         </h4>
     </div>
-
     <div class="container">
         <div class="aw-mod aw-topic-list-mod">
             <div class="mod-head">
 
                 <ul class="nav nav-tabs">
-                    <li <c:if test="${ choose == 1 }">class="active"</c:if> >
+                    <li <c:if test="${ choose == 1 }">class="active"</c:if>>
                         <a href="/student-community/discuss/getAllDiscuss.a">全部内容</a>
                     </li>
                     <li <c:if test="${ choose == 2 }">class="active"</c:if>>

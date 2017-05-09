@@ -73,6 +73,8 @@ public class ReplyDynamics implements Serializable {
         this.replyDynamicsid = replyDynamicsid;
     }
 
+
+
     public Student getStu() {
         return stu;
     }

@@ -14,15 +14,12 @@ public class ReportActivity implements Serializable {
      */
     private static final long serialVersionUID = -1037115830900123888L;
     private Integer reportActivityid;
-    private Student stu;
+    private Student stu;//学生外键一对多
     private Activity activity;
-    private String message;
     private Date reportDate;
-
     public Integer getReportActivityid() {
         return reportActivityid;
     }
-
     public void setReportActivityid(Integer reportActivityid) {
         this.reportActivityid = reportActivityid;
     }
@@ -42,15 +39,6 @@ public class ReportActivity implements Serializable {
     public void setActivity(Activity activity) {
         this.activity = activity;
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     public Date getReportDate() {
         return reportDate;
     }

@@ -30,7 +30,6 @@
         <servlet-name>springDispatcherServlet</servlet-name>
         <url-pattern>*.a</url-pattern>
     </servlet-mapping>
-
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

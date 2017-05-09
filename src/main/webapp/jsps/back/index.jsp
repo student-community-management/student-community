@@ -7,23 +7,31 @@
 <link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/material/easyui.css" />
 <link rel="stylesheet" type="text/css" href="/student-community/css/mycssback.css" />
 <link rel="stylesheet" type="text/css" href="/student-community/easyui/themes/icon.css" />
+<link type="text/css" href="/student-community/easyui/local/easyui-lang-zh_CN.js" />
 <script src="/student-community/js/jquery.min.js"></script>
 <script src="/student-community/easyui/jquery.easyui.min.js"></script>
 </head>
 <body>
     <div data-options="region:'north',border:false"
-        style="height: 60px; background: #B3DFDA; padding: 10px">north region</div>
+        style="height: 60px; background: #B3DFDA; padding: 10px">
+
+        欢迎${ sessionScope.bstu.stuName }
+
+    </div>
     <div data-options="region:'west',split:true,title:'管理菜单'" style="width: 200px;">
         <div id="mnav-accordion" class="mnav-accordion">
-            <div title="社区管理" iconCls="icon-ok" class="mnav-item">
+            <div title="社区用户管理" iconCls="icon-ok" class="mnav-item">
                 <ul>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/stu-list.jsp" class="mnav-items">学生管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/manager-list.jsp" class="mnav-items">管理人员管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">活动管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">问吧管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">讨论管理</a></li>
-                    <li iconCls="icon-ok"><a hrefs="#" class="mnav-items">说说管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/mgr-list.jsp" class="mnav-items">管理人员管理</a></li>
                     <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/community-list.jsp" class="mnav-items">社团管理</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/role-list.jsp" class="mnav-items">权限配置</a></li>
+                </ul>
+            </div>
+            <div title="社区内容管理" iconCls="icon-ok" class="mnav-item">
+                <ul>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/reportDiscuss-list.jsp" class="mnav-items">被举报的讨论</a></li>
+                    <li iconCls="icon-ok"><a hrefs="/student-community/jsps/back/unlockDiscuss-list.jsp" class="mnav-items">申请解锁的讨论</a></li>
                 </ul>
             </div>
             <div title="权限管理" iconCls="icon-ok" class="mnav-item">

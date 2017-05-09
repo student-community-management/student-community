@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.manager.ManagerMapper">
+    <resultMap type="com.manage.entity.Manager" id="managerMap">
+        <id column="manager_id" property="managerid"/>
+        <result column="manager_pwd" property="managerPwd"/>
+        <result column="manager_name" property="managerName"/>
+        <association property="mgrRole" javaType="com.manage.entity.MgrRole">
+            <id column="mgr_role_id" property="mgrRoleid"/>
+            <result column="mgr_role_name" property="mgrRoleName"/>
+            <result column="level" property="level"/>
+        </association>
+    </resultMap>
+    
+    <select id="queryAll" parameterType="map" resultMap="managerMap">
+        SELECT m.manager_id,m.manager_pwd,m.manager_name,mr.mgr_role_name,mr.level FROM manager m
+        LEFT JOIN mgr_role mr ON m.mgr_role_id = mr.mgr_role_id
+        <where>
+            m.manager_id != 10000
+        <if test="keyWord != null">
+            AND (m.manager_id LIKE '%${keyWord}%' 
+            OR m.manager_name LIKE '%${keyWord}%' 
+            OR mr.mgr_role_name LIKE '%${keyWord}%')
+        </if>
+        </where>
+        ORDER BY m.manager_id
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+    </select>
+    
+    <select id="getCount" parameterType="map" resultType="int">
+    
+    SELECT COUNT(*) FROM (
+    SELECT m.manager_id FROM manager m
+    LEFT JOIN mgr_role mr ON m.mgr_role_id = mr.mgr_role_id
+    <where>
+        m.manager_id != 10000
+        <if test="keyWord != null">
+            AND (m.manager_id LIKE '%${keyWord}%' 
+            OR m.manager_name LIKE '%${keyWord}%' 
+            OR mr.mgr_role_name LIKE '%${keyWord}%')
+        </if>
+    </where>
+    ) t
+    </select>
+    
+    <update id="updatePwd" parameterType="com.manage.entity.Manager">
+        UPDATE manager SET manager_pwd=#{managerPwd}
+        WHERE manager_id=#{managerid}
+    </update>
+    
+    <update id="update" parameterType="com.manage.entity.Manager">
+        UPDATE manager SET manager_name=#{managerName}, mgr_role_id= #{mgrRole.mgrRoleid}
+        WHERE manager_id= #{managerid}
+    </update>
+    
+    <delete id="deleteMany">
+         DELETE FROM manager 
+         WHERE manager_id IN
+         <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+         </foreach>
+    </delete>
+    
+    <insert id="save" parameterType="com.manage.entity.Manager">
+        INSERT INTO manager (manager_pwd, manager_name, mgr_role_id)
+        VALUES (#{managerPwd},#{managerName}, #{mgrRole.mgrRoleid})
+    </insert>
+    
+</mapper>

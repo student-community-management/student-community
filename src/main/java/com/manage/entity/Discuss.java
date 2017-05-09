@@ -1,6 +1,7 @@
 package com.manage.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -18,16 +19,25 @@ public class Discuss implements Serializable {
     private Student stu; // 讨论发起人 数据库添加
     private String discussTitle; // 讨论标题 修改数据库
     private String discussContent; // 讨论详细说明
-    private String discussDate;// 发布时间 修改数据库
+    private Date discussDate;// 发布时间 修改数据库
     private Integer status; // 是否被删除或者问题是否已经关闭回答
     private Set<ReplyDiscuss> replyDiscusses;
-    private Set<ReportDisscuss> reportDiscusses;
+    private Set<ReportDiscuss> reportDiscusses;
+    private Integer reportNum; // 被举报的次数
 
-    public Set<ReportDisscuss> getReportDiscusses() {
+    public Integer getReportNum() {
+        return reportNum;
+    }
+
+    public void setReportNum(Integer reportNum) {
+        this.reportNum = reportNum;
+    }
+
+    public Set<ReportDiscuss> getReportDiscusses() {
         return reportDiscusses;
     }
 
-    public void setReportDiscusses(Set<ReportDisscuss> reportDiscusses) {
+    public void setReportDiscusses(Set<ReportDiscuss> reportDiscusses) {
         this.reportDiscusses = reportDiscusses;
     }
 
@@ -71,11 +81,11 @@ public class Discuss implements Serializable {
         this.discussContent = discussContent;
     }
 
-    public String getDiscussDate() {
+    public Date getDiscussDate() {
         return discussDate;
     }
 
-    public void setDiscussDate(String discussDate) {
+    public void setDiscussDate(Date discussDate) {
         this.discussDate = discussDate;
     }
 
