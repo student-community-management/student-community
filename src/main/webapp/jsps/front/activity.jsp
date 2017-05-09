@@ -28,8 +28,10 @@
 		</ul>
 	<div class="topone">
 		<div class="ccc">
-		<div class="hb"><h2 class="glyphicon glyphicon-user">公告栏 <input type="text" id="question-input" value="${pagination.keyWord }"
-                            class="search-query form-control" placeholder="搜索..."></h2>
+		<div class="hb">
+		<h2 class="glyphicon glyphicon-user"><span><input type="text" id="question-input" value="${pagination.keyWord}"
+                     class="search-query form-control" placeholder="搜索..."></span>公告栏   </h2>
+                  
 		</div>
 		<div class="bd">
 			<small><a>本活动内容最终解释权归版权方所有</a></small>
@@ -70,7 +72,7 @@
 							</c:forEach>
 							</c:if>
 						</li>
-						 <ul class="pagination">
+					<ul class="pagination">
                 <li <c:if test="${pagination.currentPage == 1}">class="disabled"</c:if>>
                     <a href="javascript:void(0);" aria-label="Previous" class="prev"> <span
                         aria-hidden="true">&laquo;</span>

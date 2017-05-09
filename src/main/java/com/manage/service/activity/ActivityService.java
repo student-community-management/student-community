@@ -13,48 +13,33 @@ import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
-@Service("activityService")
+@Service
 public class ActivityService implements BaseService<Activity>, ActivityMapper {
-    
+
     @Autowired
     private ActivityMapper activityMapper;
     @Autowired
     private CommunityMapper communityMapper;
 
-    // 查询所有活动
-    // 需要返回给前台的,所有数据,总条数
-    // 所有活动不带分页
+    /**
+     * 查询所有活动 需要返回给前台的,所有数据,总条数 所有活动不带分页
+     */
     public List<Activity> getActivity() {
         List<Activity> list = activityMapper.getActivity();
         return list;
     }
-    
-    
-    /**
-     * 根据活动id查询活动所有信息
-     * 根据id查询某个活动
-     */
-    public Activity getActivityOne(Integer actId) {
-        return activityMapper.getActivityOne(actId);
-    }
 
-    // 添加活动预插入
+    /**
+     * 添加活动预插入
+     * 
+     * @return
+     */
     public ModelAndView addActivityPre() {
         ModelAndView model = new ModelAndView();
         List<Community> community = communityMapper.queryAll(null, null);
         model.addObject("community", community);
         model.setViewName("front/addactivity");
         return model;
-    }
-
-    // 添加活动
-    public Integer insertActivity(Activity activity) {
-        return activityMapper.addActivity(activity);
-    }
-
-    // 修改活动信息
-    public Integer UpdateActivity(Activity activity) {
-        return activityMapper.UpdateActivity(activity);
     }
 
     /**
@@ -70,13 +55,20 @@ public class ActivityService implements BaseService<Activity>, ActivityMapper {
         return activityMapper.getCount(keyWord);
     }
 
+    /**
+     * 根据活动编号查询单个活动信息,为修改做准备 分页式查询 模糊查询like，关键字
+     * 
+     * @param activityId
+     * @return
+     */
     @Override
     public Activity queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return activityMapper.queryOne(id);
     }
 
-    // 批量删除
+    /**
+     * 批量删除
+     */
     @Override
     public void deleteMany(List<Integer> ids) {
         if (ids == null || ids.size() == 0) {
@@ -87,27 +79,32 @@ public class ActivityService implements BaseService<Activity>, ActivityMapper {
 
     }
 
+    /**
+     * 增加活动
+     * 
+     * @param activity
+     * @return
+     */
     @Override
     public void save(Activity t) {
-        // TODO Auto-generated method stub
+        activityMapper.save(t);
 
     }
 
+    /**
+     * 修改活动信息
+     * 
+     * @param activity
+     * @return
+     */
     @Override
     public void update(Activity t) {
-        // TODO Auto-generated method stub
+        activityMapper.update(t);
 
     }
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Integer addActivity(Activity activity) {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -125,8 +122,8 @@ public class ActivityService implements BaseService<Activity>, ActivityMapper {
      * 申请加入活动
      */
     @Override
-    public Integer addActivityPerson(StuActivity stuActivity) {
-        return activityMapper.addActivityPerson(stuActivity);
+    public void addActivityPerson(StuActivity stuActivity) {
+        activityMapper.addActivityPerson(stuActivity);
     }
 
     /**

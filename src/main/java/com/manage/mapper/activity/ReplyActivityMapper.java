@@ -21,6 +21,14 @@ public interface ReplyActivityMapper extends BaseMapper<ReplyActivity>{
      * @return 用户子回复的数量
      */
     Integer selectReplyActivityCount( @Param("ActId") Integer ActId,@Param("keyWord") String keyWord);
-    public void ReplyActivityParent(ReplyActivity replyActivity);//第一次评论
-    public void ReplyActivityChildren(ReplyActivity replyActivity);//对已经评论的进行回复
+    /**
+     * 第一次评论
+     * @param replyActivity
+     */
+    public void ReplyActivityParent(ReplyActivity replyActivity);
+    /**
+     * 对已经评论的进行回复
+     * @param replyActivity
+     */
+    public void ReplyActivityChildren(ReplyActivity replyActivity);
 }

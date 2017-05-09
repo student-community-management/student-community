@@ -10,7 +10,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${db.driver}" />
         <property name="url" value="${db.url}" />
-        <property name="username" value="admin" />
+        <property name="username" value="root" />
         <property name="password" value="11111111" />
     </bean>
     

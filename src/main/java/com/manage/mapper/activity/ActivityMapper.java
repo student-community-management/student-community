@@ -1,33 +1,59 @@
 package com.manage.mapper.activity;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
 import com.manage.entity.Activity;
 import com.manage.entity.StuActivity;
 import com.manage.mapper.BaseMapper;
 
 public interface ActivityMapper extends BaseMapper<Activity> {
-    // 分页式查询
-    // 模糊查询like，关键字
-    public Activity getActivityOne(Integer activityId);// 根据活动编号查询单个活动信息,为修改做准备
+   
+    /**
+     * 查询所有活动不带分页
+     * 
+     * @return
+     */
+    public List<Activity> getActivity();
 
-    public List<Activity> getActivity();// 查询所有活动不带分页
 
-    public Integer addActivity(Activity activity);// 增加活动
+    /**
+     * 查询出某人最新发布的活动id
+     * 
+     * @param perId
+     * @return
+     */
+    public Integer getActivityByperId(String perId);
 
-    public Integer UpdateActivity(Activity activity);// 修改活动信息
+    /**
+     * 通过查询成员
+     * 
+     * @param 活动编号
+     * @return
+     */
+    public List<Activity> getAllStudentByActId(Integer ActId);
 
-    public Integer getActivityByperId(String perId);// 查询出某人最新发布的活动id
+    /**
+     * 申请加入活动
+     * 
+     * @param 学生活动
+     * @return
+     */
+    public void addActivityPerson(StuActivity stuActivity);
 
-    public List<Activity> getAllStudentByActId(Integer ActId);// 通过活动编号查询成员
+    /**
+     * 查询是否已经参加这个活动
+     * 
+     * @param 活动编号
+     * @return
+     */
+    public Activity validateFlag(Integer ActId);
 
-    public Integer addActivityPerson(StuActivity stuActivity);// 申请加入活动
-
-    public Activity validateFlag(Integer ActId);// 查询是否已经参加这个活动
-
+    /**
+     * 
+     * 批量取消活动
+     * 
+     * @param
+     */
     void deleteMany(@Param("ids") List<Integer> ids);
 
 }

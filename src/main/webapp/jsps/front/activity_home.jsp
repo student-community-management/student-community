@@ -43,7 +43,7 @@ ${activity.activityContent}
 		layer.msg('报名成功');
 		document.myfrom.submit();
 	}, function(index){
-			window.location = "${pageContext.request.contextPath}/getlistActivity.a?ActId=${activity.activityid}";
+			window.location = "${pageContext.request.contextPath}/getlistActivityAttention.a?ActId=${activity.activityid}";
 	});  
 }); 
 
@@ -55,7 +55,7 @@ ${activity.activityContent}
 			layer.msg('已经举报');
 			document.myreport.submit();
 		}, function(index){
-				window.location = "${pageContext.request.contextPath}/getlistActivity.a?ActId=${activity.activityid}";
+				window.location = "${pageContext.request.contextPath}/getlistActivityAttention.a?ActId=${activity.activityid}";
 		});  
 	});
   /*评论

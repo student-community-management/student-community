@@ -7,6 +7,4 @@
         <id column="role_id" property="roleid" />
         <result column="role_name" property="roleName" />
     </resultMap>
-    
-    
 </mapper>

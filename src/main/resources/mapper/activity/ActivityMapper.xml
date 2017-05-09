@@ -41,9 +41,10 @@
     <select id="queryAll" parameterType="map"  resultMap="activityResultMap">
       select  activity.activity_id,activity.community_id,community.community_name,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status from  activity  activity INNER JOIN community
       on activity.community_id= community.community_id  
-            where status = 0
-       <if test="keyWord != null">
-        AND  activity.activity_content LIKE '%${keyWord}%'
+        WHERE STATUS = 1 
+        <if test="keyWord != null">
+        AND ( activity_title LIKE '%${keyWord}%' 
+        OR activity_content LIKE '%${keyWord}%')
         </if>
         ORDER BY activity.activity_id DESC
         LIMIT #{pageParam.startIndex},#{pageParam.rows}
@@ -52,10 +53,11 @@
     <select id="getCount" parameterType="map"  resultType="int">
          select  count(activity.activity_id) from  activity  activity INNER JOIN community
       on activity.community_id= community.community_id  
-        where status = 0
-          <if test="keyWord != null">
-        AND  activity.activity_content LIKE '%${keyWord}%'
-        </if>
+        WHERE STATUS = 1 
+        <if test="keyWord != null">
+        AND ( activity_title LIKE '%${keyWord}%' 
+        OR activity_content LIKE '%${keyWord}%')
+        </if> 
     </select>
     <!-- 查询活动不带分页 -->
     <select id="getActivity" parameterType="map"  resultMap="activityResultMap">
@@ -66,11 +68,11 @@ on community.community_id = activity.community_id left JOIN photos
 on photos.photo_id = activity.photo_id
     </select>
     <!-- 通过活动编号查询 ,只是查看详细信息-->
-    <select id="getActivityOne" parameterType="Integer" resultMap="activityResultMap">
+    <select id="queryOne" parameterType="Integer" resultMap="activityResultMap">
 SELECT activity.activity_id,activity.community_id,community.community_name,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status,photos.photo_id,photos.photo_name  from  activity   INNER JOIN community 
 on community.community_id = activity.community_id inner join photos
 on photos.photo_id = activity.photo_id 
-where activity.activity_id = #{_parameter} 
+where activity.activity_id = #{id} 
     </select>
     <!-- 查询是否已经参加活动 -->
     <select id="validateFlag" parameterType="Integer" resultMap="activityResultMap">
@@ -94,7 +96,7 @@ where student.stu_id = #{stuid}
     </select>
     <!--添加活动  -->
     <!-- 输入参数 -->
-    <insert id="addActivity" parameterType="com.manage.entity.Activity">
+    <insert id="save" parameterType="com.manage.entity.Activity">
             insert into activity(activity_type_id,community_id,activity_title,activity_loc,activity_content,activity_date,closing_date,start_date,end_date,status) 
             VALUES(#{activityTypeid},#{community.communityid,jdbcType=INTEGER},#{activityTitle},#{activityLoc},#{activityContent,jdbcType=VARCHAR},now(),#{closingDate},#{startDate},#{endDate},0) 
     </insert>
@@ -103,7 +105,7 @@ where student.stu_id = #{stuid}
         insert into stu_activity(activity_id,stu_id,validate_flag) VALUES(#{activityid},#{stuid},1) 
     </insert>
     <!-- 修改 -->
-    <update id="UpdateActivity" parameterType="com.manage.entity.Activity">
+    <update id="update" parameterType="com.manage.entity.Activity">
           update activity 
       set community_id = #{community.communityid}, 
       activity_type_id = #{activityTypeid} ,

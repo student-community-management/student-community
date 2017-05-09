@@ -227,7 +227,6 @@ layer.msg('<input type="text" id="twitter" value="'+url+'" /> <button data-copyt
 });
 $('#copyUrl').click(function(){
 	layer.msg('已复制,快去告诉你的小伙伴吧');
-
 });
 
 //复制

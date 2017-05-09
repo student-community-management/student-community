@@ -16,7 +16,7 @@
         <result column="stu_birthday" property="stuBirthday"/>
         <result column="stu_native_place" property="stuNativePlace"/>
     </association>
-    评论内容
+ 评论内容
     <collection property="replyDynamics" ofType="com.manage.entity.ReplyDynamics">
             <id column="reply_dynamics_id" property="replyDynamicsid"/>
             <result column="content" property="content"/>
@@ -50,8 +50,8 @@
              </association>
             </collection>
     </collection>
-    </resultMap> -->
-  <!--  <select id="queryAll" parameterType="map" >
+    </resultMap>
+  <select id="queryAll" parameterType="map" >
            select m.dynamics_id,m.dynamics_content,m.dynamics_date,m.dynamics_search,m.status,m.reply_dynamics_id,m.content,m.reply_to_reply,m.reply_date,m.stu_id,m.stu_name,t.reply_dynamics_id as rereply_dynamics_id,t.content as recontent,t.reply_to_reply rereply_to_reply,t.reply_date as rereply_date,t.stu_id as restu_id,t.stu_name as restu_name,t.dynamics_id as redynamics_id,t.dynamics_content as redynamics_content,t.dynamics_date as redynamics_date,t.dynamics_search as redynamics_search,t.status as restatus from (
         select reply_dynamics.reply_dynamics_id,reply_dynamics.content,reply_dynamics.reply_to_reply,reply_dynamics.reply_date,student.stu_id,student.stu_name,dynamics.dynamics_id,dynamics_content,dynamics_date,dynamics_search,status from reply_dynamics inner JOIN student
         on student.stu_id = reply_dynamics.stu_id RIGHT join dynamics

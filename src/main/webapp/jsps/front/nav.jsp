@@ -9,7 +9,7 @@
 			<div id="navbar">
 				<ul class="nav navbar-nav">
 					<li><a href="/student-community/jsps/front/index.jsp">首页</a></li>
-					<li><a href="/student-community/jsps/front/activity.jsp">活动</a></li>
+					<li><a href="/student-community/getActivity.a">活动</a></li>
 					<li><a href="/student-community/discuss/getAllDiscuss.a">讨论</a></li>
 					<li><a href="#contact">动态</a></li>
 				</ul>

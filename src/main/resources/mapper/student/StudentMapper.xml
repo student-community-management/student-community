@@ -16,7 +16,6 @@
             <result column="year" property="years" />
         </association>
     </resultMap>
-    
     <sql id="stuColumn">
         s.stu_id,s.stu_pwd,s.stu_name,s.stu_sex,s.stu_birthday,s.stu_native_place
     </sql>
