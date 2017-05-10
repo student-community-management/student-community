@@ -10,9 +10,9 @@ public class Submenu implements Serializable {
     private Integer id;
     private String submenuName;
     private String url;
-    private Integer _parentId;  //数据库并没有这一列为了方便查询
+    private Integer _parentId; // 数据库并没有这一列为了方便查询
+    private Integer parentid;
     private ParentMenu parentMenu;
-
 
     public Integer getId() {
         return id;
@@ -52,6 +52,14 @@ public class Submenu implements Serializable {
 
     public void set_parentId(Integer _parentId) {
         this._parentId = _parentId;
+    }
+
+    public Integer getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(Integer parentid) {
+        this.parentid = parentid;
     }
 
 }

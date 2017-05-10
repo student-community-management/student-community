@@ -20,4 +20,13 @@ public interface ManagerMapper extends BaseMapper<Manager> {
      * @param ids 多条信息的id
      */
     void deleteMany(@Param("ids") List<Integer> ids);
+    
+    /**
+     * 当角色被删除时,
+     * 将相对应的管理人员的角色设置成null
+     * 
+     * @param roleid
+     */
+    void setRole(Integer roleid);
+    
 }

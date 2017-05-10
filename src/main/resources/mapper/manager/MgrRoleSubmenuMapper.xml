@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.manager.MgrRoleSubmenuMapper">
+    
+    <insert id="save" parameterType="map">
+       INSERT INTO mgr_role_submenu (mgr_role_id, submenu_id)
+       VALUES
+       <foreach collection="submenuids" item="id" separator=",">
+        (#{roleid}, #{id})
+       </foreach>
+        
+    </insert>
+    
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM mgr_role_submenu 
+        WHERE mgr_role_id=#{roleid}
+    </delete>
+    
+</mapper>

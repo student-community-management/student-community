@@ -24,19 +24,14 @@
 <!----------------发布讨论------------->
 
 	<%@ include file="nav.jsp" %>
-	<div class="container">
+	<div class="container mcontainer">
 		<ul class="nav nav-tabs nav-justified">
         <li role="presentation"><a
                 href="/student-community/discuss/getAllDiscuss.a">话题发现</a></li>
 			<li role="presentation" class="active"><a
 				href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a></li>
 		</ul>
-		<div class="page-header">
-			<h4>
-				<img class="mlist" src="/student-community/ico/list.png" width="20">
-				讨论话题
-			</h4>
-		</div>
+        <div class="mcontainer">
 		<form class="form-horizontal" id="discussForm">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">标题</label>
@@ -53,6 +48,7 @@
 			</div>
 				<button type="submit" class="btn btn-default"style="width:75%;margin-left:17%">提交</button>
 		</form>
+        </div>
 	</div>
 </body>
 <script type="text/javascript">

@@ -19,7 +19,6 @@ public class SubmenuService implements SubmenuMapper,BaseService<Submenu>{
 
     @Override
     public List<Submenu> queryAll(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
         return submenuMapper.queryAll(pageParam, keyWord);
     }
 
@@ -31,32 +30,37 @@ public class SubmenuService implements SubmenuMapper,BaseService<Submenu>{
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        
+        submenuMapper.delete(id);
     }
 
     @Override
     public void save(Submenu t) {
-        // TODO Auto-generated method stub
-        
+        submenuMapper.save(t);
     }
 
     @Override
     public void update(Submenu t) {
-        // TODO Auto-generated method stub
-        
+        submenuMapper.update(t);
     }
 
     @Override
     public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
         return submenuMapper.getCount(keyWord);
     }
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
         return new PageData(this.getCount(keyWord), this.queryAll(pageParam, keyWord));
+    }
+
+    @Override
+    public List<Integer> getSubmenuByRoleid(Integer id) {
+        return submenuMapper.getSubmenuByRoleid(id);
+    }
+
+    @Override
+    public void delByParentMenuid(Integer id) {
+        submenuMapper.delByParentMenuid(id);
     }
 
 }

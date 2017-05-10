@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.MgrRole;
+import com.manage.mapper.manager.ManagerMapper;
 import com.manage.mapper.manager.MgrRoleMapper;
+import com.manage.mapper.manager.MgrRoleSubmenuMapper;
+import com.manage.mapper.manager.SubmenuMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
@@ -16,7 +19,13 @@ public class MgrRoleService implements MgrRoleMapper, BaseService<MgrRole> {
 
     @Autowired 
     private MgrRoleMapper mgrRoleMapper;
-
+    
+    @Autowired 
+    private MgrRoleSubmenuMapper  mgrRoleSubmenuMapper;
+    
+    @Autowired
+    private ManagerMapper managerMapper;
+    
     @Override
     public List<MgrRole> queryAll(PageParam pageParam, String keyWord) {
         // TODO Auto-generated method stub
@@ -31,20 +40,23 @@ public class MgrRoleService implements MgrRoleMapper, BaseService<MgrRole> {
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
-
+        //删除角色
+        mgrRoleMapper.delete(id);
+        //删除角色对应的菜单
+        mgrRoleSubmenuMapper.delete(id);
+        //删除管理人员和角色的对应关系
+        managerMapper.setRole(id);
     }
 
     @Override
     public void save(MgrRole t) {
-        // TODO Auto-generated method stub
+        mgrRoleMapper.save(t);
 
     }
 
     @Override
     public void update(MgrRole t) {
-        // TODO Auto-generated method stub
-
+        mgrRoleMapper.update(t);
     }
 
     @Override

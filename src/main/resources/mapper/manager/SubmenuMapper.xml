@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.manage.mapper.manager.SubmenuMapper">
     <resultMap type="com.manage.entity.Submenu" id="submenuMap">
-    
         <id column="submenu_id" property="id"/>
         <result column="submenu_name" property="submenuName"/>
         <result column="url" property="url"/>
@@ -13,6 +12,26 @@
         <result column="parent_menu_name" property="parentMenuName"/>
         </association>
     </resultMap>
+    
+    <insert id="save" parameterType="com.manage.entity.Submenu">
+        INSERT INTO submenu (submenu_name, url, parent_menu_id) 
+        VALUES (#{submenuName}, #{url}, #{parentid})
+    </insert>
+    
+    <delete id="delete">
+        DELETE FROM submenu 
+        WHERE submenu_id= #{id}
+    </delete>
+    
+    <delete id="delByParentMenuid" parameterType="int">
+        DELETE FROM submenu 
+        WHERE parent_menu_id= #{id}
+    </delete>
+    
+    <update id="update" parameterType="com.manage.entity.Submenu">
+        UPDATE submenu SET submenu_name=#{submenuName}, url=#{url}
+        WHERE submenu_id=#{id}
+    </update>
     
     <select id="queryAll" resultMap="submenuMap">
         SELECT * FROM submenu s
@@ -26,6 +45,11 @@
         UNION ALL
         SELECT pm.parent_menu_id FROM parent_menu pm
         ) t
+    </select>
+    
+    <select id="getSubmenuByRoleid" parameterType="int" resultType="int">
+        SELECT mrs.submenu_id FROM mgr_role_submenu mrs
+        WHERE mrs.mgr_role_id = #{id}
     </select>
     
 </mapper>

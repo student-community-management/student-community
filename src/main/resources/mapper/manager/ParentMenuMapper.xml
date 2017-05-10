@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.manage.mapper.manager.ParentMenuMapper">
+    <resultMap type="com.manage.entity.ParentMenu" id="parentMenuMap">
+        <id column="parent_menu_id" property="id"/>
+        <result column="parent_menu_name" property="parentMenuName"/>
+    </resultMap>
+    
+    <insert id="save" parameterType="com.manage.entity.ParentMenu">
+        INSERT INTO parent_menu (parent_menu_name) 
+        VALUES (#{parentMenuName})
+    </insert>
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM parent_menu 
+        WHERE parent_menu_id=#{id}
+    </delete>
+    
+    <update id="update" parameterType="com.manage.entity.ParentMenu">
+        UPDATE parent_menu SET parent_menu_name= #{parentMenuName}
+        WHERE parent_menu_id = #{id}
+    </update>
+    
+</mapper>

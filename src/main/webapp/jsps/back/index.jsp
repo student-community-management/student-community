@@ -15,8 +15,6 @@
     <div data-options="region:'north',border:false"
         style="height: 60px; background: #B3DFDA; padding: 10px">
 
-        欢迎${ sessionScope.bstu.stuName }
-
     </div>
     <div data-options="region:'west',split:true,title:'管理菜单'" style="width: 200px;">
         <div id="mnav-accordion" class="mnav-accordion">

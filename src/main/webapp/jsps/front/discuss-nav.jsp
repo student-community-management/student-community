@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="container">
+<div class="container mcontainer">
     <ul class="nav nav-tabs nav-justified">
         <li role="presentation" class="active">
             <a href="/student-community/discuss/getAllDiscuss.a">话题发现</a>
@@ -9,12 +9,7 @@
             <a href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a>
         </li>
     </ul>
-    <div class="page-header" style="margin-top:30px;">
-        <h4>
-            <img class="mlist" src="/student-community/ico/list.png" width="20" > 最新动态
-        </h4>
-    </div>
-    <div class="container">
+    <div class="container mcontainer">
         <div class="aw-mod aw-topic-list-mod">
             <div class="mod-head">
 

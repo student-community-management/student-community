@@ -1,53 +1,45 @@
 package com.manage.control.manager;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.manage.entity.MgrRole;
-import com.manage.service.manager.MgrRoleService;
-import com.manage.service.manager.SubmenuService;
+import com.manage.entity.ParentMenu;
+import com.manage.service.manager.ParentMenuService;
 
 @Controller
-@RequestMapping("mr/")
-public class MgrRoleControl {
-    
+@RequestMapping("pm/")
+public class ParentMenuControl {
+
     @Autowired
-    private MgrRoleService mgrRoleService;
-    
-    @RequestMapping("queryForCommbo")
-    @ResponseBody
-    public List<MgrRole> queryForCommbo(){
-        return mgrRoleService.queryForCommbo();
-    }
+    private ParentMenuService parentMenuService;
     
     
     @RequestMapping("save")
     @ResponseBody
-    public String save(@ModelAttribute MgrRole mgrRole){
+    public String save(@ModelAttribute ParentMenu parentMenu){
         
-        Integer id = mgrRole.getMgrRoleid();
-        
+        //得到对象id
+        Integer id = parentMenu.getId();
+        // 如果对象的id为null则执行添加方法否则执行更新方法
         if(id == null){
-            mgrRoleService.save(mgrRole);
+            parentMenuService.save(parentMenu);
             return "save";
         } else {
-            mgrRoleService.update(mgrRole);
+            parentMenuService.update(parentMenu);
             return "update";
         }
     }
     
+    
     @RequestMapping("del")
     @ResponseBody
     public String del(Integer id){
-        
-        mgrRoleService.delete(id);
-        
+        parentMenuService.delete(id);
         return "1";
+        
     }
     
     

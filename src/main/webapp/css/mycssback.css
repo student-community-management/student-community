@@ -42,3 +42,13 @@
 	width:100%;
 	height:600px;
 }
+.roleLeft {
+	width:25%;
+	height: 100%;
+	float: left;
+}
+.roleRight {
+	width:75%;
+	height: 100%;
+	float: left;
+}

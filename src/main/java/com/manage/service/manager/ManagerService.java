@@ -64,4 +64,10 @@ public class ManagerService implements ManagerMapper,BaseService<Manager> {
         managerMapper.deleteMany(ids);
     }
 
+    @Override
+    public void setRole(Integer roleid) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
