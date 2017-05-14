@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 <div id="addStuWindow">
     <form method="post" id="stuForm">
@@ -171,6 +172,7 @@
                 width : 200,
                 panelWidth : 300,
                 panelHeight : 'auto',
+                required:true,
                 editable:false,
                 columns : [ [ {
                     field : 'grade',

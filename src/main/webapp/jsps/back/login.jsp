@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,14 +21,14 @@
         <form id="loginForm">
             <div class="form-group">
                 <label for="account">Account</label> 
-                <input type="text" class="form-control" id="account" placeholder="Place input your id number" name="stuid">
+                <input type="text" class="form-control" id="account" placeholder="Place input your id number" name="managerid">
             </div>
             <div class="form-group">
                 <label for="pwd">Password</label> 
-                <input type="password" class="form-control " id="pwd" placeholder="Place input your password" name="stuPwd">
+                <input type="password" class="form-control " id="pwd" placeholder="Place input your password" name="managerPwd">
             </div>
             <button type="submit" class="btn btn-default submit-btn" id="submit-btn">Submit</button>
-           <center> <div style="display: none ;color:red;" id="warn">您的帐号或者密码错误</div></center>
+           <center> <div style="display: none ;color:red;" id="warn"></div></center>
         </form>
     </div>
 
@@ -43,7 +44,7 @@ $(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            stuid: {
+            managerid: {
                 message: 'The username is not valid',
                 validators: {
                     notEmpty: {
@@ -73,7 +74,7 @@ $(function() {
                     }
                 }
             },
-            stuPwd: {
+            managerPwd: {
                 validators: {
                     notEmpty: {
                         message: 'The password is required and can\'t be empty'
@@ -106,15 +107,24 @@ on('success.form.bv', function (e) {
     e.preventDefault();//防止重复提交
     $.ajax({
         type:'post',
-        url:'/student-community/stu/blogin.a',
+        url:'/student-community/mgr/login.a',
         data:$("#loginForm").serialize(),
         success:function(data){
-            if(data == '1'){
-                window.location = '/student-community/jsps/back/index.jsp';
-            } else {
+            if(data == 'ok'){
+                console.log('登陆成功');
+                window.location = '/student-community/pm/getMenu.a';
+            } else if(data == 'no'){
                $('#pwd').select();
+               $('#warn').html('您的帐号或者密码错误');
                $('#warn').css({'display':'block'});
-            }
+            } else if (data == 'no role') {
+               $('#warn').html('您还没有被分配角色请与管理员联系');
+               $('#warn').css({'display':'block'});
+                
+            } else if (data == 'no submenu') {
+               $('#warn').html('您还没有被分配菜单请与管理员联系');
+               $('#warn').css({'display':'block'});
+            } 
         }
     });
 });

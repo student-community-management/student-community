@@ -9,23 +9,32 @@ public class StuCommunityRole implements Serializable {
      * 可序列化id
      */
     private static final long serialVersionUID = 4326958966186509897L;
-    private Set<Student> stus;
-    private Set<CommunityRole> communityRoles;
-
-    public Set<Student> getStus() {
-        return stus;
+    private Integer stuid;
+    private Integer communityRoleid;
+    
+    public StuCommunityRole(Integer stuid) {
+        super();
+        this.stuid = stuid;
     }
 
-    public void setStus(Set<Student> stus) {
-        this.stus = stus;
+    public StuCommunityRole() {
+        // TODO Auto-generated constructor stub
     }
 
-    public Set<CommunityRole> getCommunityRoles() {
-        return communityRoles;
+    public Integer getStuid() {
+        return stuid;
     }
 
-    public void setCommunityRoles(Set<CommunityRole> communityRoles) {
-        this.communityRoles = communityRoles;
+    public void setStuid(Integer stuid) {
+        this.stuid = stuid;
+    }
+
+    public Integer getCommunityRoleid() {
+        return communityRoleid;
+    }
+
+    public void setCommunityRoleid(Integer communityRoleid) {
+        this.communityRoleid = communityRoleid;
     }
 
 }

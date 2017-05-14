@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.manage.entity.Student;
 import com.manage.mapper.BaseMapper;
+import com.manage.util.PageParam;
 
 public interface StudentMapper extends BaseMapper<Student> {
 
@@ -23,13 +24,25 @@ public interface StudentMapper extends BaseMapper<Student> {
     List<Student> getStudentByCommid(Integer id);
 
     /**
-     * 学生加入社团
-     * @param studentid 加入社团的学生的id
-     * @param communityid 加入的社团的id
+     * 得到此社团的团长候选人
+     * @param pageParam 分页条件参数
+     * @param keyWord 查询关键字
+     * @param id 社团的id
+     * @return 学生对象
+     * 
      */
-    void joinCommunity(@Param("studentid") Integer studentid,
-            @Param("communityid") Integer communityid);
-
+    List<Student> getCandidate(@Param("pageParam") PageParam pageParam,
+            @Param("keyWord") String keyWord, @Param("id") Integer id);
+    
+    /**
+     * 社团团长候选人数量
+     * @param keyWord 查询关键字
+     * @param id 社团的id
+     * @return
+     */
+    Integer getCandidateCount(@Param("keyWord") String keyWord, @Param("id") Integer id);
+    
+    
     /**
      * 前台页面登陆
      * @return 如果为1则为登陆成功

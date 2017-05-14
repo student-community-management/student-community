@@ -56,4 +56,9 @@ public class StuCommunityService implements StuCommunityMapper{
         stuCommunityMapper.deleteByCommids(communities);
     }
 
+    @Override
+    public Integer exist(StuCommunity stuCommunity) {
+        return stuCommunityMapper.exist(stuCommunity);
+    }
+
 }

@@ -85,6 +85,41 @@
      </select>
      
      
+     <select id="getCandidate" parameterType="map" resultMap="stuSimpleResultMap">
+        SELECT * FROM (
+        SELECT s.* FROM student s
+        LEFT JOIN stu_community sc ON sc.stu_id = s.stu_id
+        LEFT JOIN community c ON sc.community_id = c.community_id
+        WHERE c.community_id = #{id}
+        UNION ALL
+        SELECT s.* FROM student s
+        LEFT JOIN stu_community sc ON sc.stu_id = s.stu_id
+        WHERE sc.stu_id IS NULL
+        ) t 
+        <if test="keyWord != null">
+            WHERE t.stu_name LIKE '%${keyWord}%'
+        </if>
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+     </select>
+     
+     <select id="getCandidateCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) FROM (
+        SELECT * FROM (
+        SELECT s.stu_name FROM student s
+        LEFT JOIN stu_community sc ON sc.stu_id = s.stu_id
+        LEFT JOIN community c ON sc.community_id = c.community_id
+        WHERE c.community_id = #{id}
+        UNION ALL
+        SELECT s.stu_name FROM student s
+        LEFT JOIN stu_community sc ON sc.stu_id = s.stu_id
+        WHERE sc.stu_id IS NULL
+        ) t 
+        <if test="keyWord != null">
+            WHERE t.stu_name LIKE '%${keyWord}%'
+        </if>
+        ) m
+     </select>
+     
     <insert id="save" parameterType="com.manage.entity.Student" 
             keyProperty="stuid" useGeneratedKeys="true">
         INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
@@ -92,11 +127,6 @@
              
     </insert>
     
-    <insert id="joinCommunity" parameterType="map">
-         INSERT INTO stu_community(stu_id,community_id)
-        VALUES(#{studentid},#{communityid})
-    </insert>
-
     <update id="update" parameterType="com.manage.entity.Student">
        UPDATE student SET stu_name=#{stuName}, stu_sex=#{stuSex}, stu_birthday=#{stuBirthday},
         stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
@@ -108,5 +138,5 @@
             #{id}
         </foreach>
     </delete> 
-         
+       
 </mapper>

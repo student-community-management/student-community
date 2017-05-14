@@ -1,7 +1,6 @@
 package com.manage.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * 学生和社团的对应关系
@@ -16,6 +15,19 @@ public class StuCommunity implements Serializable {
     private static final long serialVersionUID = -6505715648988682527L;
     private Student student;
     private Community community;
+    
+    public StuCommunity() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public StuCommunity(Student student, Community community) {
+        super();
+        this.student = student;
+        this.community = community;
+    }
+
+
+
 
     public Student getStudent() {
         return student;

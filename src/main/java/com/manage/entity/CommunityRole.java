@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class CommunityRole implements Serializable{
     
-    
     /**
      * 可序列化id
      */

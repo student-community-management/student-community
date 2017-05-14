@@ -133,5 +133,18 @@ public class StudentControl {
         req.getSession().invalidate();
         return "1";
     }
+    
+    /**
+     * 得到社团的候选人
+     * @param pageParam 分页条件
+     * @param kw 查询关键字,只支持学生姓名的模糊查询
+     * @param id 社团的id
+     * @return
+     */
+    @RequestMapping("getCandidate")
+    @ResponseBody
+    public PageData getCandidate(PageParam pageParam, String kw,Integer id){
+        return studentService.getCandidatePageData(pageParam, kw, id);
+    }
 
 }

@@ -76,12 +76,6 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void joinCommunity(Integer studentid, Integer communityid) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public Integer login(Student stu) {
         return studentMapper.login(stu);
     }
@@ -89,7 +83,28 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
-
     }
+
+    @Override
+    public List<Student> getCandidate(PageParam pageParam, String keyWord, Integer id) {
+        return studentMapper.getCandidate(pageParam, keyWord, id);
+    }
+
+    @Override
+    public Integer getCandidateCount(String keyWord, Integer id) {
+        return studentMapper.getCandidateCount(keyWord, id);
+    }
+    
+    /**
+     * 得到此社团的团长候选人,为后台easyui datagrid生成数据
+     * @param pageParam 分页条件
+     * @param keyWord 查询关键字
+     * @param id 社团的id
+     * @return
+     */
+    public PageData getCandidatePageData(PageParam pageParam, String keyWord, Integer id) {
+        return new PageData(this.getCandidateCount(keyWord, id),
+                this.getCandidate(pageParam, keyWord, id));
+    };
 
 }

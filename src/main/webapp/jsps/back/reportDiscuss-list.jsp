@@ -37,7 +37,7 @@ $(function() {
        			        type:'post',
        			        url:'/student-community/rd/setStatus.a?lock=1&msg='+$('#reason').val(),
        			        data: ids,
-                        datatype: 'json',
+       			     	datatype: 'json',
                         contentType: 'application/json;charset=utf-8',
        			        success:function(msg){
        			            if(msg == 'ok'){
@@ -48,23 +48,22 @@ $(function() {
        		                        showType:'slide'
        		                    });
        			            }
+               			    $('#reason').val('');
+               			    $('#confirm').dialog('close');
+               			    $('#report-discuss-list').datagrid('reload');
        			        }
        			    });
        			    
-       			    $('#reason').val('');
-       			    $('#confirm').dialog('close');
-       			    $('#report-discuss-list').datagrid('reload');
        			}
        		},{
        			text:'不锁定',
        			handler:function(){
-       			    
        			    $.ajax({
        			        type:'post',
        			        url:'/student-community/rd/setStatus.a?lock=0',
        			        data: ids,
-                           datatype: 'json',
-                           contentType: 'application/json;charset=utf-8',
+                        datatype: 'json',
+                        contentType: 'application/json;charset=utf-8',
        			        success:function(msg){
        			            if(msg == 'ok'){
        			                $.messager.show({
@@ -85,8 +84,6 @@ $(function() {
        		}]
            });
        }
-    
-    
     
     //load model window#model
     $('#model').window({
@@ -138,7 +135,7 @@ $(function() {
                 $('#right').menu({
                     onClick:function(item){
                         $('#model').window({
-                            href:'report-content.jsp?discussid='+data.discussid
+                            href:'/student-community/jsps/back/report-content.jsp?discussid='+data.discussid
                         });
                         
                         $('#model').window('open');

@@ -12,7 +12,7 @@ public class ParentMenu implements Serializable {
     private String parentMenuName;
     private String url;
     private Integer _parentId; // 数据库并没有这一列为了方便查询
-    private List<Submenu> children;
+    private List<Submenu> submenus;
 
     public Integer getId() {
         return id;
@@ -30,12 +30,12 @@ public class ParentMenu implements Serializable {
         this.parentMenuName = parentMenuName;
     }
 
-    public List<Submenu> getChildren() {
-        return children;
+    public List<Submenu> getSubmenus() {
+        return submenus;
     }
 
-    public void setChildren(List<Submenu> children) {
-        this.children = children;
+    public void setSubmenus(List<Submenu> submenus) {
+        this.submenus = submenus;
     }
 
     public String getUrl() {

@@ -71,4 +71,15 @@
         WHERE mgr_role_id=#{roleid}
     </update>
     
+    <select id="queryOne" parameterType="int" resultMap="managerMap">
+        SELECT m.*,mr.mgr_role_name,mr.level FROM manager m 
+        LEFT JOIN mgr_role mr ON m.mgr_role_id = mr.mgr_role_id 
+        WHERE m.manager_id = #{id}
+    </select>
+    
+    <select id="login" parameterType="com.manage.entity.Manager" resultType="int">
+        SELECT COUNT(*) FROM manager m
+        WHERE m.manager_id = #{managerid} AND m.manager_pwd = #{managerPwd}
+    </select>
+    
 </mapper>

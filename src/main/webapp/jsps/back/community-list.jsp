@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
+<!-- 添加社团界面 -->
 <div id="addCommWindow">
     <form method="post" id="commForm">
          <input id="commid" name="communityid" type="hidden">
@@ -9,15 +11,47 @@
     <a href="#" id="commsave">保存</a> 
     <a href="#" id="commclose">关闭</a>
 </div>
+<c:if test="${ sessionScope.level >= 2 }">
+<!--  右键菜单 -->
+<div id="commright" class="easyui-menu" style="width: 120px;">
+    <div id="comm-master">指定社团团长</div>
+</div>
+</c:if>
+<!-- 加载学生信息 -->
+<div id="commModel"></div>
+
+<!-- 工具栏 -->
 <div id="commtoolbar">
     <input id="csearch"></input> 
-    <a href="#" id="addComm" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
-    <a href="#" id="removeComm" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
-    <a href="#" id="updateComm" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
+    
+    <c:if test="${ sessionScope.level >= 2 }">
+        <a href="#" id="addComm" class="easyui-linkbutton" style="width: 70px">添加</a> 
+    </c:if>
+    <c:if test="${ sessionScope.level >= 3 }">
+        <a href="#" id="updateComm" class="easyui-linkbutton" style="width: 70px">修改</a>
+    </c:if>
+    <c:if test="${ sessionScope.level >= 4 }">
+        <a href="#" id="removeComm" class="easyui-linkbutton" style="width: 70px">移除</a>
+    </c:if>
 </div>
 <table id="comm-list"></table>
 <script type="text/javascript">
     $(function() {
+		
+        $('#commModel').window({
+            title:'候选学生名单',
+            width:600,
+            height:400,
+            modal:true,
+            closed:true,
+            tools: [{    
+                iconCls:'关闭',    
+                handler:function(){
+                    $('#commModel').window('close');
+                }    
+              }]    
+
+        });
         
         $('#commsave').linkbutton({    
             iconCls: 'icon-save',
@@ -57,18 +91,44 @@
                     } else {
                         return '(暂无指定)';
                     }
-                    
                 },
                 styler: function(value,row){
                     if(value.length == 0){
         				return 'background-color:#C0C7C3;';
                     }
-                    
             	}
             }, {
                 field : 'stuNum',
                 title : '人数'
-            }] ]
+            }] ],
+            onRowContextMenu: function(e, index, data) {
+                if (index != -1) {
+                    $('#comm-list').datagrid('clearSelections');
+                    $('#comm-list').datagrid('selectRow',index);
+                    e.preventDefault(); // 屏蔽浏览器自带的右键菜单
+                    $('#commright').menu('show', {
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+                    
+                    var href = '/student-community/jsps/back/community-master.jsp?commid='
+                        +data.communityid;
+                    if(data.stus.length > 0){
+                        href += '&stuid='+data.stus[0].stuid;
+                    }
+                    
+                    $('#commright').menu({
+                        onClick:function(item){
+                            $('#commModel').window({
+                                href:href
+                            });
+                            $('#commModel').window('open');
+                        }
+                    });
+                    e.preventDefault(); // 屏蔽浏览器自带的右键菜单
+                }
+            }
+            
         });
         
         //---datagrid---end

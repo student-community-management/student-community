@@ -22,4 +22,19 @@
         WHERE parent_menu_id = #{id}
     </update>
     
+    <select id="getParentmenuByMgrid" parameterType="int" resultMap="parentMenuMap">
+        SELECT pm.parent_menu_id,pm.parent_menu_name FROM parent_menu pm 
+        WHERE pm.parent_menu_id IN (
+        SELECT s.parent_menu_id FROM submenu s 
+        INNER JOIN mgr_role_submenu mrs ON s.submenu_id = mrs.submenu_id
+        INNER JOIN mgr_role mr ON mr.mgr_role_id = mrs.mgr_role_id
+        INNER JOIN manager m ON m.mgr_role_id = mr.mgr_role_id
+        WHERE m.manager_id = #{id})
+    </select>
+    
+    <select id="getAllParentMenu" resultMap="parentMenuMap">
+        SELECT p.parent_menu_id,p.parent_menu_name
+        FROM  parent_menu p
+    </select>
+    
 </mapper>

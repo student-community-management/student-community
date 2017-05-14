@@ -16,4 +16,10 @@ public interface StuCommunityMapper extends BaseMapper<StuCommunity>{
      */
     void deleteByCommids(@Param("ids") List<Integer> communities);
     
+    /**
+     * 查看此学生是否在这个社团中
+     * @param stuCommunity  学生和社团对应对象
+     * @return
+     */
+    Integer exist(StuCommunity stuCommunity);
 }

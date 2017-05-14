@@ -12,7 +12,7 @@ public interface BaseService<T>{
      * rows 是查询信息的结果集
      * 
      * @param pageParam 分页参数
-     * @param keyWord 分页条件
+     * @param keyWord 分页查询关键字
      * @return 结果集
      */
     PageData getPageData(PageParam pageParam, String keyWord);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.manage.entity.Community;
+import com.manage.entity.StuCommunityRole;
 import com.manage.mapper.BaseMapper;
 
 public interface CommunityMapper extends BaseMapper<Community> {
@@ -22,5 +23,22 @@ public interface CommunityMapper extends BaseMapper<Community> {
      * @param ids 多条信息的id
      */
     void deleteMany(@Param("ids") List<Integer> ids);
+    
+    
+    /**
+     * 得到社团的团长和团长对应的职位id
+     * 如果团长被改变,要把前团长删了
+     * 删除需要前团长的id和所对应的职位
+     * @param id 社团的id
+     * @return
+     */
+    StuCommunityRole getCommMaster(Integer id);
+    
+    /**
+     * 得到社团团长角色对应的id
+     * @param id 社团的id
+     * @return
+     */
+    Integer getCommMasterRoleid(Integer id);
     
 }

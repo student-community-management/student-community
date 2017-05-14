@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 申请解封 -->
 <body>
 <!-- 模态窗口 -->
@@ -26,12 +27,10 @@ $(function() {
            buttons:[{
    			text:'确认解锁',
    			handler:function(){
-   			 if($('#reason').val() == ''){
-   			     $('#reason').val('由于您违反了社区规定,所以将您锁定,您可以修改提问后向我们提交我们重新审核');
-   			    }
+   			 
    			    $.ajax({
    			        type:'post',
-   			        url:'/student-community/udr/setStatus.a?unlock=1&msg='+$('#ulreason').val(),
+   			        url:'/student-community/udr/setStatus.a?unlock=1',
    			        data: ids,
                     datatype: 'json',
                     contentType: 'application/json;charset=utf-8',
@@ -39,28 +38,30 @@ $(function() {
    			            if(msg == 'ok'){
    			                $.messager.show({
    		                        title:'消息',
-   		                        msg:'锁定成功',
+   		                        msg:'解锁成功',
    		                        timeout:3000,
    		                        showType:'slide'
    		                    });
+               			    $('#ulreason').val('');
+               			    $('#ulconfirm').dialog('close');
+               			    $('#ulreport-discuss-list').datagrid('reload');
    			            }
    			        }
    			    });
    			    
-   			    $('#ulreason').val('');
-   			    $('#ulconfirm').dialog('close');
-   			    $('#ulreport-discuss-list').datagrid('reload');
    			}
    		},{
-   			text:'忽略',
+   			text:'不解锁',
    			handler:function(){
-   			    
+   			 if($('#ulreason').val() == ''){
+   			     $('#ulreason').val('您提交的解锁请求没有通过');
+   			    }
    			    $.ajax({
    			        type:'post',
-   			        url:'/student-community/udr/setStatus.a?unlock=0',
+   			        url:'/student-community/udr/setStatus.a?unlock=0&msg='+$('#ulreason').val(),
    			        data: ids,
-                       datatype: 'json',
-                       contentType: 'application/json;charset=utf-8',
+                    datatype: 'json',
+                    contentType: 'application/json;charset=utf-8',
    			        success:function(msg){
    			            if(msg == 'ok'){
    			                $.messager.show({
@@ -69,14 +70,14 @@ $(function() {
    		                        timeout:3000,
    		                        showType:'slide'
    		                    });
+               			    $('#ulreason').val('');
+               			    $('#ulconfirm').dialog('close');
+               			    $('#ulreport-discuss-list').datagrid('reload');
    			            }
    			        }
    			        
    			    });
    			    
-   			    $('#ulreason').val('');
-   			    $('#ulconfirm').dialog('close');
-   			    $('#ulreport-discuss-list').datagrid('reload');
    			}
    		}]
        });

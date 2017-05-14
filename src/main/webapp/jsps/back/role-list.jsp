@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 
 <!-- 修改角色   -->
 <div id="roleDiv">
 <form id="roleForm">
+    <input id="mgrRoleid" name="mgrRoleid" type="hidden">
         名称:<input id="roleInput" name="mgrRoleName"><br/>
         权限等级:<input id="levleInput" name="level"><br/>
    <a href="#" id="saveRole">保存</a>
@@ -14,7 +16,7 @@
 <!-- 添加父级菜单 -->
 <div id="parentMenuDiv">
 <form id="parentMenuForm">
-    <input id="parentMenuid" name="id" type="text">
+    <input id="parentMenuid" name="id" type="hidden">
         父级菜单名称:<input id="parentMenuInput" name="parentMenuName"><br/>
    <a href="#" id="saveparentMenu" class="easyui-linkbutton">保存</a>
    <a href="#" id="closeparentMenu" class="easyui-linkbutton">关闭</a><br/>
@@ -23,9 +25,9 @@
 <!-- 添加子级菜单 -->
 <div id="submenuDiv">
 <form id="submenuForm">
-    <input id="submenuid" name="id" type="text"><br/>
+    <input id="submenuid" name="id" type="hidden">
     <div id="parentDiv">
-    <input id="parentid" name="parentid" type="hidden"><br/>
+    <input id="parentid" name="parentid" type="hidden">
          父级菜单名称:<input id="parentName"><br/>
     </div>
         名称:<input id="submenuInput" name="submenuName"><br/>
@@ -34,27 +36,37 @@
    <a href="#" id="closeSubmenu">关闭</a>
 </form>
 </div>
-
+<c:if test="${ sessionScope.level >= 2 }">
 <!-- 右键菜单栏 -->
 <div id="roleright" class="easyui-menu" style="width: 120px;">
     <div id="addParentmenu" data-options="name:'addParentmenu'" >添加父级菜单</div>
     <div id="addSubmenu" data-options="name:'addSubmenu'" >添加子级菜单</div>
 </div>
-
+</c:if>
 <!-- 菜单工具栏 -->
 <div id="roletoolbar">
+    <c:if test="${ sessionScope.level >= 3 }">
     <a href="#" id="saveUpdate" class="easyui-linkbutton" style="width: 70px">保存修改</a>
     <a href="#" id="updateMenu" class="easyui-linkbutton" style="width: 70px">修改菜单</a>
+    </c:if>
+    <c:if test="${ sessionScope.level >= 4 }">
     <a href="#" id="delMenu" class="easyui-linkbutton" style="width: 70px">删除菜单</a>
+    </c:if>
     <a href="#" id="reloadTreegrid" class="easyui-linkbutton" style="width: 70px">刷新表格</a>
 </div>
 
 <!-- 角色工具栏 -->
 <div class="roleLeft">
     <div id="role-tool">
-       <a href="#" id="addRole" class="easyui-linkbutton" style="width: 70px">添加角色</a>
-       <a href="#" id="delRole" class="easyui-linkbutton" style="width: 70px">删除角色</a>
-       <a href="#" id="updateRole" class="easyui-linkbutton" style="width: 70px">修改角色</a>
+       <c:if test="${ sessionScope.level >= 2 }">
+        <a href="#" id="addRole" class="easyui-linkbutton" style="width: 70px">添加角色</a>
+       </c:if>
+       <c:if test="${ sessionScope.level >= 3 }">
+        <a href="#" id="updateRole" class="easyui-linkbutton" style="width: 70px">修改角色</a>
+       </c:if>
+       <c:if test="${ sessionScope.level >= 4 }">
+        <a href="#" id="delRole" class="easyui-linkbutton" style="width: 70px">删除角色</a>
+       </c:if>
     </div>
     <div id="datalist"></div>
 </div>
@@ -221,10 +233,10 @@ $(function(){
     }
     
   	// 加载添加/修改角色窗口
-	loadRoleWindow = function(roleName,level){
+	loadRoleWindow = function(roleid,roleName,level){
 	    
-	    if(roleName == null){
-	        //$('#roleInput').textbox('setText','');
+	    if(roleid != null){
+	        $('#mgrRoleid').val(roleid);
 	    }
 	    
 	    $('#roleInput').textbox({
@@ -506,9 +518,13 @@ $('#updateRole').click(function(){
         return;
     }
     
+    var roleid = role.mgrRoleid;
     var roleName = role.mgrRoleName;
     var level = role.level;
-    loadRoleWindow(roleName,level)
+    
+    console.log('roleid'+roleid);
+    
+    loadRoleWindow(roleid,roleName,level)
     $('#roleDiv').window('open');
     
 	    

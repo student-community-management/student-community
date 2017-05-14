@@ -59,34 +59,48 @@ public class ReportDiscussControl {
     public PageData getReportContent(PageParam pageParam, Integer discussid) {
         return reportDiscussService.getPageData(pageParam, discussid);
     }
-
+    
+    /**
+     * 处理被举报的讨论
+     * @param ids 要处理的讨论的id
+     * @param lock 是否锁定 1为锁定 0为不锁定
+     * @param msg 锁定信息
+     * @return
+     */
     @RequestMapping("setStatus")
     @ResponseBody
-    public String setReportStatus(@RequestBody List<Integer> ids, Integer unlock, String msg) {
+    public String setReportStatus(@RequestBody List<Integer> ids, Integer lock, String msg) {
 
         // 更改处理状态为已处理
         reportDiscussService.setReportDiscussStatus(ids);
         
-        //如果确认解封
-        if (unlock == 1) {
+        //如果确认锁定
+        if (lock == 1) {
             // 用List来封装前台获取的数据(LockDiscuss)
             List<LockDiscuss> list = new ArrayList<LockDiscuss>();
             // LockDiscuss对象
-            LockDiscuss lockDiscuss = new LockDiscuss();
+            LockDiscuss lockDiscuss = null;
             // 因为是批量处理message是相同的,但是discussid是不同的所以这里需要将
             // 对象保存到list中
-            lockDiscuss.setDiscuss(new Discuss());
             for (int i = 0; i < ids.size(); i++) {
+                //将锁定讨论对象实例化
+                lockDiscuss = new LockDiscuss();
+                //将锁定对象中的讨论实例化并添加到锁定讨论对象中
+                lockDiscuss.setDiscuss(new Discuss());
+                //因为id不同所以循环将id保存在锁定讨论的对象中
                 lockDiscuss.getDiscuss().setDiscussid(ids.get(i));
+                //将锁定信息添加对象中
                 lockDiscuss.setMessage(msg);
+                //将锁定讨论对象添加到list中
                 list.add(lockDiscuss);
             }
-            // status 为1 则为显示
-            discussService.setDiscussStatus(ids, 1);
+            
+            // status 为0 则为不显示
+            discussService.setDiscussStatus(ids, 0);
             // 将处理结果保存到数据库
             lockDiscussService.save(list);
         }
-
+        
         return "ok";
     }
 }

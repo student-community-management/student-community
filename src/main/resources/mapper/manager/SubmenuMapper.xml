@@ -7,9 +7,10 @@
         <result column="submenu_name" property="submenuName"/>
         <result column="url" property="url"/>
         <result column="parent_menu_id" property="_parentId"/>
+        <result column="parentid" property="parentid"/>
         <association property="parentMenu" javaType="com.manage.entity.ParentMenu">
             <id column="parentMenuid" property="id"/>
-        <result column="parent_menu_name" property="parentMenuName"/>
+            <result column="parent_menu_name" property="parentMenuName"/>
         </association>
     </resultMap>
     
@@ -47,9 +48,33 @@
         ) t
     </select>
     
-    <select id="getSubmenuByRoleid" parameterType="int" resultType="int">
+    <select id="getSubmenuidByRoleid" parameterType="int" resultType="int">
         SELECT mrs.submenu_id FROM mgr_role_submenu mrs
         WHERE mrs.mgr_role_id = #{id}
     </select>
     
+    <select id="getSubmenuByRoleid" parameterType="int" resultMap="submenuMap">
+        SELECT s.submenu_id,s.submenu_name,s.url,s.parent_menu_id AS 'parentid' 
+        FROM mgr_role_submenu mrs
+        INNER JOIN submenu s ON mrs.submenu_id = s.submenu_id
+        WHERE mrs.mgr_role_id = #{id}
+    </select>
+    
+    <select id="getSubmenuCountByMgrid" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM submenu s 
+        INNER JOIN mgr_role_submenu mrs ON s.submenu_id = mrs.submenu_id
+        INNER JOIN mgr_role mr ON mr.mgr_role_id = mrs.mgr_role_id
+        INNER JOIN manager m ON m.mgr_role_id = mr.mgr_role_id
+        WHERE m.manager_id = #{id}
+    </select>
+    
+    <select id="getSubmenuByParid" parameterType="int" resultMap="submenuMap">
+        SELECT s.submenu_name,s.url FROM submenu s 
+        WHERE s.parent_menu_id = #{id}
+    </select>
+    
+    <select id="getAllSubmenu" resultMap="submenuMap">
+        SELECT s.submenu_id,s.submenu_name,s.url,s.parent_menu_id AS 'parentid' 
+        FROM submenu s
+    </select>
 </mapper>

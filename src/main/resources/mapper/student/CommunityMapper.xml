@@ -17,17 +17,22 @@
         </collection>
     </resultMap>
     
+    <resultMap type="com.manage.entity.StuCommunityRole" id="stuCommunityRoleMap">
+            <result property="stuid" column="stu_id"/>
+            <result property="communityRoleid" column="community_role_id"/>
+    </resultMap>
+    
     
     <select id="queryAll" parameterType="map" resultMap="communityResultMap" >
         SELECT
             c.*, s.stu_name, CASE WHEN t.stu_num IS NULL THEN 0 ELSE t.stu_num END AS 'stu_num'
-        FROM
-            community c
+        FROM community c
         LEFT JOIN community_role cr ON c.community_id = cr.community_id
         LEFT JOIN stu_community_role scr ON cr.community_role_id = scr.community_role_id
         LEFT JOIN student s ON scr.stu_id = s.stu_id
         LEFT JOIN stu_role r ON cr.role_id = r.role_id
-        LEFT JOIN (SELECT sc.community_id,COUNT(*) as 'stu_num' FROM stu_community sc GROUP BY sc.community_id ) t ON c.community_id =  t.community_id
+        LEFT JOIN (SELECT sc.community_id,COUNT(*) as 'stu_num' FROM stu_community sc 
+        GROUP BY sc.community_id ) t ON c.community_id =  t.community_id
         WHERE
             cr.role_id = 1
         <if test="keyWord != null">
@@ -40,20 +45,25 @@
         LIMIT ${pageParam.startIndex},${pageParam.rows}
     </select>
     
+    <select id="getCommMaster" parameterType="int" resultMap="stuCommunityRoleMap">
+        SELECT scr.* FROM community_role cr
+        INNER JOIN stu_community_role scr ON cr.community_role_id = scr.community_role_id
+        INNER JOIN stu_role sr ON cr.role_id = sr.role_id
+        WHERE cr.community_id = #{id} AND sr.role_id = 1
+    </select>
+    
     <select id="getCount"  parameterType="map"  resultType="int">
         SELECT COUNT(*) FROM (
-             SELECT
-                    c.community_id
-            FROM
-                    community c
-            LEFT JOIN community_role cr ON c.community_id = cr.community_id
-            LEFT JOIN stu_community_role scr ON cr.community_role_id = scr.community_role_id
-            LEFT JOIN student s ON scr.stu_id = s.stu_id
-            LEFT JOIN stu_role r ON cr.role_id = r.role_id
-            LEFT JOIN (SELECT sc.community_id,COUNT(*) as 'stu_num' FROM stu_community sc GROUP BY sc.community_id ) t ON c.community_id =  t.community_id
-            WHERE
-                    cr.role_id = 1
-         <if test="keyWord != null">
+        SELECT c.community_id
+        FROM community c
+        LEFT JOIN community_role cr ON c.community_id = cr.community_id
+        LEFT JOIN stu_community_role scr ON cr.community_role_id = scr.community_role_id
+        LEFT JOIN student s ON scr.stu_id = s.stu_id
+        LEFT JOIN stu_role r ON cr.role_id = r.role_id
+        LEFT JOIN (SELECT sc.community_id,COUNT(*) as 'stu_num' FROM stu_community sc 
+        GROUP BY sc.community_id ) t ON c.community_id =  t.community_id
+        WHERE cr.role_id = 1
+        <if test="keyWord != null">
             AND(
             c.community_id LIKE '%${keyWord}%'
             OR c.community_name LIKE '%${keyWord}%'
@@ -64,6 +74,12 @@
     
     <select id="getNewComunityid" resultType="Integer">
         select community_id from community order by community_id desc LIMIT 0,1
+    </select>
+    
+    
+    <select id="getCommMasterRoleid" parameterType="int" resultType="int">
+        SELECT cr.community_role_id FROM community_role cr
+        WHERE cr.community_id = #{id} AND cr.role_id = 1
     </select>
     
     <insert id="save" parameterType="com.manage.entity.Community" keyProperty="communityid"

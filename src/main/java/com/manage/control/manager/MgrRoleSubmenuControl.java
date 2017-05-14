@@ -20,8 +20,6 @@ public class MgrRoleSubmenuControl {
     @RequestMapping("save")
     @ResponseBody
     public String save(@RequestBody List<Integer> ids ,Integer roleid){
-        
-        System.out.println("ids.size()"+ids.size());
         mgrRoleSubmenuService.delete(roleid);
         mgrRoleSubmenuService.save(roleid, ids);
         return "1";

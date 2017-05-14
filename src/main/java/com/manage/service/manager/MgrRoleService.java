@@ -9,7 +9,6 @@ import com.manage.entity.MgrRole;
 import com.manage.mapper.manager.ManagerMapper;
 import com.manage.mapper.manager.MgrRoleMapper;
 import com.manage.mapper.manager.MgrRoleSubmenuMapper;
-import com.manage.mapper.manager.SubmenuMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;

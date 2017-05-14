@@ -54,13 +54,28 @@ public class SubmenuService implements SubmenuMapper,BaseService<Submenu>{
     }
 
     @Override
-    public List<Integer> getSubmenuByRoleid(Integer id) {
-        return submenuMapper.getSubmenuByRoleid(id);
+    public List<Integer> getSubmenuidByRoleid(Integer id) {
+        return submenuMapper.getSubmenuidByRoleid(id);
     }
 
     @Override
     public void delByParentMenuid(Integer id) {
         submenuMapper.delByParentMenuid(id);
+    }
+
+    @Override
+    public Integer getSubmenuCountByMgrid(Integer id) {
+        return submenuMapper.getSubmenuCountByMgrid(id);
+    }
+
+    @Override
+    public List<Submenu> getSubmenuByRoleid(Integer id) {
+        return submenuMapper.getSubmenuByRoleid(id);
+    }
+
+    @Override
+    public List<Submenu> getAllSubmenu() {
+        return submenuMapper.getAllSubmenu();
     }
 
 }

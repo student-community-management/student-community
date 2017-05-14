@@ -29,4 +29,11 @@ public interface ManagerMapper extends BaseMapper<Manager> {
      */
     void setRole(Integer roleid);
     
+    /**
+     * 后台登陆
+     * @param manager
+     * @return
+     */
+    Integer login(Manager manager);
+    
 }

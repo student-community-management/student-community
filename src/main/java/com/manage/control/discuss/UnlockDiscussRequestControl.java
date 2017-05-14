@@ -24,10 +24,10 @@ public class UnlockDiscussRequestControl {
 
     @Autowired
     private UnlockDiscussRequestService unlockDiscussRequestService;
-    
+
     @Autowired
     private LockDiscussService lockDiscussService;
-    
+
     @Autowired
     private DiscussService discussService;
 
@@ -56,27 +56,49 @@ public class UnlockDiscussRequestControl {
      */
     @RequestMapping("setStatus")
     @ResponseBody
-    public String setStatus(@RequestBody List<Integer> ids, Integer lock, String msg) {
+    public String setStatus(@RequestBody List<Integer> ids, Integer unlock, String msg) {
         // 更改处理状态为已处理
         unlockDiscussRequestService.setStatus(ids);
 
-        if (lock == 1) {
-            // 用List来封装前台获取的数据(LockDiscuss)
-            List<LockDiscuss> list = new ArrayList<LockDiscuss>();
-            // LockDiscuss对象
-            LockDiscuss lockDiscuss = new LockDiscuss();
-            // 因为是批量处理message是相同的,但是discussid是不同的所以这里需要将
-            // 对象保存到list中
-            lockDiscuss.setDiscuss(new Discuss());
+        // 用List来封装前台获取的数据(LockDiscuss)
+        List<LockDiscuss> list = new ArrayList<LockDiscuss>();
+
+        // LockDiscuss对象
+        LockDiscuss lockDiscuss = null;
+        // 因为是批量处理message是相同的,但是discussid是不同的所以这里需要将
+        // 对象保存到list中
+
+        // unlock 为0时 则为不解锁,向前台发出锁定原因信息
+        // unlock 为1时 则为解锁,将显示状态设置为显示
+        if (unlock == 0) {
             for (int i = 0; i < ids.size(); i++) {
+                // 将锁定讨论对象实例化
+                lockDiscuss = new LockDiscuss();
+                // 将锁定对象中的讨论实例化并添加到锁定讨论对象中
+                lockDiscuss.setDiscuss(new Discuss());
+                // 因为id不同所以循环将id保存在锁定讨论的对象中
                 lockDiscuss.getDiscuss().setDiscussid(ids.get(i));
+                // 将锁定信息添加对象中
                 lockDiscuss.setMessage(msg);
+                // 将锁定讨论对象添加到list中
                 list.add(lockDiscuss);
             }
-            // status 为0 则为不显示
-            discussService.setDiscussStatus(ids, 0);
             // 将处理结果保存到数据库
             lockDiscussService.save(list);
+        } else if (unlock == 1){//确认解锁
+            for (int i = 0; i < ids.size(); i++) {
+                // 将锁定讨论对象实例化
+                lockDiscuss = new LockDiscuss();
+                // 将锁定对象中的讨论实例化并添加到锁定讨论对象中
+                lockDiscuss.setDiscuss(new Discuss());
+                // 因为id不同所以循环将id保存在锁定讨论的对象中
+                lockDiscuss.getDiscuss().setDiscussid(ids.get(i));
+                // 将锁定讨论对象添加到list中
+                list.add(lockDiscuss);
+            }
+            // 确认解锁将status设置为1
+            // status 为1 则为显示
+            discussService.setDiscussStatus(ids, 1);
         }
 
         return "ok";

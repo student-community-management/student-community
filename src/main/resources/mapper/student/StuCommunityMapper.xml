@@ -12,6 +12,11 @@
         </association>
     </resultMap>
     
+    <insert id="save" parameterType="com.manage.entity.StuCommunity">
+        INSERT INTO stu_community (stu_id, community_id)
+        VALUES (#{student.stuid}, #{community.communityid})
+    </insert>
+    
     <delete id="deleteByCommids">
         DELETE FROM stu_community 
         WHERE community_id IN
@@ -19,5 +24,10 @@
             #{id}
         </foreach>
     </delete>
+    
+    <select id="exist" parameterType="com.manage.entity.StuCommunity" resultType="int">
+        SELECT COUNT(*) FROM stu_community sc
+        WHERE sc.community_id = #{community.communityid} AND sc.stu_id = #{student.stuid}
+    </select>
     
 </mapper>

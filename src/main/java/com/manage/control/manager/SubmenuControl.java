@@ -27,8 +27,8 @@ public class SubmenuControl {
 
     @RequestMapping("subids")
     @ResponseBody
-    public List<Integer> getCommid(Integer id) {
-        return submenuService.getSubmenuByRoleid(id);
+    public List<Integer> getSubids(Integer id) {
+        return submenuService.getSubmenuidByRoleid(id);
     }
 
     @RequestMapping("save")

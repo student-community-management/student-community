@@ -24,8 +24,7 @@ public class ManagerService implements ManagerMapper,BaseService<Manager> {
 
     @Override
     public Manager queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+        return managerMapper.queryOne(id);
     }
 
     @Override
@@ -63,11 +62,19 @@ public class ManagerService implements ManagerMapper,BaseService<Manager> {
     public void deleteMany(List<Integer> ids) {
         managerMapper.deleteMany(ids);
     }
-
+    
+    
     @Override
     public void setRole(Integer roleid) {
-        // TODO Auto-generated method stub
+        // 在 MgrRoleService 中调用
+        // 此方法并不是一个单独模块
         
+    }
+
+    @Override
+    public Integer login(Manager manager) {
+       
+        return managerMapper.login(manager);
     }
 
 }

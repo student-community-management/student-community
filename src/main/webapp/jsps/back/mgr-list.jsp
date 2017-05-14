@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 被举报切且未被处理的讨论 -->
 <body>
+<c:if test="${ sessionScope.level >= 4 }">
 <!-- 右键菜单栏 -->
 <div id="mgrright" class="easyui-menu" style="width: 120px;">
     <div id="checkPwd"  data-options="name:'checkPwd'">查看密码</div>
     <div id="updatePwd"  data-options="name:'updatePwd'">修改密码</div>
 </div>
-
 <div id="divUpdate">
     新的密码:<input id="pwd" name="" type="password"  />   <br>
     重复密码:<input id="rpwd" name="" type="password" />  
 </div>
+</c:if>
 
 <!-- 添加员工窗口  -->
 <div id="addMgrWindow">
@@ -29,10 +31,16 @@
 
 <!-- 工具栏 -->
 <div id="mgrtoolbar">
-    <input id="mgrsearch"></input> 
+    <input id="mgrsearch"></input>
+    <c:if test="${ sessionScope.level >= 2 }">
     <a href="#" id="addMgr" class="easyui-linkbutton" style="width: 70px">添加</a> 
-    <a href="#" id="removeMgr" class="easyui-linkbutton" style="width: 70px">移除</a>
+    </c:if>
+    <c:if test="${ sessionScope.level >= 3 }">
     <a href="#" id="updateMgr" class="easyui-linkbutton" style="width: 70px">修改</a>
+    </c:if>
+    <c:if test="${ sessionScope.level >= 4 }">
+    <a href="#" id="removeMgr" class="easyui-linkbutton" style="width: 70px">移除</a>
+    </c:if>
 </div>
 <!-- 数据表格 -->
 <table id="mgr-list"></table>

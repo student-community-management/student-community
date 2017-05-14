@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.manage.mapper.student.StuCommunityRoleMapper">
+    
+    <insert id="save" parameterType="com.manage.entity.StuCommunityRole">
+        INSERT INTO stu_community_role (stu_id, community_role_id)
+         VALUES (#{stuid},#{communityRoleid})
+    </insert>
+    
+    <delete id="del" parameterType="com.manage.entity.StuCommunityRole">
+        DELETE FROM stu_community_role 
+        WHERE stu_id=#{stuid} AND community_role_id= #{communityRoleid}
+    </delete>
+    
+    
+        
+</mapper>
