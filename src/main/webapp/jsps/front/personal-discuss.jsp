@@ -12,30 +12,27 @@
     <title>我的讨论</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/student-community/ma/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="/student-community/ma/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/student-community/ma/css/jquery.gritter.css" />
-    <!-- Custom styles for this template -->
-    <link href="/student-community/ma/macss/style.css" rel="stylesheet">
-    <link href="/student-community/css/mymayachao.css" rel="stylesheet">
-<!-- js placed at the end of the document so the pages load faster -->
-    <script src="/student-community/ma/js/jquery-1.8.3.min.js"></script>
-    <script src="/student-community/ma/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/student-community/ma/js/jquery.dcjqaccordion.2.7.js"></script>
-    <!--common script for all pages-->
-    <script src="/student-community/ma/js/common-scripts.js"></script>
-    
-    <!-- luary -->
 <script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/layui/layui.js"></script>
-<script src="/student-community/layui/lay/modules/layedit.js"></script>
-<script src="/student-community/layui/lay/modules/layer.js"></script>
-<script src="/student-community/layui/area.js"></script>
+<link href="/student-community/layui/css/layui.css" rel="stylesheet">
 <script src="/student-community/js/bootstrap.min.js"></script>
+<link href="/student-community/ma/css/bootstrap.css" rel="stylesheet">
+<!--external css-->
+<link href="/student-community/ma/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="/student-community/ma/css/jquery.gritter.css" />
+<!-- Custom styles for this template -->
+<link href="/student-community/ma/macss/style.css" rel="stylesheet">
+<link href="/student-community/css/mymayachao.css" rel="stylesheet">
+<!-- js placed at the end of the document so the pages load faster -->
+<script class="include" type="text/javascript"
+	src="/student-community/ma/js/jquery.dcjqaccordion.2.7.js"></script>
+<!--common script for all pages-->
+<script src="/student-community/ma/js/common-scripts.js"></script>
+<!-- luary -->
 
-  </head>
-
+<script src="/student-community/layui/layui.js"></script>
+<link href="/student-community/layui/css/modules/laydate/laydate.css" rel="stylesheet">
+  </head>  
   <body>
       <!--sidebar end-->
         <section id="container" >
@@ -86,15 +83,19 @@
   
 </div>
 		<div class="row">
-  <div class="ma-col-one">
-    <a href="#">
-      <img src="/student-community/ma/img/ui-sam.jpg" alt="" class="img-circle">
-    </a>
-  </div>
+  		<div class="ma-col-one">
+  			<img  id="LAY_demo_upload" src="/student-community/ma/img/ui-sam.jpg" alt="" class="img-circle">	  
+		 <div class="site-demo-upload ma-dtd">
+		  <div class="site-demo-upbar">
+		    <input type="file" name="file" class="layui-upload-file" id="test">
+		  </div>
+		</div>
+		  </div>
+		  <div class="ma-gerenxinxi">
  <h3> Marcel Newwman&nbsp;&nbsp;&nbsp;<button id="ma-btt" class="btn btn-primary btn-xs">编辑个人资料</button></h3> 
  <h4>个人标语:<input id="ma-bac" class="ma-inp" type="text" style="border-style:none;background-color: #f2f2f2;" readonly="readonly"></h4>
  <h4>性别:男&nbsp;&nbsp;&nbsp;<button id="ma-sub" class="btn btn-default" type="submit" style="display:none">提交</button>&nbsp;&nbsp;<button id="ma-fn" class="btn btn-default" style="display:none">返回</button></h4>
- 
+ </div>
 </div>
 <div class="row mt">
 <ul class="nav nav-tabs nav-justified">
@@ -107,7 +108,12 @@
 			<li role="presentation"><a
 				href="/student-community/jsps/front/personal-community.jsp">我的社团</a></li>
 		</ul>
-</div>   	             	                      	                     	
+</div>   	             	
+                      	  <form id="form1" runat="server" method="post" enctype="multipart/form-data">  
+        <div>  
+            
+        </div>  
+    </form>                     	
       		<!--/ row -->
           </section>
       </section><!-- /MAIN CONTENT -->
@@ -126,15 +132,30 @@
   </section>
     
   <script>
-      //custom select box
-     $(".ma-drop").click(function (){
-    	 layer.confirm('确定要删除吗？', {
-    		  btn: ['确定','取消'] //按钮
-    		}, function(){
-    			layer.msg('已删除');
-    		}, function(){
-    		}); 
-      });
+	  layui.use('upload', function(){
+		  layui.upload({
+		    url: '' //上传接口
+		    ,success: function(res){ //上传成功后的回调
+		      console.log(res)
+		    }
+		  });
+		  
+		  layui.upload({
+		    url: '/test/upload.json'
+		    ,elem: '#test' //指定原始元素，默认直接查找class="layui-upload-file"
+		    ,method: 'get' //上传接口的http类型
+		    ,success: function(res){
+		      LAY_demo_upload.src = res.url;
+		    }
+		  });
+		});
+	  
+	  $("#ma-dtd").hover(function () {
+		  $("#ma-dtd").css({'display':'none'});
+	  });
+	  $("#ma-dtd").out(function () {
+		  $("#ma-dtd").css({'display':'block'});
+	  });
   </script>
 
   </body>
