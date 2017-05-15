@@ -72,5 +72,12 @@ public interface DiscussMapper extends BaseMapper<Discuss> {
      * @param status 修改显示状态
      */
     void setDiscussStatus(@Param("ids") List<Integer> ids, @Param("status") Integer status);
+    
+    /**
+     * 得到刚刚添加的讨论的id
+     * 最新的
+     * @return 讨论的id
+     */
+    Integer getNewDiscussid();
 
 }

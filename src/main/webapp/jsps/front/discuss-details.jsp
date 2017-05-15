@@ -56,12 +56,8 @@
                     <div class="QuestionHeader-footer-inner">
                         <div class="QuestionHeader-footer-inner-main">
                             <div class="QuestionHeader-actions">
-                                <button class="btn" type="button">
+                                <button id="share" class="btn" type="button">
                                     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;&nbsp;分享
-                                </button>
-
-                                <button class="btn" type="button">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;&nbsp;收藏
                                 </button>
                                 <c:if test="${checkReport == 0 || checkReport == null }">
                                 <button class="btn" type="button" id="report"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报</button>
@@ -489,6 +485,47 @@ $('.next').click(function(){
 $("#answer").click(function(){
     $("html,body").animate({scrollTop:$("#ss").offset().top},1000);
 }); 
+//分享
+$('#share').click(function(){
+	//$(this).attr('data-copytarget','#twitter');
+	var url = window.location.href;
+layer.msg('<input type="text" id="twitter" value="'+url+'" /> <button data-copytarget="#twitter" id="copyUrl">复制</button>', {icon: 1,time:30000});
+$('#copyUrl').click(function(){
+	layer.msg('已复制,快去告诉你的小伙伴吧');
+});
 
+//复制
+(function() {
+	'use strict';
+  document.body.addEventListener('click', copy, true);
+
+	// event handler
+	function copy(e) {
+
+    // find target element
+    var 
+      t = e.target,
+      c = t.dataset.copytarget,
+      inp = (c ? document.querySelector(c) : null);
+    // is element selectable?
+    if (inp && inp.select) {
+      // select text
+      inp.select();
+      try {
+        // copy text
+        document.execCommand('copy');
+        inp.blur();
+        // copied animation
+        t.classList.add('copied');
+        setTimeout(function() { t.classList.remove('copied'); }, 1500);
+      }
+      catch (err) {
+        alert('please press Ctrl/Cmd+C to copy');
+      }
+	}
+	}
+})();
+
+});
 </script>
 </html>
