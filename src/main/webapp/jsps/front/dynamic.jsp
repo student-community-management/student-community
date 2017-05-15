@@ -45,7 +45,47 @@
                       				郭靖<br/>
                       				11.16
                       			</div>
-                      			<div class="ma-cai">
+                      			<div class="ma-caizan">
+                      			<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                      			</div>
+                      			</div>
+                      			<div class="ma-neirong">
+                      				<div class="ma-wenzi">
+                      					这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？
+                      				</div>
+                      				
+  </div><!-- /.col-lg-6 -->
+  
+  	<div class="ma-chongzuo">
+                      				<div class="ma-tubiao2">
+                      				<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
+                      				</div>
+                      				<div class="ma-tubiao">
+                      				<a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                      				</div>
+                      			</div>
+  <div class="ma-dibu">
+  <div class="input-group input-group-sm">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">发表</button>
+      </span>
+    </div><!-- /input-group -->
+  </div>
+                      		</div>
+                      			</div>
+                      			 <!-- 循环 -->
+		<div class="col-md-4 col-sm-4 ma-dy">
+                      		<div class="pn dn">
+                      			<div class="ma-biaoti">
+                      			<div class="ma-tupian">
+                      				<img class="img-circle" width="80px" height="80px" src="/student-community/ma/img/ui-sam.jpg">
+                      				</div>
+                      			<div class="ma-mingzi">
+                      				郭靖<br/>
+                      				11.16
+                      			</div>
+                      			<div class="ma-caizan">
                       			<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
                       			</div>
                       			</div>
@@ -75,6 +115,7 @@
                       		</div>
                       			</div>
                       			<!-- 循环 -->
+		 <!-- 循环 -->
 		<div class="col-md-4 col-sm-4 ma-dy">
                       		<div class="pn dn">
                       			<div class="ma-biaoti">
@@ -85,7 +126,7 @@
                       				郭靖<br/>
                       				11.16
                       			</div>
-                      			<div class="ma-cai">
+                      			<div class="ma-caizan">
                       			<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
                       			</div>
                       			</div>
@@ -114,7 +155,7 @@
   </div>
                       		</div>
                       			</div>
-                      			<!-- 循环 -->
+                      			 <!-- 循环 -->
 		<div class="col-md-4 col-sm-4 ma-dy">
                       		<div class="pn dn">
                       			<div class="ma-biaoti">
@@ -125,47 +166,7 @@
                       				郭靖<br/>
                       				11.16
                       			</div>
-                      			<div class="ma-cai">
-                      			<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
-                      			</div>
-                      			</div>
-                      			<div class="ma-neirong">
-                      				<div class="ma-wenzi">
-                      					这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？
-                      				</div>
-                      				
-  </div><!-- /.col-lg-6 -->
-  
-  	<div class="ma-chongzuo">
-                      				<div class="ma-tubiao2">
-                      				<a href="#"><span class="glyphicon glyphicon-comment"></span></a>
-                      				</div>
-                      				<div class="ma-tubiao">
-                      				<a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                      				</div>
-                      			</div>
-  <div class="ma-dibu">
-  <div class="input-group input-group-sm">
-      <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">发表</button>
-      </span>
-    </div><!-- /input-group -->
-  </div>
-                      		</div>
-                      			</div>
-                      			<!-- 循环 -->
-		<div class="col-md-4 col-sm-4 ma-dy">
-                      		<div class="pn dn">
-                      			<div class="ma-biaoti">
-                      			<div class="ma-tupian">
-                      				<img class="img-circle" width="80px" height="80px" src="/student-community/ma/img/ui-sam.jpg">
-                      				</div>
-                      			<div class="ma-mingzi">
-                      				郭靖<br/>
-                      				11.16
-                      			</div>
-                      			<div class="ma-cai">
+                      			<div class="ma-caizan">
                       			<a href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
                       			</div>
                       			</div>

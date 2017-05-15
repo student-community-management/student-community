@@ -18,21 +18,17 @@
     <link rel="stylesheet" type="text/css" href="/student-community/ma/css/jquery.gritter.css" />
     <!-- Custom styles for this template -->
     <link href="/student-community/ma/macss/style.css" rel="stylesheet">
-    <link href="/student-community/css/mymayachao.css" rel="stylesheet">
-<!-- js placed at the end of the document so the pages load faster -->
-    <script src="/student-community/ma/js/jquery-1.8.3.min.js"></script>
-    <script src="/student-community/ma/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="/student-community/ma/js/jquery.dcjqaccordion.2.7.js"></script>
-    <!--common script for all pages-->
-    <script src="/student-community/ma/js/common-scripts.js"></script>
-    
-    <!-- luary -->
+
+<link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
+<link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="/student-community/css/non-responsive.css" rel="stylesheet">
+<link href="/student-community/css/mycssfront.css" rel="stylesheet">
+<link href="/student-community/css/docs.css" rel="stylesheet">
+<link href="/student-community/ma/macss/style.css" rel="stylesheet">
+<link href="/student-community/css/mymayachao.css" rel="stylesheet">
 <script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/layui/layui.js"></script>
-<script src="/student-community/layui/lay/modules/layedit.js"></script>
-<script src="/student-community/layui/lay/modules/layer.js"></script>
-<script src="/student-community/layui/area.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
+<script src="/student-community/js/bootstrapValidator.min.js"></script>
 
   </head>
 
@@ -108,7 +104,37 @@
 				href="/student-community/jsps/front/personal-community.jsp">我的社团</a></li>
 		</ul>
 </div>
-                  	             	                      	                     	
+        <!-- 循环 -->
+		<div class="col-md-4 col-sm-4 ma-dt">
+			<div>
+                      		<div class="pn dn">
+                      			<div class="ma-biaoti">
+                      			<div class="ma-tupian">
+                      				<img class="img-circle" width="80px" height="80px" src="/student-community/ma/img/ui-sam.jpg">
+                      				</div>
+                      			<div class="ma-mamingzi">
+                      				郭靖<br/>
+                      				11.16
+                      			</div>
+                      			<div class="ma-cai">
+                      			 <div class="btn-group">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    更多 <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu ma-menu">
+						    <li><a href="#">删除</a></li>
+						  </ul>
+						</div>
+								</div>
+                      			</div>
+                      			<div class="ma-neirong">
+                      				<div class="ma-wenzi">
+                      					这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？这个是内容你能看明白吗？
+                      				</div>
+                      				
+  </div><!-- /.col-lg-6 -->
+                      		</div>
+                      			</div>          	             	                      	                     	
       		<!--/ row -->
           </section>
       </section><!-- /MAIN CONTENT -->
