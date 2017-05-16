@@ -45,14 +45,22 @@ public class DiscussControl {
     @Autowired
     private ReplyDiscussService replyDiscussService;
     
+    /**
+     * 添加新的话题
+     * @param req
+     * @param discuss
+     * @return
+     */
     @RequestMapping("save")
     @ResponseBody
     public String save(HttpServletRequest req, @ModelAttribute Discuss discuss) {
         
         //获得学生对象
         discuss.setStu((Student) req.getSession().getAttribute("fstu"));
-        //执行添加方法
+        //添加新的话题时,发起者也会关注此话题
         discussService.save(discuss);
+        
+        
         return "1";
     }
 

@@ -17,6 +17,7 @@ public class Community implements Serializable {
     private String communityName;
     private Integer stuNum; // 数据库中并没有这一列,这是为了保证Mybatis中字段的完整
     private Set<Student> stus;
+    private String img;
 
     public Set<Student> getStus() {
         return stus;
@@ -57,6 +58,14 @@ public class Community implements Serializable {
 
     public void setStuNum(Integer stuNum) {
         this.stuNum = stuNum;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
 }

@@ -146,4 +146,10 @@
         GROUP BY rd.discuss_id )t
     </select>
     
+    <select id="getNewDiscussid" resultType="int">
+        SELECT d.discuss_id FROM discuss d
+        ORDER BY d.discuss_id DESC
+        LIMIT 0,1
+    </select>
+    
 </mapper>

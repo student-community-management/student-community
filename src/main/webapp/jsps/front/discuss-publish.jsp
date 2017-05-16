@@ -115,7 +115,9 @@ on('success.form.bv', function (e) {
         success:function(data){
             if(data == '1'){
                 layer.msg('发起话题成功');
-                window.location.reload();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
             }
         }
     });

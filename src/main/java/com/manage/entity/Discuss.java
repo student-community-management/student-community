@@ -24,6 +24,15 @@ public class Discuss implements Serializable {
     private Set<ReplyDiscuss> replyDiscusses;
     private Set<ReportDiscuss> reportDiscusses;
     private Integer reportNum; // 被举报的次数
+    
+    public Discuss() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public Discuss(Integer discussid) {
+        super();
+        this.discussid = discussid;
+    }
 
     public Integer getReportNum() {
         return reportNum;

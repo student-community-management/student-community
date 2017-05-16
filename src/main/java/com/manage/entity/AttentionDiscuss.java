@@ -16,6 +16,16 @@ public class AttentionDiscuss implements Serializable {
     private static final long serialVersionUID = 2486029631801727918L;
     private Student stu;
     private Discuss discuss;
+    
+    public AttentionDiscuss() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public AttentionDiscuss(Student stu, Discuss discuss) {
+        super();
+        this.stu = stu;
+        this.discuss = discuss;
+    }
 
     public Student getStu() {
         return stu;

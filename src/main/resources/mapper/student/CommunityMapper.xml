@@ -6,6 +6,7 @@
         <id property="communityid" column="community_id"/>
         <result property="communityName" column="community_name"/>
         <result property="stuNum" column="stu_num"/>
+        <result column="img" property="img" />
         <!-- 一对多写法 
             ofType 集合类型所包含的类型
             property Community 中对应的students的变量名
@@ -76,15 +77,15 @@
         select community_id from community order by community_id desc LIMIT 0,1
     </select>
     
-    
     <select id="getCommMasterRoleid" parameterType="int" resultType="int">
         SELECT cr.community_role_id FROM community_role cr
         WHERE cr.community_id = #{id} AND cr.role_id = 1
     </select>
     
-    <insert id="save" parameterType="com.manage.entity.Community" keyProperty="communityid"
+    <insert id="save" parameterType="com.manage.entity.Community" 
+        keyProperty="communityid"
      useGeneratedKeys="true" >
-        INSERT INTO community (community_name) VALUES (#{communityName})
+        INSERT INTO community (community_name,img) VALUES (#{communityName},#{img})
     </insert>
     
     <delete id="deleteMany">
@@ -95,7 +96,7 @@
     </delete>
     
     <update id="update" parameterType="com.manage.entity.Community">
-        UPDATE community SET community_name=#{communityName} 
+        UPDATE community SET community_name=#{communityName} ,img = #{img}
         WHERE (community_id=#{communityid})
     </update>
 </mapper>
