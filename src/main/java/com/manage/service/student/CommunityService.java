@@ -50,6 +50,9 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         // 删除社团
         communityMapper.deleteMany(ids);
 
+        // 删除社团角色对应的学生
+        stuCommunityRoleMapper.delByCommids(ids);
+
         // 删除社团对应的角色
         communityRoleMapper.deleteByCommid(ids);
 
@@ -113,6 +116,7 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         // 得到社团的团长和团长对应的职位id
         StuCommunityRole scr = null;
 
+        // 通过社团的id查询社团团长的id
         scr = communityMapper.getCommMaster(commid);
 
         // scr如果不为空则先删除前团长,再指定新的团长
@@ -143,7 +147,7 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         // 实例化StuCommunityRole 对象添加学生id和社团团长职务对应的id
         scr = new StuCommunityRole(stuid);
         scr.setCommunityRoleid(communityMapper.getCommMasterRoleid(commid));
-        
+
         System.out.println("指定团长");
         // 指定为社团团长
         stuCommunityRoleMapper.save(scr);

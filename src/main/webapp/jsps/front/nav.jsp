@@ -14,7 +14,9 @@
 					<li><a href="/student-community/jsps/front/dynamic.jsp">动态</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				<li style="height:60px"><a href="/student-community/jsps/front/personal-dynamics.jsp"><img src="/student-community/face/1.jpg" width="30px">&nbsp;${sessionScope.fstu.stuName }</a></li>
+				<li style="height:60px"><a href="/student-community/jsps/front/personal-dynamics.jsp">
+                    <img src="/student-community/face/1.jpg" width="30px">&nbsp;${sessionScope.fstu.stuName }
+                </a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

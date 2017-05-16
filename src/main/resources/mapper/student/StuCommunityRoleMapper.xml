@@ -14,6 +14,19 @@
         WHERE stu_id=#{stuid} AND community_role_id= #{communityRoleid}
     </delete>
     
-    
+    <delete id="delByCommids">
+        DELETE FROM stu_community_role WHERE community_role_id IN(
+            SELECT * FROM(
+            SELECT cr.community_role_id FROM  community_role cr 
+            LEFT JOIN stu_community_role scr 
+            ON scr.community_role_id = cr.community_role_id
+            WHERE cr.community_id IN 
+                <foreach collection="ids" item="id" open="(" close=")" separator=","  >
+                #{id}
+                </foreach>
+            
+             ) t
+        )
+    </delete>
         
 </mapper>

@@ -4,9 +4,10 @@
 <body>
 <!-- 添加社团界面 -->
 <div id="addCommWindow">
-    <form method="post" id="commForm">
+    <form method="post" id="commForm" enctype="multipart/form-data">
          <input id="commid" name="communityid" type="hidden">
                    社团名称:<input id="commName" name="communityName"><br>
+                   社团图片:<input id="commimg" type="text" name="file" style="width:100%"><br>
     </form>
     <a href="#" id="commsave">保存</a> 
     <a href="#" id="commclose">关闭</a>
@@ -130,7 +131,6 @@
             }
             
         });
-        
         //---datagrid---end
         //---searchbox---
         $('#csearch').searchbox({
@@ -163,6 +163,13 @@
         
         loadAddWindow = function(commid,commName){
             
+            $('#commimg').filebox({    
+                buttonText: '请选择图片',
+                windth:200,
+                accept: 'image/*',
+                required:true,
+                missingMessage:'一定要选择一张图片哦'
+            })
             
             if(commid == undefined){
                 commid='';
