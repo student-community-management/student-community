@@ -19,17 +19,21 @@ import org.springframework.web.multipart.MultipartFile;
  *
  */
 public class Files {
-    private String code; // 返回码 0表示成功，其它失败
+    private Integer code; // 返回码 0表示成功，其它失败
     private String msg; // 提示信息
     private Data data; // 包含图片路径和图片名称
     public static MultipartFile[] files; // 多图片上传
     public static MultipartFile file; // 单图片上传
 
-    public String getCode() {
-        return code;
+    public Files() {
     }
 
-    public void setCode(String code) {
+    // 返回码默认为 0 0 代表 成功
+    public Integer getCode() {
+        return this.code == null ? 0 : this.code;
+    }
+
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -51,25 +55,4 @@ public class Files {
 
 }
 
-class Data {
 
-    private String src; // 文件保存路径
-    private String title; // 图片名称
-
-    public String getSrc() {
-        return src;
-    }
-
-    public void setSrc(String src) {
-        this.src = src;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-}

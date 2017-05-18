@@ -111,6 +111,7 @@
             width : 500,
             height : 'auto',
             title : '添加学生',
+            modal : true,
             collapsible : true, //显示折叠按钮
             minimizable : true, //显示最小化按钮
             maximizable : true, //显示最大化按钮

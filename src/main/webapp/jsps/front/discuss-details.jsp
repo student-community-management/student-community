@@ -191,48 +191,47 @@
     </div>
 </body>
 <script type="text/javascript">
-$(function(){
-    var layedit;
-    var editIndex;
-    layui.use(['form', 'layedit'], function(){
-  	  var form = layui.form();
-  	  var layer = layui.layer;
-  	  layedit = layui.layedit;
-  	  
-  	  //创建一个编辑器
-  	  editIndex = layedit.build('editor');
-  	  
-  	});
-    
-    $('#ss').click(function (){
-        var content = layedit.getContent(editIndex);
-        var length =content.length;
-        if(length == 0){
-            layer.msg('内容不能为空'); 
-            return false;
-        }
-        
-        if(length < 3){
-            layer.msg('会的大内容不能少于三个字符'); 
-            return false;
-        }
-        
-       layer.msg('发表成功',{time:1000}); 
-       setTimeout(function(){
-            $.ajax({
-                type:'post',
-                url:'/student-community/replyDiscuss/save.a',
-                data:{'discuss.discussid':$('#discussid').val(),'content':content},
-                success:function(data){
-                    if(data == "1"){
-                       window.location.reload();
-                    }
-                }
-            });
-        },1000);
-    });
-    
+var layedit;
+var editIndex;
+layui.use(['form', 'layedit'], function(){
+  var form = layui.form();
+  var layer = layui.layer;
+  layedit = layui.layedit;
+  
+  //创建一个编辑器
+  editIndex = layedit.build('editor');
+  
 });
+    
+
+$('#ss').click(function (){
+    var content = layedit.getContent(editIndex);
+    var length =content.length;
+    if(length == 0){
+        layer.msg('内容不能为空'); 
+        return false;
+    }
+    
+    if(length < 3){
+        layer.msg('会的大内容不能少于三个字符'); 
+        return false;
+    }
+    
+   layer.msg('发表成功',{time:1000}); 
+   setTimeout(function(){
+        $.ajax({
+            type:'post',
+            url:'/student-community/replyDiscuss/save.a',
+            data:{'discuss.discussid':$('#discussid').val(),'content':content},
+            success:function(data){
+                if(data == "1"){
+                   window.location.reload();
+                }
+            }
+        });
+    },1000);
+});
+
 
 // 举报
 $('#report').click(function(){

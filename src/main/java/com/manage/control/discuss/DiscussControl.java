@@ -45,6 +45,65 @@ public class DiscussControl {
     @Autowired
     private ReplyDiscussService replyDiscussService;
     
+    
+    /**
+     * 删除讨论
+     * @param discussid 要删除讨论的id
+     * @return
+     */
+    @RequestMapping("del")
+    @ResponseBody
+    public String del(Integer discussid) {
+        discussService.delete(discussid);
+        return "1";
+    }
+
+    /**
+     * 通过学生的id查询此学生发表的话题
+     * @param req HttpServletRequest
+     * @return
+     */
+    @RequestMapping("getMyDiscuss")
+    public ModelAndView getMyDiscuss(ModelAndView model, HttpServletRequest req,
+            @ModelAttribute Pagination pagination) {
+        /**
+         * 自动处理的数据
+         * 
+         * keyWord 在mapper.xml文件中判断如果为null则不会添加到查询条件中
+         * pageSize 如果为null或者不符合逻辑(<= 0) 则默认为20
+         * 
+         */
+        // 得到学生对象
+        Student stu = (Student) req.getSession().getAttribute("fstu");
+
+        // 信息总数
+        pagination.setTotalRecord(pagination.getTotalRecord() == null
+                ? discussService.getDiscussByStuidCount(stu.getStuid())
+                : pagination.getTotalRecord());
+
+        // 当前页
+        pagination.setCurrentPage(
+                pagination.getCurrentPage() == null ? 1 : pagination.getCurrentPage());
+
+        // 查询关于我的讨论
+        List<Discuss> discussList = discussService.getDiscussByStuid(stu.getStuid(),
+                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()));
+
+        // 将查询的数据添加到model中
+        model.addObject("discussList", discussList);
+
+        // 将分页数据添加到ModelAndView中
+        model.addObject("pagination", pagination);
+
+        // 前台选中哪个tabs选项
+        model.addObject("choose", 1);
+
+        // 跳转页面
+        model.setViewName("front/my-discuss");
+
+        return model;
+    }
+
     /**
      * 添加新的话题
      * @param req
@@ -54,13 +113,12 @@ public class DiscussControl {
     @RequestMapping("save")
     @ResponseBody
     public String save(HttpServletRequest req, @ModelAttribute Discuss discuss) {
-        
-        //获得学生对象
+
+        // 获得学生对象
         discuss.setStu((Student) req.getSession().getAttribute("fstu"));
-        //添加新的话题时,发起者也会关注此话题
+        // 添加新的话题时,发起者也会关注此话题
         discussService.save(discuss);
-        
-        
+
         return "1";
     }
 
@@ -200,7 +258,7 @@ public class DiscussControl {
     }
 
     /**
-     * 得到讨论的相信信息
+     * 得到讨论的详细信息
      * 包括讨论的详细描述,是否被关注,是否被举报
      * 此讨论下的回答,回答的赞的数量和踩的数量
      * @param modelAndView 数据和视图
@@ -248,7 +306,7 @@ public class DiscussControl {
 
         // 信息总数
         pagination.setTotalRecord(pagination.getTotalRecord() == null
-                ? discussService.getReplyDiscussesCount(discuss.getDiscussid())
+                ? replyDiscussService.getReplyDiscussesCount(discuss.getDiscussid())
                 : pagination.getTotalRecord());
 
         // 当前页
@@ -291,7 +349,7 @@ public class DiscussControl {
 
         return modelAndView;
     }
-    
+
     /**
      * 后台查看讨论,这些讨论都是被举报过的
      * @param pageParam
@@ -300,9 +358,8 @@ public class DiscussControl {
      */
     @RequestMapping("getReportDiscusses")
     @ResponseBody
-    public PageData getReportDiscusses(PageParam pageParam, String kw){
+    public PageData getReportDiscusses(PageParam pageParam, String kw) {
         return discussService.getPageData(pageParam, kw);
     }
-    
-    
+
 }

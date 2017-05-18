@@ -30,7 +30,9 @@ public class UnlockDiscussRequestControl {
 
     @Autowired
     private DiscussService discussService;
-
+    
+    @RequestMapping("unlockRequest")
+    @ResponseBody
     public String save(UnlockDiscussRequest unlockDiscussRequest) {
         unlockDiscussRequestService.save(unlockDiscussRequest);
         return "1";

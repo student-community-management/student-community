@@ -24,14 +24,15 @@ public class Student implements Serializable {
     private Date stuBirthday; // 生日
     private String stuNativePlace; // 祖籍
     private Classes classes; // 班级
+    private String img; // 头像
+    private String introduce; // 个性签名
     private Set<Community> communitys; // 参加的社团
     private Set<StuCommunityRole> stuCommunityRoles;// 担任的职务
     private String roleName; // 数据库中没有,为了方便的mapper映射
-    
+
     public Student() {
-        // TODO Auto-generated constructor stub
     }
-    
+
     public Student(Integer stuid) {
         super();
         this.stuid = stuid;
@@ -115,6 +116,22 @@ public class Student implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
 }

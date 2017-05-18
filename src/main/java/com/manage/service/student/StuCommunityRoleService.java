@@ -29,7 +29,5 @@ public class StuCommunityRoleService implements StuCommunityRoleMapper {
         // TODO Auto-generated method stub
         //并不能单独实现的方法
     }
-
-    
     
 }

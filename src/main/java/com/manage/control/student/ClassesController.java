@@ -1,4 +1,4 @@
-package com.manage.control;
+package com.manage.control.student;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

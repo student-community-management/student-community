@@ -1,18 +1,26 @@
 package com.manage.control.student;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.manage.entity.Student;
 import com.manage.service.student.StudentService;
+import com.manage.util.Data;
+import com.manage.util.Files;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
@@ -22,6 +30,70 @@ public class StudentControl {
 
     @Autowired
     private StudentService studentService;
+    
+    
+    /**
+     * 更新头像
+     * @param file 上传的图片
+     * @param req HttpServletRequest
+     * @return 返回layerui要求返回的json字符串
+     */
+    @RequestMapping("img")
+    @ResponseBody
+    public Files uploadImg(@RequestParam("img") MultipartFile file, HttpServletRequest req) {
+
+        Files files = new Files();
+        
+        files.setMsg("field");
+        
+        // 如果上传的文件不是空
+        if (!file.isEmpty()) {
+
+            // 得到学生对象为更新做准备
+            Student stu = (Student) req.getSession().getAttribute("fstu");
+
+            // 获得文件的原始名称
+            String fileName = file.getOriginalFilename();
+
+            // 获得文件的后缀名
+            fileName = fileName.substring(fileName.indexOf("."));
+
+            // 生成新的文件名称
+            fileName = UUID.randomUUID().toString() + fileName;
+
+            try {
+                // 复制到指定的文件夹
+                FileUtils.copyInputStreamToFile(file.getInputStream(),
+                        new File("/D:/image/stu/" + fileName));
+
+                // 得到旧的头像的名称
+                String oldImgName = stu.getImg();
+
+                // 更改学生的头像
+                stu.setImg(fileName);
+
+                // 调用更新方法
+                studentService.updateStuImg(stu, oldImgName);
+
+                files.setMsg("success");
+
+                // 实例化Data属性 data为fils中的一个属性主要是为了生成一个完整的json字符串
+                Data data = new Data();
+                
+                // 设置图片的名称
+                data.setSrc(fileName);
+                
+                // 将data保存在files中
+                files.setData(data);
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return files;
+    }
 
     /**
      * 得到所有的学生(管理人员)信息
@@ -119,21 +191,20 @@ public class StudentControl {
         String status = studentService.login(stu).toString();
 
         if ("1".equals(status)) {
-            //将学生信息保存到session中
+            // 将学生信息保存到session中
             req.getSession().setAttribute("fstu", studentService.queryOne(stu.getStuid()));
         }
         return status;
     }
 
-
     @RequestMapping("invalidate")
     @ResponseBody
     public String invalidate(HttpServletRequest req) {
-        //注销用户
+        // 注销用户
         req.getSession().invalidate();
         return "1";
     }
-    
+
     /**
      * 得到社团的候选人
      * @param pageParam 分页条件
@@ -143,7 +214,7 @@ public class StudentControl {
      */
     @RequestMapping("getCandidate")
     @ResponseBody
-    public PageData getCandidate(PageParam pageParam, String kw,Integer id){
+    public PageData getCandidate(PageParam pageParam, String kw, Integer id) {
         return studentService.getCandidatePageData(pageParam, kw, id);
     }
 

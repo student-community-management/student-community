@@ -146,7 +146,8 @@ a.QuestionMainAction {
 }
 .ma-col-one
 {
-	    width: 18%;
+	    width: 178px;
+   		height: 128px;
 	    float: left;
 	    position: relative;
 	    min-height: 1px;
@@ -221,9 +222,17 @@ a.QuestionMainAction {
 	overflow:hidden;
 	margin-bottom: 10px;
 }
+.ma-dt
+{
+	margin-top: 10px;
+    width: 1100px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
 .dn
 {
 	background: #ffffff;
+	overflow: hidden;
 	
 }
 .ma-neirong
@@ -256,7 +265,7 @@ a.QuestionMainAction {
 	font-size: 24px;
 	margin-top:20px;
 	padding-left:20px;
-	width: 7%;	
+	width: 10%;	
 	height:80px;
 }
 .ma-chongzuo
@@ -289,4 +298,70 @@ a.QuestionMainAction {
 .ma-dibu
 {
 	padding-bottom: 5px;
+}
+.hb
+{
+	margin-top: 70px;
+}
+.ma-matubiao
+{
+	float: left;
+    font-size: 24px;
+    height: 100px;
+}
+.ma-mamingzi
+{
+	float: left;
+    font-size: 24px;
+    margin-top: 20px;
+    width: 77%;
+    height: 80px;
+}
+.ma-menu
+{
+	min-width: 70px;
+}
+.ma-caizan
+{
+	float: left;
+	font-size: 24px;
+	margin-top:20px;
+	padding-left:20px;
+	width: 7%;	
+	height:80px;
+}
+.ma-tupianneirong
+{
+	margin-top: -50%;
+    text-align: center;
+    font-size: 16px;
+}
+.ma-dtd
+{
+	margin-top: -65%;
+    width: 109px;
+    margin-left: 10px;
+    opacity: 0.9;
+}
+.h1{
+    font-size: 32px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+
+.h2{
+    font-size:24px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+
+.h3{
+    font-size:18px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+.h4{
+    font-size:16px;
+    letter-spacing: 3px;
+    line-height: 150%;
 }

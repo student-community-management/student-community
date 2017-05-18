@@ -23,7 +23,19 @@ public class ReplyDiscussControl {
 
     @Autowired
     private ReplyDiscussService replyDiscussService;
-
+    
+    /**
+     * 得到讨论回复的数量
+     * @param id
+     * @return
+     */
+    @RequestMapping("getReplyDiscussesCount")
+    @ResponseBody
+    public String getReplyDiscussesCount(Integer discussid) {
+        return replyDiscussService.getReplyDiscussesCount(discussid).toString();
+    }
+    
+    
     /**
      * 添加回复
      * @param replyDiscuss 回复话题的对象

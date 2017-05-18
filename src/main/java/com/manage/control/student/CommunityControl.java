@@ -59,7 +59,7 @@ public class CommunityControl {
             fileName = UUID.randomUUID().toString()+fileName;
             
             try {
-                FileUtils.copyInputStreamToFile(file.getInputStream(), new File("/D:/image/"+fileName) );
+                FileUtils.copyInputStreamToFile(file.getInputStream(), new File("/D:/image/community"+fileName) );
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -88,7 +88,13 @@ public class CommunityControl {
         communityService.deleteMany(ids);
         return "ok";
     }
-
+    
+    /**
+     * 为社团指定团长
+     * @param commid 社团的id
+     * @param stuid 指定学生的id
+     * @return
+     */
     @RequestMapping("setMaster")
     @ResponseBody
     public String setMaster(Integer commid, Integer stuid) {

@@ -110,18 +110,6 @@
         WHERE s.stu_id = #{stuid} AND rd.discuss_id = #{discussid}
     </select>
     
-    <select id="getReplyDiscussesCount" parameterType="int" resultType="int">
-        SELECT COUNT(t.reply_discuss_id) FROM(
-        SELECT rd.reply_discuss_id,COUNT(prd.reply_discuss_id) AS 'praise_count',
-        COUNT(ard.reply_discuss_id) AS 'against_count' FROM discuss d
-        LEFT JOIN reply_discuss rd ON d.discuss_id = rd.discuss_id
-        LEFT JOIN praise_reply_discuss prd ON prd.reply_discuss_id = rd.reply_discuss_id
-        LEFT JOIN against_reply_discuss ard ON ard.reply_discuss_id = rd.reply_discuss_id
-        LEFT JOIN student s ON rd.stu_id = s.stu_id
-        WHERE d.discuss_id = #{discussid}
-        GROUP BY rd.reply_discuss_id) t
-    </select>
-    
     <select id="getReportDiscusses" parameterType="map" resultMap="discussResultMap">
         SELECT * FROM (
         SELECT d.discuss_id,d.discuss_title,d.discuss_content,COUNT(rd.discuss_id) AS 'reportNum' FROM report_discuss rd 
@@ -151,5 +139,22 @@
         ORDER BY d.discuss_id DESC
         LIMIT 0,1
     </select>
+    
+    <select id="getDiscussByStuid" parameterType="map" resultMap="discussResultMap">
+        SELECT * FROM discuss d 
+        WHERE d.stu_id = ${id}
+        LIMIT #{pageParam.startIndex},#{pageParam.rows}
+    </select>
+    
+    <select id="getDiscussByStuidCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM discuss d 
+        WHERE d.stu_id = ${id}
+    </select>
+    
+    <delete id="delete" parameterType="int">
+        DELETE FROM discuss 
+        WHERE discuss_id = #{id}
+    </delete>
+    
     
 </mapper>

@@ -1,6 +1,7 @@
 package com.manage.mapper.discuss;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -16,7 +17,7 @@ public interface LockDiscussMapper {
     LockDiscuss getByid(Integer id);
     
     /**
-     * 保存一组数据
+     * 锁定一组讨论
      * @param lockDiscusses
      */
     void save(@Param("lockDiscusses") List<LockDiscuss> lockDiscusses);
@@ -28,4 +29,14 @@ public interface LockDiscussMapper {
      */
     void setLockDiscussStatus(@Param("ids") List<Integer> ids);
     
+    
+    /**
+     * 得到被锁定的讨论的原因(message)和处理状态(status)
+     * message:锁定的原因是后台管理员锁定时给出的原因
+     * status:处理状态是前台学生对锁定结果的处理,当修改讨论后才会变为已经处理
+     * 
+     * @param discussid 被锁定的讨论的id
+     * @return
+     */
+   Map<String,String> getLockInfo(@Param("id") Integer discussid);
 }

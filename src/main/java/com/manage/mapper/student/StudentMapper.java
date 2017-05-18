@@ -48,5 +48,29 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return 如果为1则为登陆成功
      */
     Integer login(Student stu);
+    
+    /**
+     * 更新头像
+     * @param stu
+     */
+    void updateImg(Student stu);
+    
+    /**
+     * 删除旧的头像图片
+     * @param imgName 图片的名称
+     */
+    void delImg(String imgName);
+    
+    /**
+     * 修改个性签名
+     * @param stu
+     */
+    void updateIntroduce(Student stu);
+    
+    /**
+     * 更改学生密码
+     * @param stu Student对象
+     */
+    void updatePwd(Student stu);
 
 }

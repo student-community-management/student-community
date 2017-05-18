@@ -89,15 +89,9 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     public Integer checkReport(Integer stuid, Integer discussid) {
         return discussMapper.checkReport(stuid, discussid);
     }
-
-    @Override
-    public Integer getReplyDiscussesCount(Integer discussid) {
-        return discussMapper.getReplyDiscussesCount(discussid);
-    }
-
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
+        discussMapper.delete(id);
     }
 
     @Override
@@ -120,5 +114,17 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     public Integer getNewDiscussid() {
         return discussMapper.getNewDiscussid();
     }
+
+    @Override
+    public List<Discuss> getDiscussByStuid(Integer stuid, PageParam pageParam) {
+        return discussMapper.getDiscussByStuid(stuid, pageParam);
+    }
+
+    @Override
+    public Integer getDiscussByStuidCount(Integer stuid) {
+        return discussMapper.getDiscussByStuidCount(stuid);
+    }
+
+    
 
 }
