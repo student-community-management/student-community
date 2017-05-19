@@ -5,19 +5,6 @@
 <head>
 <meta charset="utf-8">
 <title>学生社区</title>
-<link rel="icon" href="/student-community/ico/ico.png">
-<link href="/student-community/layui/css/layui.css" rel="stylesheet">
-<link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
-<link href="/student-community/css/non-responsive.css" rel="stylesheet">
-<link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
-<link href="/student-community/css/mycssfront.css" rel="stylesheet">
-<link href="/student-community/css/docs.css" rel="stylesheet">
-<script src="/student-community/layui/layui.js"></script>
-<script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/js/bootstrap.min.js"></script>
-<script src="/student-community/js/bootstrapValidator.min.js"></script>
-</head>
-<body>
     <%@ include file="nav.jsp"%>
     <%@ include file="my-nav.jsp"%>
     <div class="tab-content">
@@ -145,11 +132,16 @@ $('.lockReason').click(function(){
            
            layer.confirm(obj.message, {
                btn: [message,'取消'] //按钮
-             }, function(){
-               		if(message = '我要修改'){
-               		    
-               		    console.log('我要修改');
-               		    
+             }, function(index){
+                 	console.log(message);
+                 	layer.close(index);
+               		if(message == '我要修改'){
+               		 layer.open({
+               		  	type: 2,
+               		  	title:'修改话题',
+               		   	area : ['970px' , '550px'],
+               		  	content: '/student-community/discuss/getBaseInfo.a?discussid='+id
+               		  }); 
                		}
              });
            	
@@ -213,17 +205,7 @@ $('.delNullDiscuss').click(function(){
                 
             }
         }
-        
-        
-        
-        
     });
-    
-    
-    
-    
-    
-    
 });
 
 

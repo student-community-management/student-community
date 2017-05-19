@@ -5,17 +5,6 @@
 <head>
 <meta charset="utf-8">
 <title>学生社区</title>
-<link rel="icon" href="/student-community/ico/ico.png">
-<link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
-<link href="/student-community/css/non-responsive.css" rel="stylesheet">
-<link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
-<link href="/student-community/css/mycssfront.css" rel="stylesheet">
-<link href="/student-community/css/docs.css" rel="stylesheet">
-<script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/js/bootstrap.min.js"></script>
-<script src="/student-community/js/bootstrapValidator.min.js"></script>
-</head>
-<body>
     <%@ include file="nav.jsp"%>
     <%@ include file="discuss-nav.jsp"%>
                 <div class="tab-content">
@@ -105,7 +94,7 @@
         </div>
 </body>
 <script type="text/javascript">
-
+<%@ include file="discuss-publish-btn.jsp"%>
     $("#question-input").keydown(function(event) {
         if (event.which == "13")
             window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+

@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.manage.entity.AttentionDiscuss;
 import com.manage.entity.Discuss;
+import com.manage.entity.UnlockDiscussRequest;
 import com.manage.mapper.discuss.AttentionDiscussMapper;
 import com.manage.mapper.discuss.DiscussMapper;
+import com.manage.mapper.discuss.LockDiscussMapper;
+import com.manage.mapper.discuss.UnlockDiscussRequestMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
@@ -27,6 +30,12 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     @Autowired
     private AttentionDiscussMapper attentionDiscussMapper;
 
+    @Autowired
+    private UnlockDiscussRequestMapper unlockDiscussRequestMapper;
+    
+    @Autowired
+    private LockDiscussMapper lockDiscussMapper;
+
     @Override
     public List<Discuss> queryAll(PageParam pageParam, String keyWord) {
         return discussMapper.queryAll(pageParam, keyWord);
@@ -44,8 +53,8 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
         // 得到刚刚添加的话题的id
         Integer discussid = this.getNewDiscussid();
-        
-        //将获得的对象添加到discuss 对象中
+
+        // 将获得的对象添加到discuss 对象中
         t.setDiscussid(discussid);
 
         // 执行添加关注方法
@@ -55,8 +64,34 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
     @Override
     public void update(Discuss t) {
-        // TODO Auto-generated method stub
+        discussMapper.update(t);
+    }
 
+    /**
+     * 当更改讨论的时候,同时录入请求解封的原因
+     * @param t
+     * @param message
+     */
+    public void updateDiscuss(Discuss t, String message) {
+
+        // 执行更新方法
+        this.update(t);
+
+        // 执行添加unlockDiscussRequest的方法
+        UnlockDiscussRequest udr = new UnlockDiscussRequest();
+        udr.setDiscuss(t);
+        // 如果没有填写请求信息时将指定默认值
+        // 数据库默认为 '讨论已经更改,请求审核'
+        if (!(message == null && "".equals(message))) {
+            udr.setMessage(message);
+        }
+
+        // 执行方法
+        unlockDiscussRequestMapper.save(udr);
+        
+        // 将锁定信息设置为已经处理
+        lockDiscussMapper.setLockDiscussStatus(t.getDiscussid());
+        
     }
 
     @Override
@@ -89,6 +124,7 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     public Integer checkReport(Integer stuid, Integer discussid) {
         return discussMapper.checkReport(stuid, discussid);
     }
+
     @Override
     public void delete(Integer id) {
         discussMapper.delete(id);
@@ -125,6 +161,8 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
         return discussMapper.getDiscussByStuidCount(stuid);
     }
 
-    
-
+    @Override
+    public Discuss getBaseDiscussInfo(Integer discussid) {
+        return discussMapper.getBaseDiscussInfo(discussid);
+    }
 }

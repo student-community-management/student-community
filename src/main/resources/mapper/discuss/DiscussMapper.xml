@@ -28,6 +28,11 @@
         </foreach>
     </update>
     
+    <update id="update" parameterType="com.manage.entity.Discuss">
+        UPDATE discuss SET discuss_title = #{discussTitle},discuss_content=#{discussContent}
+        WHERE discuss_id = #{discussid}
+    </update>
+    
     <select id="queryAll" resultType="com.manage.entity.Discuss" resultMap="discussResultMap"
         parameterType="map">
         SELECT d.discuss_id,d.discuss_title,s.stu_name FROM discuss d 
@@ -59,9 +64,9 @@
         LIMIT #{pageParam.startIndex},#{pageParam.rows}
     </select>
     
-    <select id="queryOne" resultMap="discussResultMap" resultType="com.manage.entity.Discuss"
-        parameterType="Integer">
-        SELECT d.discuss_id,d.discuss_title,d.discuss_content,d.discuss_date,s.stu_name,s.stu_id FROM discuss d 
+    <select id="queryOne" resultMap="discussResultMap" parameterType="int">
+        SELECT d.discuss_id,d.discuss_title,d.discuss_content,d.discuss_date,s.stu_name,
+        s.stu_id,d.status FROM discuss d 
         INNER JOIN student s ON d.stu_id = s.stu_id
         WHERE d.STATUS = 1 AND d.discuss_id = #{id}
     </select>
@@ -107,12 +112,13 @@
     <select id="checkReport" resultType="int" parameterType="map">
         SELECT COUNT(*) FROM student s 
         INNER JOIN report_discuss rd ON  rd.stu_id = s.stu_id
-        WHERE s.stu_id = #{stuid} AND rd.discuss_id = #{discussid}
+        WHERE s.stu_id = #{stuid} AND rd.discuss_id = #{discussid} AND rd.status = 0
     </select>
     
     <select id="getReportDiscusses" parameterType="map" resultMap="discussResultMap">
         SELECT * FROM (
-        SELECT d.discuss_id,d.discuss_title,d.discuss_content,COUNT(rd.discuss_id) AS 'reportNum' FROM report_discuss rd 
+        SELECT d.discuss_id,d.discuss_title,d.discuss_content,COUNT(rd.discuss_id) AS 'reportNum' 
+        FROM report_discuss rd 
         INNER JOIN discuss d ON rd.discuss_id = d.discuss_id
         WHERE d.status = 1 AND rd.status = 0 
         <if test="keyWord != null">
@@ -151,10 +157,14 @@
         WHERE d.stu_id = ${id}
     </select>
     
+    <select id="getBaseDiscussInfo" parameterType="int" resultMap="discussResultMap">
+        SELECT d.discuss_id,d.discuss_title,d.discuss_content 
+        FROM discuss d WHERE d.discuss_id = #{id}
+    </select>
+    
     <delete id="delete" parameterType="int">
         DELETE FROM discuss 
         WHERE discuss_id = #{id}
     </delete>
-    
     
 </mapper>

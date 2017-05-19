@@ -6,23 +6,6 @@
 <head>
 <meta charset="utf-8">
 <title>${ discuss.discussTitle }</title>
-<link rel="icon" href="/student-community/ico/ico.png">
-<link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
-<link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
-<link href="/student-community/layui/css/layui.css" rel="stylesheet">
-<link href="/student-community/css/non-responsive.css" rel="stylesheet">
-<link href="/student-community/css/mycssfront.css" rel="stylesheet">
-<link href="/student-community/css/docs.css" rel="stylesheet">
-<link href="/student-community/css/mymayachao.css" rel="stylesheet">
-<script src="/student-community/js/jquery.min.js"></script>
-<script src="/student-community/js/bootstrap.min.js"></script>
-<script src="/student-community/js/bootstrapValidator.min.js"></script>
-<script src="/student-community/layui/layui.js"></script>
-<script src="/student-community/layui/lay/modules/layedit.js"></script>
-</head>
-<body>
-
-    <div class="container">
         <%@ include file="nav.jsp"%>
         <div class="middle mbox-shadow">
             <div class="QuestionHeader">
@@ -197,10 +180,8 @@ layui.use(['form', 'layedit'], function(){
   var form = layui.form();
   var layer = layui.layer;
   layedit = layui.layedit;
-  
   //创建一个编辑器
   editIndex = layedit.build('editor');
-  
 });
     
 

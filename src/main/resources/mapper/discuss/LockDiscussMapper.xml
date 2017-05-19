@@ -20,9 +20,11 @@
     </select>
     
     <select id="getLockInfo" parameterType="int" resultType="map">
-        SELECT ld.message,ld.status FROM discuss d
-        INNER JOIN lock_disscuss ld ON d.discuss_id = ld.discuss_id
+        SELECT ld.message,ld.status FROM discuss d 
+        INNER JOIN lock_disscuss ld ON d.discuss_id = ld.discuss_id 
         WHERE d.discuss_id = #{id} AND d.status = 0
+        ORDER BY ld.lock_discuss_id DESC
+        LIMIT 0,1 
     </select>
     
     <insert id="save">
@@ -34,10 +36,8 @@
     </insert>
 
     <update id="setLockDiscussStatus">
-        UPDATE lock_disscuss ld SET ld.status = 1 WHERE lock_discuss_id IN 
-        <foreach collection="ids" item="id" open="(" separator="," close=")">
-            #{id}
-        </foreach>
+        UPDATE lock_disscuss ld SET ld.status = 1 
+        WHERE discuss_id = #{id}
     </update>
 
 </mapper>

@@ -44,8 +44,20 @@ public class DiscussControl {
 
     @Autowired
     private ReplyDiscussService replyDiscussService;
-    
-    
+
+    /**
+     * 得到讨论的基本信息 包含讨论的标题和描述
+     * @param model
+     * @param discussid
+     * @return
+     */
+    @RequestMapping("getBaseInfo")
+    public ModelAndView getBaseInfo(ModelAndView model, Integer discussid) {
+        model.addObject("discuss", discussService.getBaseDiscussInfo(discussid));
+        model.setViewName("front/discuss-publish");
+        return model;
+    }
+
     /**
      * 删除讨论
      * @param discussid 要删除讨论的id
@@ -106,18 +118,27 @@ public class DiscussControl {
 
     /**
      * 添加新的话题
-     * @param req
-     * @param discuss
+     * @param req HttpServletRequest
+     * @param discuss 讨论对象
+     * @param message 如果是请求解除锁定,message则为解除的请求理由
      * @return
      */
     @RequestMapping("save")
     @ResponseBody
-    public String save(HttpServletRequest req, @ModelAttribute Discuss discuss) {
+    public String save(HttpServletRequest req, @ModelAttribute Discuss discuss, String message) {
 
-        // 获得学生对象
-        discuss.setStu((Student) req.getSession().getAttribute("fstu"));
-        // 添加新的话题时,发起者也会关注此话题
-        discussService.save(discuss);
+        Integer discussid = discuss.getDiscussid();
+
+        // 如果id为null 则执行添加方法
+        if (discussid == null) {
+            // 获得学生对象
+            discuss.setStu((Student) req.getSession().getAttribute("fstu"));
+            // 添加新的话题时,发起者也会关注此话题
+            discussService.save(discuss);
+        } else {
+            // 如果id不为null则执行更新方法
+            discussService.updateDiscuss(discuss, message);
+        }
 
         return "1";
     }
@@ -284,6 +305,11 @@ public class DiscussControl {
 
         // 得到此讨论的详细信息
         discuss = discussService.queryOne(discuss.getDiscussid());
+
+        if (discuss == null) {
+            modelAndView.setViewName("front/404");
+            return modelAndView;
+        }
 
         // 添加-->详细的讨论信息
         modelAndView.addObject("discuss", discuss);

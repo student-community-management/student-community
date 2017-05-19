@@ -22,8 +22,8 @@ public class LockDiscussService implements LockDiscussMapper {
     }
 
     @Override
-    public void setLockDiscussStatus(List<Integer> ids) {
-        lockDiscussMapper.setLockDiscussStatus(ids);
+    public void setLockDiscussStatus(Integer id) {
+        lockDiscussMapper.setLockDiscussStatus(id);
     }
 
     @Override

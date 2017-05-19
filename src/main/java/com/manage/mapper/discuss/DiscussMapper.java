@@ -89,5 +89,11 @@ public interface DiscussMapper extends BaseMapper<Discuss> {
      */
     Integer getDiscussByStuidCount(@Param("id") Integer stuid);
     
-
+    /**
+     * 得到讨论的基本信息  包括id,标题和详情
+     * @param discussid
+     * @return
+     */
+    Discuss getBaseDiscussInfo(@Param("id") Integer discussid);
+    
 }

@@ -1,7 +1,5 @@
 package com.manage.mapper.discuss;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.manage.entity.PraiseReplyDiscuss;
 
 public interface PraiseReplyDiscussMapper{

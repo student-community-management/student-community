@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.manage.entity.Student;
 import com.manage.service.student.StudentService;
@@ -199,10 +200,12 @@ public class StudentControl {
 
     @RequestMapping("invalidate")
     @ResponseBody
-    public String invalidate(HttpServletRequest req) {
+    public ModelAndView invalidate(ModelAndView model ,HttpServletRequest req) {
         // 注销用户
         req.getSession().invalidate();
-        return "1";
+        
+        model.setViewName("redirect:/jsps/front/login.jsp");
+        return model;
     }
 
     /**
