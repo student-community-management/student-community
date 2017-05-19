@@ -155,4 +155,9 @@ public class StudentService implements BaseService<Student>, StudentMapper {
         studentMapper.updatePwd(stu);
     }
 
+    @Override
+    public void changeIntro(Student stu) {
+        studentMapper.changeIntro(stu);
+    }
+
 }

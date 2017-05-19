@@ -108,7 +108,7 @@ public class DiscussControl {
         model.addObject("pagination", pagination);
 
         // 前台选中哪个tabs选项
-        model.addObject("choose", 1);
+        model.addObject("choose", 2);
 
         // 跳转页面
         model.setViewName("front/my-discuss");

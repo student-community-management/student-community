@@ -6,14 +6,17 @@
             <div class="mod-head">
 
                 <ul class="nav nav-tabs">
-                    <li <c:if test="${ choose == 1 }">class="active"</c:if> class="active">
-                        <a href="/student-community/discuss/getMyDiscuss.a">我的讨论</a>
+                    <li <c:if test="${ param.choose == 1 }">class="active"</c:if>>
+                        <a href="/student-community/jsps/front/my-info.jsp?choose=1">我的个人信息</a>
                     </li>
                     <li <c:if test="${ choose == 2 }">class="active"</c:if>>
-                        <a href="/student-community/discuss/getMyDiscuss.a">我的活动</a>
+                        <a href="/student-community/discuss/getMyDiscuss.a">我的讨论</a>
                     </li>
                     <li <c:if test="${ choose == 3 }">class="active"</c:if>>
-                        <a href="/student-community/discuss/getMyAttentionDiscuss.a">我的社团</a>
+                        <a href="/student-community/discuss/getMyDiscuss.a">我的活动</a>
+                    </li>
+                    <li <c:if test="${ choose == 4 }">class="active"</c:if>>
+                        <a href="/student-community/jsps/front/my-community.jsp">我的社团</a>
                     </li>
                 </ul>
 

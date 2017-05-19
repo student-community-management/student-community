@@ -72,5 +72,11 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @param stu Student对象
      */
     void updatePwd(Student stu);
+    
+    /**
+     * 更改个性签名
+     * @param stu Student对象
+     */
+    void changeIntro(Student stu);
 
 }

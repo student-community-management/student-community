@@ -28,7 +28,7 @@
                 <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px;">
-                  <img src="/image/stu/${ sessionScope.fstu.img }" width="35px">${sessionScope.fstu.stuName } 
+                  <img src="/image/stu/${ sessionScope.fstu.img }" width="35px" id="nav-face">${sessionScope.fstu.stuName } 
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/student-community/discuss/getMyDiscuss.a">个人主页</a></li>

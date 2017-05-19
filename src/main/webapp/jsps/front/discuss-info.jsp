@@ -27,6 +27,7 @@
             </c:forEach>
 
             <!-------------分页------------->
+            <c:if test="${pagination.totalPage != 0 && pagination.totalPage != null }">
             <ul class="pagination">
                 <li <c:if test="${pagination.currentPage == 1}">class="disabled"</c:if>>
                     <a href="javascript:void(0);" aria-label="Previous" class="prev"> <span
@@ -87,6 +88,7 @@
                     </a>
                 </li>
             </ul>
+            </c:if>
             <!-------------分页 end------------->
 
             <!-- end tab 切换 -->

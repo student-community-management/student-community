@@ -147,7 +147,12 @@
         UPDATE student SET stu_pwd = #{stuPwd}
         WHERE stu_id = #{stuid}
     </update>
-         
+    
+    <update id="changeIntro" parameterType="com.manage.entity.Student">
+        UPDATE student SET introduce= #{introduce}
+        WHERE stu_id=#{stuid}
+    </update>
+    
     <delete id="deleteMany">
         DELETE FROM student WHERE stu_id in
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">

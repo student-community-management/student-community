@@ -8,132 +8,84 @@
     <%@ include file="nav.jsp"%>
     <%@ include file="my-nav.jsp"%>
     <div class="tab-content">
-        <div class="tab-pane active" id="home">
-
-            <c:forEach var="discuss" items="${ discussList }">
-                <div class="aw-item active discuss-content" data-topic-id="1176,814,">
-                    <a href="#" class="aw-user-name">${discuss.stu.stuName }</a> <span
-                        class="text-color-999"> 发起了问题 </span> <a class="aw-user-name hidden-xs"
-                        data-id="4444" href="http://wenda.golaravel.com/people/%E9%9F%A6%E6%A3%AE"
-                        rel="nofollow"><img src="" alt="" /></a>
-
-                    <div class="aw-question-content">
-                        <h4>
-                            <a href="/student-community/discuss/getDicussDetail.a?discussid=${ discuss.discussid}">${discuss.discussTitle }</a>
-                        </h4>
-
-                    </div>
-                </div>
-            </c:forEach>
-
-            <!-------------分页------------->
-            <ul class="pagination">
-                <li <c:if test="${pagination.currentPage == 1}">class="disabled"</c:if>>
-                    <a href="javascript:void(0);" aria-label="Previous" class="prev"> <span
-                        aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <c:if test="${pagination.totalPage <= 5}">
-                    <c:forEach var="page" begin="1" end="${pagination.totalPage}">
-                        <li <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                            <a href="javascript:void(0);"
-                                <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                class="pageNum">${ page }</a>
-                        </li>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${pagination.totalPage > 5}">
-
-                    <c:if test="${pagination.currentPage+5 <= pagination.totalPage}">
-                        <c:if test="${pagination.currentPage-5 <= 1}">
-                            <c:forEach var="page" begin="1" end="${ pagination.currentPage+5}">
-                                <li
-                                    <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                                    <a href="javascript:void(0);"
-                                        <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                        class="pageNum">${ page }</a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
-                        <c:if test="${pagination.currentPage-5 > 1}">
-                            <c:forEach var="page" begin="${pagination.currentPage-5}"
-                                end="${ pagination.currentPage+5}">
-                                <li
-                                    <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                                    <a href="javascript:void(0);"
-                                        <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                        class="pageNum">${ page }</a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
-                    </c:if>
-
-                    <c:if
-                        test="${pagination.currentPage+5 > pagination.totalPage && pagination.currentPage-5 >= 1 }">
-                        <c:forEach var="page" begin="${ pagination.currentPage - 5}"
-                            end="${ pagination.totalPage}">
-                            <li <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                                <a href="javascript:void(0);"
-                                    <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                    class="pageNum">${ page }</a>
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                </c:if>
-                <li
-                    <c:if test="${pagination.currentPage == pagination.totalPage}">class="disabled"</c:if>>
-                    <a href="javascript:void(0);" aria-label="Next" class="next"> <span
-                        aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-            <!-------------分页 end------------->
-
-            <!-- end tab 切换 -->
+    <div>
+    <br><br> 
+    <label>我的姓名</label>
+    <label> ${ sessionScope.fstu.stuName }</label><br>
+    </div><br>
+    <div>
+    <label>我的性别</label>
+    <label> ${ sessionScope.fstu.stuSex==0 ?'女':'男' }</label><br>
+    </div>
+       <label> 我的头像:</label>
+            <img src="/image/stu/${ sessionScope.fstu.img }" width="128" height="128"
+                class="img-circle" id="face">
+            <input type="file" name="img" id="img">
+        
+        <br>
+        <label>我的个性签名:</label> 
+        <label><span id="intro" style="width:100%;">${ sessionScope.fstu.introduce }</span></label>
+         <button class="btn btn-default" type="button" id="changeIntro">点击更换个性签名</button>
         </div>
+        
+        
 
-    </div>
-
-    </div>
-    </div>
-    </div>
+</div>
+</div>
+</div>
 
 
 </body>
 <script type="text/javascript">
+$(function() {
 
-    $("#question-input").keydown(function(event) {
-        if (event.which == "13")
-            window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
-            "&currentPage=1";
+    layui.use('upload', function() {
+        layui.upload({
+            url : '/student-community/stu/img.a',
+            title : '请选择上传头像',
+            method : 'post', //上传接口的http类型
+            elem : '#img',
+            success : function(res) {
+                if (res.msg == 'success') {
+                    $('#face').attr('src', '/image/stu/' + res.data.src);
+                    $('#nav-face').attr('src', '/image/stu/' + res.data.src);
+                    layer.msg('更换头像成功');
+                } else {
+                    layer.msg('更换头像失败');
+                }
+            }
+        });
     });
+});
+
+$('#changeIntro').click(function(){
+    layer.prompt({title: '请出入要修改的个性签名'}, function(content, index){
+		if(content.length > 30){
+			layer.msg('个性签名不能超过30个字');
+		    return;
+		} else {
+		    $.ajax({
+				type:'post',
+				url:'/student-community/stu/changeIntro.a',
+				data:{"introduce":content},
+				dataType:'text',
+				success:function(data){
+				    console.log(data);
+				    if(data != null || data != ''){
+				        layer.msg('更改成功');
+				        layer.close(index);
+            		    $('#intro').text(data);
+				        
+				    }
+									    
+				}
+	        });
+		}
+		
+    });
+				        
+       	
+});
     
-    //直接点击的哪一页
-    $('.pageNum').click(function(){
-       window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
-               "&currentPage="+$(this).html()+"&totalRecord="+${pagination.totalRecord};
-    });  
-    
-    //上一页
-    $('.prev').click(function(){
-        if(${pagination.currentPage == 1}){
-            console.log('上一页不可用');
-            return;
-        }
-        window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
-        "&currentPage="+${pagination.currentPage - 1}+"&totalRecord="+${pagination.totalRecord};
-    }); 
-    
-    //下一页
-    $('.next').click(function(){
-        if(${pagination.currentPage == pagination.totalPage}){
-            console.log('下一页不可用');
-            return;
-        }
-        window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
-        "&currentPage="+${pagination.currentPage+1}+"&totalRecord="+${pagination.totalRecord};
-    });   
-	
-    $('#question-input').val();
 </script>
 </html>

@@ -32,6 +32,23 @@ public class StudentControl {
     @Autowired
     private StudentService studentService;
     
+    /**
+     * 更改学生个性签名
+     * @param req HttpServletRequest
+     * @param introduce 个性签名
+     * @return
+     */
+    @RequestMapping(value="changeIntro",produces={"text/json;charset=UTF-8"})
+    @ResponseBody
+    public String changeIntro(HttpServletRequest req,String introduce){
+        
+        Student stu = (Student)req.getSession().getAttribute("fstu");
+        stu.setIntroduce(introduce);
+        studentService.changeIntro(stu);
+        //将修改过后的签名再传回去
+        return introduce;
+    }
+    
     
     /**
      * 更新头像
