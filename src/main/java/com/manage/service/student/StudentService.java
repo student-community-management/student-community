@@ -62,10 +62,10 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public List<Student> getStudentByCommid(Integer id) {
+    public List<Student> getStudentByCommid(PageParam pageParam, Integer id) {
 
         if (id != null) {
-            return studentMapper.getStudentByCommid(id);
+            return studentMapper.getStudentByCommid(pageParam, id);
         } else {
             throw new RuntimeException("查询参数有误");
         }
@@ -128,9 +128,9 @@ public class StudentService implements BaseService<Student>, StudentMapper {
      * @param oldImgName 旧的图片名称
      */
     public void updateStuImg(Student stu, String oldImgName) {
-        
-        //如果图像的名称不是默认的图片名称则执行删除操作
-        if(!"nophoto.png".equals(oldImgName)){
+
+        // 如果图像的名称不是默认的图片名称则执行删除操作
+        if (!"nophoto.png".equals(oldImgName)) {
             // 删除旧的图片
             this.delImg(oldImgName);
         }
@@ -158,6 +158,11 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     @Override
     public void changeIntro(Student stu) {
         studentMapper.changeIntro(stu);
+    }
+
+    @Override
+    public Integer getStudentByCommidCount(Integer commid) {
+        return studentMapper.getStudentByCommidCount(commid);
     }
 
 }

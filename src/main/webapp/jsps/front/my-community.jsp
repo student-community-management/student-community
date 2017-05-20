@@ -4,298 +4,30 @@
 <%@ include file="my-nav.jsp"%>
 <div class="tab-content">
         <div class="tab-pane active" id="home">
+
 <!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
+<c:forEach items="${commList }" var="comm">
+     <div class="col-md-4 col-sm-4 mb ss">
         <div class="white-panel pn dt">
             <div class="white-header">
                 <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-<!-- 循环 -->
-             <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
-            <div class="white-header">
-                <h4 class="ma-white-ya">
-                    <a href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">编辑部</a><a
-                        href="/student-community/jsps/front/personal-community-info.jsp"
-                        class="ma-href-a">查看社团</a>
-                    <button class="ma-drop">删除社团</button>
-                </h4>
-            </div>
-
-            <a href="/student-community/jsps/front/personal-community-info.jsp" class="thumbnail">
-                <img src="/student-community/img/111.jpg">
-            </a>
-        </div>
-    </div>
-<!-- 循环end -->
-            <!-------------分页------------->
-            <c:if test="${pagination.totalPage > 0}">
-            <ul class="pagination">
-                <li <c:if test="${pagination.currentPage == 1}">class="disabled"</c:if>>
-                    <a href="javascript:void(0);" aria-label="Previous" class="prev"> <span
-                        aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <c:if test="${pagination.totalPage <= 5}">
-                    <c:forEach var="page" begin="1" end="${pagination.totalPage}">
-                        <li <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                            <a href="javascript:void(0);"
-                                <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                class="pageNum">${ page }</a>
-                        </li>
+                    <a href="#" class="ma-href-a">${ comm.communityName }</a>
+                    <a hrefs="/student-community/stu/getStusByCommid.a?commid=${ comm.communityid }&manage=0" class="ma-href-a commInfo">查看社团</a>
+                    <c:forEach items="${ commMasterList }" var="mcomm">
+                        <c:if test="${comm.communityid == mcomm.communityid }">
+                           <a hrefs="/student-community/stu/getStusByCommid.a?commid=${ comm.communityid }&manage=1" class="ma-href-a commInfo">管理社团</a>
+                        </c:if>
                     </c:forEach>
-                </c:if>
-                <c:if test="${pagination.totalPage > 5}">
+                 </h4>
+            </div>
 
-                    <c:if test="${pagination.currentPage+5 <= pagination.totalPage}">
-                        <c:if test="${pagination.currentPage-5 <= 1}">
-                            <c:forEach var="page" begin="1" end="${ pagination.currentPage+5}">
-                                <li
-                                    <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                                    <a href="javascript:void(0);"
-                                        <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                        class="pageNum">${ page }</a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
-                        <c:if test="${pagination.currentPage-5 > 1}">
-                            <c:forEach var="page" begin="${pagination.currentPage-5}"
-                                end="${ pagination.currentPage+5}">
-                                <li
-                                    <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                                    <a href="javascript:void(0);"
-                                        <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                        class="pageNum">${ page }</a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
-                    </c:if>
-
-                    <c:if
-                        test="${pagination.currentPage+5 > pagination.totalPage && pagination.currentPage-5 >= 1 }">
-                        <c:forEach var="page" begin="${ pagination.currentPage - 5}"
-                            end="${ pagination.totalPage}">
-                            <li <c:if test="${pagination.currentPage == page}">class="active"</c:if>>
-                                <a href="javascript:void(0);"
-                                    <c:if test="${pagination.currentPage == page}">onclick="return false"</c:if>
-                                    class="pageNum">${ page }</a>
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                </c:if>
-                <li
-                    <c:if test="${pagination.currentPage == pagination.totalPage}">class="disabled"</c:if>>
-                    <a href="javascript:void(0);" aria-label="Next" class="next"> <span
-                        aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-            </c:if>
-            <!-------------分页 end------------->
+            <a hrefs="/student-community/stu/getStusByCommid.a?commid=${ comm.communityid }&manage=0" class="thumbnail commInfo">
+                <img src="/image/community/${ comm.img }">
+            </a>
+        </div>
+    </div>
+</c:forEach>
+<!-- 循环end -->
 
             <!-- end tab 切换 -->
         </div>
@@ -306,7 +38,33 @@
     </div>
     </div>
 
+<script type="text/javascript">
 
+
+layui.use(['form'], function(){
+    var form = layui.form();
+    var layer = layui.layer;
+    /* layer.open({
+        type: 2,
+        top: '50px',
+        title:'发布新的话题',
+         area : ['1050px' , '600px'],
+        content: '/student-community/stu/getStusByCommid.a?commid=1'
+      });   */
+});
+
+
+$('.commInfo').click(function(){
+    
+    layer.open({
+        type: 2,
+        top: '50px',
+        title:'发布新的话题',
+         area : ['1050px' , '600px'],
+        content: $(this).attr('hrefs')
+      }); 
+});
+</script>
 
 </body>
 </html>

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.Classes;
-import com.manage.service.ClassesService;
+import com.manage.service.student.ClassesService;
 
 @Controller
 @RequestMapping("cls/")
-public class ClassesController {
+public class ClassesControl {
     @Autowired
     private ClassesService classesService;
 

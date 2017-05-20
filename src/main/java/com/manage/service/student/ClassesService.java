@@ -1,39 +1,50 @@
-package com.manage.service.dynamics;
+package com.manage.service.student;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.manage.entity.ReplyDynamics;
-import com.manage.mapper.dynamics.ReplyDynamicsMapper;
+
+import com.manage.entity.Classes;
+import com.manage.mapper.ClassesMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
+
 @Service
-public class ReplyDynamicsService implements BaseService<ReplyDynamics>,ReplyDynamicsMapper{
+public class ClassesService implements BaseService<Classes>,ClassesMapper{
+    
     @Autowired
-    private ReplyDynamicsMapper replyDynamicsMapper;
+    private ClassesMapper classesMapper;
+    
+    /**
+     * 读取所有的年级所以 pageParam(分页)为null
+     * 如果只想查询为毕业的班级,则keyWord 为no
+     */
+    @Override public List<Classes> queryAll(PageParam pageParam, String keyWord) {
+        return classesMapper.queryAll(pageParam, keyWord);
+    }
+
     @Override
-    public List<ReplyDynamics> queryAll(PageParam pageParam, String keyWord) {
+    public Classes queryOne(Integer id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ReplyDynamics queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-
-    @Override
-    public void save(ReplyDynamics t) {
+    public void deleteMany(List<Integer> ids) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void update(ReplyDynamics t) {
+    public void save(Classes t) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void update(Classes t) {
         // TODO Auto-generated method stub
         
     }
@@ -43,14 +54,6 @@ public class ReplyDynamicsService implements BaseService<ReplyDynamics>,ReplyDyn
         // TODO Auto-generated method stub
         return 0;
     }
-/**
- * 
- * 不带分页动态评论查询
- */
-    @Override
-    public List<ReplyDynamics> selectReplyDynamics(Integer dynamicsId) {
-        return replyDynamicsMapper.selectReplyDynamics(dynamicsId);
-    }
 
     @Override
     public PageData getPageData(PageParam pageParam, String keyWord) {
@@ -59,9 +62,14 @@ public class ReplyDynamicsService implements BaseService<ReplyDynamics>,ReplyDyn
     }
 
     @Override
+    public List<String> queryClassesByGrade(Integer grade) {
+        return classesMapper.queryClassesByGrade(grade);
+    }
+
+    @Override
     public void delete(Integer id) {
         // TODO Auto-generated method stub
         
     }
-
+    
 }

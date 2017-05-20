@@ -41,4 +41,21 @@ public interface CommunityMapper extends BaseMapper<Community> {
      */
     Integer getCommMasterRoleid(Integer id);
     
+    
+    /**
+     * 通过学生的id查询此学生所在的社团 
+     * @param stuid 
+     * @return
+     */
+    List<Community> getMyCommunity(@Param("id") Integer stuid);
+    
+    /**
+     * 查询我是社团团长的社团
+     * @param stuid
+     * @return
+     */
+    List<Community> getMyMasterCommunity(@Param("id") Integer stuid);
+     
+    
+    
 }

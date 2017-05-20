@@ -152,4 +152,14 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
 
     }
 
+    @Override
+    public List<Community> getMyCommunity(Integer stuid) {
+        return communityMapper.getMyCommunity(stuid);
+    }
+
+    @Override
+    public List<Community> getMyMasterCommunity(Integer stuid) {
+        return communityMapper.getMyMasterCommunity(stuid);
+    }
+
 }

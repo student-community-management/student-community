@@ -21,16 +21,18 @@
     <sql id="stuColumn">
         s.stu_id,s.stu_pwd,s.stu_name,s.stu_sex,s.stu_birthday,s.stu_native_place
     </sql>
-    <select id="getStudentByCommid" parameterType="int" resultMap="stuSimpleResultMap">
-        select
-        <include refid="stuColumn" />
-        ,cls.grade,cls.classes
-        FROM student s
-        INNER JOIN stu_community sc on s.stu_id = sc.stu_id
-        INNER JOIN classes cls on
-        s.classes_id = cls.classes_id
-        WHERE
-        sc.community_id = #{id}
+    
+    <select id="getStudentByCommid" parameterType="map" resultMap="stuSimpleResultMap">
+        SELECT s.stu_id,s.stu_name,s.stu_sex,s.introduce FROM student s 
+        INNER JOIN stu_community sc ON s.stu_id = sc.stu_id
+        WHERE sc.community_id = #{id}
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+    </select>
+    
+    <select id="getStudentByCommidCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM student s 
+        INNER JOIN stu_community sc ON s.stu_id = sc.stu_id
+        WHERE sc.community_id = #{id}
     </select>
     
     <select id="queryAll" parameterType="map" resultMap="stuSimpleResultMap">

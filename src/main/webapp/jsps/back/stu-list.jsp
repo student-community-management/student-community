@@ -287,6 +287,8 @@
             initDatebox = function(){
              // student birthday datebox
                 $('#stuBirthday').datebox({
+                    required:true,
+                    missingMessage:'日期必填',
                     width : 200,
                     editable:false,
                     formatter : function(date) {

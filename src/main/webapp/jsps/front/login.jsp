@@ -5,12 +5,14 @@
 <meta charset="utf-8">
 <title>学生社区登录</title>
 <link rel="icon" href="/student-community/ico/ico.png">
+<link href="/student-community/layui/css/layui.css" rel="stylesheet">
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/bootstrapValidator.min.css" rel="stylesheet">
 <link href="/student-community/css/docs.css" rel="stylesheet">
 <link href="/student-community/css/mycssfront.css" rel="stylesheet">
 <link href="/student-community/css/mymayachao.css" rel="stylesheet">
 <script src="/student-community/js/jquery.min.js"></script>
+<script src="/student-community/layui/layui.js"></script>
 <script src="/student-community/js/bootstrap.min.js"></script>
 <script src="/student-community/js/bootstrapValidator.min.js"></script>
 </head>
@@ -31,9 +33,37 @@
         </form>
     </div>
 
+<div id="updatePwd" style="display: none;" >
+
+<form id="" class="layui-form">
+<div class="layui-form-item">
+    <label class="layui-form-label" style="width:140px;" >请输入新的密码:</label>
+    <div class="layui-input-inline">
+      <input type="password"  id="pass" placeholder="请输入密码" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">请填写6位密码</div>
+  </div>
+  
+<div class="layui-form-item">
+    <label class="layui-form-label" style="width:140px;">请重复密码:</label>
+    <div class="layui-input-inline">
+      <input type="password" id="repass" placeholder="请重复密码" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">请填写6位密码</div>
+</div>
+</form>
+
+
+
+</div>
 </body>
 <script type="text/javascript">
 $(function() {
+layui.use(['form'], function(){
+    var form = layui.form()
+    ,layer = layui.layer
+});
+    
     $('#account').focus();
     $('#loginForm').bootstrapValidator({
         message: 'This value is not valid',
@@ -110,7 +140,63 @@ on('success.form.bv', function (e) {
         data:$("#loginForm").serialize(),
         success:function(data){
             if(data == '1'){
-                window.location = '/student-community/jsps/front/index.jsp';
+                var pwd = $('#pwd').val();
+                if(pwd == '123123'){
+                    layer.confirm('您的密码是默认密码不安全,是否更改密码?', {
+                        btn: ['立即更改', '不更改,直接进入'] //可以无限个按钮
+                      }, function(index, layero){
+                          layer.close(index);
+                          layer.open({
+                              type: 1, 
+                              area: ['460px','280px'],
+                              content: $('#updatePwd'),
+                              btn:['确认修改'],
+                              yes:function(index){
+								  //$('#pass')  $('#repass')
+                                  
+								  if($('#pass').val().length < 6){
+								      layer.msg('密码必须为6位数');
+								      return;
+								  }
+                                  
+                                  if($('#pass').val() != $('#repass').val()){
+                                      layer.msg('两次密码不一致');
+                                      $('#repass').val('');
+								      return;
+                                  }
+                                  
+                                  if($('#pass').val() == $('#repass').val()){
+                                      $.ajax({
+                                          type:'post',
+                                          url:'/student-community/stu/updatePwd.a',
+                                          data:{'stuid': $('#account').val() ,'stuPwd':$('#pass').val()},
+                                          success:function(data){
+                                              if(data == 1){
+                                                  layer.msg('请用新密码登陆吧');
+                                                  layer.close(index);
+                                                  $('#pwd').val('');
+                                              }
+                                          }
+                                          
+                                      });
+                                  }
+                                  
+                                  
+									
+                              }
+                            }); 
+                      }, function(index){
+                          window.location = '/student-community/discuss/getAllDiscuss.a';
+                          
+                      });
+                    
+                    
+                    
+                    
+                } else {
+                    window.location = '/student-community/discuss/getAllDiscuss.a';
+                }
+               // window.location = '/student-community/discuss/getAllDiscuss.a';
             } else {
                $('#pwd').select();
                $('#warn').css({'display':'block'});

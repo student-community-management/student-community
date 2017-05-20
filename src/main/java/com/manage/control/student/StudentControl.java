@@ -24,6 +24,7 @@ import com.manage.util.Data;
 import com.manage.util.Files;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
+import com.manage.util.Pagination;
 
 @Controller
 @RequestMapping("stu/")
@@ -31,6 +32,20 @@ public class StudentControl {
 
     @Autowired
     private StudentService studentService;
+
+    
+    /**
+     * 修改密码
+     * @param stu
+     * @return
+     */
+    @RequestMapping("updatePwd")
+    @ResponseBody
+    public String updatePwd(@ModelAttribute Student stu){
+        studentService.updatePwd(stu);
+        return "1";
+    }
+    
     
     /**
      * 更改学生个性签名
@@ -38,18 +53,17 @@ public class StudentControl {
      * @param introduce 个性签名
      * @return
      */
-    @RequestMapping(value="changeIntro",produces={"text/json;charset=UTF-8"})
+    @RequestMapping(value = "changeIntro", produces = { "text/json;charset=UTF-8" })
     @ResponseBody
-    public String changeIntro(HttpServletRequest req,String introduce){
-        
-        Student stu = (Student)req.getSession().getAttribute("fstu");
+    public String changeIntro(HttpServletRequest req, String introduce) {
+
+        Student stu = (Student) req.getSession().getAttribute("fstu");
         stu.setIntroduce(introduce);
         studentService.changeIntro(stu);
-        //将修改过后的签名再传回去
+        // 将修改过后的签名再传回去
         return introduce;
     }
-    
-    
+
     /**
      * 更新头像
      * @param file 上传的图片
@@ -62,8 +76,9 @@ public class StudentControl {
 
         Files files = new Files();
         
+        // 返回前台信息,默认为field
         files.setMsg("field");
-        
+
         // 如果上传的文件不是空
         if (!file.isEmpty()) {
 
@@ -97,13 +112,13 @@ public class StudentControl {
 
                 // 实例化Data属性 data为fils中的一个属性主要是为了生成一个完整的json字符串
                 Data data = new Data();
-                
+
                 // 设置图片的名称
                 data.setSrc(fileName);
-                
+
                 // 将data保存在files中
                 files.setData(data);
-                
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -114,9 +129,7 @@ public class StudentControl {
     }
 
     /**
-     * 得到所有的学生(管理人员)信息
-     * 当classid不为空时为学生
-     * 当classid为空时则为管理人员
+     * 得到所有的学生信息
      * @param pageParam 分页条件
      * @param kw  查询关键字
      * @return 符合查询条件的学生
@@ -141,16 +154,56 @@ public class StudentControl {
     }
 
     /**
-     * 暂时没有用到
+     * 
      * 查询此社团下的学生
      * @param id 社团的id
      * @return 符合条件的学生
      */
     @RequestMapping("getStusByCommid")
     @ResponseBody
-    public List<Student> test(Integer id) {
-        List<Student> list = studentService.getStudentByCommid(id);
-        return list;
+    public ModelAndView test(ModelAndView model, @ModelAttribute Pagination pagination,
+            Integer commid,Integer manage) {
+
+        /**
+         * 自动处理的数据
+         * 
+         * keyWord 在mapper.xml文件中判断如果为null则不会添加到查询条件中
+         * pageSize 如果为null或者不符合逻辑(<= 0) 则默认为20
+         * 
+         */
+
+        // 信息总数
+        pagination.setTotalRecord(pagination.getTotalRecord() == null
+                ? studentService.getStudentByCommidCount(commid)
+                : pagination.getTotalRecord());
+
+        // 当前页
+        pagination.setCurrentPage(
+                pagination.getCurrentPage() == null ? 1 : pagination.getCurrentPage());
+
+        // 查询关于我的讨论
+        List<Student> studentList = studentService.getStudentByCommid(
+                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()),commid);
+
+        // 将查询的数据添加到model中
+        model.addObject("studentList", studentList);
+
+        // 将分页数据添加到ModelAndView中
+        model.addObject("pagination", pagination);
+
+        // 前台选中哪个tabs选项
+        model.addObject("choose", 1);
+
+        // 是否显示管理按钮
+        model.addObject("manage", manage);
+        
+        // 是否显示管理按钮
+        model.addObject("commid", commid);
+        
+        // 跳转页面
+        model.setViewName("front/my-community-stuManager");
+
+        return model;
     }
 
     /**
@@ -158,7 +211,7 @@ public class StudentControl {
      * 从前台传stu的属性值
      * 由Springmvc进行封装
      * 如果stu的stuid属性为空,则调用添加的方法
-     * 如果stu的stuid属相不为空,则调用更新的方法
+     * 如果stu的stuid属性不为空,则调用更新的方法
      * 
      * 前台参数有:
      *      stuName,stuNativePlace,stuBirthday,
@@ -217,10 +270,10 @@ public class StudentControl {
 
     @RequestMapping("invalidate")
     @ResponseBody
-    public ModelAndView invalidate(ModelAndView model ,HttpServletRequest req) {
+    public ModelAndView invalidate(ModelAndView model, HttpServletRequest req) {
         // 注销用户
         req.getSession().invalidate();
-        
+
         model.setViewName("redirect:/jsps/front/login.jsp");
         return model;
     }
