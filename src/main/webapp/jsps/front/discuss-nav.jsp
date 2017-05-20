@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+var layedit;
+var editIndex;
+layui.use(['form', 'layedit'], function(){
+  var form = layui.form();
+  var layer = layui.layer;
+});
+
+
+</script>
+
 <div class="container mcontainer">
-    <ul class="nav nav-tabs nav-justified">
-        <li role="presentation" class="active">
-            <a href="/student-community/discuss/getAllDiscuss.a">话题发现</a>
-        </li>
-        <li role="presentation">
-            <a href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a>
-        </li>
-    </ul>
     <div class="container mcontainer">
         <div class="aw-mod aw-topic-list-mod">
+        <button class="btn btn-primary" type="button" id="publish">发布话题</button><br><br>
             <div class="mod-head">
 
                 <ul class="nav nav-tabs">

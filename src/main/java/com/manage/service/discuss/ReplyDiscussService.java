@@ -92,4 +92,8 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
         return null;
     }
 
+    @Override
+    public Integer getReplyDiscussesCount(Integer discussid) {
+        return replyDiscussMapper.getReplyDiscussesCount(discussid);
+    }
 }

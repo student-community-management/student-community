@@ -157,6 +157,7 @@ $(function() {
     $('#addMgrWindow').window({
         height : 'auto',
         title : '添加管理人员',
+        modal : true,
         closed : true //加载时关闭
     });
     

@@ -73,6 +73,23 @@
         ) t
     </select>
     
+    <select id="getMyCommunity" parameterType="int" resultMap="communityResultMap">
+        SELECT c.* FROM student s  
+        INNER  JOIN stu_community sc ON sc.stu_id = s.stu_id
+        INNER JOIN community c ON c.community_id = sc.community_id
+        WHERE s.stu_id = #{id}
+    </select>
+
+    <select id="getMyMasterCommunity" parameterType="int" resultMap="communityResultMap">
+        SELECT c.* FROM stu_community_role scr
+        INNER JOIN student s ON scr.stu_id = s.stu_id
+        INNER JOIN community_role cr ON scr.community_role_id = cr.community_role_id
+        INNER JOIN community c ON cr.community_id = c.community_id
+        WHERE s.stu_id = #{id}
+    </select>
+    
+    
+    
     <select id="getNewComunityid" resultType="Integer">
         select community_id from community order by community_id desc LIMIT 0,1
     </select>

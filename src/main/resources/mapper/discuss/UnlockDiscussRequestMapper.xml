@@ -33,7 +33,7 @@
     
     <insert id="save" parameterType="com.manage.entity.UnlockDiscussRequest">
         INSERT INTO unlock_discuss_request (discuss_id,message)
-        VALUES (#{discussid}, #{message})
+        VALUES (#{discuss.discussid}, #{message})
     </insert>
     
     <update id="setStatus">

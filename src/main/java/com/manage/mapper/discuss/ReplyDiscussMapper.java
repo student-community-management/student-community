@@ -18,7 +18,15 @@ public interface ReplyDiscussMapper extends BaseMapper<ReplyDiscuss> {
      */
     List<ReplyDiscuss> getReplyDiscusses(@Param("pageParam") PageParam pageParam,
             @Param("discussid") Integer discussid);
-
+    
+    /**
+     * 查询此讨论下的回复数量
+     * @param discussid 讨论的id
+     * @return 回复数量
+     */
+    Integer getReplyDiscussesCount(@Param("discussid") Integer discussid);
+    
+    
     /**
      * 回复讨论下的回答
      * @param replyDisucss ReplyDisucss 对象

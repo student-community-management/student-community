@@ -21,32 +21,34 @@
 <script src="/student-community/layui/lay/modules/layedit.js"></script>
 </head>
 <body>
-<!----------------发布讨论------------->
-
-	<%@ include file="nav.jsp" %>
 	<div class="container mcontainer">
-		<ul class="nav nav-tabs nav-justified">
-        <li role="presentation"><a
-                href="/student-community/discuss/getAllDiscuss.a">话题发现</a></li>
-			<li role="presentation" class="active"><a
-				href="/student-community/jsps/front/discuss-publish.jsp">发表话题</a></li>
-		</ul>
         <div class="mcontainer">
 		<form class="form-horizontal" id="discussForm">
+        <input type="hidden" name="discussid" value="<c:if test="${ discuss != null  }">${discuss.discussid}</c:if>">
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">标题</label>
 				<div class="col-sm-9 ">
 					<input type="text" class="form-control" id="discussTitle"
-						placeholder="请输入标题" name="discussTitle">
+						placeholder="请输入标题" name="discussTitle" value="<c:if test="${ discuss != null  }">${discuss.discussTitle}</c:if>">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">内容</label>
 				<div class="col-sm-9">
-					<textarea class="form-control" rows="3" placeholder="请输入内容" name="discussContent"></textarea>
+					<textarea class="form-control" rows="3" placeholder="请输入内容" name="discussContent"><c:if test="${ discuss != null  }">${discuss.discussContent}</c:if></textarea>
 				</div>
 			</div>
+            <c:if test="${ discuss != null }">
+    			<div class="form-group">
+    				<label for="inputPassword3" class="col-sm-2 control-label">请求理由</label>
+    				<div class="col-sm-9">
+    					<textarea class="form-control" rows="3" placeholder="请输入内容" name="message"></textarea>
+    				</div>
+    			</div>
+            </c:if>
 				<button type="submit" class="btn btn-default"style="width:75%;margin-left:17%">提交</button>
+                <br><br>
+				<button class="btn btn-danger" style="width:75%;margin-left:17%" id='close'>关闭窗口</button>
 		</form>
         </div>
 	</div>
@@ -82,7 +84,6 @@ $(function() {
                                     message: '话题不能超过20个字'
                                 }
                             }
-                            
                             return true;
                         }
                     }
@@ -96,6 +97,21 @@ $(function() {
                                 return {
                                     valid: false,
                                     message: '讨论话题的详细内容不能超过1000个字'
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                }
+            },
+            message: {
+                validators: {
+                    callback: {
+                        callback: function(value, validator) {
+                            if (value.length > 1000) {
+                                return {
+                                    valid: false,
+                                    message: '理由不能超过1000个字'
                                 }
                             }
                             return true;
@@ -116,11 +132,21 @@ on('success.form.bv', function (e) {
             if(data == '1'){
                 layer.msg('发起话题成功');
                 setTimeout(() => {
-                    window.location.reload();
-                }, 2000);
+                    var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
+                	parent.layer.close(index); 
+                }, 1000);
             }
         }
     });
 });
+
+$('#close').click(function(e){
+    e.preventDefault();
+    var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
+    console.log('index'+index);
+	parent.layer.close(index); 
+    
+});
+
 </script>
 </html>

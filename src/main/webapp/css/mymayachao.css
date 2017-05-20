@@ -336,10 +336,25 @@ a.QuestionMainAction {
     text-align: center;
     font-size: 16px;
 }
-.ma-dtd
-{
-	margin-top: -65%;
-    width: 109px;
-    margin-left: 10px;
-    opacity: 0.7;
+.h1{
+    font-size: 32px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+
+.h2{
+    font-size:24px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+
+.h3{
+    font-size:18px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+.h4{
+    font-size:16px;
+    letter-spacing: 3px;
+    line-height: 150%;
 }

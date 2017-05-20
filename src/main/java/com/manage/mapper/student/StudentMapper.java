@@ -21,8 +21,17 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @param id 社团的
      * @return 返回查询所有学生的信息
      */
-    List<Student> getStudentByCommid(Integer id);
+    List<Student> getStudentByCommid(@Param("pageParam") PageParam pageParam,@Param("id") Integer commid);
 
+    /**
+     * 通过社团的id查询出社团中的所有学生数量
+     * @param id 社团的
+     * @return 返回查询所有学生的信息
+     */
+    Integer getStudentByCommidCount(@Param("id") Integer commid);
+
+    
+    
     /**
      * 得到此社团的团长候选人
      * @param pageParam 分页条件参数
@@ -48,5 +57,35 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return 如果为1则为登陆成功
      */
     Integer login(Student stu);
-
+    
+    /**
+     * 更新头像
+     * @param stu
+     */
+    void updateImg(Student stu);
+    
+    /**
+     * 删除旧的头像图片
+     * @param imgName 图片的名称
+     */
+    void delImg(String imgName);
+    
+    /**
+     * 修改个性签名
+     * @param stu
+     */
+    void updateIntroduce(Student stu);
+    
+    /**
+     * 更改学生密码
+     * @param stu Student对象
+     */
+    void updatePwd(Student stu);
+    
+    /**
+     * 更改个性签名
+     * @param stu Student对象
+     */
+    void changeIntro(Student stu);
+    
 }

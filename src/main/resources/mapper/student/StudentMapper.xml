@@ -9,6 +9,8 @@
         <result column="stu_birthday" property="stuBirthday" />
         <result column="stu_native_place" property="stuNativePlace" />
         <result column="role_name" property="roleName"/>
+        <result column="img" property="img"/>
+        <result column="introduce" property="introduce"/>
         <association property="classes" javaType="com.manage.entity.Classes">
             <id column="classes_id" property="classesid" />
             <result column="grade" property="grade" />
@@ -19,19 +21,21 @@
     <sql id="stuColumn">
         s.stu_id,s.stu_pwd,s.stu_name,s.stu_sex,s.stu_birthday,s.stu_native_place
     </sql>
-    <select id="getStudentByCommid" parameterType="int" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
-        select
-        <include refid="stuColumn" />
-        ,cls.grade,cls.classes
-        FROM student s
-        INNER JOIN stu_community sc on s.stu_id = sc.stu_id
-        INNER JOIN classes cls on
-        s.classes_id = cls.classes_id
-        WHERE
-        sc.community_id = #{id}
+    
+    <select id="getStudentByCommid" parameterType="map" resultMap="stuSimpleResultMap">
+        SELECT s.stu_id,s.stu_name,s.stu_sex,s.introduce FROM student s 
+        INNER JOIN stu_community sc ON s.stu_id = sc.stu_id
+        WHERE sc.community_id = #{id}
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
     </select>
     
-    <select id="queryAll" parameterType="map" resultType="com.manage.entity.Student" resultMap="stuSimpleResultMap">
+    <select id="getStudentByCommidCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM student s 
+        INNER JOIN stu_community sc ON s.stu_id = sc.stu_id
+        WHERE sc.community_id = #{id}
+    </select>
+    
+    <select id="queryAll" parameterType="map" resultMap="stuSimpleResultMap">
             SELECT * from (
             SELECT *, case 
             WHEN grade = 0 then '一年级'
@@ -54,15 +58,16 @@
     </select>
 
     <select id="getCount" parameterType="map" resultType="int">
-            SELECT COUNT(*) from (
-            SELECT * FROM (SELECT *, CASE  
-            WHEN grade = 0 THEN '一年级' 
-            WHEN grade = 1 THEN '二年级' 
-            WHEN grade = 2 THEN '三年级' 
-            WHEN grade = 3 THEN '四年级' 
-            ELSE '已毕业' end as 'grade_name'
-             FROM (select s.*,cls.classes,cls.grade,case s.stu_sex WHEN 1 THEN '男' WHEN 0 THEN '女' END AS 'sex_name'
-            FROM  classes cls inner join student s on cls.classes_id = s.classes_id) t) b 
+            SELECT COUNT(*) FROM (
+                SELECT * FROM (SELECT *, CASE  
+                WHEN grade = 0 THEN '一年级' 
+                WHEN grade = 1 THEN '二年级' 
+                WHEN grade = 2 THEN '三年级' 
+                WHEN grade = 3 THEN '四年级' 
+                ELSE '已毕业' end as 'grade_name'FROM (
+                    SELECT s.*,cls.classes,cls.grade,case s.stu_sex WHEN 1 THEN '男' WHEN 0 THEN '女' END AS 'sex_name'
+                    FROM  classes cls inner join student s on cls.classes_id = s.classes_id) t
+                ) b 
             ) c
            <if test="keyWord != null">
             WHERE c.stu_name LIKE '%${keyWord}%'
@@ -72,18 +77,16 @@
             </if>
     </select>
     
-     <select id="queryOne" parameterType="int" resultType="com.manage.entity.Student"  resultMap="stuSimpleResultMap">
-        SELECT s.*,cls.classes,cls.grade
-        FROM  classes cls INNER JOIN student s ON cls.classes_id = s.classes_id
+     <select id="queryOne" parameterType="int" resultMap ="stuSimpleResultMap">
+        SELECT s.* FROM student s
         WHERE s.stu_id = #{id}
      </select>
 
      <select id="login" parameterType="com.manage.entity.Student" resultType="Integer">
         SELECT COUNT(*) FROM  student 
-        where classes_id IS NOT NULL
+        WHERE classes_id IS NOT NULL
         AND stu_id = #{stuid} AND stu_pwd = #{stuPwd}
      </select>
-     
      
      <select id="getCandidate" parameterType="map" resultMap="stuSimpleResultMap">
         SELECT * FROM (
@@ -122,7 +125,7 @@
      
     <insert id="save" parameterType="com.manage.entity.Student" 
             keyProperty="stuid" useGeneratedKeys="true">
-        INSERT INTO `student` (`stu_name`, `stu_sex`, `stu_birthday`, `stu_native_place`, `classes_id`) 
+        INSERT INTO student (stu_name, stu_sex, stu_birthday, stu_native_place, classes_id) 
         VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
              
     </insert>
@@ -132,6 +135,26 @@
         stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
     </update>
      
+     <update id="updateImg" parameterType="com.manage.entity.Student">
+        UPDATE student SET img = #{img}
+        WHERE stu_id = #{stuid}
+     </update>
+     
+     <update id="updateIntroduce" parameterType="com.manage.entity.Student">
+        UPDATE student SET introduce=#{introduce} 
+        WHERE stu_id= #{stuid}
+     </update>
+    
+    <update id="updatePwd" parameterType="com.manage.entity.Student">
+        UPDATE student SET stu_pwd = #{stuPwd}
+        WHERE stu_id = #{stuid}
+    </update>
+    
+    <update id="changeIntro" parameterType="com.manage.entity.Student">
+        UPDATE student SET introduce= #{introduce}
+        WHERE stu_id=#{stuid}
+    </update>
+    
     <delete id="deleteMany">
         DELETE FROM student WHERE stu_id in
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">

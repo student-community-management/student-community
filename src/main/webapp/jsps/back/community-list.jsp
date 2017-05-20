@@ -171,9 +171,14 @@
                 missingMessage:'一定要选择一张图片哦'
             })
             
+           
+            
             if(commid == undefined){
                 commid='';
                 commName='';
+                $('#commForm').form('enableValidation');
+            } else {
+                $('#commimg').filebox('disableValidation');
             }
             
             if(commid != null){

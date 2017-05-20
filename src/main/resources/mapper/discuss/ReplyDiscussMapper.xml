@@ -40,6 +40,11 @@
         LIMIT #{pageParam.startIndex},#{pageParam.rows}
     </select>
     
+    <select id="getReplyDiscussesCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM reply_discuss
+        WHERE discuss_id = #{discussid} AND reply_to_reply IS NULL
+    </select>
+    
     <select id="queryReplyToReply" parameterType="map" resultMap="replyDiscussResultMap">
         SELECT rd.content,s.stu_name AS 'reply_stu_name' FROM reply_discuss rd 
         INNER JOIN student s ON rd.stu_id = s.stu_id

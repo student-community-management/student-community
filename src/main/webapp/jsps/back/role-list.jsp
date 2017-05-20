@@ -512,6 +512,7 @@ $('#addRole').click(function(){
 //更新角色
 $('#updateRole').click(function(){
     
+    
     var role =  $('#datalist').datalist('getSelected');
     if(role == null){
         $.messager.alert('警告','请选中数据');
@@ -621,6 +622,13 @@ $('#reloadTreegrid').click(function(){
 $('#updateMenu').click(function(){
     
     var row = $('#roletab').treegrid('getSelected');
+    
+    if(row == null){
+        $.messager.alert('警告','请选中数据');
+        return;
+    }
+    
+    
     var id = row.id;
     var url = row.url;
     var submenuName = row.submenuName;

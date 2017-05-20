@@ -1,13 +1,11 @@
 package com.manage.service.student;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.manage.entity.Community;
-import com.manage.entity.CommunityRole;
 import com.manage.entity.StuCommunity;
 import com.manage.entity.StuCommunityRole;
 import com.manage.entity.Student;
@@ -107,9 +105,9 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     }
 
     /**
-     * 设置社团团长
+     * 指定社团团长
      * @param commid 社团的id
-     * @param stuid 要设置为团长的学生id
+     * @param stuid 要指定为团长的学生id
      */
     public void setMaster(Integer commid, Integer stuid) {
 
@@ -152,6 +150,16 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         // 指定为社团团长
         stuCommunityRoleMapper.save(scr);
 
+    }
+
+    @Override
+    public List<Community> getMyCommunity(Integer stuid) {
+        return communityMapper.getMyCommunity(stuid);
+    }
+
+    @Override
+    public List<Community> getMyMasterCommunity(Integer stuid) {
+        return communityMapper.getMyMasterCommunity(stuid);
     }
 
 }
