@@ -18,9 +18,6 @@
             <result column="year" property="years" />
         </association>
     </resultMap>
-    <sql id="stuColumn">
-        s.stu_id,s.stu_pwd,s.stu_name,s.stu_sex,s.stu_birthday,s.stu_native_place
-    </sql>
     
     <select id="getStudentByCommid" parameterType="map" resultMap="stuSimpleResultMap">
         SELECT s.stu_id,s.stu_name,s.stu_sex,s.introduce FROM student s 
@@ -150,16 +147,25 @@
         WHERE stu_id = #{stuid}
     </update>
     
-    <update id="changeIntro" parameterType="com.manage.entity.Student">
-        UPDATE student SET introduce= #{introduce}
-        WHERE stu_id=#{stuid}
-    </update>
-    
     <delete id="deleteMany">
         DELETE FROM student WHERE stu_id in
         <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
             #{id}
         </foreach>
-    </delete> 
+    </delete>
+    
+    <select id="getCommRequestStus" parameterType="map" resultMap="stuSimpleResultMap">
+        SELECT s.stu_id,s.stu_name,s.stu_sex,s.introduce FROM student s
+        INNER JOIN stu_comm_request scr ON s.stu_id = scr.stu_id
+        WHERE scr.comm_id = #{id} AND scr.status = 0
+        LIMIT ${pageParam.startIndex},${pageParam.rows}
+    </select>
+
+    <select id="getCommRequestStusCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM student s
+        INNER JOIN stu_comm_request scr ON s.stu_id = scr.stu_id
+        WHERE scr.comm_id = #{id} AND scr.status = 0
+    </select>
+    
        
 </mapper>

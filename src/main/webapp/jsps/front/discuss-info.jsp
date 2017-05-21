@@ -137,6 +137,5 @@
         "&currentPage="+${pagination.currentPage+1}+"&totalRecord="+${pagination.totalRecord};
     });   
 	
-    $('#question-input').val();
 </script>
 </html>

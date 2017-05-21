@@ -162,4 +162,10 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         return communityMapper.getMyMasterCommunity(stuid);
     }
 
+    @Override
+    public List<Community> getNewCommunity(Integer stuid) {
+        // TODO Auto-generated method stub
+        return communityMapper.getNewCommunity(stuid);
+    }
+
 }

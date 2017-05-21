@@ -22,7 +22,6 @@ public class ReplyDiscuss implements Serializable {
     private Date replyDate;
     private Set<AgainstReplyDiscuss> againstReplyDiscusses;
     private Set<PraiseReplyDiscuss> praiseReplyDiscusses;
-    private Set<ReportReplyDiscuss> ReportReplyDiscusses;
     private Integer praiseCount; // 赞的数量,在数据库中并没有,只是为了方便显示
     private Integer againstCount; // 踩的数量,在数据库中并没有,只是为了方便显示
     private Integer checkPraise; // 查看是否是我点的赞,在数据库中并没有,只是为了方便显示
@@ -89,14 +88,6 @@ public class ReplyDiscuss implements Serializable {
 
     public void setPraiseReplyDiscusses(Set<PraiseReplyDiscuss> praiseReplyDiscusses) {
         this.praiseReplyDiscusses = praiseReplyDiscusses;
-    }
-
-    public Set<ReportReplyDiscuss> getReportReplyDiscusses() {
-        return ReportReplyDiscusses;
-    }
-
-    public void setReportReplyDiscusses(Set<ReportReplyDiscuss> reportReplyDiscusses) {
-        ReportReplyDiscusses = reportReplyDiscusses;
     }
 
     public Integer getReplyDiscussid() {

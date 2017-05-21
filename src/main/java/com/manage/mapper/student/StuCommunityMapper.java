@@ -24,5 +24,21 @@ public interface StuCommunityMapper extends BaseMapper<StuCommunity> {
      * @return
      */
     Integer exist(StuCommunity stuCommunity);
+    
+    
+    /**
+     * 删除社团成员
+     * @param ids 要删除的社团的成员的id
+     * @param commid 要从这个社团删除的社团的id
+     * 
+     */
+    void delCommStus(@Param("ids") List<Integer> ids,@Param("commid") Integer commid);
+    
+    /**
+     * 添加社团团员
+     * @param ids 要添加的社团成员
+     * @param commid 添加到这个社团的社团的id
+     */
+    void saveCommStus(@Param("ids") List<Integer> ids,@Param("commid") Integer commid);
 
 }

@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="nav.jsp"%>
 <%@ include file="my-nav.jsp"%>
 <div class="tab-content">
-        <div class="tab-pane active" id="home">
+<div class="tab-pane active" id="home">
 
 <!-- 循环 -->
+<div>
+<a class="btn btn-danger" href="#" id="joinComm" style="margin: 20px">添加新的社团</a>     
+</div>
+<c:if test="${fn:length(commList) != 0 }">
 <c:forEach items="${commList }" var="comm">
      <div class="col-md-4 col-sm-4 mb ss">
-        <div class="white-panel pn dt">
+        <div class="white-panel pn">
             <div class="white-header">
                 <h4 class="ma-white-ya">
                     <a href="#" class="ma-href-a">${ comm.communityName }</a>
@@ -27,8 +32,11 @@
         </div>
     </div>
 </c:forEach>
+</c:if>
 <!-- 循环end -->
-
+<c:if test="${fn:length(commList) == 0 }">
+    <h1>您还没有加入社团,请赶快加入社团吧!</h1>
+</c:if>
             <!-- end tab 切换 -->
         </div>
 
@@ -40,17 +48,9 @@
 
 <script type="text/javascript">
 
-
 layui.use(['form'], function(){
     var form = layui.form();
     var layer = layui.layer;
-    /* layer.open({
-        type: 2,
-        top: '50px',
-        title:'发布新的话题',
-         area : ['1050px' , '600px'],
-        content: '/student-community/stu/getStusByCommid.a?commid=1'
-      });   */
 });
 
 
@@ -62,7 +62,17 @@ $('.commInfo').click(function(){
         title:'发布新的话题',
          area : ['1050px' , '600px'],
         content: $(this).attr('hrefs')
-      }); 
+      });
+});
+
+$('#joinComm').click(function(){
+    layer.open({
+        type: 2,
+        top: '50px',
+        title:'发布新的话题',
+         area : ['1050px' , '600px'],
+        content: '/student-community/comm/getNewCommunity.a'
+      });
 });
 </script>
 

@@ -21,7 +21,8 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @param id 社团的
      * @return 返回查询所有学生的信息
      */
-    List<Student> getStudentByCommid(@Param("pageParam") PageParam pageParam,@Param("id") Integer commid);
+    List<Student> getStudentByCommid(@Param("pageParam") PageParam pageParam,
+            @Param("id") Integer commid);
 
     /**
      * 通过社团的id查询出社团中的所有学生数量
@@ -30,8 +31,6 @@ public interface StudentMapper extends BaseMapper<Student> {
      */
     Integer getStudentByCommidCount(@Param("id") Integer commid);
 
-    
-    
     /**
      * 得到此社团的团长候选人
      * @param pageParam 分页条件参数
@@ -42,7 +41,7 @@ public interface StudentMapper extends BaseMapper<Student> {
      */
     List<Student> getCandidate(@Param("pageParam") PageParam pageParam,
             @Param("keyWord") String keyWord, @Param("id") Integer id);
-    
+
     /**
      * 社团团长候选人数量
      * @param keyWord 查询关键字
@@ -50,42 +49,50 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @return
      */
     Integer getCandidateCount(@Param("keyWord") String keyWord, @Param("id") Integer id);
-    
-    
+
     /**
      * 前台页面登陆
      * @return 如果为1则为登陆成功
      */
     Integer login(Student stu);
-    
+
     /**
      * 更新头像
      * @param stu
      */
     void updateImg(Student stu);
-    
+
     /**
      * 删除旧的头像图片
      * @param imgName 图片的名称
      */
     void delImg(String imgName);
-    
+
     /**
      * 修改个性签名
      * @param stu
      */
     void updateIntroduce(Student stu);
-    
+
     /**
      * 更改学生密码
      * @param stu Student对象
      */
     void updatePwd(Student stu);
-    
+
     /**
-     * 更改个性签名
-     * @param stu Student对象
+     * 得到申请加入社团的学生
+     * @param pageParam 分页条件
+     * @param commid 社团的id
+     * @return
      */
-    void changeIntro(Student stu);
-    
+    List<Student> getCommRequestStus(@Param("pageParam") PageParam pageParam,
+            @Param("id") Integer commid);
+
+    /**
+     * 得到申请加入社团的学生的数量
+     * @param commid 社团的id
+     * @return 
+     */
+    Integer getCommRequestStusCount(@Param("id") Integer commid);
 }

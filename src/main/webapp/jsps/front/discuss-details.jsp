@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>${ discuss.discussTitle }</title>
         <%@ include file="nav.jsp"%>
-        <div class="middle mbox-shadow">
+        <div class="mbox-shadow">
             <div class="QuestionHeader">
                 <div class="QuestionHeader-content">
                     <div class="may-QuestionHeader-main">

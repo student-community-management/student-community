@@ -30,4 +30,21 @@
         WHERE sc.community_id = #{community.communityid} AND sc.stu_id = #{student.stuid}
     </select>
     
+    
+    <delete id="delCommStus" parameterType="map">
+        DELETE FROM stu_community WHERE community_id = #{commid}
+         AND stu_id IN
+         <foreach collection="ids" item="id" separator="," open="(" close=")">
+         #{id}
+         </foreach>
+    </delete>
+    
+    <insert id="saveCommStus" parameterType="map">
+    
+        INSERT INTO stu_community (stu_id, community_id) 
+        VALUES
+        <foreach collection="ids" item="id" separator="," >
+            (#{id},#{commid})
+        </foreach>
+    </insert>
 </mapper>

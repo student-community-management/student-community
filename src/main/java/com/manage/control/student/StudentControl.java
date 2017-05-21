@@ -33,7 +33,57 @@ public class StudentControl {
     @Autowired
     private StudentService studentService;
 
-    
+    /**
+     * 得到请求加入社团的学生
+     * @param model ModelAndView
+     * @param commid 社团的id
+     * @param manage 是否是管理者
+     * @return
+     */
+    @RequestMapping("getReqStu")
+    public ModelAndView getCommRequestStus(Pagination pagination, ModelAndView model,
+            Integer commid, Integer manage) {
+
+        /**
+         * 自动处理的数据
+         * 
+         * pageSize 如果为null或者不符合逻辑(<= 0) 则默认为20
+         * 
+         */
+
+        // 信息总数
+        pagination.setTotalRecord(pagination.getTotalRecord() == null
+                ? studentService.getCommRequestStusCount(commid) : pagination.getTotalRecord());
+
+        // 当前页
+        pagination.setCurrentPage(
+                pagination.getCurrentPage() == null ? 1 : pagination.getCurrentPage());
+
+        // 分页数据
+        List<Student> studentList = studentService.getCommRequestStus(
+                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()), commid);
+
+        // 将信息数据添加到ModelAndView中
+        model.addObject("studentList", studentList);
+
+        // 将分页数据添加到ModelAndView中
+        model.addObject("pagination", pagination);
+
+        // 前台选中哪个tabs选项
+        model.addObject("choose", 2);
+        
+        // 是否是管理员
+        model.addObject("manage", manage);
+
+        // 社团的id
+        model.addObject("commid", commid);
+
+        // 跳转页面
+        model.setViewName("front/my-community-stuRequest");
+
+        return model;
+    }
+
     /**
      * 修改密码
      * @param stu
@@ -41,12 +91,11 @@ public class StudentControl {
      */
     @RequestMapping("updatePwd")
     @ResponseBody
-    public String updatePwd(@ModelAttribute Student stu){
+    public String updatePwd(@ModelAttribute Student stu) {
         studentService.updatePwd(stu);
         return "1";
     }
-    
-    
+
     /**
      * 更改学生个性签名
      * @param req HttpServletRequest
@@ -59,7 +108,7 @@ public class StudentControl {
 
         Student stu = (Student) req.getSession().getAttribute("fstu");
         stu.setIntroduce(introduce);
-        studentService.changeIntro(stu);
+        studentService.updateIntroduce(stu);
         // 将修改过后的签名再传回去
         return introduce;
     }
@@ -75,7 +124,7 @@ public class StudentControl {
     public Files uploadImg(@RequestParam("img") MultipartFile file, HttpServletRequest req) {
 
         Files files = new Files();
-        
+
         // 返回前台信息,默认为field
         files.setMsg("field");
 
@@ -162,7 +211,7 @@ public class StudentControl {
     @RequestMapping("getStusByCommid")
     @ResponseBody
     public ModelAndView test(ModelAndView model, @ModelAttribute Pagination pagination,
-            Integer commid,Integer manage) {
+            Integer commid, Integer manage) {
 
         /**
          * 自动处理的数据
@@ -174,8 +223,7 @@ public class StudentControl {
 
         // 信息总数
         pagination.setTotalRecord(pagination.getTotalRecord() == null
-                ? studentService.getStudentByCommidCount(commid)
-                : pagination.getTotalRecord());
+                ? studentService.getStudentByCommidCount(commid) : pagination.getTotalRecord());
 
         // 当前页
         pagination.setCurrentPage(
@@ -183,7 +231,7 @@ public class StudentControl {
 
         // 查询关于我的讨论
         List<Student> studentList = studentService.getStudentByCommid(
-                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()),commid);
+                new PageParam(pagination.getCurrentPage(), pagination.getPageSize()), commid);
 
         // 将查询的数据添加到model中
         model.addObject("studentList", studentList);
@@ -196,10 +244,10 @@ public class StudentControl {
 
         // 是否显示管理按钮
         model.addObject("manage", manage);
-        
+
         // 是否显示管理按钮
         model.addObject("commid", commid);
-        
+
         // 跳转页面
         model.setViewName("front/my-community-stuManager");
 
