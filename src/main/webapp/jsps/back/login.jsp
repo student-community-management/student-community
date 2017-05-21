@@ -107,7 +107,7 @@ on('success.form.bv', function (e) {
     e.preventDefault();//防止重复提交
     $.ajax({
         type:'post',
-        url:'/student-community/mgr/login.a',
+        url:'/student-community/mgr/login/login.a',
         data:$("#loginForm").serialize(),
         success:function(data){
             if(data == 'ok'){

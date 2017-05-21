@@ -181,7 +181,6 @@ $('.pageNum').click(function(){
 //上一页
 $('.prev').click(function(){
     if(${pagination.currentPage == 1}){
-        console.log('上一页不可用');
         return;
     }
     window.location="/student-community/stu/getStusByCommid.a?commid=${ commid }&manage=${ manage }"+
@@ -191,7 +190,6 @@ $('.prev').click(function(){
 //下一页
 $('.next').click(function(){
     if(${pagination.currentPage == pagination.totalPage}){
-        console.log('下一页不可用');
         return;
     }
     window.location="/student-community/stu/getStusByCommid.a?commid=${ commid }&manage=${ manage }"+

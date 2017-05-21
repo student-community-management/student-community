@@ -32,4 +32,10 @@ public class AttentionDiscussService implements AttentionDiscussMapper {
         return attentionDiscussMapper.getAttentionDiscussNum(id);
     }
 
+    @Override
+    public void delByDiscussid(Integer id) {
+        // 并不能作为一个单独的方法存在
+        
+    }
+
 }

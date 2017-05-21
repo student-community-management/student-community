@@ -7,7 +7,4 @@ layer.open({
    area : ['970px' , '550px'],
   content: '/student-community/jsps/front/discuss-publish.jsp'
 }); 
-    
-    
-        
 });

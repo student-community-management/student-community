@@ -7,13 +7,22 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.manage.entity.Student;
+
 public class FrontInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) throws Exception {
-        System.out.println("进入到前拦截器");
-        return true;
+        
+        Student stu = (Student)request.getSession().getAttribute("fstu");
+        
+        if(stu == null){
+            response.sendRedirect("../jsps/front/login.jsp");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override

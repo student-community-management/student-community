@@ -11,6 +11,7 @@ import com.manage.entity.UnlockDiscussRequest;
 import com.manage.mapper.discuss.AttentionDiscussMapper;
 import com.manage.mapper.discuss.DiscussMapper;
 import com.manage.mapper.discuss.LockDiscussMapper;
+import com.manage.mapper.discuss.ReplyDiscussMapper;
 import com.manage.mapper.discuss.UnlockDiscussRequestMapper;
 import com.manage.service.BaseService;
 import com.manage.util.PageData;
@@ -35,6 +36,9 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
     
     @Autowired
     private LockDiscussMapper lockDiscussMapper;
+    
+    @Autowired
+    private ReplyDiscussMapper  replyDiscussMapper;
 
     @Override
     public List<Discuss> queryAll(PageParam pageParam, String keyWord) {
@@ -127,6 +131,23 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
     @Override
     public void delete(Integer id) {
+        System.out.println("1=================");
+        // 删除此讨论的所有关注
+        attentionDiscussMapper.delByDiscussid(id);
+        
+        // 先得到子回复的id
+        // 删除此讨论下的子回复
+        List<Integer> ids = replyDiscussMapper.getSubReplyids(id);
+        
+        //当有子回复时才执行删除方法
+        if(ids.size() > 0){
+            replyDiscussMapper.delSubReply(ids);
+        }
+        
+        //删除讨论下的回复
+        replyDiscussMapper.delByDiscussid(id);
+        
+        //删除讨论
         discussMapper.delete(id);
     }
 

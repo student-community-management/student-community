@@ -145,7 +145,6 @@ on('success.form.bv', function (e) {
 $('#close').click(function(e){
     e.preventDefault();
     var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
-    console.log('index'+index);
 	parent.layer.close(index); 
     
 });

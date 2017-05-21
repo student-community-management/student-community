@@ -70,7 +70,6 @@ $('#changeIntro').click(function(){
 				data:{"introduce":content},
 				dataType:'text',
 				success:function(data){
-				    console.log(data);
 				    if(data != null || data != ''){
 				        layer.msg('更改成功');
 				        layer.close(index);

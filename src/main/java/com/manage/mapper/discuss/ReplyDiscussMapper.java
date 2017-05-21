@@ -49,4 +49,25 @@ public interface ReplyDiscussMapper extends BaseMapper<ReplyDiscuss> {
      * @return
      */
     Integer queryReplyToReplyCount(Integer replyDiscussid);
+    
+    /**
+     * 删除此讨论下的回复
+     * @param discussid 讨论的id
+     */
+    void delByDiscussid(@Param("id") Integer discussid);
+    
+    /**
+     * 得到此讨论下的所有子回复
+     * @param discussid 讨论的id
+     * @return
+     */
+    List<Integer> getSubReplyids(@Param("id") Integer discussid);
+    
+    /**
+     * 删除此讨论下的所有子回复
+     * @param discussid 讨论的id
+     * @return
+     */
+    void delSubReply(@Param("ids") List<Integer> ids);
+    
 }

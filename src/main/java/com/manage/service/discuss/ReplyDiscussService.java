@@ -96,4 +96,22 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
     public Integer getReplyDiscussesCount(Integer discussid) {
         return replyDiscussMapper.getReplyDiscussesCount(discussid);
     }
+
+    @Override
+    public void delByDiscussid(Integer discussid) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public List<Integer> getSubReplyids(Integer discussid) {
+        // TODO Auto-generated method stub
+        return replyDiscussMapper.getSubReplyids(discussid);
+    }
+
+    @Override
+    public void delSubReply(List<Integer> ids) {
+        replyDiscussMapper.delSubReply(ids);
+        
+    }
 }

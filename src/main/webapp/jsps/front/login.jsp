@@ -136,7 +136,7 @@ on('success.form.bv', function (e) {
     e.preventDefault();//防止重复提交
     $.ajax({
         type:'post',
-        url:'/student-community/stu/flogin.a',
+        url:'/student-community/stu/login/flogin.a',
         data:$("#loginForm").serialize(),
         success:function(data){
             if(data == '1'){

@@ -219,7 +219,6 @@ $('#report').click(function(){
     var $btn = $(this);
     var $text = $(this).html();
     
-    console.log('text='+$text);
     if($text == '<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报'){
         layer.prompt({
        		formType: 2,

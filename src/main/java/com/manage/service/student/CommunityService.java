@@ -134,7 +134,6 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         Integer yes = stuCommunityMapper.exist(sc);
 
         if (yes == 0) {
-            System.out.println("将学生添加到社团中");
             // 如果不是此社团成员
             // 将此学生添加到此社团
             // sc 参数为上面判断学生是否为此社团成员
@@ -146,7 +145,6 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         scr = new StuCommunityRole(stuid);
         scr.setCommunityRoleid(communityMapper.getCommMasterRoleid(commid));
 
-        System.out.println("指定团长");
         // 指定为社团团长
         stuCommunityRoleMapper.save(scr);
 

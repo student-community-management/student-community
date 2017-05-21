@@ -17,7 +17,6 @@ public class LockDiscussService implements LockDiscussMapper {
     
     @Override
     public void save(List<LockDiscuss> lockDiscusses) {
-        System.out.println("进入到lockService中");
         lockDiscussMapper.save(lockDiscusses);
     }
 

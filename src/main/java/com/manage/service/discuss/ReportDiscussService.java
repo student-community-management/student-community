@@ -49,7 +49,6 @@ public class ReportDiscussService implements ReportDiscussMapper {
      * @return
      */
     public PageData getPageData(PageParam pageParam, Integer discussid) {
-        System.out.println("services==============disucssid====="+discussid);
         return new PageData(this.getReportsByDiscussidCount(discussid),
                 this.getReportsByDiscussid(pageParam, discussid));
     }

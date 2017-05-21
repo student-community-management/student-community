@@ -96,7 +96,14 @@
         </div>
 </body>
 <script type="text/javascript">
-<%@ include file="discuss-publish-btn.jsp"%>
+$('#publish').click(function(){
+layer.open({
+  type: 2,
+  title:'发布新的话题',
+   area : ['970px' , '550px'],
+  content: '/student-community/jsps/front/discuss-publish.jsp'
+}); 
+});
     $("#question-input").keydown(function(event) {
         if (event.which == "13")
             window.location="/student-community/discuss/getAllDiscuss.a?keyWord="+$('#question-input').val()+
@@ -110,7 +117,6 @@
     
     $('.prev').click(function(){
         if(${pagination.currentPage == 1}){
-            console.log('上一页不可用');
             return;
         }
         window.location="/student-community/discuss/getChoicenessDiscuss.a?keyWord="+$('#question-input').val()+
@@ -119,7 +125,6 @@
     
     $('.next').click(function(){
         if(${pagination.currentPage == pagination.totalPage}){
-            console.log('下一页不可用');
             return;
         }
         window.location="/student-community/discuss/getChoicenessDiscuss.a?keyWord="+$('#question-input').val()+

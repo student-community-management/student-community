@@ -24,4 +24,9 @@
         WHERE stu_id=#{stu.stuid} AND discuss_id=#{discuss.discussid}
     </delete>
     
+    <delete id="delByDiscussid" parameterType="int">
+        DELETE FROM attention_discuss
+        WHERE discuss_id = #{id}
+    </delete>
+    
 </mapper>

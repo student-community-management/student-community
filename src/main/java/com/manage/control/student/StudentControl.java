@@ -304,7 +304,7 @@ public class StudentControl {
      * @param req request 获取session
      * @return 是否登陆成功: 1为登录成功
      */
-    @RequestMapping("flogin")
+    @RequestMapping("login/flogin")
     @ResponseBody
     public String frontLogin(@ModelAttribute Student stu, HttpServletRequest req) {
         String status = studentService.login(stu).toString();
@@ -321,7 +321,6 @@ public class StudentControl {
     public ModelAndView invalidate(ModelAndView model, HttpServletRequest req) {
         // 注销用户
         req.getSession().invalidate();
-
         model.setViewName("redirect:/jsps/front/login.jsp");
         return model;
     }

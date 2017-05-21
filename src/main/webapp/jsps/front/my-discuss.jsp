@@ -117,6 +117,7 @@ layui.use(['form'], function(){
 
 $('.delLockdiscuss').click(function(){
     var discussid = $(this).attr('discussid');
+    var $obj = $(this);
     layer.confirm('是否确认删除？', {
         btn: ['确认', '取消']
       }, function(){
@@ -129,16 +130,12 @@ $('.delLockdiscuss').click(function(){
                  if(data == '1'){
                      layer.msg('删除成功');
                      $obj.parent().remove();
-                     location.reload();
                  } else {
                      layer.msg('删除失败');
                  }
              }
               
           });
-          
-      }, function(){
-          
           
       });
     
@@ -160,7 +157,6 @@ $('.lockReason').click(function(){
  		   var obj = JSON.parse(data);
            var message = '';
            var status = obj.status;
-           console.log(status);
            if(status == 1){
                message = '等待处理结果';
            } else if(message == 0){
@@ -170,7 +166,6 @@ $('.lockReason').click(function(){
            layer.confirm(obj.message, {
                btn: [message,'取消'] //按钮
              }, function(index){
-                 	console.log(message);
                  	layer.close(index);
                		if(message == '我要修改'){
                		 layer.open({
@@ -209,8 +204,6 @@ $('.delNullDiscuss').click(function(){
         url:'/student-community/replyDiscuss/getReplyDiscussesCount.a',
         data:{'discussid': discussid },
         success:function(data){
-            
-            console.log("data 回复的数量"+data);
             
             if(data != '0'){
                 layer.msg('此讨论下还有回复,不能删除');
@@ -254,7 +247,6 @@ $('.pageNum').click(function(){
 //上一页
 $('.prev').click(function(){
     if(${pagination.currentPage == 1}){
-        console.log('上一页不可用');
         return;
     }
     window.location="/student-community/discuss/getMyDiscuss.a?currentPage="+${pagination.currentPage - 1}+"&totalRecord="+${pagination.totalRecord};
@@ -263,7 +255,6 @@ $('.prev').click(function(){
 //下一页
 $('.next').click(function(){
     if(${pagination.currentPage == pagination.totalPage}){
-        console.log('下一页不可用');
         return;
     }
     window.location="/student-community/discuss/getMyDiscuss.a?currentPage="+${pagination.currentPage+1}+"&totalRecord="+${pagination.totalRecord};
