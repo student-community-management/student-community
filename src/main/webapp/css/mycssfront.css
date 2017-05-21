@@ -63,26 +63,35 @@
     margin-top: 30px;
 }
 
-.lockReason , .deldiscuss{
+.lockReason, .deldiscuss {
     cursor: pointer;
     color: gray;
     font-size: 15px;
 }
-.delNullDiscuss{
+
+.delNullDiscuss {
     cursor: pointer;
     color: gray;
     font-size: 15px;
     display: none;
 }
-#updatePwd{
-    width:450px;
+
+#updatePwd {
+    width: 450px;
 }
-.ss{
+
+.ss {
     box-shadow: 1px 2px 3px;
     height: 250px;
     width: 300px;
     margin: 0px 10px 20px 0px;
 }
-.commInfo{
+
+.commInfo {
     cursor: pointer;
+}
+
+.delLockdiscuss {
+    color: gray;
+    font-size: 15px;
 }

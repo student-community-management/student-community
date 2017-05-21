@@ -23,7 +23,7 @@
                             <c:if test="${discuss.status == 0}">
                                 <a style="color: gray;" href="#">${discuss.discussTitle }</a>
                                 <a class="lockReason" discussid="${ discuss.discussid}">[此条讨论已被锁定,点击查看封锁原因]</a>
-                                <a class="deldiscuss" discussid="${ discuss.discussid}">[删除]</a>
+                                <a class="delLockdiscuss" discussid="${ discuss.discussid}">[删除]</a>
                             </c:if>
                         </h4>
                     </div>
@@ -111,6 +111,41 @@ layui.use(['form'], function(){
   var form = layui.form();
   var layer = layui.layer;
 });
+
+
+
+
+$('.delLockdiscuss').click(function(){
+    var discussid = $(this).attr('discussid');
+    layer.confirm('是否确认删除？', {
+        btn: ['确认', '取消']
+      }, function(){
+          
+          $.ajax({
+             type:'post',
+             url:'/student-community/discuss/del.a',
+             data:{'discussid': discussid },
+             success:function(data){
+                 if(data == '1'){
+                     layer.msg('删除成功');
+                     $obj.parent().remove();
+                     location.reload();
+                 } else {
+                     layer.msg('删除失败');
+                 }
+             }
+              
+          });
+          
+      }, function(){
+          
+          
+      });
+    
+    
+    
+});
+
 
 $('.lockReason').click(function(){
     

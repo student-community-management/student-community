@@ -12,7 +12,7 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
-public class ClassesService implements BaseService<Classes>,ClassesMapper{
+public class ClassesService implements ClassesMapper{
     
     @Autowired
     private ClassesMapper classesMapper;
@@ -21,55 +21,11 @@ public class ClassesService implements BaseService<Classes>,ClassesMapper{
      * 读取所有的年级所以 pageParam(分页)为null
      * 如果只想查询为毕业的班级,则keyWord 为no
      */
-    @Override public List<Classes> queryAll(PageParam pageParam, String keyWord) {
-        return classesMapper.queryAll(pageParam, keyWord);
+    @Override
+    public List<Classes> queryAll() {
+        return classesMapper.queryAll();
     }
 
-    @Override
-    public Classes queryOne(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
-    @Override
-    public void deleteMany(List<Integer> ids) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void save(Classes t) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void update(Classes t) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public int getCount(String keyWord) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public PageData getPageData(PageParam pageParam, String keyWord) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<String> queryClassesByGrade(Integer grade) {
-        return classesMapper.queryClassesByGrade(grade);
-    }
-
-    @Override
-    public void delete(Integer id) {
-        // TODO Auto-generated method stub
-        
-    }
     
 }

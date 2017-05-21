@@ -169,7 +169,6 @@
             //student classes infomation
             $('#cls').combogrid({
                 url : '/student-community/cls/allCls.a',
-                queryParams : {kw : 'no'},
                 width : 200,
                 panelWidth : 300,
                 panelHeight : 'auto',

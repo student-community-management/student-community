@@ -14,21 +14,15 @@ import com.manage.service.student.ClassesService;
 public class ClassesControl {
     @Autowired
     private ClassesService classesService;
-
+    
+    /**
+     * 得到所有班级
+     * @param kw
+     * @return
+     */
     @RequestMapping("allCls")
     @ResponseBody
-    public List<Classes> queryAll(String kw) {
-        return classesService.queryAll(null, kw);
+    public List<Classes> queryAll() {
+        return classesService.queryAll();
     }
-
-    /*
-     * @RequestMapping("getcls")
-     * 
-     * @ResponseBody public List<Map<String, String>> queryAll(Integer grade){
-     * List<String> listData = classesService.queryClassesByGrade(grade);;
-     * List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-     * for(int i = 0;i<listData.size();i++){ Map<String, String> map = new
-     * HashMap<String, String>(); map.put("classes", listData.get(i));
-     * list.add(map); } return list; }
-     */
 }

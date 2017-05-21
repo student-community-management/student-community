@@ -19,5 +19,17 @@
         <property name="maxUploadSize" value="102400000" />
         <property name="resolveLazily" value="true"></property>
     </bean>
-    
+
+    <!-- <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*/*.a" />
+            定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的
+            <bean class="com.manage.interceptor.FrontInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/*/*.a" />
+            定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的
+            <bean class="com.manage.interceptor.BackInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors> -->
 </beans>

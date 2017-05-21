@@ -135,12 +135,13 @@ public class DiscussControl {
             discuss.setStu((Student) req.getSession().getAttribute("fstu"));
             // 添加新的话题时,发起者也会关注此话题
             discussService.save(discuss);
+            return "save is ok";
         } else {
             // 如果id不为null则执行更新方法
             discussService.updateDiscuss(discuss, message);
+            return "update is ok";
         }
 
-        return "1";
     }
 
     /**

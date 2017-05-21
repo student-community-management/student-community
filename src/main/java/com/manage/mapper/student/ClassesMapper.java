@@ -3,19 +3,12 @@ package com.manage.mapper.student;
 import java.util.List;
 
 import com.manage.entity.Classes;
-import com.manage.mapper.BaseMapper;
 
-public interface ClassesMapper extends BaseMapper<Classes> {
-
+public interface ClassesMapper {
     /**
-     * 通过年级查询此年级有多少班
-     * @return 查询此年级下的班名称
+     * 查询所有班级 添加学生下拉列表框 combogrid
+     * @return
      */
-    List<String> queryClassesByGrade(Integer grade);
-
-    /**
-     * 一次删除多条信息
-     * @param ids 多条信息的id
-     */
-    void deleteMany(List<Integer> ids);
+    List<Classes> queryAll();
+    
 }

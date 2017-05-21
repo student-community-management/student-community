@@ -129,13 +129,15 @@ on('success.form.bv', function (e) {
         url:'/student-community/discuss/save.a',
         data:$("#discussForm").serialize(),
         success:function(data){
-            if(data == '1'){
+            if(data == 'save is ok'){
                 layer.msg('发起话题成功');
-                setTimeout(() => {
-                    var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
-                	parent.layer.close(index); 
-                }, 1000);
+            } else if (data == 'update is ok'){
+                layer.msg('修改话题成功');
             }
+            setTimeout(() => {
+                var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
+            	parent.layer.close(index); 
+            }, 1000);
         }
     });
 });
