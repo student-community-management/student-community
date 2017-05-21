@@ -1,11 +1,6 @@
 @CHARSET "UTF-8";
 
-.middle
-{
-    margin-right: auto;
-    padding-right: 15px;
-    padding-left: 15px;
-}
+
 .base
 {
     margin-right: auto;
@@ -131,6 +126,7 @@ a.QuestionMainAction {
 .mbox-shadow
 {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);
+	margin-bottom: 10px;
 }
 .ma-inp{
 	height: 30px;
@@ -193,9 +189,7 @@ a.QuestionMainAction {
 {
 	padding: 10px;
 }
-.dt {
-	height: 300px;
-}
+
 .ma-drop
 {
 	border: 0px;

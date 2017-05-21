@@ -19,13 +19,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.manage.entity.Activity;
 import com.manage.entity.Community;
+import com.manage.entity.StuCommRequest;
 import com.manage.entity.Student;
+import com.manage.mapper.student.StuCommRequestMapper;
 import com.manage.service.student.CommunityService;
+import com.manage.service.student.StuCommRequestService;
+import com.manage.service.student.StuCommunityService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
-import com.manage.util.Pagination;
 
 @Controller
 @RequestMapping("comm/")
@@ -33,31 +35,111 @@ public class CommunityControl {
 
     @Autowired
     private CommunityService communityService;
-
+    
+    @Autowired
+    private StuCommunityService stuCommunityService;
+    
+    @Autowired
+    private StuCommRequestService stuCommRequestService;
+    
     /**
-     * 发布活动
-     * @param model ModelAndView
-     * @param manage 是否是管理员 1则为管理员,0则为普通团员
-     * @param commid 社团的id
+     * 添加学生请求加入社团方法
+     * @param req
+     * @param commid
      * @return
      */
-    @RequestMapping("announce")
-    public ModelAndView Announce(ModelAndView model, Integer manage, Integer commid) {
-
-        // 是否是管理员
-        model.addObject("manage", manage);
-
-        // 社团的id
-        model.addObject("commid", commid);
-
-        // 选择哪个tab
-        model.addObject("choose", 3);
-
-        // 要跳转的页面
-        model.setViewName("front/my-community-announce");
-
+    @RequestMapping("joinCommRequest")
+    @ResponseBody
+    public String joinCommRequest(HttpServletRequest req,Integer commid){
+        
+        // 从session中取得学生对象
+        Student stu = (Student)req.getSession().getAttribute("fstu");
+        
+        // 学生加入社团请求表
+        StuCommRequest scr = new StuCommRequest();
+        
+        scr.setStuid(stu.getStuid());
+        scr.setCommid(commid);
+        
+        // 执行添加方法
+        stuCommRequestService.save(scr);
+        
+        return "1";
+    }
+    
+    /**
+     * 查询我还没加入的社团
+     * @param model ModelAndView
+     * @param req 
+     * @return
+     */
+    @RequestMapping("getNewCommunity")
+    public ModelAndView getNewCommunity(ModelAndView model,HttpServletRequest req){
+        
+        // 从 session中取得学生对象
+        Student stu = (Student)req.getSession().getAttribute("fstu");
+        // 得到学生还未添加的社团,并标记是否申请过
+        List<Community> commList = communityService.getNewCommunity(stu.getStuid());
+        
+        model.addObject("commList", commList);
+        
+        model.setViewName("front/my-new-community");
+        
         return model;
-
+    }
+    
+    /**
+     * 忽略请求,只是将处理请求改成已经处理
+     * @param ids
+     * @param commid
+     * @return
+     */
+    @RequestMapping("ignore")
+    @ResponseBody
+    public String ignore(@RequestBody List<Integer> ids, Integer commid) {
+        stuCommRequestService.setStatus(ids, commid);
+        return "1";
+    }
+    
+    /**
+     * 执行批量添加方法
+     * @param ids 要添加的学生id
+     * @param commid 要添加的社团的id
+     * @return
+     */
+    @RequestMapping("saveCommStu")
+    @ResponseBody
+    public String saveCommStu(@RequestBody List<Integer> ids, Integer commid){
+        //添加方法
+        stuCommunityService.saveCommStus(ids, commid);
+        return "1";
+    }
+    
+    
+    /**
+     * 删除社团团员
+     * @param ids 要删出的团员的id
+     * @param commid 要这个从社团删除的社团的id
+     * @return
+     */
+    @RequestMapping("delCommStus")
+    @ResponseBody
+    public String delCommStus(@RequestBody List<Integer> ids, Integer commid) {
+        stuCommunityService.delCommStus(ids, commid);
+        return "1";
+    }
+    
+    /**
+     * 添加社团团员
+     * @param ids 要添加的社团成员的id
+     * @param commid 添加到这个社团的社团的id
+     * @return
+     */
+    @RequestMapping("saveCommStus")
+    @ResponseBody
+    public String saveCommStus(@RequestBody List<Integer> ids, Integer commid) {
+        stuCommunityService.saveCommStus(ids, commid);        
+        return "1";
     }
 
     /**

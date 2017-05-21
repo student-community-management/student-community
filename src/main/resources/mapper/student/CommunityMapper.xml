@@ -7,6 +7,7 @@
         <result property="communityName" column="community_name"/>
         <result property="stuNum" column="stu_num"/>
         <result column="img" property="img" />
+        <result column="status" property="status" />
         <!-- 一对多写法 
             ofType 集合类型所包含的类型
             property Community 中对应的students的变量名
@@ -97,6 +98,17 @@
     <select id="getCommMasterRoleid" parameterType="int" resultType="int">
         SELECT cr.community_role_id FROM community_role cr
         WHERE cr.community_id = #{id} AND cr.role_id = 1
+    </select>
+    
+    <select id="getNewCommunity" parameterType="int" resultMap="communityResultMap">
+        SELECT DISTINCT comm.*,CASE scr.status WHEN 1 THEN NULL ELSE scr.status END AS 'status' FROM community comm
+        LEFT JOIN stu_comm_request scr ON scr.comm_id = comm.community_id
+        WHERE comm.community_id NOT IN (
+        SELECT c.community_id FROM stu_community  sc
+        INNER JOIN student s ON sc.stu_id = s.stu_id
+        INNER JOIN community c ON sc.community_id = c.community_id
+        WHERE  sc.stu_id = #{stuid}
+        )
     </select>
     
     <insert id="save" parameterType="com.manage.entity.Community" 

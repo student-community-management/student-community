@@ -156,13 +156,18 @@ public class StudentService implements BaseService<Student>, StudentMapper {
     }
 
     @Override
-    public void changeIntro(Student stu) {
-        studentMapper.changeIntro(stu);
+    public Integer getStudentByCommidCount(Integer commid) {
+        return studentMapper.getStudentByCommidCount(commid);
     }
 
     @Override
-    public Integer getStudentByCommidCount(Integer commid) {
-        return studentMapper.getStudentByCommidCount(commid);
+    public List<Student> getCommRequestStus(PageParam pageParam, Integer commid) {
+        return studentMapper.getCommRequestStus(pageParam, commid);
+    }
+
+    @Override
+    public Integer getCommRequestStusCount(Integer commid) {
+        return studentMapper.getCommRequestStusCount(commid);
     }
 
 }

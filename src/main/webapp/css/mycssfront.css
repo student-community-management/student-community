@@ -77,3 +77,12 @@
 #updatePwd{
     width:450px;
 }
+.ss{
+    box-shadow: 1px 2px 3px;
+    height: 250px;
+    width: 300px;
+    margin: 0px 10px 20px 0px;
+}
+.commInfo{
+    cursor: pointer;
+}

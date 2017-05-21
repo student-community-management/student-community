@@ -1,8 +1,9 @@
-package com.manage.mapper;
+package com.manage.mapper.student;
 
 import java.util.List;
 
 import com.manage.entity.Classes;
+import com.manage.mapper.BaseMapper;
 
 public interface ClassesMapper extends BaseMapper<Classes> {
 

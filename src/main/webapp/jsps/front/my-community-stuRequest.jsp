@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title> </title>
+<title>社团管理-活动成员</title>
 <link href="/student-community/layui/css/layui.css" rel="stylesheet">
 <link href="/student-community/css/bootstrap.min.css" rel="stylesheet">
 <link href="/student-community/css/style.css" rel="stylesheet">
@@ -46,6 +47,7 @@
 			// 删除设备点击事件
 			$(function(){  
    		 $("#btnDel").click(function() {
+   		     
         	$("input[name='chkPerson']:checked").each(function() { // 遍历选中的checkbox
             $(this).parents("tr").remove();  // 获取checkbox所在行的顺序
             
@@ -55,19 +57,20 @@
 			
 </script>
 </head>
-<body>
+<body style="padding:10px;">
 	<%@ include file="my-community-nav.jsp" %>
 					<!-- 等待更改 -->
-                    <c:if test="${ manage == 1 }">
-    					<a class="btn btn-danger" href="#" id="btnDel">删除成员</a>		
-                    </c:if>
-					
+                    <c:if test="${ fn:length(studentList) == 0 }">
+                       <center> <h1>暂无申请人员</h1></center>
+					</c:if>
+                    <c:if test="${ fn:length(studentList) != 0}">
+                        <a class="btn btn-danger" href="#" id="agree">同意加入</a>
+    					<a class="btn btn-danger" href="#" id="ignore">忽略</a>		
+                    
                     <table class="layui-table" lay-skin="row" id="tablePxe">
 						<thead>
 							<tr>
-                                <c:if test="${ manage == 1 }">
-								    <th width="10%"><input type="checkbox" id="checkAll" ></th>
-                                </c:if>
+								<th width="10%"><input type="checkbox" id="checkAll" ></th>
 								<th width="20%">昵称</th>
 								<th width="20%">性别</th>
 								<th width="50%">签名</th>
@@ -76,23 +79,18 @@
 						<tbody>
                             <c:forEach items="${ studentList }" var="stu">
                                 <tr>
-                                    <c:if test="${ manage == 1 }">
-    								    <td>
-                                            <c:if test="${ sessionScope.fstu.stuid == stu.stuid }">
-                                                (我自己)
-                                            </c:if>
-                                            <c:if test="${ sessionScope.fstu.stuid != stu.stuid }">
-                                                <input type="checkbox" name="chkPerson" value="${ stu.stuid }" >
-                                            </c:if>
-                                        </td>
-                                    </c:if>
+								    <td>
+                                        <input type="checkbox" name="chkPerson" value="${ stu.stuid }" >
+                                    </td>
     								<td>${stu.stuName }</td>
     								<td>${ stu.stuSex == 0 ?'女':'男' }</td>
-    								<td> ${ stu.introduce == null ? "(暂无签名)" : stu.introduce}</td>
+    								<td>
+                                    ${ stu.introduce == null ? "(暂无签名)" : stu.introduce}
+                                    </td>
     							</tr>
                             </c:forEach>
 					</table>
-                    
+                    </c:if>
                     <!-------------分页------------->
             <c:if test="${pagination.totalPage != 0 && pagination.totalPage != null }">
             <ul class="pagination">
@@ -166,15 +164,13 @@
 	</section>
 </body>
 <script type="text/javascript">
-var layedit;
-var editIndex;
-layui.use(['form', 'layedit'], function(){
-  var form = layui.form();
+layui.use(['form'], function(){
   var layer = layui.layer;
 });
+
 //直接点击的哪一页
 $('.pageNum').click(function(){
-   window.location="/student-community/stu/getStusByCommid.a?commid=${ commid }&manage=${ manage }"+
+   window.location="/student-community/stu/getReqStu?commid=${ commid }&manage=${ manage }"+
            "&currentPage="+$(this).html()+"&totalRecord="+${pagination.totalRecord};
 });  
 
@@ -184,7 +180,7 @@ $('.prev').click(function(){
         console.log('上一页不可用');
         return;
     }
-    window.location="/student-community/stu/getStusByCommid.a?commid=${ commid }&manage=${ manage }"+
+    window.location="/student-community/stu/getReqStu.a?commid=${ commid }&manage=${ manage }"+
     "&currentPage="+${pagination.currentPage - 1}+"&totalRecord="+${pagination.totalRecord};
 }); 
 
@@ -194,38 +190,66 @@ $('.next').click(function(){
         console.log('下一页不可用');
         return;
     }
-    window.location="/student-community/stu/getStusByCommid.a?commid=${ commid }&manage=${ manage }"+
+    window.location="/student-community/stu/getReqStu?commid=${ commid }&manage=${ manage }"+
     "&currentPage="+${pagination.currentPage+1}+"&totalRecord="+${pagination.totalRecord};
 });   
 
-$("#btnDel").click(function(){
-    var vals = new Array();
-    $('input[name="chkPerson"]:checked').each(function () {
-        vals.push(parseInt(this.value));
-    });
-    
-    
-    if(vals.length == 0){
-        layer.msg('请选中数据');
-        return;
-    }
-    
-    $.ajax({
-        type:'post',
-        url:'/student-community/comm/delCommStus.a?commid=${commid}',
-        data:JSON.stringify(vals),
-        datatype : 'json',
-        contentType : 'application/json;charset=utf-8',
-        success:function(data){
-            if(data == 1){
-                layer.msg('删除成功 ');
-                setTimeout(() => {
-                    location.reload();
-                }, 2000);
-            }
+$('#ignore').click(function(){
+        var vals = new Array();
+        $('input[name="chkPerson"]:checked').each(function () {
+            vals.push(parseInt(this.value));
+        });
+        
+        if(vals.length == 0){
+            layer.msg('请选中数据');
+            return;
         }
-    });
+        
+        $.ajax({
+            type:'post',
+            url:'/student-community/comm/ignore.a?commid=${commid}',
+            data:JSON.stringify(vals),
+            datatype : 'json',
+            contentType : 'application/json;charset=utf-8',
+            success:function(data){
+                if(data == 1){
+                    layer.msg('忽略成功 ');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                }
+            }
+        });
 });
+
+$('#agree').click(function(){
+        var vals = new Array();
+        $('input[name="chkPerson"]:checked').each(function () {
+            vals.push(parseInt(this.value));
+        });
+        
+        if(vals.length == 0){
+            layer.msg('请选中数据');
+            return;
+        }
+        
+        $.ajax({
+            type:'post',
+            url:'/student-community/comm/saveCommStu.a?commid=${commid}',
+            data:JSON.stringify(vals),
+            datatype : 'json',
+            contentType : 'application/json;charset=utf-8',
+            success:function(data){
+                if(data == 1){
+                    layer.msg('添加成功 ');
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                }
+            }
+        });
+});
+
 
 </script>
 </html>

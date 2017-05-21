@@ -18,6 +18,7 @@ public class Community implements Serializable {
     private Integer stuNum; // 数据库中并没有这一列,这是为了保证Mybatis中字段的完整
     private Set<Student> stus;
     private String img;
+    private Integer status; // 这列在数据库中并不存在,是学生申请添加社团时的处理状态
 
     public Set<Student> getStus() {
         return stus;
@@ -30,6 +31,14 @@ public class Community implements Serializable {
     public Community(Integer communityid) {
         super();
         this.communityid = communityid;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public void setStus(Set<Student> stus) {

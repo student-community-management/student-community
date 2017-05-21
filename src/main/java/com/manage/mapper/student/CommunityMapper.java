@@ -55,7 +55,12 @@ public interface CommunityMapper extends BaseMapper<Community> {
      * @return
      */
     List<Community> getMyMasterCommunity(@Param("id") Integer stuid);
+    
+    /**
+     * 查找我还没有加入过的社团,并且还未申请过的社团
+     * @param stuid  学生的id
+     * @return
+     */
+    List<Community> getNewCommunity(@Param("stuid") Integer stuid);
      
-    
-    
 }
