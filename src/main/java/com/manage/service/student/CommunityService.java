@@ -166,4 +166,9 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         return communityMapper.getNewCommunity(stuid);
     }
 
+    @Override
+    public String getImgByCommid(Integer id) {
+        return communityMapper.getImgByCommid(id);
+    }
+
 }

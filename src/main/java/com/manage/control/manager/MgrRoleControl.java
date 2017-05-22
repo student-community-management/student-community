@@ -24,13 +24,20 @@ public class MgrRoleControl {
         return mgrRoleService.queryForCommbo();
     }
     
-    
+    /**
+     * 添加/更新角色
+     * @param mgrRole 角色对象
+     * @return
+     */
     @RequestMapping("save")
     @ResponseBody
     public String save(@ModelAttribute MgrRole mgrRole){
         
+        // 得到角色的id
         Integer id = mgrRole.getMgrRoleid();
         
+        //如果角色的id为null则执行添加方法
+        //如果角色的id 不为null则执行更新方法
         if(id == null){
             mgrRoleService.save(mgrRole);
             return "save";
@@ -40,6 +47,11 @@ public class MgrRoleControl {
         }
     }
     
+    /**
+     * 删除对象
+     * @param id
+     * @return
+     */
     @RequestMapping("del")
     @ResponseBody
     public String del(Integer id){

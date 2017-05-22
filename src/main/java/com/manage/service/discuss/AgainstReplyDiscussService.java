@@ -28,4 +28,9 @@ public class AgainstReplyDiscussService implements AgainstReplyDiscussMapper {
         return againstReplyDiscussService.checkAgainstReply(againstReplyDiscuss);
     }
 
+    @Override
+    public void delByReplyid(Integer id) {
+        // 此方法并不会单独存在,在删除回复时被调用
+    }
+
 }

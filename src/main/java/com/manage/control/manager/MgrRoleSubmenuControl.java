@@ -16,13 +16,24 @@ public class MgrRoleSubmenuControl {
 
     @Autowired
     private MgrRoleSubmenuService mgrRoleSubmenuService;
-    
+
+    /**
+     * 保存新的菜单
+     * 
+     * 保存新的菜单,要先删除旧的菜单
+     * 
+     * @param ids
+     * @param roleid
+     * @return
+     */
     @RequestMapping("save")
     @ResponseBody
-    public String save(@RequestBody List<Integer> ids ,Integer roleid){
+    public String save(@RequestBody List<Integer> ids, Integer roleid) {
+        // 先删除旧的菜单
         mgrRoleSubmenuService.delete(roleid);
+        // 在添加新的菜单
         mgrRoleSubmenuService.save(roleid, ids);
         return "1";
     }
-    
+
 }

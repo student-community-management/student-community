@@ -131,7 +131,6 @@ public class DiscussService implements BaseService<Discuss>, DiscussMapper {
 
     @Override
     public void delete(Integer id) {
-        System.out.println("1=================");
         // 删除此讨论的所有关注
         attentionDiscussMapper.delByDiscussid(id);
         

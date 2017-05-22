@@ -28,4 +28,9 @@ public class PraiseReplyDiscussService implements PraiseReplyDiscussMapper {
         return praiseReplyDiscussMapper.checkPraiseReply(praiseReplyDiscuss);
     }
 
+    @Override
+    public void delByReplyid(Integer id) {
+       //此方法并不会单独存在,在删除回复的时候会被调用
+    }
+
 }

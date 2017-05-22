@@ -186,7 +186,10 @@ public class CommunityControl {
     @ResponseBody
     public String saveComm(@ModelAttribute Community comm,
             @RequestParam("file") MultipartFile file) {
-
+        
+        
+        String oldImg = null;
+        
         // 如果上传的图片不是空的
         if (!file.isEmpty()) {
 
@@ -206,10 +209,13 @@ public class CommunityControl {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            
+           oldImg = communityService.getImgByCommid(comm.getCommunityid());
             // 这只社团的图片
             comm.setImg(fileName);
-
+            
+        } else {
+            comm.setImg(communityService.getImgByCommid(comm.getCommunityid()));
         }
 
         // 如果社团的id为null则执行添加方法,
@@ -218,6 +224,11 @@ public class CommunityControl {
             communityService.save(comm);
             return "save is ok";
         } else {
+            File f = new File("/D:/image/community/"+oldImg);
+            if(f.exists()){
+                f.delete();
+            } 
+            
             communityService.update(comm);
             return "update is ok";
         }

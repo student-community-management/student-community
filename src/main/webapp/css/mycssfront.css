@@ -91,6 +91,7 @@
 }
 
 .delLockdiscuss {
+    cursor: pointer;
     color: gray;
     font-size: 15px;
 }

@@ -57,7 +57,12 @@ public class ReplyDiscussControl {
 
         return "1";
     }
-
+    
+    /**
+     * 删除回复
+     * @param replyDiscussid
+     * @return
+     */
     @RequestMapping("del")
     @ResponseBody
     public String delete(Integer replyDiscussid) {
@@ -79,7 +84,14 @@ public class ReplyDiscussControl {
         replyDiscussService.replyToReplyDisucss(replyDiscuss);
         return "1";
     }
-
+    
+    /**
+     * 得到此回复下的子回复
+     * @param modelAndView ModelAndView
+     * @param replyDiscussid 恢复id
+     * @param pagination 分页参数
+     * @return
+     */
     @RequestMapping("getReplies")
     public ModelAndView queryReply(ModelAndView modelAndView, Integer replyDiscussid,
             @ModelAttribute Pagination pagination) {

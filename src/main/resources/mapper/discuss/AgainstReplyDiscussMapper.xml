@@ -20,5 +20,10 @@
         DELETE FROM against_reply_discuss 
         WHERE reply_discuss_id=#{replyDiscuss.replyDiscussid} AND stu_id=#{stu.stuid}
     </delete>
+    
+    <delete id="delByReplyid" parameterType="int">
+        DELETE FROM against_reply_discuss
+        WHERE reply_discuss_id = #{id}
+    </delete>
 
 </mapper>

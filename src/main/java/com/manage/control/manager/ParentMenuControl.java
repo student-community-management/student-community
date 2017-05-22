@@ -23,7 +23,7 @@ public class ParentMenuControl {
     private ParentMenuService parentMenuService;
 
     /**
-     * 
+     * 添加父菜单
      * @param parentMenu
      * @return
      */
@@ -53,7 +53,6 @@ public class ParentMenuControl {
     public String del(Integer id) {
         parentMenuService.delete(id);
         return "1";
-
     }
     
     

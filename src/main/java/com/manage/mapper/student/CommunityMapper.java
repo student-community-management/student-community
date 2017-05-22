@@ -62,5 +62,13 @@ public interface CommunityMapper extends BaseMapper<Community> {
      * @return
      */
     List<Community> getNewCommunity(@Param("stuid") Integer stuid);
-     
+    
+    /**
+     * 通过社团的id得到社团的封面图片
+     * @param id 社团的id
+     * @return
+     */
+    String getImgByCommid(Integer id);
+    
+    
 }
