@@ -152,9 +152,8 @@ on('success.form.bv', function (e) {
                               content: $('#updatePwd'),
                               btn:['确认修改'],
                               yes:function(index){
-								  //$('#pass')  $('#repass')
                                   
-								  if($('#pass').val().length < 6){
+								  if($('#pass').val().length != 6){
 								      layer.msg('密码必须为6位数');
 								      return;
 								  }
@@ -169,7 +168,7 @@ on('success.form.bv', function (e) {
                                       $.ajax({
                                           type:'post',
                                           url:'/student-community/stu/updatePwd.a',
-                                          data:{'stuid': $('#account').val() ,'stuPwd':$('#pass').val()},
+                                          data:{'stuid': $('#account').val() ,'stuPwd':$('#pass').val(),'step':0},
                                           success:function(data){
                                               if(data == 1){
                                                   layer.msg('请用新密码登陆吧');
@@ -180,9 +179,6 @@ on('success.form.bv', function (e) {
                                           
                                       });
                                   }
-                                  
-                                  
-									
                               }
                             }); 
                       }, function(index){

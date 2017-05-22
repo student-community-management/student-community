@@ -91,8 +91,15 @@ public class StudentControl {
      */
     @RequestMapping("updatePwd")
     @ResponseBody
-    public String updatePwd(@ModelAttribute Student stu) {
+    public String updatePwd(@ModelAttribute Student stu,Integer step,HttpServletRequest req) {
         studentService.updatePwd(stu);
+        
+        // 如果是在个人信息页面修改的密码则执行跳转
+        if(step == 1){
+            req.getSession().invalidate();
+            return "step";
+        }
+        
         return "1";
     }
 

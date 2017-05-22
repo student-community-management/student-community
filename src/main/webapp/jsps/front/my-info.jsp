@@ -10,11 +10,11 @@
     <div class="tab-content">
     <div>
     <br><br> 
-    <label>我的姓名</label>
+    <label>我的姓名:</label>
     <label> ${ sessionScope.fstu.stuName }</label><br>
     </div><br>
     <div>
-    <label>我的性别</label>
+    <label>我的性别:</label>
     <label> ${ sessionScope.fstu.stuSex==0 ?'女':'男' }</label><br>
     </div>
        <label> 我的头像:</label>
@@ -27,15 +27,36 @@
         <label><span id="intro" style="width:100%;">${ sessionScope.fstu.introduce }</span></label>
          <button class="btn btn-default" type="button" id="changeIntro">点击更换个性签名</button>
         </div>
+        <br><br>
+         <button class="btn btn-danger" type="button" id="updatePwdbtn">修改密码</button>
         
-        
-
 </div>
 </div>
 </div>
 
 
 </body>
+<div id="updatePwd" style="display: none;" >
+<form class="layui-form">
+<div class="layui-form-item">
+    <label class="layui-form-label" style="width:140px;" >请输入新的密码:</label>
+    <div class="layui-input-inline">
+      <input type="password"  id="pass" placeholder="请输入密码" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">请填写6位密码</div>
+  </div>
+  
+<div class="layui-form-item">
+    <label class="layui-form-label" style="width:140px;">请重复密码:</label>
+    <div class="layui-input-inline">
+      <input type="password" id="repass" placeholder="请重复密码" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">请填写6位密码</div>
+</div>
+</form>
+
+</div>
+
 <script type="text/javascript">
 $(function() {
 
@@ -85,6 +106,48 @@ $('#changeIntro').click(function(){
 				        
        	
 });
+    
+    $('#updatePwdbtn').click(function(){
+        
+        layer.open({
+            type: 1, 
+            area: ['460px','280px'],
+            content: $('#updatePwd'),
+            btn:['确认修改'],
+            yes:function(index){
+				  //$('#pass')  $('#repass')
+                
+				  if($('#pass').val().length != 6 ){
+				      layer.msg('密码必须为6位数');
+				      return;
+				  }
+                
+                if($('#pass').val() != $('#repass').val()){
+                    layer.msg('两次密码不一致');
+                    $('#repass').val('');
+				      return;
+                }
+                
+                if($('#pass').val() == $('#repass').val()){
+                    $.ajax({
+                        type:'post',
+                        url:'/student-community/stu/updatePwd.a',
+                        data:{'stuid': ${sessionScope.fstu.stuid} ,'stuPwd':$('#pass').val(),'step':1},
+                        success:function(data){
+                            if(data == 'step'){
+                                layer.msg('修改成功,请重新登陆');
+                                setTimeout(() => {
+                                    window.location = "/student-community/jsps/front/login.jsp";
+                                }, 2000);
+                            }
+                        }
+                        
+                    });
+                }
+            }
+          }); 
+        
+    });
     
 </script>
 </html>

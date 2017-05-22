@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.manage.entity.MgrRole;
 import com.manage.service.manager.MgrRoleService;
-import com.manage.service.manager.SubmenuService;
 
 @Controller
 @RequestMapping("mr/")

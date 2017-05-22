@@ -1,7 +1,5 @@
 package com.manage.mapper.discuss;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.manage.entity.AttentionDiscuss;
 
 public interface AttentionDiscussMapper {
@@ -31,7 +29,7 @@ public interface AttentionDiscussMapper {
      * @return 关注讨论的人数
      */
     Integer getAttentionDiscussNum(Integer id);
-    
+
     /**
      * 当删除讨论时,删除关注
      * @param id 讨论的id

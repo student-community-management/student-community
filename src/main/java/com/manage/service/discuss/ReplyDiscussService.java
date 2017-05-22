@@ -29,7 +29,17 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
 
     @Override
     public void delete(Integer id) {
+        // 删除回复之后还要删除下面的子回复
         replyDiscussMapper.delete(id);
+        
+        // 得到此回答下的子回复的id
+        List<Integer> ids = replyDiscussMapper.queryReplyToReplyid(id);
+        
+        //如果下面有子回复则执行删除操作
+        if(ids.size() > 0){
+            replyDiscussMapper.delSubReply(ids);
+        }
+        
     }
 
     @Override
@@ -113,5 +123,11 @@ public class ReplyDiscussService implements BaseService<ReplyDiscuss>, ReplyDisc
     public void delSubReply(List<Integer> ids) {
         replyDiscussMapper.delSubReply(ids);
         
+    }
+
+    @Override
+    public List<Integer> queryReplyToReplyid(Integer id) {
+        //此方法并不会单独存在
+        return null;
     }
 }

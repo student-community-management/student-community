@@ -22,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.manage.entity.Community;
 import com.manage.entity.StuCommRequest;
 import com.manage.entity.Student;
-import com.manage.mapper.student.StuCommRequestMapper;
 import com.manage.service.student.CommunityService;
 import com.manage.service.student.StuCommRequestService;
 import com.manage.service.student.StuCommunityService;

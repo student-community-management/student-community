@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.manage.entity.Manager;
 import com.manage.entity.ParentMenu;
-import com.manage.entity.Submenu;
 import com.manage.service.manager.ParentMenuService;
 
 @Controller

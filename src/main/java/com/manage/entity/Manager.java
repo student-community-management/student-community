@@ -1,7 +1,6 @@
 package com.manage.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Manager implements Serializable {
 

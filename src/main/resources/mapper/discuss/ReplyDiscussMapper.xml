@@ -81,4 +81,9 @@
         #{id}
         </foreach>
     </delete>
+    
+    <select id="queryReplyToReplyid" parameterType="int" resultType="int">
+         SELECT rd.reply_discuss_id FROM  reply_discuss rd
+         WHERE rd.reply_to_reply = #{id}
+    </select>
 </mapper>
