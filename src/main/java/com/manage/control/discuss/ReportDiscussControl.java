@@ -33,7 +33,13 @@ public class ReportDiscussControl {
 
     @Autowired
     private LockDiscussService lockDiscussService;
-
+    
+    /**
+     * 执行举报方法
+     * @param req HttpServletRequest
+     * @param reportDiscuss 举报方法对象
+     * @return
+     */
     @RequestMapping("save")
     @ResponseBody
     public String save(HttpServletRequest req, ReportDiscuss reportDiscuss) {
@@ -41,17 +47,11 @@ public class ReportDiscussControl {
         reportDiscussService.save(reportDiscuss);
         return "1";
     }
-
-    @RequestMapping("del")
-    @ResponseBody
-    public String del() {
-        return "1";
-    }
-
+    
     /**
      * 得到举报的详细内容
-     * @param pageParam
-     * @param discussid
+     * @param pageParam 分页参数
+     * @param discussid 讨论的id
      * @return
      */
     @RequestMapping("getReportContent")

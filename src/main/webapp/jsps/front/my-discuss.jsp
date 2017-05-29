@@ -23,7 +23,7 @@
                             <c:if test="${discuss.status == 0}">
                                 <a style="color: gray;" href="#">${discuss.discussTitle }</a>
                                 <a class="lockReason" discussid="${ discuss.discussid}">[此条讨论已被锁定,点击查看封锁原因]</a>
-                                <a class="deldiscuss" discussid="${ discuss.discussid}">[删除]</a>
+                                <a class="delLockdiscuss" discussid="${ discuss.discussid}">[删除]</a>
                             </c:if>
                         </h4>
                     </div>
@@ -112,6 +112,38 @@ layui.use(['form'], function(){
   var layer = layui.layer;
 });
 
+
+
+
+$('.delLockdiscuss').click(function(){
+    var discussid = $(this).attr('discussid');
+    var $obj = $(this);
+    layer.confirm('是否确认删除？', {
+        btn: ['确认', '取消']
+      }, function(){
+          
+          $.ajax({
+             type:'post',
+             url:'/student-community/discuss/del.a',
+             data:{'discussid': discussid },
+             success:function(data){
+                 if(data == '1'){
+                     layer.msg('删除成功');
+                     $obj.parent().remove();
+                 } else {
+                     layer.msg('删除失败');
+                 }
+             }
+              
+          });
+          
+      });
+    
+    
+    
+});
+
+
 $('.lockReason').click(function(){
     
     var id = $(this).attr('discussid');
@@ -125,7 +157,6 @@ $('.lockReason').click(function(){
  		   var obj = JSON.parse(data);
            var message = '';
            var status = obj.status;
-           console.log(status);
            if(status == 1){
                message = '等待处理结果';
            } else if(message == 0){
@@ -135,7 +166,6 @@ $('.lockReason').click(function(){
            layer.confirm(obj.message, {
                btn: [message,'取消'] //按钮
              }, function(index){
-                 	console.log(message);
                  	layer.close(index);
                		if(message == '我要修改'){
                		 layer.open({
@@ -174,8 +204,6 @@ $('.delNullDiscuss').click(function(){
         url:'/student-community/replyDiscuss/getReplyDiscussesCount.a',
         data:{'discussid': discussid },
         success:function(data){
-            
-            console.log("data 回复的数量"+data);
             
             if(data != '0'){
                 layer.msg('此讨论下还有回复,不能删除');
@@ -219,7 +247,6 @@ $('.pageNum').click(function(){
 //上一页
 $('.prev').click(function(){
     if(${pagination.currentPage == 1}){
-        console.log('上一页不可用');
         return;
     }
     window.location="/student-community/discuss/getMyDiscuss.a?currentPage="+${pagination.currentPage - 1}+"&totalRecord="+${pagination.totalRecord};
@@ -228,7 +255,6 @@ $('.prev').click(function(){
 //下一页
 $('.next').click(function(){
     if(${pagination.currentPage == pagination.totalPage}){
-        console.log('下一页不可用');
         return;
     }
     window.location="/student-community/discuss/getMyDiscuss.a?currentPage="+${pagination.currentPage+1}+"&totalRecord="+${pagination.totalRecord};

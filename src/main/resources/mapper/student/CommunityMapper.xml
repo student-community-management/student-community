@@ -111,6 +111,11 @@
         )
     </select>
     
+    <select id="getImgByCommid" parameterType="int" resultType="String">
+        SELECT c.img FROM community c
+        WHERE c.community_id = #{id}
+    </select>
+    
     <insert id="save" parameterType="com.manage.entity.Community" 
         keyProperty="communityid"
      useGeneratedKeys="true" >

@@ -19,5 +19,11 @@
         <property name="maxUploadSize" value="102400000" />
         <property name="resolveLazily" value="true"></property>
     </bean>
-    
+
+     <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/pm/*.a" />
+            <bean class="com.manage.interceptor.BackInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

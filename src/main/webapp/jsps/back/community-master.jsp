@@ -19,7 +19,8 @@ $(function() {
             } else {
                 $('#cmstu-list').datagrid({
                     queryParams : {
-                        'kw' : value
+                        'kw' : value,
+                        'id' : '${param.commid}'
                     }
                 });
             }
@@ -62,10 +63,7 @@ $('#cmstu-list').datagrid({
     }, {
         field : 'stuBirthday',
         title : '生日'
-    }, {
-        field : 'stuNativePlace',
-        title : '祖籍'
-    } ] ]
+    }] ]
 });
         //---datagrid---end
 });

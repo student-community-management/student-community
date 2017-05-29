@@ -156,7 +156,7 @@ $(function() {
  // add student window
     $('#addMgrWindow').window({
         height : 'auto',
-        title : '添加管理人员',
+        title : '添加/更新管理人员',
         modal : true,
         closed : true //加载时关闭
     });
@@ -406,6 +406,12 @@ $('#updateMgr').click(function(){
     }
     
     var mgrid = rowData[0].managerid;
+    
+    if('${sessionScope.mgr.managerid}' == mgrid){
+        $.messager.alert('警告','不能修改自己信息');
+        return;
+    }
+    
     var mgrName = rowData[0].managerName;
     
     var role;

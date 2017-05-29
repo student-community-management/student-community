@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.StuCommunity;
 import com.manage.mapper.student.StuCommRequestMapper;
@@ -11,6 +12,7 @@ import com.manage.mapper.student.StuCommunityMapper;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class StuCommunityService implements StuCommunityMapper{
     
     @Autowired

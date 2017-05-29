@@ -61,5 +61,29 @@
         DELETE FROM reply_discuss
         WHERE reply_discuss_id=#{id}
     </delete>
-
+    
+    <delete id="delByDiscussid" parameterType="int">
+        DELETE FROM reply_discuss 
+        WHERE  discuss_id =  #{id}
+    </delete>
+    
+    <select id="getSubReplyids" parameterType="int" resultType="int">
+        SELECT reply_discuss_id FROM reply_discuss ard
+        WHERE ard.reply_to_reply IN
+        (SELECT reply_discuss_id FROM reply_discuss rd
+        WHERE discuss_id = #{id})
+    </select>
+    
+    <delete id="delSubReply">
+        DELETE FROM reply_discuss 
+        WHERE reply_discuss_id IN 
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+        #{id}
+        </foreach>
+    </delete>
+    
+    <select id="queryReplyToReplyid" parameterType="int" resultType="int">
+         SELECT rd.reply_discuss_id FROM  reply_discuss rd
+         WHERE rd.reply_to_reply = #{id}
+    </select>
 </mapper>

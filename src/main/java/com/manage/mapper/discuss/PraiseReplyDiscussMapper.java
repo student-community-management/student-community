@@ -1,5 +1,7 @@
 package com.manage.mapper.discuss;
 
+import java.util.List;
+
 import com.manage.entity.PraiseReplyDiscuss;
 
 public interface PraiseReplyDiscussMapper{
@@ -22,5 +24,12 @@ public interface PraiseReplyDiscussMapper{
      * @return
      */
     Integer checkPraiseReply(PraiseReplyDiscuss praiseReplyDiscuss);
+    
+    
+    /**
+     * 通过回复的id删除赞
+     * @param id
+     */
+    void delByReplyid(Integer id);
     
 }

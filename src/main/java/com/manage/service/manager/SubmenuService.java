@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.Submenu;
 import com.manage.mapper.manager.SubmenuMapper;
@@ -12,6 +13,7 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class SubmenuService implements SubmenuMapper,BaseService<Submenu>{
     
     @Autowired

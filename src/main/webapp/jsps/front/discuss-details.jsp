@@ -219,7 +219,6 @@ $('#report').click(function(){
     var $btn = $(this);
     var $text = $(this).html();
     
-    console.log('text='+$text);
     if($text == '<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;举报'){
         layer.prompt({
        		formType: 2,
@@ -233,7 +232,7 @@ $('#report').click(function(){
                  data:{"discuss.discussid":${ discuss.discussid },'message':value},
                  success:function(data){
                      if(data == '1'){
-                         layer.msg('添加评论成功');
+                         layer.msg('举报成功');
                          $btn.html('<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>&nbsp;&nbsp;已举报');
                          $btn.addClass('disable');
                          layer.close(index);

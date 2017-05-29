@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.ReportDiscuss;
 import com.manage.mapper.discuss.ReportDiscussMapper;
-import com.manage.service.BaseService;
 import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class ReportDiscussService implements ReportDiscussMapper {
 
     @Autowired
@@ -49,7 +50,6 @@ public class ReportDiscussService implements ReportDiscussMapper {
      * @return
      */
     public PageData getPageData(PageParam pageParam, Integer discussid) {
-        System.out.println("services==============disucssid====="+discussid);
         return new PageData(this.getReportsByDiscussidCount(discussid),
                 this.getReportsByDiscussid(pageParam, discussid));
     }

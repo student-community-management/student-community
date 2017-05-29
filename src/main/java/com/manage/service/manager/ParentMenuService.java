@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.Manager;
 import com.manage.entity.ParentMenu;
@@ -15,6 +16,7 @@ import com.manage.mapper.manager.SubmenuMapper;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class ParentMenuService implements ParentMenuMapper {
 
     @Autowired

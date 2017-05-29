@@ -22,7 +22,6 @@ public class Student implements Serializable {
     private String stuName; // 学生姓名
     private Integer stuSex; // 性别
     private Date stuBirthday; // 生日
-    private String stuNativePlace; // 祖籍
     private Classes classes; // 班级
     private String img; // 头像
     private String introduce; // 个性签名
@@ -40,14 +39,6 @@ public class Student implements Serializable {
 
     public Set<Community> getCommunitys() {
         return communitys;
-    }
-
-    public String getStuNativePlace() {
-        return stuNativePlace;
-    }
-
-    public void setStuNativePlace(String stuNativePlace) {
-        this.stuNativePlace = stuNativePlace;
     }
 
     public void setCommunitys(Set<Community> communitys) {

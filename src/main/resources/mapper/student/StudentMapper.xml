@@ -7,7 +7,6 @@
         <result column="stu_name" property="stuName" />
         <result column="stu_sex" property="stuSex" />
         <result column="stu_birthday" property="stuBirthday" />
-        <result column="stu_native_place" property="stuNativePlace" />
         <result column="role_name" property="roleName"/>
         <result column="img" property="img"/>
         <result column="introduce" property="introduce"/>
@@ -122,14 +121,14 @@
      
     <insert id="save" parameterType="com.manage.entity.Student" 
             keyProperty="stuid" useGeneratedKeys="true">
-        INSERT INTO student (stu_name, stu_sex, stu_birthday, stu_native_place, classes_id) 
-        VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{stuNativePlace}, #{classes.classesid})
+        INSERT INTO student (stu_name, stu_sex, stu_birthday, classes_id) 
+        VALUES (#{stuName}, #{stuSex}, #{stuBirthday}, #{classes.classesid})
              
     </insert>
     
     <update id="update" parameterType="com.manage.entity.Student">
        UPDATE student SET stu_name=#{stuName}, stu_sex=#{stuSex}, stu_birthday=#{stuBirthday},
-        stu_native_place=#{stuNativePlace}, classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
+       classes_id=#{classes.classesid} WHERE stu_id = #{stuid}
     </update>
      
      <update id="updateImg" parameterType="com.manage.entity.Student">

@@ -23,4 +23,11 @@ public interface AgainstReplyDiscussMapper {
      * @return
      */
     Integer checkAgainstReply(AgainstReplyDiscuss againstReplyDiscuss);
+    
+    
+    /**
+     * 通过回复的id删除踩
+     * @param id 回复的id
+     */
+    void delByReplyid(Integer id);
 }

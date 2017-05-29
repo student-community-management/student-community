@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.manage.entity.Manager;
 import com.manage.service.manager.ManagerService;
@@ -97,7 +95,7 @@ public class ManagerControl {
      * @param req HttpServletRequest
      * @return
      */
-    @RequestMapping("login")
+    @RequestMapping("login/login")
     @ResponseBody
     public String login(@ModelAttribute Manager manager, HttpServletRequest req) {
 
@@ -109,8 +107,6 @@ public class ManagerControl {
         if (status == 1) {
             // 通过id先得到完整的管理员对象信息
             Manager mgr = managerService.queryOne(manager.getManagerid());
-            System.out.println("submenuService.getSubmenuCountByMgrid(mgr.getManagerid())"
-                    + submenuService.getSubmenuCountByMgrid(mgr.getManagerid()));
             // 如果此角色没有被分配角色则提示没有角色
             if (mgr.getMgrRole() == null) {
                 return "no role";

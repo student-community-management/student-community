@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.Community;
 import com.manage.entity.StuCommunity;
@@ -18,6 +19,7 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class CommunityService implements BaseService<Community>, CommunityMapper {
 
     @Autowired
@@ -134,7 +136,6 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         Integer yes = stuCommunityMapper.exist(sc);
 
         if (yes == 0) {
-            System.out.println("将学生添加到社团中");
             // 如果不是此社团成员
             // 将此学生添加到此社团
             // sc 参数为上面判断学生是否为此社团成员
@@ -146,7 +147,6 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
         scr = new StuCommunityRole(stuid);
         scr.setCommunityRoleid(communityMapper.getCommMasterRoleid(commid));
 
-        System.out.println("指定团长");
         // 指定为社团团长
         stuCommunityRoleMapper.save(scr);
 
@@ -166,6 +166,11 @@ public class CommunityService implements BaseService<Community>, CommunityMapper
     public List<Community> getNewCommunity(Integer stuid) {
         // TODO Auto-generated method stub
         return communityMapper.getNewCommunity(stuid);
+    }
+
+    @Override
+    public String getImgByCommid(Integer id) {
+        return communityMapper.getImgByCommid(id);
     }
 
 }

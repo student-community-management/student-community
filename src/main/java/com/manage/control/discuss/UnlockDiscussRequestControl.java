@@ -31,6 +31,12 @@ public class UnlockDiscussRequestControl {
     @Autowired
     private DiscussService discussService;
     
+    /**
+     * 解锁讨论的请求
+     * 当讨论被锁定,前台发起讨论者发起解锁请求
+     * @param unlockDiscussRequest 
+     * @return
+     */
     @RequestMapping("unlockRequest")
     @ResponseBody
     public String save(UnlockDiscussRequest unlockDiscussRequest) {

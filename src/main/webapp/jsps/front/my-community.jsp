@@ -8,7 +8,7 @@
 
 <!-- 循环 -->
 <div>
-<a class="btn btn-danger" href="#" id="joinComm" style="margin: 20px">添加新的社团</a>     
+<a class="btn btn-danger" href="#" id="joinComm" style="margin: 20px">申请加入新的社团</a>     
 </div>
 <c:if test="${fn:length(commList) != 0 }">
 <c:forEach items="${commList }" var="comm">
@@ -59,7 +59,6 @@ $('.commInfo').click(function(){
     layer.open({
         type: 2,
         top: '50px',
-        title:'发布新的话题',
          area : ['1050px' , '600px'],
         content: $(this).attr('hrefs')
       });
@@ -69,7 +68,6 @@ $('#joinComm').click(function(){
     layer.open({
         type: 2,
         top: '50px',
-        title:'发布新的话题',
          area : ['1050px' , '600px'],
         content: '/student-community/comm/getNewCommunity.a'
       });

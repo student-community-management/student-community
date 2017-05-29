@@ -5,9 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.manage.entity.StuCommunity;
-import com.manage.entity.Student;
 import com.manage.mapper.BaseMapper;
-import com.manage.util.PageParam;
 
 public interface StuCommunityMapper extends BaseMapper<StuCommunity> {
 

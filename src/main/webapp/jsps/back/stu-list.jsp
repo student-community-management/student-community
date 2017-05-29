@@ -7,17 +7,22 @@
                     学生姓名: <input id="stuName" name="stuName"><br>
                     学生性别: <input id="stuSex" name="stuSex"><br>
                     班&nbsp;&nbsp;级:<input id="cls"  name="classes.classesid"><br> 
-                    祖&nbsp;&nbsp;籍:<input id="stuAddr" name="stuNativePlace"><br> 
                     出生日期:<input id="stuBirthday" name="stuBirthday"><br>
     </form>
     <a href="#" id="save">保存</a> 
     <a href="#" id="close">关闭</a>
 </div>
 <div id="toolbar">
-    <input id="search"></input> 
+    <input id="search"></input>
+     <c:if test="${ sessionScope.level >= 2 }">
     <a href="#" id="addStu" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
-    <a href="#" id="removeStu" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
+    </c:if>
+     <c:if test="${ sessionScope.level >= 3 }">
     <a href="#" id="updateStu" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
+    </c:if>
+     <c:if test="${ sessionScope.level >= 4 }">
+    <a href="#" id="removeStu" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
+    </c:if>
 </div>
 <table id="stu-list"></table>
 <script type="text/javascript">
@@ -66,9 +71,6 @@
             }, {
                 field : 'stuBirthday',
                 title : '生日'
-            }, {
-                field : 'stuNativePlace',
-                title : '祖籍'
             }, {
                 field : 'classes',
                 title : '班级',
@@ -119,7 +121,7 @@
             closed : true //加载时关闭按钮
         });
         
-        loadAddWindow = function(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday){
+        loadAddWindow = function(stuid,stuName,stuSex,cls,stuBirthday){
             
             if(stuid == undefined){
                 stuid = '';
@@ -169,7 +171,6 @@
             //student classes infomation
             $('#cls').combogrid({
                 url : '/student-community/cls/allCls.a',
-                queryParams : {kw : 'no'},
                 width : 200,
                 panelWidth : 300,
                 panelHeight : 'auto',
@@ -257,31 +258,6 @@
                     });
                 } 
             });
-
-            //student address combobox
-            $('#stuAddr').combobox({
-                url:'/student-community/json/address.json',
-                width : 200,
-                valueField : 'id',
-                textField : 'text',
-                editable:false,
-                onLoadSuccess:function(){
-                    var data = $('#stuAddr').combobox('getData');
-                    if(data != ''){
-                        if(stuNativePlace != null){
-                            for(var i = 0;i<data.length;i++){
-                                if(data[i].id == stuNativePlace){
-                                    $('#stuAddr').combobox('select',data[i].id);
-                                    break;
-                                }
-                            }
-                        } else {
-                            $('#stuAddr').combobox('select',data[0].id);
-                        }
-                    }
-                }
-            });
-            
             
             //initDatebox #stuBirthday
             initDatebox = function(){
@@ -385,11 +361,10 @@
          var stuName = rowData[0].stuName;
          var stuSex = rowData[0].stuSex;
          var cls = rowData[0].classes.classesid;
-         var stuNativePlace = rowData[0].stuNativePlace;
          var stuBirthday = rowData[0].stuBirthday;
          
         //init #addStuWindow
-        loadAddWindow(stuid,stuName,stuSex,cls,stuNativePlace,stuBirthday);
+        loadAddWindow(stuid,stuName,stuSex,cls,stuBirthday);
         
         //open #addStuWindow 
         $('#addStuWindow').window('open');
