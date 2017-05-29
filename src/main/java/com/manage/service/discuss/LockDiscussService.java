@@ -5,11 +5,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.LockDiscuss;
 import com.manage.mapper.discuss.LockDiscussMapper;
 
 @Service
+@Transactional
 public class LockDiscussService implements LockDiscussMapper {
     
     @Autowired

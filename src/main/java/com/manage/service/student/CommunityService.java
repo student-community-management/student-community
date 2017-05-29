@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.Community;
 import com.manage.entity.StuCommunity;
@@ -18,6 +19,7 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class CommunityService implements BaseService<Community>, CommunityMapper {
 
     @Autowired

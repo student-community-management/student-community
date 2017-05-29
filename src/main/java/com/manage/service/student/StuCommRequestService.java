@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.StuCommRequest;
 import com.manage.mapper.student.StuCommRequestMapper;
 
 @Service
+@Transactional
 public class StuCommRequestService implements StuCommRequestMapper {
 
     @Autowired

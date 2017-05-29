@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.Classes;
 import com.manage.mapper.student.ClassesMapper;
 
 @Service
+@Transactional
 public class ClassesService implements ClassesMapper {
 
     @Autowired

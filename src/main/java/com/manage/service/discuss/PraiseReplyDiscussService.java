@@ -2,11 +2,13 @@ package com.manage.service.discuss;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.PraiseReplyDiscuss;
 import com.manage.mapper.discuss.PraiseReplyDiscussMapper;
 
 @Service
+@Transactional
 public class PraiseReplyDiscussService implements PraiseReplyDiscussMapper {
 
     @Autowired

@@ -13,10 +13,16 @@
     <a href="#" id="close">关闭</a>
 </div>
 <div id="toolbar">
-    <input id="search"></input> 
+    <input id="search"></input>
+     <c:if test="${ sessionScope.level >= 2 }">
     <a href="#" id="addStu" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="width: 70px">添加</a> 
-    <a href="#" id="removeStu" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
+    </c:if>
+     <c:if test="${ sessionScope.level >= 3 }">
     <a href="#" id="updateStu" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" style="width: 70px">修改</a>
+    </c:if>
+     <c:if test="${ sessionScope.level >= 4 }">
+    <a href="#" id="removeStu" class="easyui-linkbutton" data-options="iconCls:'icon-remove'" style="width: 70px">移除</a>
+    </c:if>
 </div>
 <table id="stu-list"></table>
 <script type="text/javascript">

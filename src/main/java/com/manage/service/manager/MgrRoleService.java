@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.MgrRole;
 import com.manage.mapper.manager.ManagerMapper;
@@ -14,6 +15,7 @@ import com.manage.util.PageData;
 import com.manage.util.PageParam;
 
 @Service
+@Transactional
 public class MgrRoleService implements MgrRoleMapper, BaseService<MgrRole> {
 
     @Autowired 

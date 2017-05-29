@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.manage.entity.StuCommunityRole;
 import com.manage.mapper.student.StuCommunityRoleMapper;
 
 @Service
+@Transactional
 public class StuCommunityRoleService implements StuCommunityRoleMapper {
     
     @Autowired

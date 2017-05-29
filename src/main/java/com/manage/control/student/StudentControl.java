@@ -197,19 +197,6 @@ public class StudentControl {
     }
 
     /**
-     * 暂时没有用到
-     * 得到所有的管理人员信息
-     * @param pageParam 分页条件
-     * @param kw  查询关键字
-     * @return 符合查询条件的管理人员
-     */
-    @RequestMapping("getAllMgr")
-    @ResponseBody
-    public PageData qeuryAllMgr(PageParam pageParam, String kw) {
-        return studentService.getPageData(pageParam, kw);
-    }
-
-    /**
      * 
      * 查询此社团下的学生
      * @param id 社团的id
@@ -262,22 +249,15 @@ public class StudentControl {
     }
 
     /**
+     * @RequestMapping 请求映射
+     * @ResponseBody 返回给前台一个json字符串
      * 添加/修改 学生信息
      * 从前台传stu的属性值
      * 由Springmvc进行封装
      * 如果stu的stuid属性为空,则调用添加的方法
      * 如果stu的stuid属性不为空,则调用更新的方法
      * 
-     * 前台参数有:
-     *      stuName,stuNativePlace,stuBirthday,
-     *      sutSex,classes.classesid,crid(communityRoleid)
-     * 其他参数:
-     *      stuid 在添加方法中为自增,
-     *            在更新方法中作为条件
-     *      stuPwd 默认为 '123123'
-     * 
      * @param stu 学生对象
-     * @param crid communiotyRoleid 社团角色对应的id
      * @throws Exception
      */
     @RequestMapping("saveStu")
@@ -310,6 +290,8 @@ public class StudentControl {
      * @param stu 学生的帐号和密码
      * @param req request 获取session
      * @return 是否登陆成功: 1为登录成功
+     * @RequestMapping 请求映射
+     * @ResponseBody 返回给前台一个json字符串
      */
     @RequestMapping("login/flogin")
     @ResponseBody
