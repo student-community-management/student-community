@@ -319,6 +319,7 @@ $(function(){
     }
   	
 	$('#roleDiv').window({    
+	    title:'添加/修改角色',
         modal:true ,
         closed:true,
         onClose:function(){
@@ -337,7 +338,7 @@ $(function(){
     });
     
     $('#submenuDiv').window({  
-        title:'子菜单',
+        title:'添加子菜单',
         modal:true ,
         closed:true,
         width:300,

@@ -15,7 +15,7 @@
 #### &emsp;&emsp;[yachao10010](https://github.com/yachao10010) :
 #### &emsp;&emsp;&emsp;&emsp; 1).前台用户UI设计
 &nbsp;
-#### tips： 我和我的小伙伴目前正在找工作，希望能找一份上海的工作
+#### tips： 我和我的小伙伴目前正在找工作，对我们感兴趣的赶紧联系我们吧
 #### [ChenYuhao](https://github.com/SimpleChenyh) ： 希望找一份Java后端开发的工作 email：chenyh.me@gmail.com
 #### [yachao10010](https://github.com/yachao10010) ： 希望找一份前端开发的工作 email：mychao.me@gmail.com
 # 开发环境

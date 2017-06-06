@@ -154,6 +154,7 @@
         $('#addCommWindow').window({
             height : 'auto',
             title : '添加社团',
+            modal:true,
             collapsible : true, //显示折叠按钮
             minimizable : true, //显示最小化按钮
             maximizable : true, //显示最大化按钮
